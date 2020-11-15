@@ -80,9 +80,6 @@ int main(int argc, char *argv[])
         size_t reply_length = boost::asio::read(s, boost::asio::buffer(reply, max_length));
         std::cout << "Reply is:" << std::endl;
         std::cout.write(reply, reply_length);
-        // std::cout << "\n";
-        //std::cout << "Reply is:" << std::endl;
-        //std::cout.write(reply, max_length);
         std::cout << std::endl;
     }
     catch (std::exception &e)

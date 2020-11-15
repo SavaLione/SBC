@@ -54,6 +54,7 @@ void session::do_read()
                                 if (!ec)
                                 {
                                     std::cout << data_ << std::endl;
+                                    do_write(length);
                                 }
                             });
 }
