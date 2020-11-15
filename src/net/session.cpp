@@ -41,7 +41,6 @@
 
 void session::start()
 {
-    std::cout << "start()" << std::endl;
     do_read();
 }
 
