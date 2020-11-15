@@ -57,6 +57,8 @@ find_package(Protobuf REQUIRED)
 
 set(SBC_CORE_SRC
     src/core/sbc_server.cpp
+    src/core/blowfish.h
+    src/core/blowfish.cpp
 )
 
 set(SBC_NET_SRC
