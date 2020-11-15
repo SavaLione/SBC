@@ -73,7 +73,7 @@ set(SBC_SRC
 
 # protocol buffer src
 set(SBC_PROTOBUFF_SRC
-    src/proto/user_message.proto
+    src/proto/data.proto
 )
 
 PROTOBUF_GENERATE_CPP(PROTO_SRCS PROTO_HDRS ${SBC_PROTOBUFF_SRC})
