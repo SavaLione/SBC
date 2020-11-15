@@ -33,32 +33,12 @@
  * Copyright (c) 2008, Taylor Hornby
 */
 
-/* Use
-#include <iostream>
-#include <string.h>
-#include "blowfish.h"
-
-using namespace std;
-
-typedef unsigned char byte;
-
-int main()
-{
-    BLOWFISH bf("FEDCBA9876543210");
-    string asdf = "BlowwFIshhhhhhhhhhh!";
-    asdf = bf.Encrypt_CBC(asdf);
-    cout << "Encrypted: " << asdf << endl;
-    asdf = bf.Decrypt_CBC(asdf);
-    cout << "Decrypted: " << asdf;
-    return 0;
-}
-
-*/
 /**
  * @file
  * @brief Blowfish
  * @author Taylor Hornby, SavaLione
  * @date 15 Nov 2020
+ * @example blowfish.cpp
  */
 #ifndef BLOWFISH_INCLUDED
 #define BLOWFISH_INCLUDED
