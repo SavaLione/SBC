@@ -47,7 +47,6 @@ void session::start()
 
 void session::do_read()
 {
-    std::cout << "do_read()" << std::endl;
     auto self(shared_from_this());
     socket_.async_read_some(boost::asio::buffer(data_, max_length),
                             [this, self](boost::system::error_code ec, std::size_t length) {
@@ -61,11 +60,6 @@ void session::do_read()
 
 void session::do_write(std::size_t length)
 {
-    std::cout << "do_write()" << std::endl;
-    std::cout << "data:" << std::endl;
-    std::cout.write(data_, length);
-    std::cout << std::endl;
-
     auto self(shared_from_this());
     boost::asio::async_write(socket_, boost::asio::buffer(data_, length),
                              [this, self](boost::system::error_code ec, std::size_t /*length*/) {
