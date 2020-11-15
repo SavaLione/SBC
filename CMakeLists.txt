@@ -36,11 +36,8 @@ set(SBC_CLIENT_PROJECT "sbc-client")
 set(SBC_CLIENT_PROJECT_VERSION "0.0.1")
 
 # flags
-if(WIN32)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++ -static -lpthread -O3 -fopenmp")
-else()
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++ -lpthread -O3 -lncurses -fopenmp")
-endif()
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpthread -O2")
 
 project(${SBC_PROJECT}
     VERSION ${SBC_PROJECT_VERSION}
