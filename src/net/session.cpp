@@ -37,8 +37,6 @@
  */
 #include "net/session.h"
 
-#include <user_message.pb.h>
-
 #include <iostream>
 
 void session::start()
@@ -55,7 +53,7 @@ void session::do_read()
                             [this, self](boost::system::error_code ec, std::size_t length) {
                                 if (!ec)
                                 {
-                                    std::cout << data_
+                                    std::cout << data_ << std::endl;
                                 }
                             });
 }
