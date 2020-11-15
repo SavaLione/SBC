@@ -31,32 +31,33 @@
 
 /**
  * @file
- * @brief Session
+ * @brief Server
  * @author SavaLione
- * @date 15 Nov 2020
+ * @date 08 Sep 2020
  */
-#ifndef NET_SESSION_H
-#define NET_SESSION_H
+#ifndef NET_SERVER_H
+#define NET_SERVER_H
 
-#include <boost/asio.hpp>
+#include <cstdlib>
+#include <iostream>
+#include <memory>
+#include <utility>
 
-class session
-  : public std::enable_shared_from_this<session>
+#include "net/session.h"
+
+class server
 {
 public:
-  session(boost::asio::ip::tcp::socket socket)
-    : socket_(std::move(socket))
+  server(boost::asio::io_context &io_context, short port)
+      : acceptor_(io_context, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port))
   {
+    do_accept();
   }
 
-  void start();
-
 private:
-  void do_read();
-  void do_write(std::size_t length);
-  boost::asio::ip::tcp::socket socket_;
-  enum { max_length = 1024 };
-  char data_[max_length];
+  void do_accept();
+
+  boost::asio::ip::tcp::acceptor acceptor_;
 };
 
-#endif // NET_SESSION_H
+#endif // NET_SERVER_H

@@ -33,7 +33,7 @@
  * @file
  * @brief sbc-client
  * @author SavaLione
- * @date 15 Nov 2020
+ * @date 08 Sep 2020
  */
 
 #include <cstdlib>
@@ -42,6 +42,8 @@
 #include <boost/asio.hpp>
 
 #include <string>
+
+#include <user_message.pb.h>
 
 using boost::asio::ip::tcp;
 
@@ -52,6 +54,14 @@ enum
 
 int main(int argc, char *argv[])
 {
+    //////////
+    sl::sbc::message::Message m_send;
+    m_send.set_username("savalione");
+    m_send.set_password("1234");
+    m_send.set_data("DATA FROM sbc-client");
+    //////////
+    sl::sbc::message::Message m_recv;
+    //////////
     try
     {
         if (argc != 3)
@@ -77,7 +87,9 @@ int main(int argc, char *argv[])
         boost::asio::write(s, boost::asio::buffer(request, request_length));
 
         char reply[max_length];
+        // size_t reply_length = boost::asio::read(s, boost::asio::buffer(reply, request_length));
         size_t reply_length = boost::asio::read(s, boost::asio::buffer(reply, request_length));
+        // std::cout << "Reply is: ";
         // std::cout.write(reply, reply_length);
         // std::cout << "\n";
         std::cout << "Reply is:" << std::endl;

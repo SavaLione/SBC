@@ -31,32 +31,29 @@
 
 /**
  * @file
- * @brief Session
+ * @brief SBC server
  * @author SavaLione
  * @date 15 Nov 2020
  */
-#ifndef NET_SESSION_H
-#define NET_SESSION_H
 
-#include <boost/asio.hpp>
+#include "net/server.h"
 
-class session
-  : public std::enable_shared_from_this<session>
+int main(int argc, char *argv[])
 {
-public:
-  session(boost::asio::ip::tcp::socket socket)
-    : socket_(std::move(socket))
-  {
-  }
-
-  void start();
-
-private:
-  void do_read();
-  void do_write(std::size_t length);
-  boost::asio::ip::tcp::socket socket_;
-  enum { max_length = 1024 };
-  char data_[max_length];
-};
-
-#endif // NET_SESSION_H
+    try
+    {
+        if (argc != 2)
+        {
+            std::cerr << "Usage: sbc <port>\n";
+            return 1;
+        }
+        boost::asio::io_context io_context;
+        server s(io_context, std::atoi(argv[1]));
+        io_context.run();
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << "Exception: " << e.what() << "\n";
+    }
+    return 0;
+}

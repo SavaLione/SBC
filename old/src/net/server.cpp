@@ -31,32 +31,21 @@
 
 /**
  * @file
- * @brief Session
+ * @brief Server
  * @author SavaLione
- * @date 15 Nov 2020
+ * @date 08 Sep 2020
  */
-#ifndef NET_SESSION_H
-#define NET_SESSION_H
+#include "net/server.h"
 
-#include <boost/asio.hpp>
-
-class session
-  : public std::enable_shared_from_this<session>
+void server::do_accept()
 {
-public:
-  session(boost::asio::ip::tcp::socket socket)
-    : socket_(std::move(socket))
-  {
-  }
+    acceptor_.async_accept(
+        [this](boost::system::error_code ec, boost::asio::ip::tcp::socket socket) {
+            if (!ec)
+            {
+                std::make_shared<session>(std::move(socket))->start();
+            }
 
-  void start();
-
-private:
-  void do_read();
-  void do_write(std::size_t length);
-  boost::asio::ip::tcp::socket socket_;
-  enum { max_length = 1024 };
-  char data_[max_length];
-};
-
-#endif // NET_SESSION_H
+            do_accept();
+        });
+}

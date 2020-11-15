@@ -33,7 +33,7 @@
  * @file
  * @brief Session
  * @author SavaLione
- * @date 15 Nov 2020
+ * @date 08 Sep 2020
  */
 #ifndef NET_SESSION_H
 #define NET_SESSION_H

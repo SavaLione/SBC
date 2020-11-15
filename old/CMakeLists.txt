@@ -42,6 +42,10 @@ else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static-libgcc -static-libstdc++ -lpthread -O3 -lncurses -fopenmp")
 endif()
 
+#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/core/config.h.cmake ${CMAKE_CURRENT_SOURCE_DIR}/src/core/config.h)
+#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/resources/sql_console.rc.cmake ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/sql_console.rc)
+#configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/resources/sql_cli.rc.cmake ${CMAKE_CURRENT_SOURCE_DIR}/src/resources/sql_cli.rc)
+
 project(${SBC_PROJECT}
     VERSION ${SBC_PROJECT_VERSION}
     LANGUAGES C CXX
@@ -53,13 +57,30 @@ set(Boost_USE_MULTITHREAD ON)
 set(Boost_USE_DEBUG_LIBS OFF)
 set(Boost_USE_RELEASE_LIBS ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
+#SET(Boost_COMPILER ${Boost_COMPILER} "-mgw8")
+#SET(Boost_ARCHITECTURE "-x64")
 find_package(Boost COMPONENTS system thread regex REQUIRED)
+#find_package(Threads)
 
-# Protocol Buffer
+# protocol buffer
 find_package(Protobuf REQUIRED)
 
 set(SBC_CORE_SRC
-    src/core/sbc_server.cpp
+    src/core/sbc.cpp
+    src/core/settings.h
+    src/core/settings.cpp
+    src/core/blowfish.h
+    src/core/user.h
+    src/core/user.cpp
+    src/core/digits.h
+    src/core/digits.cpp
+)
+
+set(SBC_DB_SRC
+    src/db/db_mysql.h
+    src/db/db_mysql.cpp
+    src/db/db_wrapper.h
+    src/db/db_wrapper.cpp
 )
 
 set(SBC_NET_SRC
@@ -71,6 +92,8 @@ set(SBC_NET_SRC
 
 set(SBC_SRC
     ${SBC_CORE_SRC}
+    ${SBC_DB_SRC}
+    ${SBC_TUI_SRC}
     ${SBC_NET_SRC}
 )
 
@@ -101,6 +124,11 @@ if(Protobuf_FOUND)
     target_link_libraries(${SBC_PROJECT} ${Protobuf_LIBRARY})
 endif()
 
+# sqlite3
+#add_subdirectory(${PROJECT_SOURCE_DIR}/lib/sqlite3)
+#target_link_libraries(${SBC_PROJECT} SQLite3)
+#target_include_directories(${SBC_PROJECT} PUBLIC ${PROJECT_SOURCE_DIR}/lib/sqlite3)
+
 # sl-time
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib/sl-time)
 target_link_libraries(${SBC_PROJECT} sl-time)
@@ -113,8 +141,14 @@ set(SBC_CLIENT_CORE_SRC
     src/core/sbc_client.cpp
 )
 
+set(SBC_CLIENT_NET_SRC
+    src/net/client.h
+    src/net/client.cpp
+)
+
 set(SBC_CLIENT_SRC
     ${SBC_CLIENT_CORE_SRC}
+    ${SBC_CLIENT_NET_SRC}
 )
 
 # executable

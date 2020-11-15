@@ -33,7 +33,7 @@
  * @file
  * @brief Server
  * @author SavaLione
- * @date 08 Sep 2020
+ * @date 15 Nov 2020
  */
 #ifndef NET_SERVER_H
 #define NET_SERVER_H

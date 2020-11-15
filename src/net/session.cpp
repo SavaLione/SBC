@@ -33,11 +33,9 @@
  * @file
  * @brief Session
  * @author SavaLione
- * @date 08 Sep 2020
+ * @date 15 Nov 2020
  */
 #include "net/session.h"
-
-#include "db/db_wrapper.h"
 
 #include <user_message.pb.h>
 
@@ -57,74 +55,7 @@ void session::do_read()
                             [this, self](boost::system::error_code ec, std::size_t length) {
                                 if (!ec)
                                 {
-                                    // db_wrapper &instance = db_wrapper::Instance();
-                                    sl::sbc::message::Message msg;
-                                    if (msg.ParseFromArray(data_, length))
-                                    {
-                                        std::cout << "username: [" << msg.username() << "]" << std::endl;
-                                        std::cout << "password: [" << msg.password() << "]" << std::endl;
-                                        std::cout << "data: [" << msg.data() << "]" << std::endl;
-                                        std::cout << "com: [" << msg.com() << "]" << std::endl;
-
-                                        if (msg.username().size() > 0 && msg.password().size() > 0)
-                                        {
-                                            db_wrapper &instance = db_wrapper::Instance();
-                                            if (instance.check_password(msg.username(), msg.password()))
-                                            {
-                                                if (msg.com() == sl::sbc::message::Command::INSERT_DATA)
-                                                {
-                                                    instance.add_data(msg.username(), msg.data());
-
-                                                    sl::sbc::message::Message msg_ret;
-                                                    msg_ret.set_ret_c(sl::sbc::message::Return_code::SUCCESS);
-
-                                                    data_[0] = 'O';
-                                                    data_[1] = 'K';
-                                                    data_[2] = ' ';
-                                                    data_[3] = ' ';
-                                                    data_[4] = ' ';
-                                                    do_write(5);
-                                                    return;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                //password incorrect
-                                                data_[0] = 'P';
-                                                data_[1] = 'A';
-                                                data_[2] = 'S';
-                                                data_[3] = ' ';
-                                                data_[4] = ' ';
-                                                do_write(5);
-                                                return;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            sl::sbc::message::Message msg_ret;
-                                            msg_ret.set_ret_c(sl::sbc::message::Return_code::PASSWORD_INCORRECT);
-
-                                            data_[0] = 'P';
-                                            data_[1] = 'A';
-                                            data_[2] = 'S';
-                                            data_[3] = ' ';
-                                            data_[4] = ' ';
-                                            do_write(5);
-                                            return;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        // error parse
-                                        std::cout << "Error parse" << std::endl;
-                                        data_[0] = 'P';
-                                        data_[1] = 'A';
-                                        data_[2] = 'R';
-                                        data_[3] = 'S';
-                                        data_[4] = ' ';
-                                        do_write(5);
-                                        return;
-                                    }
+                                    std::cout << data_
                                 }
                             });
 }
