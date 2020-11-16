@@ -45,7 +45,7 @@ project(${SBC_PROJECT}
 )
 
 # adding cmake dir with scripts
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+#set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # boost c++
 set(Boost_USE_STATIC_LIBS ON)
@@ -114,10 +114,10 @@ if(Protobuf_FOUND)
     target_link_libraries(${SBC_PROJECT} ${Protobuf_LIBRARY})
 endif()
 
-if(SQLITE3_FOUND)
-    target_include_directories(${SBC_PROJECT} PUBLIC ${SQLITE3_INCLUDE_DIRS})
-    target_link_libraries (${SBC_PROJECT} ${SQLITE3_LIBRARIES})
-endif (SQLITE3_FOUND)
+if(SQLite3_FOUND)
+    target_include_directories(${SBC_PROJECT} PUBLIC ${SQLite3_INCLUDE_DIRS})
+    target_link_libraries (${SBC_PROJECT} ${SQLite3_LIBRARIES})
+endif()
 
 # sl-time
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib/sl-time)
