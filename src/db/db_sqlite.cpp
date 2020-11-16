@@ -56,6 +56,7 @@ db_sqlite::db_sqlite()
 
     std::string sql = PRAGMA;
 
+    std::string s;
     int rc = sqlite3_exec(_db, sql.c_str(), NULL, &s, NULL);
 
     if (rc)

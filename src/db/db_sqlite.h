@@ -59,7 +59,7 @@ private:
     sqlite3_stmt *_stmt;
 
     bool _open = false;
-    bool _name = "";
+    std::string _name = "";
 };
 
 #endif // DB_DB_SQLITE_H
