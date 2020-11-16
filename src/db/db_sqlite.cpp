@@ -132,3 +132,22 @@ bool db_sqlite::answer(std::string const &request, std::vector<std::string> &ret
 
     return true;
 }
+
+bool db_sqlite::answer(std::string request)
+{
+    std::vector<std::string> container;
+
+    int rc = sqlite3_exec(_db, request.c_str(), callback, &container, NULL);
+
+    if (rc)
+    {
+        std::cout << sqlite3_errmsg(_db) << std::endl;
+        return false;
+    }
+
+    for (int i = 0; i < container.size(); i++)
+    {
+        std::cout << container[i] << std::endl;
+    }
+    return true;
+}

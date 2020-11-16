@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
     /* SQLite3 test */
     db_sqlite dbs;
-    dbs.answer("SELECT * FROM *;", NULL, NULL);
+    dbs.answer("SELECT * FROM *;");
     exit(0);
     /* SQLite3 test */
 

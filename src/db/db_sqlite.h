@@ -51,6 +51,9 @@ public:
     std::vector<std::string> vec_answer(std::string request, int &rc);
     bool answer(std::string const &request, std::vector<std::string> &return_columns, std::vector<std::string> &return_data);
 
+    /* Delete */
+    bool answer(std::string request);
+
 private:
     sqlite3 *_db;
     sqlite3_stmt *_stmt;
