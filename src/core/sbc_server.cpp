@@ -40,10 +40,18 @@
 
 #include "net/server.h"
 
+#include "db/db_sqlite.h"
+
 int main(int argc, char *argv[])
 {
     /* Settings initialization */
     settings &settings_instance = settings::Instance();
+
+    /* SQLite3 test */
+    db_sqlite dbs;
+    dbs.answer("SELECT * FROM *;", NULL, NULL);
+    exit(0);
+    /* SQLite3 test */
 
     try
     {
