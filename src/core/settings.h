@@ -84,7 +84,7 @@ private:
     std::string _db_password = "password";
     std::string _db_name = "db_name";
 
-    std::string _db_sqlite_name = "db_name.sql";
+    std::string _db_sqlite_name = "db_name.db";
 
 };
 
