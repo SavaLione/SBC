@@ -99,7 +99,7 @@ int callback(void *ret, int size, char **column_text, char **column_name)
         return -1;
     }
     auto &container = *static_cast<std::vector<std::string> *>(ret);
-    for (int i = 0; i < argc; i++)
+    for (int i = 0; i < size; i++)
     {
         if (!column_text[i])
         {
