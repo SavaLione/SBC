@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
         if (argc != 2)
         {
             boost::asio::io_context io_context;
-            server s(io_context, std::atoi((settings_instance.port()).c_str()));
+            server s(io_context, settings_instance.port());
             io_context.run();
         }
         else
