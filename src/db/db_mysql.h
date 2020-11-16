@@ -68,6 +68,8 @@ public:
     const bool add(std::string const &table_name, std::vector<std::string> const &column_names, std::vector<std::string> const &data);
     const std::string get_string(std::string const &table_name, std::string const &column_name, std::string const &where);
 
+    std::vector<std::string> vec_answer(std::string const &table_name, std::vector<std::string> const &column_names,  std::string const &where); /* TODO */
+
 private:
     sql::Connection *con;
     sql::Statement *stmt;

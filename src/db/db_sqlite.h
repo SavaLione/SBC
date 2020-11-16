@@ -45,40 +45,18 @@
 class db_sqlite
 {
 public:
-    static db_sqlite &Instance()
-    {
-        static db_sqlite d;
-        return d;
-    }
-
+    db_sqlite();
     ~db_sqlite();
 
-    std::vector<std::string> open(std::string db_name);
-    std::vector<std::string> open(std::string db_name, int &status);
-    void close();
-    bool db_open();
-
-    std::vector<std::string> vec_answer(std::string request);
     std::vector<std::string> vec_answer(std::string request, int &rc);
-    void request(std::string request);
-    void request(std::string request, int &status);
+    bool answer(std::string const &request, std::vector<std::string> &return_columns, std::vector<std::string> &return_data);
 
 private:
-    db_sqlite();
-    db_sqlite(db_sqlite const &) = delete;
-    db_sqlite &operator=(db_sqlite const &) = delete;
-
     sqlite3 *_db;
     sqlite3_stmt *_stmt;
 
-    std::string _db_name;
-
-    std::vector<std::string> _open();
-    std::vector<std::string> _open(int &status);
-
-    bool _db_open = false;
-
-    void _close();
+    bool _open = false;
+    bool _name = "";
 };
 
 #endif // DB_DB_SQLITE_H

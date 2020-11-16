@@ -31,56 +31,54 @@
 
 /**
  * @file
- * @brief Settings
+ * @brief Working with sqlite database
  * @author SavaLione
  * @date 16 Nov 2020
  */
-#include "core/settings.h"
+#ifndef DB_DB_SQLITE_H
+#define DB_DB_SQLITE_H
 
-settings::settings()
-{
-}
+#include <string>
+#include <vector>
+#include <sqlite3.h>
 
-settings::~settings()
+class db_sqlite
 {
-}
+public:
+    static db_sqlite &Instance()
+    {
+        static db_sqlite d;
+        return d;
+    }
 
-std::string settings::ip()
-{
-    return _ip;
-}
+    ~db_sqlite();
 
-int settings::port()
-{
-    return _port;
-}
+    std::vector<std::string> open(std::string db_name);
+    std::vector<std::string> open(std::string db_name, int &status);
+    void close();
+    bool db_open();
 
-database settings::db()
-{
-    return _db;
-}
+    std::vector<std::string> vec_answer(std::string request);
+    std::vector<std::string> vec_answer(std::string request, int &rc);
+    void request(std::string request);
+    void request(std::string request, int &status);
 
-std::string settings::db_host()
-{
-    return _db_host;
-}
+private:
+    db_sqlite();
+    db_sqlite(db_sqlite const &) = delete;
+    db_sqlite &operator=(db_sqlite const &) = delete;
 
-std::string settings::db_name()
-{
-    return _db_name;
-}
+    sqlite3 *_db;
+    sqlite3_stmt *_stmt;
 
-std::string settings::db_username()
-{
-    return _db_username;
-}
+    std::string _db_name;
 
-std::string settings::db_password()
-{
-    return _db_password;
-}
+    std::vector<std::string> _open();
+    std::vector<std::string> _open(int &status);
 
-std::string settings::db_sqlite_name()
-{
-    return _db_sqlite_name;
-}
+    bool _db_open = false;
+
+    void _close();
+};
+
+#endif // DB_DB_SQLITE_H

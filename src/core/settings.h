@@ -68,6 +68,8 @@ public:
     std::string db_username();
     std::string db_password();
 
+    std::string db_sqlite_name();
+
 private:
     settings();
     settings(settings const &) = delete;
@@ -81,6 +83,8 @@ private:
     std::string _db_username = "username";
     std::string _db_password = "password";
     std::string _db_name = "db_name";
+
+    std::string _db_sqlite_name = "db_name.sql";
 
 };
 

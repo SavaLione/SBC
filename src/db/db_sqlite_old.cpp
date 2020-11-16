@@ -37,17 +37,36 @@
  */
 #include "db/db_sqlite.h"
 
-#include "core/settings.h"
+std::vector<std::string> _vec_response;
 
-#include <iostream>
-
-db_sqlite::db_sqlite()
+int callback_save_to_vec(void *NotUsed, int argc, char **argv, char **azColName)
 {
-    settings &settings_instance = settings::Instance();
+    for (int i = 0; i < argc; i++)
+    {
+        std::string s = azColName[i];
+        s += ":";
+        s += argv[i];
+        _vec_response.push_back(s);
+    }
 
-    _name = settings_instance.db_sqlite_name();
+    return 0;
+}
 
-    sqlite3_open(_name.c_str(), &_db);
+std::vector<std::string> db_sqlite::open(std::string db_name)
+{
+    _db_name = db_name;
+    return _open();
+}
+
+std::vector<std::string> db_sqlite::_open()
+{
+    int status = -1;
+    return _open(status);
+}
+
+std::vector<std::string> db_sqlite::_open(int &status)
+{
+    sqlite3_open(_db_name.c_str(), &_db);
 
     const char PRAGMA[] =
         "PRAGMA synchronous = OFF;"
@@ -56,79 +75,80 @@ db_sqlite::db_sqlite()
 
     std::string sql = PRAGMA;
 
-    int rc = sqlite3_exec(_db, sql.c_str(), NULL, &s, NULL);
-
-    if (rc)
+    std::vector<std::string> ret = vec_answer(sql, status);
+    if (status)
     {
-        std::cout << sqlite3_errmsg(_db) << std::endl;
-        _open = false;
+        _db_open = false;
     }
     else
     {
-        _open = true;
+        _db_open = true;
     }
+
+    return ret;
+}
+
+bool db_sqlite::db_open()
+{
+    return _db_open;
+}
+
+db_sqlite::db_sqlite()
+{
 }
 
 db_sqlite::~db_sqlite()
 {
-    sqlite3_reset(_stmt);
-    sqlite3_finalize(_stmt);
-    sqlite3_close(_db);
-    _open = false;
+    _close();
 }
 
-// std::vector<std::string> _vec_column, _vec_response;
-
-int callback_save_to_vec(void *res, int argc, char **argv, char **column_name)
+void db_sqlite::close()
 {
-    std::vector<std::string> _vec_column, _vec_response;
-    for (int i = 0; i < argc; i++)
-    {
-        _vec_column.push_back(column_name[i]);
-        _vec_response.push_back(argv[i]);
-    }
-
-    return 0;
+    _close();
 }
 
-int callback(void *ret, int size, char **column_text, char **column_name)
+std::vector<std::string> db_sqlite::vec_answer(std::string request)
 {
-    if (size == 0)
-    {
-        return -1;
-    }
-    auto &container = *static_cast<std::vector<std::string> *>(ret);
-    if (!column_text[0])
-    {
-        container.push_back("NULL");
-    }
-    else
-    {
-        container.push_back(column_text[0]);
-    }
-    return 0;
+    int rc = -1;
+    return vec_answer(request, rc);
 }
 
-bool db_sqlite::answer(std::string const &request, std::vector<std::string> &return_columns, std::vector<std::string> &return_data)
+std::vector<std::string> db_sqlite::vec_answer(std::string request, int &rc)
 {
-    std::vector<std::string> container;
+    std::vector<std::string> vec_return;
 
-    int rc = sqlite3_exec(_db, request.c_str(), callback, &container, NULL);
+    std::string s = "";
+
+    rc = sqlite3_exec(_db, request.c_str(), callback_save_to_vec, &s, NULL);
 
     if (rc)
     {
-        std::cout << sqlite3_errmsg(_db) << std::endl;
-        return false;
+        _vec_response.push_back(sqlite3_errmsg(_db));
     }
 
-    for (int i = 0; i < container.size(); i++)
+    vec_return = _vec_response;
+    _vec_response.clear();
+
+    return vec_return;
+}
+
+void db_sqlite::request(std::string request)
+{
+    sqlite3_exec(_db, request.c_str(), NULL, NULL, NULL);
+}
+
+void db_sqlite::request(std::string request, int &status)
+{
+    status = sqlite3_exec(_db, request.c_str(), NULL, NULL, NULL);
+}
+
+void db_sqlite::_close()
+{
+    if (_db_open)
     {
-        std::cout << container[i] << std::endl;
+        sqlite3_reset(_stmt);
+        sqlite3_finalize(_stmt);
+        sqlite3_close(_db);
+        _db_open = false;
     }
-    
-
-    // return_columns = _vec_column;
-    // return_data = _vec_response;
-
-    return true;
 }
