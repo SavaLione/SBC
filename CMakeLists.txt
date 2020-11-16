@@ -44,6 +44,9 @@ project(${SBC_PROJECT}
     LANGUAGES C CXX
 )
 
+# adding cmake dir with scripts
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
 # boost c++
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREAD ON)
@@ -54,6 +57,9 @@ find_package(Boost COMPONENTS system thread regex REQUIRED)
 
 # Protocol Buffer
 find_package(Protobuf REQUIRED)
+
+# SQLite3
+find_package (SQLite3)
 
 set(SBC_CORE_SRC
     src/core/sbc_server.cpp
@@ -70,9 +76,15 @@ set(SBC_NET_SRC
     src/net/session.cpp
 )
 
+set(SBC_DB_SRC
+    src/db/db_sqlite.h
+    src/db/db_sqlite.cpp
+)
+
 set(SBC_SRC
     ${SBC_CORE_SRC}
     ${SBC_NET_SRC}
+    ${SBC_DB_SRC}
 )
 
 # protocol buffer src
@@ -101,6 +113,11 @@ if(Protobuf_FOUND)
     target_include_directories(${SBC_PROJECT} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
     target_link_libraries(${SBC_PROJECT} ${Protobuf_LIBRARY})
 endif()
+
+if(SQLITE3_FOUND)
+    target_include_directories(${SBC_PROJECT} PUBLIC ${SQLITE3_INCLUDE_DIRS})
+    target_link_libraries (${SBC_PROJECT} ${SQLITE3_LIBRARIES})
+endif (SQLITE3_FOUND)
 
 # sl-time
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib/sl-time)

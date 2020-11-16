@@ -31,57 +31,54 @@
 
 /**
  * @file
- * @brief Settings
+ * @brief Working with sqlite database
  * @author SavaLione
  * @date 16 Nov 2020
  */
-#ifndef CORE_SETTINGS_H
-#define CORE_SETTINGS_H
+#ifndef DB_DB_SQLITE_H
+#define DB_DB_SQLITE_H
 
 #include <string>
+#include <vector>
+#include <sqlite3.h>
 
-enum database
-{
-    SQLITE = 1,
-    MYSQL = 2,
-    MARIADB = 3,
-    POSTGRESQL = 4
-};
-
-class settings
+class db_sqlite
 {
 public:
-    static settings &Instance()
+    static db_sqlite &Instance()
     {
-        static settings s;
-        return s;
+        static db_sqlite d;
+        return d;
     }
 
-    ~settings();
+    ~db_sqlite();
 
-    std::string ip();
-    int port();
+    std::vector<std::string> open(std::string db_name);
+    std::vector<std::string> open(std::string db_name, int &status);
+    void close();
+    bool db_open();
 
-    database db();
-    std::string db_host();
-    std::string db_name();
-    std::string db_username();
-    std::string db_password();
+    std::vector<std::string> vec_answer(std::string request);
+    std::vector<std::string> vec_answer(std::string request, int &rc);
+    void request(std::string request);
+    void request(std::string request, int &status);
 
 private:
-    settings();
-    settings(settings const &) = delete;
-    settings &operator=(settings const &) = delete;
+    db_sqlite();
+    db_sqlite(db_sqlite const &) = delete;
+    db_sqlite &operator=(db_sqlite const &) = delete;
 
-    std::string _ip = "0.0.0.0";
-    int _port = 12340;
+    sqlite3 *_db;
+    sqlite3_stmt *_stmt;
 
-    database _db = MYSQL;
-    std::string _db_host = "tcp://127.0.0.1:3306";
-    std::string _db_username = "username";
-    std::string _db_password = "password";
-    std::string _db_name = "db_name";
+    std::string _db_name;
 
+    std::vector<std::string> _open();
+    std::vector<std::string> _open(int &status);
+
+    bool _db_open = false;
+
+    void _close();
 };
 
-#endif // CORE_SETTINGS_H
+#endif // DB_DB_SQLITE_H

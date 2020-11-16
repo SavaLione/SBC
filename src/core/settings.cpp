@@ -55,6 +55,11 @@ int settings::port()
     return _port;
 }
 
+database settings::db()
+{
+    return _db;
+}
+
 std::string settings::db_host()
 {
     return _db_host;
