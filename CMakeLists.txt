@@ -76,6 +76,10 @@ set(SBC_NET_SRC
 set(SBC_DB_SRC
     src/db/db_sqlite.h
     src/db/db_sqlite.cpp
+    src/db/db_mysql.h
+    src/db/db_mysql.cpp
+    src/db/db_mariadb.h
+    src/db/db_mariadb.cpp
 )
 
 set(SBC_SRC
