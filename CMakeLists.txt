@@ -44,9 +44,6 @@ project(${SBC_PROJECT}
     LANGUAGES C CXX
 )
 
-# adding cmake dir with scripts
-#set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-
 # boost c++
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREAD ON)
