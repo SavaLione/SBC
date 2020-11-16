@@ -99,14 +99,25 @@ int callback(void *ret, int size, char **column_text, char **column_name)
         return -1;
     }
     auto &container = *static_cast<std::vector<std::string> *>(ret);
-    if (!column_text[0])
+    for (int i = 0; i < argc; i++)
     {
-        container.push_back("NULL");
+        if (!column_text[i])
+        {
+            container.push_back("NULL");
+        }
+        else
+        {
+            container.push_back(column_text[i]);
+        }
     }
-    else
-    {
-        container.push_back(column_text[0]);
-    }
+    // if (!column_text[0])
+    // {
+    //     container.push_back("NULL");
+    // }
+    // else
+    // {
+    //     container.push_back(column_text[0]);
+    // }
     return 0;
 }
 
@@ -126,7 +137,6 @@ bool db_sqlite::answer(std::string const &request, std::vector<std::string> &ret
     {
         std::cout << container[i] << std::endl;
     }
-    
 
     // return_columns = _vec_column;
     // return_data = _vec_response;
