@@ -59,7 +59,7 @@ find_package(Boost COMPONENTS system thread regex REQUIRED)
 find_package(Protobuf REQUIRED)
 
 # SQLite3
-find_package (SQLite3)
+find_package(SQLite3 REQUIRED)
 
 set(SBC_CORE_SRC
     src/core/sbc_server.cpp
