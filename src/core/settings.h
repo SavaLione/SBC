@@ -31,47 +31,46 @@
 
 /**
  * @file
- * @brief SBC server
+ * @brief Settings
  * @author SavaLione
- * @date 15 Nov 2020
+ * @date 16 Nov 2020
  */
+#ifndef CORE_SETTINGS_H
+#define CORE_SETTINGS_H
 
-#include "core/settings.h"
+#include <string>
 
-#include "net/server.h"
-
-int main(int argc, char *argv[])
+class settings
 {
-    /* Settings initialization */
-    settings &settings_instance = settings::Instance();
-
-    try
+public:
+    static settings &Instance()
     {
-        if (argc != 2)
-        {
-            boost::asio::io_context io_context;
-            server s(io_context, std::atoi((settings_instance.port()).c_str()));
-            io_context.run();
-        }
-        else
-        {
-            boost::asio::io_context io_context;
-            server s(io_context, std::atoi(argv[1]));
-            io_context.run();
-        }
+        static settings s;
+        return s;
+    }
 
-        // if (argc != 2)
-        // {
-        //     std::cerr << "Usage: sbc <port>\n";
-        //     return 1;
-        // }
-        // boost::asio::io_context io_context;
-        // server s(io_context, std::atoi(argv[1]));
-        // io_context.run();
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "Exception: " << e.what() << "\n";
-    }
-    return 0;
-}
+    ~settings();
+
+    std::string ip();
+    int port();
+
+    std::string db_host();
+    std::string db_name();
+    std::string db_username();
+    std::string db_password();
+
+private:
+    settings();
+    settings(settings const &) = delete;
+    settings &operator=(settings const &) = delete;
+
+    std::string _ip = "0.0.0.0";
+    int _port = 12340;
+
+    std::string _db_host = "tcp://127.0.0.1:3306";
+    std::string _db_username = "username";
+    std::string _db_password = "password";
+    std::string _db_name = "db_name";
+};
+
+#endif // CORE_SETTINGS_H

@@ -36,3 +36,6 @@ build/
 
 # documentation
 documentation/
+
+# test
+test/build/

@@ -59,6 +59,8 @@ set(SBC_CORE_SRC
     src/core/sbc_server.cpp
     src/core/blowfish.h
     src/core/blowfish.cpp
+    src/core/settings.h
+    src/core/settings.cpp
 )
 
 set(SBC_NET_SRC

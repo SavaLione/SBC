@@ -31,47 +31,46 @@
 
 /**
  * @file
- * @brief SBC server
+ * @brief Settings
  * @author SavaLione
- * @date 15 Nov 2020
+ * @date 16 Nov 2020
  */
-
 #include "core/settings.h"
 
-#include "net/server.h"
-
-int main(int argc, char *argv[])
+settings::settings()
 {
-    /* Settings initialization */
-    settings &settings_instance = settings::Instance();
+}
 
-    try
-    {
-        if (argc != 2)
-        {
-            boost::asio::io_context io_context;
-            server s(io_context, std::atoi((settings_instance.port()).c_str()));
-            io_context.run();
-        }
-        else
-        {
-            boost::asio::io_context io_context;
-            server s(io_context, std::atoi(argv[1]));
-            io_context.run();
-        }
+settings::~settings()
+{
+}
 
-        // if (argc != 2)
-        // {
-        //     std::cerr << "Usage: sbc <port>\n";
-        //     return 1;
-        // }
-        // boost::asio::io_context io_context;
-        // server s(io_context, std::atoi(argv[1]));
-        // io_context.run();
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "Exception: " << e.what() << "\n";
-    }
-    return 0;
+std::string settings::ip()
+{
+    return _ip;
+}
+
+int settings::port()
+{
+    return _port;
+}
+
+std::string settings::db_host()
+{
+    return _db_host;
+}
+
+std::string settings::db_name()
+{
+    return _db_name;
+}
+
+std::string settings::db_username()
+{
+    return _db_username;
+}
+
+std::string settings::db_password()
+{
+    return _db_password;
 }
