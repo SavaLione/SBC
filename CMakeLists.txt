@@ -37,7 +37,7 @@ set(SBC_CLIENT_PROJECT_VERSION "0.0.1")
 
 # flags
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpthread -lsqlite3 -O2")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpthread -O2")
 
 project(${SBC_PROJECT}
     VERSION ${SBC_PROJECT_VERSION}
