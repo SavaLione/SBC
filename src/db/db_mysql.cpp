@@ -56,8 +56,8 @@ db_mysql::db_mysql()
     {
         sql::Driver *driver;
         driver = get_driver_instance();
-        con = driver->connect(instance.get_db_host(), instance.get_db_username(), instance.get_db_password());
-        con->setSchema(instance.get_db_name());
+        con = driver->connect(instance.db_host(), instance.db_username(), instance.db_password());
+        con->setSchema(instance.db_name());
         stmt = con->createStatement();
     }
     catch (sql::SQLException &e)
