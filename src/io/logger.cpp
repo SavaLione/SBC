@@ -31,67 +31,13 @@
 
 /**
  * @file
- * @brief SBC server
+ * @brief Работа с логом
  * @author SavaLione
- * @date 15 Nov 2020
+ * @date 17 Nov 2020
  */
+#include "io/logger.h"
 
-#include <thread>
-
-#include "core/settings.h"
-
-#include "net/server.h"
-
-#include "db/db_sqlite.h"
-
-#include "web/web.h"
-
-void web_server()
+void logger_init()
 {
-    web *web_f = new web();
-
-    delete web_f;
-}
-
-void sbc_server()
-{
-    settings &settings_instance = settings::Instance();
-
-    try
-    {
-        boost::asio::io_context io_context;
-        server s(io_context, settings_instance.port());
-        io_context.run();
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << "Exception: " << e.what() << '\n';
-    }
-}
-
-int main(int argc, char *argv[])
-{
-    /* Logger initialization */
-    logger_init();
-
-    /* Settings initialization */
-    settings &settings_instance = settings::Instance();
-
-    /* Запуск web сервера */
-    std::thread thread_web_server(web_server);
-
-    /* Запуск sbc сервера */
-    std::thread thread_sbc_server(sbc_server);
-
-    if (thread_web_server.joinable())
-    {
-        thread_web_server.join();
-    }
-
-    if (thread_sbc_server.joinable())
-    {
-        thread_sbc_server.join();
-    }
-
-    return 0;
+    spdlog::info("Logger initialization");
 }

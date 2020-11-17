@@ -72,6 +72,11 @@ set(SBC_CORE_SRC
     src/core/settings.cpp
 )
 
+set(SBC_IO_SRC
+    src/io/logger.h
+    src/io/logger.cpp
+)
+
 set(SBC_NET_SRC
     src/net/server.h
     src/net/server.cpp
@@ -95,6 +100,7 @@ set(SBC_WEB_SRC
 
 set(SBC_SRC
     ${SBC_CORE_SRC}
+    ${SBC_IO_SRC}
     ${SBC_NET_SRC}
     ${SBC_DB_SRC}
     ${SBC_WEB_SRC}
