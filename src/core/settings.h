@@ -48,6 +48,16 @@ enum database
     POSTGRESQL = 4
 };
 
+enum log_level
+{
+    TRACE = 1,
+    DEBUG = 2,
+    INFO = 3,
+    WARN = 4,
+    ERROR = 5,
+    CRITICAL = 6
+};
+
 class settings
 {
 public:
@@ -58,6 +68,8 @@ public:
     }
 
     ~settings();
+
+    log_level l_level();
 
     std::string ip();
     int port();
@@ -77,6 +89,10 @@ private:
     settings();
     settings(settings const &) = delete;
     settings &operator=(settings const &) = delete;
+
+    // log_level _L_level = INFO;
+    /* На время разработки SBC */
+    log_level _l_level = DEBUG;
 
     std::string _ip = "0.0.0.0";
     int _port = 12340;

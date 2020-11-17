@@ -39,6 +39,8 @@
 
 #include "core/settings.h"
 
+#include "io/logger.h"
+
 #include <pthread.h>
 #include <sys/types.h>
 #include <stdio.h>
@@ -60,7 +62,7 @@ static void *_fcgi_page(void *a)
     if (FCGX_InitRequest(&request, _socket_id, 0) != 0)
     {
         /* Ошибка при инициализации структуры запроса */
-        /* Can not init request */
+        spdlog::debug("Can not init request");
         return NULL;
     }
 
@@ -76,7 +78,7 @@ static void *_fcgi_page(void *a)
         if (rc < 0)
         {
             /* Ошибка при получении запроса */
-            /* Can not accept new request */
+            spdlog::debug("Can not accept new request");
             break;
         }
         /* Request is accepted */
@@ -134,6 +136,7 @@ web::web()
     if (_socket_id < 0)
     {
         /* Ошибка при открытии сокета */
+        spdlog::err("Error opening socket");
     }
     else
     {
