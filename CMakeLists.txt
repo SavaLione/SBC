@@ -84,6 +84,11 @@ set(SBC_NET_SRC
     src/net/session.cpp
 )
 
+set(SBC_PLATFORM_SRC
+    src/platform/platform.h
+    src/platform/platform.cpp
+)
+
 set(SBC_DB_SRC
     src/db/db_sqlite.h
     src/db/db_sqlite.cpp
@@ -111,6 +116,7 @@ set(SBC_SRC
     ${SBC_CORE_SRC}
     ${SBC_IO_SRC}
     ${SBC_NET_SRC}
+    ${SBC_PLATFORM_SRC}
     ${SBC_DB_SRC}
     ${SBC_TIME_SRC}
     ${SBC_WEB_SRC}

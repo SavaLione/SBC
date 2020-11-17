@@ -28,67 +28,10 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  */
-/**
+ /**
  * @file
- * @brief Wait
+ * @brief Platform specific constants
  * @author SavaLione
  * @date 17 Nov 2020
  */
-#include "time/wait_time.h"
 #include "platform/platform.h"
-
-#if PLATFORM == PLATFORM_WIN32
-#include <windows.h>
-#define TIME_SLEEP(x) Sleep(x)
-#else
-#include <unistd.h>
-#define TIME_SLEEP(x) sleep(x)
-#endif
-
-wait_time::wait_time()
-{
-}
-
-wait_time::~wait_time()
-{
-}
-
-void wait_time::msec(const int &msec)
-{
-    _msec(msec);
-}
-
-void wait_time::sec(const int &sec)
-{
-    _sec(sec);
-}
-
-void wait_time::minutes(const int &minutes)
-{
-    _minutes(minutes);
-}
-
-void wait_time::hour(const int &hour)
-{
-    _hour(hour);
-}
-
-void wait_time::_msec(const int &msec)
-{
-    TIME_SLEEP(msec);
-}
-
-void wait_time::_sec(const int &sec)
-{
-    TIME_SLEEP(1000 * sec);
-}
-
-void wait_time::_minutes(const int &minutes)
-{
-    TIME_SLEEP(1000 * 1 * 60 * minutes);
-}
-
-void wait_time::_hour(const int &hour)
-{
-    TIME_SLEEP(1000 * 1 * 60 * 60 * hour);
-}
