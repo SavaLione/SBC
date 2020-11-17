@@ -46,7 +46,12 @@
 #include <fcgi_config.h>
 #include <fcgiapp.h>
 
-static void web::*_fcgi_page(void *a)
+/* Дескриптор открытого сокета */
+static int _socket_id;
+
+int _connection_count = 0;
+
+static void _fcgi_page(void *a)
 {
     int rc, i;
     FCGX_Request request;
@@ -109,7 +114,7 @@ static void web::*_fcgi_page(void *a)
 
         /* Завершающие действия - запись статистики, логгирование ошибок и т.п. */
     }
-    return NULL; 
+    return NULL;
 }
 
 web::web()

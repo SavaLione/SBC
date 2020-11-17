@@ -43,14 +43,6 @@ class web
 public:
     web();
     ~web();
-
-private:
-    /* Дескриптор открытого сокета */
-    static int _socket_id;
-
-    static void *_fcgi_page(void *a);
-
-    int _connection_count = 0;
 };
 
 #endif // WEB_WEB_H
