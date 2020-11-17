@@ -40,10 +40,6 @@
 void logger_init()
 {
     spdlog::info("Logger initialization");
-    spdlog::set_pattern("[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v");
+    spdlog::set_pattern("[%Y-%M-%D %H:%M:%S] [%L] %v");
     spdlog::info("Logger initialization");
-    spdlog::warn("Logger initialization");
-    spdlog::critical("Logger initialization");
-    spdlog::error("Logger initialization");
-    spdlog::debug("Logger initialization");
 }
