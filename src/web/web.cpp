@@ -64,7 +64,7 @@ static void *_fcgi_page(void *a)
         return NULL;
     }
 
-    for(;;)
+    while(true)
     {
         static pthread_mutex_t accept_mutex = PTHREAD_MUTEX_INITIALIZER;
 
