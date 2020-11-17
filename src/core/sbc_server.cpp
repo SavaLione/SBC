@@ -42,10 +42,17 @@
 
 #include "db/db_sqlite.h"
 
+#include "web/web.h"
+
 int main(int argc, char *argv[])
 {
     /* Settings initialization */
     settings &settings_instance = settings::Instance();
+
+    /* Тестирование web */
+    web w();
+    exit(0);
+    /* Тестирование web */
 
     try
     {
