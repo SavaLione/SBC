@@ -51,7 +51,7 @@ static int _socket_id;
 
 int _connection_count = 0;
 
-static void _fcgi_page(void *a)
+static void *_fcgi_page(void *a)
 {
     int rc, i;
     FCGX_Request request;
