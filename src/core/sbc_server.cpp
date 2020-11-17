@@ -40,6 +40,8 @@
 
 #include "core/settings.h"
 
+#include "io/logger.h"
+
 #include "net/server.h"
 
 #include "db/db_sqlite.h"
