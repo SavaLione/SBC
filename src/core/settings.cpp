@@ -37,8 +37,11 @@
  */
 #include "core/settings.h"
 
+#include "io/logger.h"
+
 settings::settings()
 {
+    spdlog::info("Settings initialization");
 }
 
 settings::~settings()

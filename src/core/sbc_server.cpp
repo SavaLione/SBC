@@ -50,6 +50,7 @@
 
 void web_server()
 {
+    spdlog::info("Start web FastCGI server.");
     web *web_f = new web();
 
     delete web_f;
@@ -59,6 +60,8 @@ void sbc_server()
 {
     settings &settings_instance = settings::Instance();
 
+    spdlog::info("Start SBC server.");
+
     try
     {
         boost::asio::io_context io_context;
@@ -67,7 +70,8 @@ void sbc_server()
     }
     catch (const std::exception &e)
     {
-        std::cerr << "Exception: " << e.what() << '\n';
+        //std::cerr << "Exception: " << e.what() << '\n';
+        spdlog::error("SBC server exception: {}", e.what());
     }
 }
 
@@ -87,11 +91,13 @@ int main(int argc, char *argv[])
 
     if (thread_web_server.joinable())
     {
+        spdlog::info("Stop web FastCGI server.");
         thread_web_server.join();
     }
 
     if (thread_sbc_server.joinable())
     {
+        spdlog::info("Stop SBC server.");
         thread_sbc_server.join();
     }
 

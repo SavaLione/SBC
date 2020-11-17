@@ -39,7 +39,6 @@
 
 void logger_init()
 {
-    spdlog::info("Logger initialization");
-    spdlog::set_pattern("[%Y-%M-%D %H:%M:%S] [%L] %v");
-    spdlog::info("Logger initialization");
+    // spdlog::set_pattern("[%H:%M:%S %z] [%^%L%$] [thread %t] %v");
+    spdlog::debug("Logger initialization");
 }
