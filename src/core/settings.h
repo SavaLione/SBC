@@ -64,7 +64,6 @@ public:
 
     std::string fcgi_socket_path();
     int fcgi_thread_count();
-    int fcgi_connection_count();
 
     database db();
     std::string db_host();
@@ -86,7 +85,6 @@ private:
     std::string _fcgi_socket_address = "127.0.0.1";
     std::string _fcgi_socket_port = "9000";
     int _fcgi_thread_count = 8;
-    int _fcgi_connection_count = 0;
 
     database _db = MYSQL;
     std::string _db_host = "tcp://127.0.0.1:3306";

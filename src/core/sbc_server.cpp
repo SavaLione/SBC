@@ -50,7 +50,8 @@ int main(int argc, char *argv[])
     settings &settings_instance = settings::Instance();
 
     /* Тестирование web */
-    web w();
+    web web_f = new web();
+    
     exit(0);
     /* Тестирование web */
 

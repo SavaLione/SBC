@@ -68,11 +68,6 @@ int settings::fcgi_thread_count()
     return _fcgi_thread_count;
 }
 
-int settings::fcgi_connection_count()
-{
-    return _fcgi_connection_count;
-}
-
 database settings::db()
 {
     return _db;
