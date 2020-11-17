@@ -86,8 +86,8 @@ set(SBC_DB_SRC
 )
 
 set(SBC_WEB_SRC
-    src/net/web.h
-    src/net/web.cpp
+    src/web/web.h
+    src/web/web.cpp
 )
 
 set(SBC_SRC
