@@ -91,14 +91,14 @@ int main(int argc, char *argv[])
 
     if (thread_web_server.joinable())
     {
-        spdlog::info("Stop web FastCGI server.");
         thread_web_server.join();
+        spdlog::info("Stop web FastCGI server.");
     }
 
     if (thread_sbc_server.joinable())
     {
-        spdlog::info("Stop SBC server.");
         thread_sbc_server.join();
+        spdlog::info("Stop SBC server.");
     }
 
     return 0;
