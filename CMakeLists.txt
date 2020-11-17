@@ -141,7 +141,7 @@ endif()
 target_link_libraries(${SBC_PROJECT} fcgi)
 
 # spdlog
-target_link_libraries(${SBC_PROJECT} PRIVATE spdlog::spdlog)
+target_link_libraries(${SBC_PROJECT} spdlog::spdlog)
 
 # sl-time
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib/sl-time)
