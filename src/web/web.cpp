@@ -46,7 +46,7 @@
 #include <fcgi_config.h>
 #include <fcgiapp.h>
 
-static void *web::_fcgi_page(void *a)
+static void web::*_fcgi_page(void *a)
 {
     int rc, i;
     FCGX_Request request;
