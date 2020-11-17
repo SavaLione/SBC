@@ -37,6 +37,8 @@
  */
 #include "web/web.h"
 
+#include "core/settings.h"
+
 #include <pthread.h>
 #include <sys/types.h>
 #include <stdio.h>
