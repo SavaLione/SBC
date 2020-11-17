@@ -49,7 +49,11 @@ int main(int argc, char *argv[])
 
     /* SQLite3 test */
     db_sqlite dbs;
-    dbs.answer("SELECT * FROM test;");
+    while(true)
+    {
+        std::vector<std::string> data;
+        dbs.answer("SELECT * FROM test;", data);
+    }
     exit(0);
     /* SQLite3 test */
 

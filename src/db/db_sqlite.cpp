@@ -110,18 +110,10 @@ int callback(void *ret, int size, char **column_text, char **column_name)
             container.push_back(column_text[i]);
         }
     }
-    // if (!column_text[0])
-    // {
-    //     container.push_back("NULL");
-    // }
-    // else
-    // {
-    //     container.push_back(column_text[0]);
-    // }
     return 0;
 }
 
-bool db_sqlite::answer(std::string const &request, std::vector<std::string> &return_columns, std::vector<std::string> &return_data)
+bool db_sqlite::answer(std::string const &request, std::vector<std::string> &return_data)
 {
     std::vector<std::string> container;
 
@@ -133,32 +125,7 @@ bool db_sqlite::answer(std::string const &request, std::vector<std::string> &ret
         return false;
     }
 
-    for (int i = 0; i < container.size(); i++)
-    {
-        std::cout << container[i] << std::endl;
-    }
+    return_data = container;
 
-    // return_columns = _vec_column;
-    // return_data = _vec_response;
-
-    return true;
-}
-
-bool db_sqlite::answer(std::string request)
-{
-    std::vector<std::string> container;
-
-    int rc = sqlite3_exec(_db, request.c_str(), callback, &container, NULL);
-
-    if (rc)
-    {
-        std::cout << sqlite3_errmsg(_db) << std::endl;
-        return false;
-    }
-
-    for (int i = 0; i < container.size(); i++)
-    {
-        std::cout << container[i] << std::endl;
-    }
     return true;
 }

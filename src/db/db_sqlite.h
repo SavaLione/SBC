@@ -49,10 +49,7 @@ public:
     ~db_sqlite();
 
     std::vector<std::string> vec_answer(std::string request, int &rc);
-    bool answer(std::string const &request, std::vector<std::string> &return_columns, std::vector<std::string> &return_data);
-
-    /* Delete */
-    bool answer(std::string request);
+    bool answer(std::string const &request, std::vector<std::string> &return_data);
 
 private:
     sqlite3 *_db;
