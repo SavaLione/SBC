@@ -136,7 +136,7 @@ web::web()
     if (_socket_id < 0)
     {
         /* Ошибка при открытии сокета */
-        spdlog::err("Error opening socket");
+        spdlog::error("Error opening socket");
     }
     else
     {
