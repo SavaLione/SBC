@@ -39,7 +39,7 @@
 
 #include "core/settings.h"
 
-#include <iostream>
+#include "io/logger.h"
 
 db_sqlite::db_sqlite()
 {
@@ -61,7 +61,7 @@ db_sqlite::db_sqlite()
 
     if (rc)
     {
-        std::cout << sqlite3_errmsg(_db) << std::endl;
+        spdlog::error("Error opening SQLite database: {}", sqlite3_errmsg(_db));
         _open = false;
     }
     else
@@ -107,7 +107,7 @@ bool db_sqlite::answer(std::string const &request, std::vector<std::string> &ret
 
     if (rc)
     {
-        std::cout << sqlite3_errmsg(_db) << std::endl;
+        spdlog::warn("Warn while executing sql query: {}\n {}", request, sqlite3_errmsg(_db));
         return false;
     }
 
