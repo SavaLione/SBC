@@ -36,6 +36,8 @@
  * @date 15 Nov 2020
  */
 
+#include <thread>
+
 #include "core/settings.h"
 
 #include "net/server.h"
@@ -44,44 +46,47 @@
 
 #include "web/web.h"
 
+void web_server()
+{
+    web *web_f = new web();
+
+    delete web_f;
+}
+
+void sbc_server()
+{
+    settings &settings_instance = settings::Instance();
+
+    try
+    {
+        boost::asio::io_context io_context;
+        server s(io_context, settings_instance.port());
+        io_context.run();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Exception: " << e.what() << '\n';
+    }
+}
+
 int main(int argc, char *argv[])
 {
     /* Settings initialization */
     settings &settings_instance = settings::Instance();
 
-    /* Тестирование web */
-    web *web_f = new web();
-    
-    exit(0);
-    /* Тестирование web */
-
-    try
+    /* Запуск web сервера */
+    std::thread thread_web_server(web_server);
+    if (thread_web_server.joinable())
     {
-        if (argc != 2)
-        {
-            boost::asio::io_context io_context;
-            server s(io_context, settings_instance.port());
-            io_context.run();
-        }
-        else
-        {
-            boost::asio::io_context io_context;
-            server s(io_context, std::atoi(argv[1]));
-            io_context.run();
-        }
+        thread_web_server.join();
+    }
 
-        // if (argc != 2)
-        // {
-        //     std::cerr << "Usage: sbc <port>\n";
-        //     return 1;
-        // }
-        // boost::asio::io_context io_context;
-        // server s(io_context, std::atoi(argv[1]));
-        // io_context.run();
-    }
-    catch (std::exception &e)
+    /* Запуск sbc сервера */
+    std::thread thread_sbc_server(sbc_server);
+    if (thread_sbc_server.joinable())
     {
-        std::cerr << "Exception: " << e.what() << "\n";
+        thread_sbc_server.join();
     }
+
     return 0;
 }
