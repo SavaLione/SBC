@@ -76,13 +76,15 @@ int main(int argc, char *argv[])
 
     /* Запуск web сервера */
     std::thread thread_web_server(web_server);
+
+    /* Запуск sbc сервера */
+    std::thread thread_sbc_server(sbc_server);
+
     if (thread_web_server.joinable())
     {
         thread_web_server.join();
     }
 
-    /* Запуск sbc сервера */
-    std::thread thread_sbc_server(sbc_server);
     if (thread_sbc_server.joinable())
     {
         thread_sbc_server.join();

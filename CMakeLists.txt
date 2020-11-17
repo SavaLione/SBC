@@ -61,6 +61,9 @@ find_package(Protobuf REQUIRED)
 # SQLite3
 find_package(SQLite3 REQUIRED)
 
+# spdlog
+find_package(spdlog REQUIRED)
+
 set(SBC_CORE_SRC
     src/core/sbc_server.cpp
     src/core/blowfish.h
@@ -136,6 +139,9 @@ endif()
 
 # fcgi
 target_link_libraries(${SBC_PROJECT} fcgi)
+
+# spdlog
+target_link_libraries(${SBC_PROJECT} PRIVATE spdlog::spdlog)
 
 # sl-time
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib/sl-time)
