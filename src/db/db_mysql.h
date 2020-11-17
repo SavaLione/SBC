@@ -31,9 +31,9 @@
 
 /**
  * @file
- * @brief Working with mysql database
+ * @brief Working with MySQL(MariaDB) database
  * @author SavaLione
- * @date 16 Nov 2020
+ * @date 17 Nov 2020
  */
 #ifndef DB_DB_MYSQL_H
 #define DB_DB_MYSQL_H
@@ -41,15 +41,6 @@
 #include <string>
 #include <vector>
 
-/* Standard C++ includes */
-#include <stdlib.h>
-#include <iostream>
-
-/*
-    Include directly the different
-    headers from cppconn/ and mysql_driver.h + mysql_util.h
-    (and mysql_connection.h)
-*/
 #include <mysql_connection.h>
 
 #include <cppconn/driver.h>
@@ -62,17 +53,19 @@ class db_mysql
 public:
     db_mysql();
     ~db_mysql();
-    // void run();
-    void runc();
-    const bool has(std::string const &table_name, std::string const &column_name, std::string const &data);
-    const bool add(std::string const &table_name, std::vector<std::string> const &column_names, std::vector<std::string> const &data);
-    const std::string get_string(std::string const &table_name, std::string const &column_name, std::string const &where);
 
-    std::vector<std::string> vec_answer(std::string const &table_name, std::vector<std::string> const &column_names,  std::string const &where); /* TODO */
+    bool answer(std::string const &request, std::vector<std::string> &return_data);
 
 private:
     sql::Connection *con;
     sql::Statement *stmt;
+
+    bool _open = false;
+
+    std::string _host;
+    std::string _username;
+    std::string _password;
+    std::string _name;
 };
 
 #endif // DB_DB_MYSQL_H

@@ -48,7 +48,6 @@ public:
     db_sqlite();
     ~db_sqlite();
 
-    std::vector<std::string> vec_answer(std::string request, int &rc);
     bool answer(std::string const &request, std::vector<std::string> &return_data);
 
 private:

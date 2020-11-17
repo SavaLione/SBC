@@ -37,7 +37,7 @@ set(SBC_CLIENT_PROJECT_VERSION "0.0.1")
 
 # flags
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lpthread -O2")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
 
 project(${SBC_PROJECT}
     VERSION ${SBC_PROJECT_VERSION}
@@ -51,6 +51,9 @@ set(Boost_USE_DEBUG_LIBS OFF)
 set(Boost_USE_RELEASE_LIBS ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
 find_package(Boost COMPONENTS system thread regex REQUIRED)
+
+# Threads
+find_package(Threads REQUIRED)
 
 # Protocol Buffer
 find_package(Protobuf REQUIRED)
@@ -82,10 +85,16 @@ set(SBC_DB_SRC
     src/db/db_mariadb.cpp
 )
 
+set(SBC_WEB_SRC
+    src/net/web.h
+    src/net/web.cpp
+)
+
 set(SBC_SRC
     ${SBC_CORE_SRC}
     ${SBC_NET_SRC}
     ${SBC_DB_SRC}
+    ${SBC_WEB_SRC}
 )
 
 # protocol buffer src
@@ -98,6 +107,11 @@ PROTOBUF_GENERATE_CPP(PROTO_SRCS PROTO_HDRS ${SBC_PROTOBUFF_SRC})
 # executable
 add_executable(${SBC_PROJECT} ${SBC_SRC} ${PROTO_SRCS} ${PROTO_HDRS})
 target_include_directories(${SBC_PROJECT} PUBLIC ${PROJECT_SOURCE_DIR}/src)
+
+if(Threads_FOUND)
+    # Threads
+    target_link_libraries(${SBC_PROJECT} Threads::Threads)
+endif()
 
 if(Boost_FOUND)
     target_include_directories(${SBC_PROJECT} PUBLIC ${Boost_INCLUDE_DIRS})
@@ -119,6 +133,9 @@ if(SQLite3_FOUND)
     target_include_directories(${SBC_PROJECT} PUBLIC ${SQLite3_INCLUDE_DIRS})
     target_link_libraries (${SBC_PROJECT} ${SQLite3_LIBRARIES})
 endif()
+
+# fcgi
+target_link_libraries(${SBC_PROJECT} fcgi)
 
 # sl-time
 add_subdirectory(${PROJECT_SOURCE_DIR}/lib/sl-time)

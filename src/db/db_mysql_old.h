@@ -31,87 +31,48 @@
 
 /**
  * @file
- * @brief Working with sqlite database
+ * @brief Working with mysql database
  * @author SavaLione
  * @date 16 Nov 2020
  */
-#include "db/db_sqlite.h"
+#ifndef DB_DB_MYSQL_H
+#define DB_DB_MYSQL_H
 
-#include "core/settings.h"
+#include <string>
+#include <vector>
 
+/* Standard C++ includes */
+#include <stdlib.h>
 #include <iostream>
 
-db_sqlite::db_sqlite()
+/*
+    Include directly the different
+    headers from cppconn/ and mysql_driver.h + mysql_util.h
+    (and mysql_connection.h)
+*/
+#include <mysql_connection.h>
+
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+
+class db_mysql
 {
-    settings &settings_instance = settings::Instance();
+public:
+    db_mysql();
+    ~db_mysql();
+    // void run();
+    void runc();
+    const bool has(std::string const &table_name, std::string const &column_name, std::string const &data);
+    const bool add(std::string const &table_name, std::vector<std::string> const &column_names, std::vector<std::string> const &data);
+    const std::string get_string(std::string const &table_name, std::string const &column_name, std::string const &where);
 
-    _name = settings_instance.db_sqlite_name();
+    std::vector<std::string> vec_answer(std::string const &table_name, std::vector<std::string> const &column_names,  std::string const &where); /* TODO */
 
-    sqlite3_open(_name.c_str(), &_db);
+private:
+    sql::Connection *con;
+    sql::Statement *stmt;
+};
 
-    const char PRAGMA[] =
-        "PRAGMA synchronous = OFF;"
-        "PRAGMA encoding = \"UTF-8\";"
-        "PRAGMA journal_mode = DELETE;";
-
-    std::string sql = PRAGMA;
-
-    std::string s;
-    int rc = sqlite3_exec(_db, sql.c_str(), NULL, &s, NULL);
-
-    if (rc)
-    {
-        std::cout << sqlite3_errmsg(_db) << std::endl;
-        _open = false;
-    }
-    else
-    {
-        _open = true;
-    }
-}
-
-db_sqlite::~db_sqlite()
-{
-    sqlite3_reset(_stmt);
-    sqlite3_finalize(_stmt);
-    sqlite3_close(_db);
-    _open = false;
-}
-
-int callback(void *ret, int size, char **column_text, char **column_name)
-{
-    if (size == 0)
-    {
-        return -1;
-    }
-    auto &container = *static_cast<std::vector<std::string> *>(ret);
-    for (int i = 0; i < size; i++)
-    {
-        if (!column_text[i])
-        {
-            container.push_back("NULL");
-        }
-        else
-        {
-            container.push_back(column_text[i]);
-        }
-    }
-    return 0;
-}
-
-bool db_sqlite::answer(std::string const &request, std::vector<std::string> &return_data)
-{
-    std::vector<std::string> container;
-
-    int rc = sqlite3_exec(_db, request.c_str(), callback, &container, NULL);
-
-    if (rc)
-    {
-        std::cout << sqlite3_errmsg(_db) << std::endl;
-        return false;
-    }
-
-    return_data = container;
-
-    return true;
-}
+#endif // DB_DB_MYSQL_H

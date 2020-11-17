@@ -47,16 +47,6 @@ int main(int argc, char *argv[])
     /* Settings initialization */
     settings &settings_instance = settings::Instance();
 
-    /* SQLite3 test */
-    db_sqlite dbs;
-    while(true)
-    {
-        std::vector<std::string> data;
-        dbs.answer("SELECT * FROM test;", data);
-    }
-    exit(0);
-    /* SQLite3 test */
-
     try
     {
         if (argc != 2)

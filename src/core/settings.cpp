@@ -55,6 +55,24 @@ int settings::port()
     return _port;
 }
 
+std::string settings::fcgi_socket_path()
+{
+    std::string ret = _fcgi_socket_address;
+    ret += ":";
+    ret += _fcgi_socket_port;
+    return ret;
+}
+
+int settings::fcgi_thread_count()
+{
+    return _fcgi_thread_count;
+}
+
+int settings::fcgi_connection_count()
+{
+    return _fcgi_connection_count;
+}
+
 database settings::db()
 {
     return _db;
