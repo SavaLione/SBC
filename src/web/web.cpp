@@ -101,7 +101,9 @@ static void *_fcgi_page(void *a)
         FCGX_PutS("</i></p>\r\n", request.out);
 
         FCGX_PutS("<p>Connection count: <i>", request.out);
-        FCGX_PutS(_connection_count, request.out);
+
+        std::string s_conn = std::to_string(_connection_count);
+        FCGX_PutS(s_conn.c_str(), request.out);
         FCGX_PutS("</i></p>\r\n", request.out);
 
         FCGX_PutS("</body>\r\n", request.out);
@@ -127,7 +129,7 @@ web::web()
     FCGX_Init();
 
     /* Открывыаем новый сокет */
-    _socket_id = FCGX_OpenSocket(settings_instance.fcgi_socket_path(), 20);
+    _socket_id = FCGX_OpenSocket(settings_instance.fcgi_socket_path().c_str(), 20);
 
     if (_socket_id < 0)
     {
