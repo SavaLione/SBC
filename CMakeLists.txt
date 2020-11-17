@@ -93,6 +93,15 @@ set(SBC_DB_SRC
     src/db/db_mariadb.cpp
 )
 
+set(SBC_TIME_SRC
+    src/time/current_time.h
+    src/time/current_time.cpp
+    src/time/execution_time.h
+    src/time/execution_time.cpp
+    src/time/wait_time.h
+    src/time/wait_time.cpp
+)
+
 set(SBC_WEB_SRC
     src/web/web.h
     src/web/web.cpp
@@ -103,6 +112,7 @@ set(SBC_SRC
     ${SBC_IO_SRC}
     ${SBC_NET_SRC}
     ${SBC_DB_SRC}
+    ${SBC_TIME_SRC}
     ${SBC_WEB_SRC}
 )
 
@@ -148,11 +158,6 @@ target_link_libraries(${SBC_PROJECT} fcgi)
 
 # spdlog
 target_link_libraries(${SBC_PROJECT} spdlog::spdlog)
-
-# sl-time
-add_subdirectory(${PROJECT_SOURCE_DIR}/lib/sl-time)
-target_link_libraries(${SBC_PROJECT} sl-time)
-target_include_directories(${SBC_PROJECT} PUBLIC ${PROJECT_SOURCE_DIR}/lib/sl-time/src)
 
 #################################################################################
 project(${SBC_CLIENT_PROJECT} VERSION ${SBC_CLIENT_PROJECT_VERSION})
