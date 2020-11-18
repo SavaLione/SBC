@@ -7,7 +7,7 @@ enum Return_code
     SUCCESS = 0;
     USER_NOT_FOUND = 1;
     PASSWORD_INCORRECT = 2;
-    USER_DATA_LIMIT_REACHED = 3;
+    USER_ALREADY_EXISTS = 3;
 }
 
 enum Terminal_type
@@ -52,5 +52,9 @@ message Barcode
 
 message Data
 {
-
+    Return_code ret_code = 1;
+    Terminal term = 2;
+    Barcode bar_code = 3;
+    string data = 4;
+    string label = 5;
 }
