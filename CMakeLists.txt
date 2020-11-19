@@ -70,6 +70,8 @@ set(SBC_CORE_SRC
     src/core/blowfish.cpp
     src/core/settings.h
     src/core/settings.cpp
+    src/core/uuid.h
+    src/core/uuid.cpp
 )
 
 set(SBC_IO_SRC
