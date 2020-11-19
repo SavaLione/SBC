@@ -88,11 +88,13 @@ static void *_fcgi_page(void *a)
         // int FCGX_GetStr(char * str, int n, FCGX_Stream *stream);
         while (FCGX_GetStr(str_post, sizeof(str_post), request.in) > 0)
         {
-            spdlog::debug("POST: \n {}", str_post);
+            spdlog::debug("POST: {}", str_post);
         }
 
         /* Получить значение переменной */
         server_name = FCGX_GetParam("SERVER_NAME", request.envp);
+        std::string s_remote_addr = FCGX_GetParam("REMOTE_ADDR", request.envp);
+        spdlog::debug("REMOTE_ADDR: {}", s_remote_addr);
 
         /* Вывести все HTTP-заголовки (каждый заголовок с новой строки) */
         FCGX_PutS("Content-type: text/html\r\n", request.out);
