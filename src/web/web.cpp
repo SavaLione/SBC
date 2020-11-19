@@ -84,10 +84,12 @@ static void *_fcgi_page(void *a)
         /* Request is accepted */
 
         /* Пробуем поличить данные */
-        char *str_post;
+        char str_post[2048];
         // int FCGX_GetStr(char * str, int n, FCGX_Stream *stream);
-        FCGX_GetStr(str_post, 1024, request.in);
-        spdlog::debug("POST: \n {}", str_post);
+        while (FCGX_GetStr(str_post, sizeof(str_post), request.in) > 0)
+        {
+            spdlog::debug("POST: \n {}", str_post);
+        }
 
         /* Получить значение переменной */
         server_name = FCGX_GetParam("SERVER_NAME", request.envp);
