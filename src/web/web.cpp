@@ -93,8 +93,16 @@ static void *_fcgi_page(void *a)
 
         /* Получить значение переменной */
         server_name = FCGX_GetParam("SERVER_NAME", request.envp);
+
+        std::string s_request_method = FCGX_GetParam("REQUEST_METHOD", request.envp);
+        std::string s_content_length = FCGX_GetParam("CONTENT_LENGTH", request.envp);
         std::string s_remote_addr = FCGX_GetParam("REMOTE_ADDR", request.envp);
+        std::string s_request_uri = FCGX_GetParam("REQUEST_URI", request.envp);
+
+        spdlog::debug("REQUEST_METHOD: {}", s_request_method);
+        spdlog::debug("CONTENT_LENGTH: {}", s_content_length);
         spdlog::debug("REMOTE_ADDR: {}", s_remote_addr);
+        spdlog::debug("REQUEST_URI: {}", s_request_uri);
 
         /* Вывести все HTTP-заголовки (каждый заголовок с новой строки) */
         FCGX_PutS("Content-type: text/html\r\n", request.out);
