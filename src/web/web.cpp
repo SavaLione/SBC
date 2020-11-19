@@ -102,7 +102,15 @@ static void *_fcgi_page(void *a)
         std::string s_document_uri = FCGX_GetParam("DOCUMENT_URI", request.envp);
         std::string s_document_root = FCGX_GetParam("DOCUMENT_ROOT", request.envp);
         std::string s_http_host = FCGX_GetParam("HTTP_HOST", request.envp);
-        std::string s_http_cookie = FCGX_GetParam("HTTP_COOKIE", request.envp);
+        std::string s_http_cookie;
+        if (FCGX_GetParam("HTTP_COOKIE", request.envp) != NULL)
+        {
+            s_http_cookie = FCGX_GetParam("HTTP_COOKIE", request.envp);
+        }
+        else
+        {
+            s_http_cookie = "NULL";
+        }
 
         spdlog::debug("REQUEST_METHOD: {}", s_request_method);
         spdlog::debug("CONTENT_LENGTH: {}", s_content_length);
