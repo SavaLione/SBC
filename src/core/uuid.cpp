@@ -43,10 +43,13 @@
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
+#include <string>
+
 void uuid_init()
 {
     // boost::uuids::uuid uuid = boost::uuids::random_generator()();
     boost::uuids::random_generator generator;
     boost::uuids::uuid uuid1 = generator();
-    spdlog::debug("uuid: {}", uuid1);
+    std::string s = uuid1;
+    spdlog::debug("uuid: {}", s);
 }
