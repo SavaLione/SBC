@@ -46,9 +46,4 @@
 void uuid_init()
 {
     boost::uuids::uuid uuid = boost::uuids::random_generator()();
-    spdlog::debug("uuid: {}", uuid);
-    for (int i = 0; i < 16; i++)
-    {
-        spdlog::debug("uuid: {}", boost::uuids::random_generator()());
-    }
 }
