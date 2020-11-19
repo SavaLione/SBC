@@ -44,12 +44,11 @@
 #include <boost/uuid/uuid_io.hpp>
 
 #include <string>
+#include <iostream>
+#include <boost/lexical_cast.hpp>
 
 void uuid_init()
 {
-    // boost::uuids::uuid uuid = boost::uuids::random_generator()();
-    boost::uuids::random_generator generator;
-    boost::uuids::uuid uuid1 = generator();
-    std::string s = uuid1;
-    spdlog::debug("uuid: {}", s);
+    boost::uuids::random_generator gen;
+    std::cout << boost::lexical_cast<std::string>(gen()) << std::endl;
 }
