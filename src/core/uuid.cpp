@@ -42,13 +42,17 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_generators.hpp>
 #include <boost/uuid/uuid_io.hpp>
+#include <boost/lexical_cast.hpp>
 
 #include <string>
 #include <iostream>
-#include <boost/lexical_cast.hpp>
 
 void uuid_init()
 {
     boost::uuids::random_generator gen;
-    std::cout << boost::lexical_cast<std::string>(gen()) << std::endl;
+    for (int i = 0; i < 16; i++)
+    {
+        spdlog::debug("uuid: {}", boost::lexical_cast<std::string>(gen()));
+    }
+    
 }
