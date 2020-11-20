@@ -37,6 +37,8 @@
  */
 #include "net/session.h"
 
+#include "io/logger.h"
+
 #include <iostream>
 
 void session::start()
@@ -52,7 +54,8 @@ void session::do_read()
                             {
                                 if (!ec)
                                 {
-                                    std::cout << data_ << std::endl;
+                                    // std::cout << data_ << std::endl;
+                                    spdlog::debug("TCP: {}", data_);
                                     do_write(length);
                                 }
                             });
