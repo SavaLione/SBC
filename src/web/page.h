@@ -43,16 +43,27 @@
 #include <fcgi_config.h>
 #include <fcgiapp.h>
 
+enum site_pages
+{
+    unknown = -1,
+    index = 1
+};
+
 class page
 {
 public:
     page(FCGX_Request &request) : _request(request) { _init(); };
     ~page();
 
+    void show();
+
 private:
     FCGX_Request &_request;
 
     void _init();
+
+    site_pages const _get_site_page();
+    site_pages _site_page = unknown;
 
     std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
     std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
@@ -64,7 +75,13 @@ private:
     std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
     std::string _http_cookie;
 
-    void _header();
+    bool _cookie = false;
+
+    void _web_header();
+
+    /* pages */
+    void _page_unknown();
+    void _page_index();
 };
 
 #endif // WEB_PAGE_H

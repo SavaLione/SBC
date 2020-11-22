@@ -37,6 +37,8 @@
  */
 #include "web/page.h"
 
+#include "web/mime.h"
+
 page::~page()
 {
 }
@@ -46,9 +48,59 @@ void page::_init()
     if (FCGX_GetParam("HTTP_COOKIE", _request.envp) != NULL)
     {
         _http_cookie = FCGX_GetParam("HTTP_COOKIE", _request.envp);
+        _cookie = true;
     }
     else
     {
         _http_cookie = "NULL";
+        _cookie = false;
     }
+
+    _site_page = _get_site_page();
+}
+
+void page::show()
+{
+    _web_header();
+
+    switch (_site_page)
+    {
+    case unknown:
+        _page_unknown();
+        break;
+    case index:
+        _page_index();
+        break;
+    default:
+        _page_unknown();
+        break;
+    }
+}
+
+void page::_web_header()
+{
+    FCGX_PutS(mime_type(text_html), _request.out);
+}
+
+site_pages const page::_get_site_page()
+{
+    if (_request_uri == "/")
+    {
+        return index;
+    }
+
+    return unknown;
+}
+
+void page::_page_unknown()
+{
+    FCGX_PutS("<head>\r\n", _request.out);
+    FCGX_PutS("<meta http-equiv=\"refresh\" content=\"0; URL=/\" />\r\n", _request.out);
+    FCGX_PutS("</head>\r\n", _request.out);
+}
+
+void page::_page_index()
+{
+    FCGX_PutS("Hello!\r\n", _request.out);
+    FCGX_PutS("It's index page!\r\n", _request.out);
 }
