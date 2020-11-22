@@ -94,10 +94,6 @@ int main(int argc, char *argv[])
     /* uuid */
     uuid_init();
 
-    /* mime test */
-    spdlog::debug("mime: \n{}\n", mime_type(text_html));
-    spdlog::debug("mime: \n{}\n", mime_type(application_edi_x12));
-
     if (thread_web_server.joinable())
     {
         thread_web_server.join();
