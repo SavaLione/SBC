@@ -46,7 +46,7 @@
 class page
 {
 public:
-    page(FCGX_Request &request) : _request(request){_init()};
+    page(FCGX_Request &request) : _request(request) { _init(); };
     ~page();
 
 private:
