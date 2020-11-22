@@ -45,8 +45,8 @@
 
 enum site_pages
 {
-    unknown = -1,
-    index = 1
+    _unknown = -1,
+    _index = 1
 };
 
 class page
@@ -63,7 +63,7 @@ private:
     void _init();
 
     site_pages const _get_site_page();
-    site_pages _site_page = unknown;
+    site_pages _site_page = _unknown;
 
     std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
     std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);

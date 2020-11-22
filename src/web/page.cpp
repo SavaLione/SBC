@@ -65,10 +65,10 @@ void page::show()
 
     switch (_site_page)
     {
-    case unknown:
+    case _unknown:
         _page_unknown();
         break;
-    case index:
+    case _index:
         _page_index();
         break;
     default:
@@ -86,10 +86,10 @@ site_pages const page::_get_site_page()
 {
     if (_request_uri == "/")
     {
-        return index;
+        return _index;
     }
 
-    return unknown;
+    return _unknown;
 }
 
 void page::_page_unknown()
