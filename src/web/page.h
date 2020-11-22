@@ -31,84 +31,40 @@
 
 /**
  * @file
- * @brief SBC server
+ * @brief Web page
  * @author SavaLione
- * @date 15 Nov 2020
+ * @date 22 Nov 2020
  */
+#ifndef WEB_PAGE_H
+#define WEB_PAGE_H
 
-#include <thread>
+#include <string>
 
-#include "core/settings.h"
-#include "core/uuid.h"
+#include <fcgi_config.h>
+#include <fcgiapp.h>
 
-#include "io/logger.h"
-
-#include "net/server.h"
-
-#include "db/db_sqlite.h"
-
-#include "web/web.h"
-#include "web/mime.h"
-
-void web_server()
+class page
 {
-    spdlog::info("Start web FastCGI server.");
-    web *web_f = new web();
+public:
+    page(FCGX_Request &request) : _request(request){_init()};
+    ~page();
 
-    delete web_f;
-}
+private:
+    FCGX_Request &_request;
 
-void sbc_server()
-{
-    settings &settings_instance = settings::Instance();
+    void _init();
 
-    spdlog::info("Start SBC server.");
+    std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
+    std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
+    std::string _remote_addr = FCGX_GetParam("REMOTE_ADDR", _request.envp);
+    std::string _request_uri = FCGX_GetParam("REQUEST_URI", _request.envp);
+    std::string _query_string = FCGX_GetParam("QUERY_STRING", _request.envp);
+    std::string _document_uri = FCGX_GetParam("DOCUMENT_URI", _request.envp);
+    std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
+    std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
+    std::string _http_cookie;
 
-    try
-    {
-        boost::asio::io_context io_context;
-        server s(io_context, settings_instance.port());
-        io_context.run();
-    }
-    catch (const std::exception &e)
-    {
-        //std::cerr << "Exception: " << e.what() << '\n';
-        spdlog::error("SBC server exception: {}", e.what());
-    }
-}
+    void _header();
+};
 
-int main(int argc, char *argv[])
-{
-    /* Logger initialization */
-    logger_init();
-
-    /* Settings initialization */
-    settings &settings_instance = settings::Instance();
-
-    /* Запуск web сервера */
-    std::thread thread_web_server(web_server);
-
-    /* Запуск sbc сервера */
-    std::thread thread_sbc_server(sbc_server);
-
-    /* uuid */
-    uuid_init();
-
-    /* mime test */
-    spdlog::debug("mime: \n{}\n", mime_type(text_html));
-    spdlog::debug("mime: \n{}\n", mime_type(application_edi_x12));
-
-    if (thread_web_server.joinable())
-    {
-        thread_web_server.join();
-        spdlog::info("Stop web FastCGI server.");
-    }
-
-    if (thread_sbc_server.joinable())
-    {
-        thread_sbc_server.join();
-        spdlog::info("Stop SBC server.");
-    }
-
-    return 0;
-}
+#endif // WEB_PAGE_H

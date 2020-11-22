@@ -37,6 +37,8 @@
  */
 #include "web/web.h"
 
+#include "web/page.h"
+
 #include "core/settings.h"
 
 #include "io/logger.h"
@@ -55,7 +57,7 @@ int _connection_count = 0;
 
 static void *_fcgi_page(void *a)
 {
-    int rc, i;
+    int rc;
     FCGX_Request request;
     char *server_name;
 

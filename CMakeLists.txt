@@ -112,6 +112,10 @@ set(SBC_TIME_SRC
 set(SBC_WEB_SRC
     src/web/web.h
     src/web/web.cpp
+    src/web/page.h
+    src/web/page.cpp
+    src/web/mime.h
+    src/web/mime.cpp
 )
 
 set(SBC_SRC

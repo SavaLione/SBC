@@ -31,84 +31,23 @@
 
 /**
  * @file
- * @brief SBC server
+ * @brief Multipurpose Internet Mail Extensions (mime)
  * @author SavaLione
- * @date 15 Nov 2020
+ * @date 23 Nov 2020
  */
-
-#include <thread>
-
-#include "core/settings.h"
-#include "core/uuid.h"
-
-#include "io/logger.h"
-
-#include "net/server.h"
-
-#include "db/db_sqlite.h"
-
-#include "web/web.h"
 #include "web/mime.h"
 
-void web_server()
+const char *mime_type(mime m)
 {
-    spdlog::info("Start web FastCGI server.");
-    web *web_f = new web();
-
-    delete web_f;
-}
-
-void sbc_server()
-{
-    settings &settings_instance = settings::Instance();
-
-    spdlog::info("Start SBC server.");
-
-    try
+    switch (m)
     {
-        boost::asio::io_context io_context;
-        server s(io_context, settings_instance.port());
-        io_context.run();
+    case text_html:
+        return "Content-type: text/html\r\n\r\n";
+        break;
+    
+    default:
+        return "Content-type: unknown\r\n\r\n";
+        break;
     }
-    catch (const std::exception &e)
-    {
-        //std::cerr << "Exception: " << e.what() << '\n';
-        spdlog::error("SBC server exception: {}", e.what());
-    }
-}
-
-int main(int argc, char *argv[])
-{
-    /* Logger initialization */
-    logger_init();
-
-    /* Settings initialization */
-    settings &settings_instance = settings::Instance();
-
-    /* Запуск web сервера */
-    std::thread thread_web_server(web_server);
-
-    /* Запуск sbc сервера */
-    std::thread thread_sbc_server(sbc_server);
-
-    /* uuid */
-    uuid_init();
-
-    /* mime test */
-    spdlog::debug("mime: \n{}\n", mime_type(text_html));
-    spdlog::debug("mime: \n{}\n", mime_type(application_edi_x12));
-
-    if (thread_web_server.joinable())
-    {
-        thread_web_server.join();
-        spdlog::info("Stop web FastCGI server.");
-    }
-
-    if (thread_sbc_server.joinable())
-    {
-        thread_sbc_server.join();
-        spdlog::info("Stop SBC server.");
-    }
-
-    return 0;
+    return "Content-type: unknown\r\n\r\n";
 }
