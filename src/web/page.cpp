@@ -79,7 +79,7 @@ void page::show()
 
 void page::_web_header()
 {
-    FCGX_PutS(mime_type(text_html), _request.out);
+    // FCGX_PutS(mime_type(text_html), _request.out);
 }
 
 site_pages const page::_get_site_page()
@@ -94,13 +94,13 @@ site_pages const page::_get_site_page()
 
 void page::_page_unknown()
 {
-    FCGX_PutS("<head>\r\n", _request.out);
-    FCGX_PutS("<meta http-equiv=\"refresh\" content=\"0; URL=/\" />\r\n", _request.out);
-    FCGX_PutS("</head>\r\n", _request.out);
+    // FCGX_PutS("<head>\r\n", _request.out);
+    // FCGX_PutS("<meta http-equiv=\"refresh\" content=\"0; URL=/\" />\r\n", _request.out);
+    // FCGX_PutS("</head>\r\n", _request.out);
 }
 
 void page::_page_index()
 {
-    FCGX_PutS("Hello!\r\n", _request.out);
-    FCGX_PutS("It's index page!\r\n", _request.out);
+    // FCGX_PutS("Hello!\r\n", _request.out);
+    // FCGX_PutS("It's index page!\r\n", _request.out);
 }
