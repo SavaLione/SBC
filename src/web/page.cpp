@@ -129,41 +129,44 @@ void page::_page_index()
 
 void page::_page_login()
 {
-    FCGX_PutS("<!doctype html>\r\n", _request.out);
-    FCGX_PutS("<html lang=\"en\">\r\n", _request.out);
-    FCGX_PutS("  <head>\r\n", _request.out);
-    FCGX_PutS("    <meta charset=\"utf-8\">\r\n", _request.out);
-    FCGX_PutS("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\r\n", _request.out);
-    FCGX_PutS("    <meta name=\"description\" content=\"\">\r\n", _request.out);
-    FCGX_PutS("    <meta name=\"author\" content=\"\">\r\n", _request.out);
-    // FCGX_PutS("    <link rel=\"icon\" href=\"../favicon.ico\">\r\n", _request.out);
+    // FCGX_PutS("<!doctype html>\r\n", _request.out);
+    // FCGX_PutS("<html lang=\"en\">\r\n", _request.out);
+    // FCGX_PutS("  <head>\r\n", _request.out);
+    // FCGX_PutS("    <meta charset=\"utf-8\">\r\n", _request.out);
+    // FCGX_PutS("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\r\n", _request.out);
+    // FCGX_PutS("    <meta name=\"description\" content=\"\">\r\n", _request.out);
+    // FCGX_PutS("    <meta name=\"author\" content=\"\">\r\n", _request.out);
+    // // FCGX_PutS("    <link rel=\"icon\" href=\"../favicon.ico\">\r\n", _request.out);
 
-    FCGX_PutS("    <title>Signin</title>\r\n", _request.out);
+    // FCGX_PutS("    <title>Signin</title>\r\n", _request.out);
 
-    FCGX_PutS("    <!-- Bootstrap core CSS -->\r\n", _request.out);
-    FCGX_PutS("    <!-- <link href=\"../dist/css/bootstrap.min.css\" rel=\"stylesheet\"> -->\r\n", _request.out);
-    FCGX_PutS("    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">\r\n", _request.out);
+    // FCGX_PutS("    <!-- Bootstrap core CSS -->\r\n", _request.out);
+    // FCGX_PutS("    <!-- <link href=\"../dist/css/bootstrap.min.css\" rel=\"stylesheet\"> -->\r\n", _request.out);
+    // FCGX_PutS("    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">\r\n", _request.out);
 
-    FCGX_PutS("    <!-- Custom styles for this template -->\r\n", _request.out);
-    // FCGX_PutS("    <link href=\"signin.css\" rel=\"stylesheet\">\r\n", _request.out);
-    FCGX_PutS("  </head>\r\n", _request.out);
+    // FCGX_PutS("    <!-- Custom styles for this template -->\r\n", _request.out);
+    // // FCGX_PutS("    <link href=\"signin.css\" rel=\"stylesheet\">\r\n", _request.out);
+    // FCGX_PutS("  </head>\r\n", _request.out);
 
-    FCGX_PutS("  <body class=\"text-center\">\r\n", _request.out);
-    FCGX_PutS("    <form class=\"form-signin\">\r\n", _request.out);
-    // FCGX_PutS("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">\r\n", _request.out);
-    FCGX_PutS("      <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>\r\n", _request.out);
-    FCGX_PutS("      <label for=\"inputEmail\" class=\"sr-only\">Email address</label>\r\n", _request.out);
-    FCGX_PutS("      <input type=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\r\n", _request.out);
-    FCGX_PutS("      <label for=\"inputPassword\" class=\"sr-only\">Password</label>\r\n", _request.out);
-    FCGX_PutS("      <input type=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" required>\r\n", _request.out);
-    FCGX_PutS("      <div class=\"checkbox mb-3\">\r\n", _request.out);
-    FCGX_PutS("        <label>\r\n", _request.out);
-    FCGX_PutS("          <input type=\"checkbox\" value=\"remember-me\"> Remember me\r\n", _request.out);
-    FCGX_PutS("        </label>\r\n", _request.out);
-    FCGX_PutS("      </div>\r\n", _request.out);
-    FCGX_PutS("      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Sign in</button>\r\n", _request.out);
-    FCGX_PutS("      <p class=\"mt-5 mb-3 text-muted\">&copy; 2020 SavaLione</p>\r\n", _request.out);
-    FCGX_PutS("    </form>\r\n", _request.out);
-    FCGX_PutS("  </body>\r\n", _request.out);
-    FCGX_PutS("</html>\r\n", _request.out);
+    // FCGX_PutS("  <body class=\"text-center\">\r\n", _request.out);
+    // FCGX_PutS("    <form class=\"form-signin\">\r\n", _request.out);
+    // // FCGX_PutS("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">\r\n", _request.out);
+    // FCGX_PutS("      <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>\r\n", _request.out);
+    // FCGX_PutS("      <label for=\"inputEmail\" class=\"sr-only\">Email address</label>\r\n", _request.out);
+    // FCGX_PutS("      <input type=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\r\n", _request.out);
+    // FCGX_PutS("      <label for=\"inputPassword\" class=\"sr-only\">Password</label>\r\n", _request.out);
+    // FCGX_PutS("      <input type=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" required>\r\n", _request.out);
+    // FCGX_PutS("      <div class=\"checkbox mb-3\">\r\n", _request.out);
+    // FCGX_PutS("        <label>\r\n", _request.out);
+    // FCGX_PutS("          <input type=\"checkbox\" value=\"remember-me\"> Remember me\r\n", _request.out);
+    // FCGX_PutS("        </label>\r\n", _request.out);
+    // FCGX_PutS("      </div>\r\n", _request.out);
+    // FCGX_PutS("      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Sign in</button>\r\n", _request.out);
+    // FCGX_PutS("      <p class=\"mt-5 mb-3 text-muted\">&copy; 2020 SavaLione</p>\r\n", _request.out);
+    // FCGX_PutS("    </form>\r\n", _request.out);
+    // FCGX_PutS("  </body>\r\n", _request.out);
+    // FCGX_PutS("</html>\r\n", _request.out);
+
+    FCGX_PutS("Hello!\r\n", _request.out);
+    FCGX_PutS("It's login page!\r\n", _request.out);
 }
