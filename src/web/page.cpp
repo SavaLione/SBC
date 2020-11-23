@@ -101,12 +101,12 @@ void page::_web_header()
 
 site_pages const page::_get_site_page()
 {
-    if (_request_uri == "/")
+    if (_request_uri == "/sbc")
     {
         return _index;
     }
 
-    if (_request_uri == "/login")
+    if (_request_uri == "/sbc/login")
     {
         return _login;
     }
@@ -117,7 +117,7 @@ site_pages const page::_get_site_page()
 void page::_page_unknown()
 {
     FCGX_PutS("<head>\r\n", _request.out);
-    FCGX_PutS("<meta http-equiv=\"refresh\" content=\"0; URL=/\" />\r\n", _request.out);
+    FCGX_PutS("<meta http-equiv=\"refresh\" content=\"0; URL=/sbc\" />\r\n", _request.out);
     FCGX_PutS("</head>\r\n", _request.out);
 }
 
