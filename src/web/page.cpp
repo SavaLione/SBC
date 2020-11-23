@@ -78,6 +78,27 @@ void page::_debug()
 
 void page::show()
 {
+    switch (_method)
+    {
+    case _GET:
+        _method_get();
+        break;
+    case _POST:
+        _method_post();
+        break;
+    default:
+        _method_get();
+        break;
+    }
+}
+
+void page::_web_header()
+{
+    FCGX_PutS(mime_type(text_html), _request.out);
+}
+
+void page::_method_get()
+{
     _web_header();
 
     switch (_site_page)
@@ -97,9 +118,9 @@ void page::show()
     }
 }
 
-void page::_web_header()
+void page::_method_post()
 {
-    FCGX_PutS(mime_type(text_html), _request.out);
+    
 }
 
 site_pages const page::_get_site_page()
@@ -112,6 +133,21 @@ site_pages const page::_get_site_page()
     if (_document_uri == "/sbc/login")
     {
         return _login;
+    }
+
+    return _unknown;
+}
+
+method const page::_get_method()
+{
+    if (_request_method == "GET")
+    {
+        return _GET;
+    }
+
+    if (_request_method == "POST")
+    {
+        return _POST;
     }
 
     return _unknown;

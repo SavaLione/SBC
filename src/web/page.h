@@ -50,6 +50,13 @@ enum site_pages
     _login = 2
 };
 
+enum method
+{
+    _unknown = -1,
+    _GET = 1,
+    _POST = 2
+};
+
 class page
 {
 public:
@@ -67,6 +74,9 @@ private:
     site_pages const _get_site_page();
     site_pages _site_page = _unknown;
 
+    method const _get_method();
+    method _method = _unknown;
+
     std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
     std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
     std::string _remote_addr = FCGX_GetParam("REMOTE_ADDR", _request.envp);
@@ -80,6 +90,10 @@ private:
     bool _cookie = false;
 
     void _web_header();
+
+    /* method */
+    void _method_get();
+    void _method_post();
 
     /* pages */
     void _page_unknown();
