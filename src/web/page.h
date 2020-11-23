@@ -62,6 +62,7 @@ private:
     FCGX_Request &_request;
 
     void _init();
+    void _debug();
 
     site_pages const _get_site_page();
     site_pages _site_page = _unknown;
