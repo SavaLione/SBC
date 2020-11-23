@@ -88,6 +88,9 @@ void page::show()
     case _index:
         _page_index();
         break;
+    case _login:
+        _page_login();
+        break;
     default:
         _page_unknown();
         break;
