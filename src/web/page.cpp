@@ -103,7 +103,7 @@ void page::_method_get()
 
     switch (_site_page)
     {
-    case _unknown:
+    case _unknown_page:
         _page_unknown();
         break;
     case _index:
@@ -120,7 +120,7 @@ void page::_method_get()
 
 void page::_method_post()
 {
-    
+
 }
 
 site_pages const page::_get_site_page()
@@ -150,7 +150,7 @@ method const page::_get_method()
         return _POST;
     }
 
-    return _unknown;
+    return _unknown_method;
 }
 
 void page::_page_unknown()
