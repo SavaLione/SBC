@@ -136,7 +136,7 @@ void page::_page_login()
     FCGX_PutS("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\r\n", _request.out);
     FCGX_PutS("    <meta name=\"description\" content=\"\">\r\n", _request.out);
     FCGX_PutS("    <meta name=\"author\" content=\"\">\r\n", _request.out);
-    FCGX_PutS("    <link rel=\"icon\" href=\"../favicon.ico\">\r\n", _request.out);
+    // FCGX_PutS("    <link rel=\"icon\" href=\"../favicon.ico\">\r\n", _request.out);
 
     FCGX_PutS("    <title>Signin</title>\r\n", _request.out);
 
@@ -145,12 +145,12 @@ void page::_page_login()
     FCGX_PutS("    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">\r\n", _request.out);
 
     FCGX_PutS("    <!-- Custom styles for this template -->\r\n", _request.out);
-    FCGX_PutS("    <link href=\"signin.css\" rel=\"stylesheet\">\r\n", _request.out);
+    // FCGX_PutS("    <link href=\"signin.css\" rel=\"stylesheet\">\r\n", _request.out);
     FCGX_PutS("  </head>\r\n", _request.out);
 
     FCGX_PutS("  <body class=\"text-center\">\r\n", _request.out);
     FCGX_PutS("    <form class=\"form-signin\">\r\n", _request.out);
-    FCGX_PutS("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">\r\n", _request.out);
+    // FCGX_PutS("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">\r\n", _request.out);
     FCGX_PutS("      <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>\r\n", _request.out);
     FCGX_PutS("      <label for=\"inputEmail\" class=\"sr-only\">Email address</label>\r\n", _request.out);
     FCGX_PutS("      <input type=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required autofocus>\r\n", _request.out);
