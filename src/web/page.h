@@ -46,7 +46,8 @@
 enum site_pages
 {
     _unknown = -1,
-    _index = 1
+    _index = 1,
+    _login = 2
 };
 
 class page
@@ -82,6 +83,7 @@ private:
     /* pages */
     void _page_unknown();
     void _page_index();
+    void _page_login();
 };
 
 #endif // WEB_PAGE_H
