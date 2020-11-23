@@ -139,7 +139,7 @@ void page::_page_login()
     FCGX_PutS("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\r\n", _request.out);
     FCGX_PutS("    <meta name=\"description\" content=\"\">\r\n", _request.out);
     FCGX_PutS("    <meta name=\"author\" content=\"\">\r\n", _request.out);
-    FCGX_PutS("    <link rel=\"icon\" href=\"../favicon.ico\">\r\n", _request.out);
+    FCGX_PutS("    <link rel=\"icon\" href=\"/assets/favicon.ico\">\r\n", _request.out);
 
     FCGX_PutS("    <title>Signin</title>\r\n", _request.out);
 
@@ -148,7 +148,7 @@ void page::_page_login()
     FCGX_PutS("    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">\r\n", _request.out);
 
     FCGX_PutS("    <!-- Custom styles for this template -->\r\n", _request.out);
-    FCGX_PutS("    <link href=\"signin.css\" rel=\"stylesheet\">\r\n", _request.out);
+    FCGX_PutS("    <link href=\"/assets/css/signin.css\" rel=\"stylesheet\">\r\n", _request.out);
     FCGX_PutS("  </head>\r\n", _request.out);
 
     FCGX_PutS("  <body class=\"text-center\">\r\n", _request.out);
