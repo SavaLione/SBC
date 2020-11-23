@@ -65,15 +65,15 @@ void page::_init()
 
 void page::_debug()
 {
-    spdlog::debug("REQUEST_METHOD: {}", s_request_method);
-    spdlog::debug("CONTENT_LENGTH: {}", s_content_length);
-    spdlog::debug("REMOTE_ADDR: {}", s_remote_addr);
-    spdlog::debug("REQUEST_URI: {}", s_request_uri);
-    spdlog::debug("QUERY_STRING: {}", s_query_string);
-    spdlog::debug("DOCUMENT_URI: {}", s_document_uri);
-    spdlog::debug("DOCUMENT_ROOT: {}", s_document_root);
-    spdlog::debug("HTTP_HOST: {}", s_http_host);
-    spdlog::debug("HTTP_COOKIE: {}", s_http_cookie);
+    spdlog::debug("REQUEST_METHOD: {}", _request_method);
+    spdlog::debug("CONTENT_LENGTH: {}", _content_length);
+    spdlog::debug("REMOTE_ADDR: {}", _remote_addr);
+    spdlog::debug("REQUEST_URI: {}", _request_uri);
+    spdlog::debug("QUERY_STRING: {}", _query_string);
+    spdlog::debug("DOCUMENT_URI: {}", _document_uri);
+    spdlog::debug("DOCUMENT_ROOT: {}", _document_root);
+    spdlog::debug("HTTP_HOST: {}", _http_host);
+    spdlog::debug("HTTP_COOKIE: {}", _http_cookie);
 }
 
 void page::show()
