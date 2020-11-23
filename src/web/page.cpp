@@ -145,7 +145,7 @@ method const page::_get_method()
         return _GET;
     }
 
-    if (_request_method == "POST")
+    if (_request_method == "post")
     {
         return _POST;
     }
@@ -188,7 +188,7 @@ void page::_page_login()
     FCGX_PutS("  </head>\r\n", _request.out);
 
     FCGX_PutS("  <body class=\"text-center\">\r\n", _request.out);
-    FCGX_PutS("    <form method=POST class=\"form-signin\">\r\n", _request.out);
+    FCGX_PutS("    <form method=\"post\" class=\"form-signin\">\r\n", _request.out);
     FCGX_PutS("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">\r\n", _request.out);
     FCGX_PutS("      <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>\r\n", _request.out);
     FCGX_PutS("      <label for=\"inputEmail\" class=\"sr-only\">Email address</label>\r\n", _request.out);
