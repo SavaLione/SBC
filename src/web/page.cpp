@@ -135,7 +135,7 @@ site_pages const page::_get_site_page()
         return _login;
     }
 
-    return _unknown;
+    return _unknown_page;
 }
 
 method const page::_get_method()
