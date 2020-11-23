@@ -101,12 +101,12 @@ void page::_web_header()
 
 site_pages const page::_get_site_page()
 {
-    if (_request_uri == "/sbc")
+    if (_document_uri == "/sbc")
     {
         return _index;
     }
 
-    if (_request_uri == "/sbc/login")
+    if (_document_uri == "/sbc/login")
     {
         return _login;
     }
