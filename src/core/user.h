@@ -31,17 +31,71 @@
 
 /**
  * @file
- * @brief Cookie
+ * @brief User
  * @author SavaLione
- * @date 24 Nov 2020
+ * @date 25 Nov 2020
  */
+#ifndef CORE_USER_H
+#define CORE_USER_H
 
-#include "web/cookie.h"
+#include <string>
 
-cookie::cookie()
+#include "core/uuid.h"
+
+#include "time/current_time.h"
+
+enum role
 {
-}
+    DEFAULT = 0,
+    GUEST = 1,
+    MANAGER = 2,
+    ADMINISTRATOR = 3,
+    BANNED = 100
+};
 
-cookie::~cookie()
+class user
 {
-}
+public:
+    user();
+    ~user();
+
+    /* set */
+    const void set_name(std::string name);
+    const void set_username(std::string username);
+    const void set_email(std::string email);
+    const void set_phone(std::string phone);
+    const void set_password(std::string password);
+
+    const void set_role(role r);
+
+    /* get */
+    std::string get_name();
+    std::string get_username();
+    std::string get_email();
+    std::string get_phone();
+    std::string get_password();
+    std::string get_last_time_online();
+
+    role get_role();
+
+    std::string get_uuid();
+
+private:
+    /* variables */
+    std::string _name = "";
+    std::string _username = "";
+    std::string _email = "";
+    std::string _phone = "";
+    std::string _password = "";
+    std::string _last_time_online = "";
+
+    role _r = DEFAULT;
+
+    std::string _uuid = "";
+
+    /* functions */
+    const void _set_last_time_online();
+    const void _set_uuid();
+};
+
+#endif // CORE_USER_H

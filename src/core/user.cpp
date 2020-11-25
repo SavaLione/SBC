@@ -31,17 +31,18 @@
 
 /**
  * @file
- * @brief Cookie
+ * @brief User
  * @author SavaLione
- * @date 24 Nov 2020
+ * @date 25 Nov 2020
  */
+#include "core/user.h"
 
-#include "web/cookie.h"
-
-cookie::cookie()
+user::user()
 {
+    _set_uuid();
+    _set_last_time_online();
 }
 
-cookie::~cookie()
+user::~user()
 {
 }
