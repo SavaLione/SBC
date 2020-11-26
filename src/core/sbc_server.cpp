@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
     std::thread thread_sbc_server(sbc_server);
 
     /* uuid */
-    uuid_init();
+    uuid &uuid_instance = uuid::Instance();
 
     if (thread_web_server.joinable())
     {

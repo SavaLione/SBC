@@ -47,12 +47,19 @@
 #include <string>
 #include <iostream>
 
-void uuid_init()
+uuid::uuid()
 {
-    boost::uuids::random_generator gen;
-    for (int i = 0; i < 16; i++)
-    {
-        spdlog::debug("uuid: {}", boost::lexical_cast<std::string>(gen()));
-    }
-    
+    spdlog::info("uuid initialization");
+    spdlog::info("Random uuid: {}", boost::lexical_cast<std::string>(_gen()));
+    spdlog::info("Random uuid: {}", boost::lexical_cast<std::string>(_gen()));
+    spdlog::info("Random uuid: {}", boost::lexical_cast<std::string>(_gen()));
+}
+
+uuid::~uuid()
+{
+}
+
+std::string uuid::get()
+{
+    return boost::lexical_cast<std::string>(_gen());
 }

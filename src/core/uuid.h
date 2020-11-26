@@ -38,6 +38,36 @@
 #ifndef CORE_UUID_H
 #define CORE_UUID_H
 
-void uuid_init();
+#include <string>
+
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/lexical_cast.hpp>
+
+class uuid
+{
+public:
+    /* constructor */
+    static uuid &Instance()
+    {
+        static uuid u;
+        return u;
+    }
+
+    ~uuid();
+
+    /* functions */
+    std::string get();
+
+private:
+    /* constructor */
+    uuid();
+    uuid(uuid const &) = delete;
+    uuid &operator=(uuid const &) = delete;
+
+    /* variables */
+    boost::uuids::random_generator _gen;
+};
 
 #endif // CORE_UUID_H
