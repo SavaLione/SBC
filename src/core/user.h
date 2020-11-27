@@ -81,6 +81,9 @@ public:
     std::string get_uuid();
 
 private:
+    /* uuid */
+    uuid &uuid_instance = uuid::Instance();
+
     /* variables */
     std::string _name = "";
     std::string _username = "";
@@ -93,7 +96,7 @@ private:
 
     std::string _uuid = "";
 
-    /* functions */
+    /* private functions */
     const void _set_last_time_online();
     const void _set_uuid();
 };
