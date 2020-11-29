@@ -45,3 +45,44 @@ cookie::cookie()
 cookie::~cookie()
 {
 }
+
+const void cookie::add_user(user &u)
+{
+    _users.push_back(u);
+}
+
+const void cookie::remove_user(std::string uuid)
+{
+    for (int i = 0; i < _users.size(); i++)
+    {
+        if (_users[i].get_uuid() == uuid)
+        {
+            _users.erase(_users.begin() + i);
+            _users.resize();
+            break;
+        }
+    }
+}
+
+bool cookie::have_user(std::string uuid)
+{
+    for (int i = 0; i < _users.size(); i++)
+    {
+        if (_users[i].get_uuid() == uuid)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+user cookie::get_user(std::string uuid)
+{
+    for (int i = 0; i < _users.size(); i++)
+    {
+        if (_users[i].get_uuid() == uuid)
+        {
+            return _users[i];
+        }
+    }
+}

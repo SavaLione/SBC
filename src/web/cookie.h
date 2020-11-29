@@ -38,9 +38,14 @@
 #ifndef WEB_COOKIE_H
 #define WEB_COOKIE_H
 
+#include <vector>
+
+#include "core/user.h"
+
 class cookie
 {
 public:
+    /* constructor */
     static cookie &Instance()
     {
         static cookie c;
@@ -49,10 +54,24 @@ public:
 
     ~cookie();
 
+    /* functions */
+    const void add_user(user &u);
+
+    bool have_user(std::string uuid);
+    user get_user(std::string uuid);
+
+    const void remove_user(std::string uuid);
+
+
+
 private:
+    /* constructor */
     cookie();
     cookie(cookie const &) = delete;
     cookie &operator=(cookie const &) = delete;
+
+    /* variables */
+    std::vector<user> _users;
 };
 
 #endif // WEB_COOKIE_H
