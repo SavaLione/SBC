@@ -62,8 +62,6 @@ public:
 
     const void remove_user(std::string uuid);
 
-
-
 private:
     /* constructor */
     cookie();

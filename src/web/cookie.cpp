@@ -40,6 +40,7 @@
 
 cookie::cookie()
 {
+    spdlog::info("Cookie initialization");
 }
 
 cookie::~cookie()
