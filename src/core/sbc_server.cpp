@@ -49,6 +49,7 @@
 
 #include "web/web.h"
 #include "web/mime.h"
+#include "web/cookie.h"
 
 void web_server()
 {
@@ -72,7 +73,6 @@ void sbc_server()
     }
     catch (const std::exception &e)
     {
-        //std::cerr << "Exception: " << e.what() << '\n';
         spdlog::error("SBC server exception: {}", e.what());
     }
 }
@@ -85,14 +85,17 @@ int main(int argc, char *argv[])
     /* Settings initialization */
     settings &settings_instance = settings::Instance();
 
+    /* uuid */
+    uuid &uuid_instance = uuid::Instance();
+
+    /* cookie */
+    cookie &cookie_instance = cookie::Instance();
+
     /* Запуск web сервера */
     std::thread thread_web_server(web_server);
 
     /* Запуск sbc сервера */
     std::thread thread_sbc_server(sbc_server);
-
-    /* uuid */
-    uuid &uuid_instance = uuid::Instance();
 
     if (thread_web_server.joinable())
     {
