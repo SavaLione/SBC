@@ -103,6 +103,20 @@ void sbc_test()
     }
 
     cookie_instance.debug();
+
+    /* some */
+    user some;
+    some.set_name("Some");
+    some.set_username("some");
+
+    cookie_instance.add_user(some);
+    /* some */
+
+    cookie_instance.debug();
+
+    cookie_instance.remove_user(testuser.get_uuid());
+
+    cookie_instance.debug();
 }
 
 int main(int argc, char *argv[])
