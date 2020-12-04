@@ -36,10 +36,14 @@
  * @date 25 Nov 2020
  */
 #include "core/user.h"
+#include "core/uuid.h"
 
 user::user()
 {
-    _set_uuid();
+    /* uuid */
+    uuid &uuid_instance = uuid::Instance();
+    _uuid = uuid_instance.get();
+
     _set_last_time_online();
 }
 
@@ -124,9 +128,4 @@ const void user::_set_last_time_online()
 {
     current_time curr_t;
     _last_time_online = curr_t.s_date();
-}
-
-const void user::_set_uuid()
-{
-    _uuid = uuid_instance.get();
 }

@@ -40,8 +40,6 @@
 
 #include <string>
 
-#include "core/uuid.h"
-
 #include "time/current_time.h"
 
 enum role
@@ -75,15 +73,11 @@ public:
     std::string get_phone();
     std::string get_password();
     std::string get_last_time_online();
+    std::string get_uuid();
 
     role get_role();
 
-    std::string get_uuid();
-
 private:
-    /* uuid */
-    uuid &uuid_instance = uuid::Instance();
-
     /* variables */
     std::string _name = "";
     std::string _username = "";
@@ -91,14 +85,12 @@ private:
     std::string _phone = "";
     std::string _password = "";
     std::string _last_time_online = "";
+    std::string _uuid = "";
 
     role _role = DEFAULT;
 
-    std::string _uuid = "";
-
     /* private functions */
     const void _set_last_time_online();
-    const void _set_uuid();
 };
 
 #endif // CORE_USER_H
