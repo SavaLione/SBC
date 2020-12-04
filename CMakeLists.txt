@@ -72,6 +72,8 @@ set(SBC_CORE_SRC
     src/core/settings.cpp
     src/core/uuid.h
     src/core/uuid.cpp
+    src/core/user.h
+    src/core/user.cpp
 )
 
 set(SBC_IO_SRC
@@ -116,6 +118,8 @@ set(SBC_WEB_SRC
     src/web/page.cpp
     src/web/mime.h
     src/web/mime.cpp
+    src/web/cookie.h
+    src/web/cookie.cpp
 )
 
 set(SBC_SRC
