@@ -94,23 +94,23 @@ void sbc_test()
         cookie_instance.add_user(savalione);
     }
 
-    {
+    /* testuser */
         user testuser;
         testuser.set_name("Test User");
         testuser.set_username("testname");
 
         cookie_instance.add_user(testuser);
-    }
+    /* testuser */
 
     cookie_instance.debug();
 
-    /* some */
-    user some;
-    some.set_name("Some");
-    some.set_username("some");
+    {
+        user some;
+        some.set_name("Some");
+        some.set_username("some");
 
-    cookie_instance.add_user(some);
-    /* some */
+        cookie_instance.add_user(some);
+    }
 
     cookie_instance.debug();
 
