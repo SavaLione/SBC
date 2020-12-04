@@ -95,11 +95,11 @@ void sbc_test()
     }
 
     /* testuser */
-        user testuser;
-        testuser.set_name("Test User");
-        testuser.set_username("testname");
+    user testuser;
+    testuser.set_name("Test User");
+    testuser.set_username("testname");
 
-        cookie_instance.add_user(testuser);
+    cookie_instance.add_user(testuser);
     /* testuser */
 
     cookie_instance.debug();
