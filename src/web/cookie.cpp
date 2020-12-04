@@ -90,3 +90,16 @@ user cookie::get_user(std::string uuid)
     user u;
     return u;
 }
+
+void cookie::debug()
+{
+    spdlog::debug("cookie users: {}", _users.size());
+    for (int i = 0; i < _users.size(); i++)
+    {
+        spdlog::debug("---cookie--[{}]", i);
+        spdlog::debug("name: {}", _users[i].get_name());
+        spdlog::debug("username: {}", _users[i].get_username());
+        spdlog::debug("uuid: {}", _users[i].get_uuid());
+    }
+    
+}

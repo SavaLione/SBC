@@ -77,6 +77,34 @@ void sbc_server()
     }
 }
 
+void sbc_test()
+{
+    spdlog::info("Start SBC test.");
+
+    /* cookie */
+    cookie &cookie_instance = cookie::Instance();
+
+    cookie_instance.debug();
+
+    {
+        user savalione;
+        savalione.set_name("SavaLione");
+        savalione.set_username("savalione");
+
+        cookie_instance.add_user(savalione);
+    }
+
+    {
+        user testuser;
+        testuser.set_name("Test User");
+        testuser.set_username("testname");
+
+        cookie_instance.add_user(testuser);
+    }
+
+    cookie_instance.debug();
+}
+
 int main(int argc, char *argv[])
 {
     /* Logger initialization */
@@ -97,6 +125,9 @@ int main(int argc, char *argv[])
     /* Запуск sbc сервера */
     std::thread thread_sbc_server(sbc_server);
 
+    /* Тестирование некоторых функций */
+    std::thread thread_sbc_test(sbc_test);
+
     if (thread_web_server.joinable())
     {
         thread_web_server.join();
@@ -107,6 +138,12 @@ int main(int argc, char *argv[])
     {
         thread_sbc_server.join();
         spdlog::info("Stop SBC server.");
+    }
+
+    if (thread_sbc_test.joinable())
+    {
+        thread_sbc_test.join();
+        spdlog::info("Stop SBC test.");
     }
 
     return 0;
