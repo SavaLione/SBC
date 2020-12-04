@@ -87,4 +87,6 @@ user cookie::get_user(std::string uuid)
             return _users[i];
         }
     }
+    user u;
+    return u;
 }
