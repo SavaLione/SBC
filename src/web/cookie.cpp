@@ -38,6 +38,8 @@
 
 #include "web/cookie.h"
 
+#include "io/logger.h"
+
 cookie::cookie()
 {
     spdlog::info("Cookie initialization");
@@ -59,7 +61,6 @@ const void cookie::remove_user(std::string uuid)
         if (_users[i].get_uuid() == uuid)
         {
             _users.erase(_users.begin() + i);
-            _users.resize();
             break;
         }
     }
