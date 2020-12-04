@@ -92,7 +92,7 @@ private:
     std::string _password = "";
     std::string _last_time_online = "";
 
-    role _r = DEFAULT;
+    role _role = DEFAULT;
 
     std::string _uuid = "";
 

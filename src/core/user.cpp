@@ -122,7 +122,8 @@ std::string user::get_uuid()
 /* private functions */
 const void user::_set_last_time_online()
 {
-    _last_time_online = s_date();
+    current_time curr_t;
+    _last_time_online = curr_t.s_date();
 }
 
 const void user::_set_uuid()
