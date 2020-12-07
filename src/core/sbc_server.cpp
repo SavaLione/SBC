@@ -81,11 +81,14 @@ void sbc_console()
 {
     spdlog::info("Start SBC console.");
 
-    for (std::string line; spdlog::debug(" >") && std::getline(std::cin, line);)
+    for (std::string line; std::cout << " >" && std::getline(std::cin, line);)
     {
         if (!line.empty())
         {
-            spdlog::debug(line);
+            if(line == "exit")
+            {
+                exit(0);
+            }
         }
     }
 }
