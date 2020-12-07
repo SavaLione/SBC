@@ -41,6 +41,8 @@
 #include <string>
 
 #include "web/mime.h"
+#include "web/method.h"
+#include "web/mime.h"
 
 class page_template
 {
@@ -74,6 +76,9 @@ private:
     std::string _end_tag = "";
 
     mime _mime = text_html;
+
+    /* Чтобы просматривать эту страницу, нужна авторизация? */
+    bool _required_authorization = true;
 };
 
 #endif // WEB_PAGE_PAGE_TEMPLATE_H
