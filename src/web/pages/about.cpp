@@ -31,13 +31,21 @@
 
 /**
  * @file
- * @brief Web page
+ * @brief About
  * @author SavaLione
- * @date 22 Nov 2020
+ * @date 07 Dec 2020
  */
-#include "web/page.h"
+#include "web/pages/about.h"
 
-#include "web/mime.h"
+about::~about()
+{
+}
 
-#include "io/logger.h"
+void about::_body()
+{
+    _add_content("<body>");
 
+    _add_content("Hello from about page");
+    
+    _add_content("</body>");
+}

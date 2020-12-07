@@ -38,6 +38,7 @@
 #include "web/web.h"
 
 #include "web/page.h"
+#include "web/pages/about.h"
 
 #include "core/settings.h"
 
@@ -151,8 +152,12 @@ static void *_fcgi_page(void *a)
 
         // _connection_count++;
 
-        page p(request);
-        p.show();
+        // page p(request);
+        // p.show();
+
+        /* new test */
+        about about_page;
+        FCGX_PutS(about_page.c_str(), request.out);
 
         /* Закрыть текущее соединение */
         FCGX_Finish_r(&request);

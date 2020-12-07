@@ -43,62 +43,100 @@
 #include <fcgi_config.h>
 #include <fcgiapp.h>
 
-enum site_pages
-{
-    _unknown_page = -1,
-    _index = 1,
-    _login = 2
-};
+// enum site_pages
+// {
+//     _unknown_page = -1,
+//     _index = 1,
+//     _login = 2
+// };
 
-enum method
-{
-    _unknown_method = -1,
-    _GET = 1,
-    _POST = 2
-};
+// enum method
+// {
+//     _unknown_method = -1,
+//     _GET = 1,
+//     _POST = 2
+// };
 
-class page
-{
-public:
-    page(FCGX_Request &request) : _request(request) { _init(); };
-    ~page();
+// class page
+// {
+// public:
+//     page(FCGX_Request &request) : _request(request) { _init(); };
+//     ~page();
 
-    void show();
+//     void show();
 
-private:
-    FCGX_Request &_request;
+// private:
+//     FCGX_Request &_request;
 
-    void _init();
-    void _debug();
+//     void _init();
+//     void _debug();
 
-    site_pages const _get_site_page();
-    site_pages _site_page = _unknown_page;
+//     site_pages const _get_site_page();
+//     site_pages _site_page = _unknown_page;
 
-    method const _get_method();
-    method _method = _unknown_method;
+//     method const _get_method();
+//     method _method = _unknown_method;
 
-    std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
-    std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
-    std::string _remote_addr = FCGX_GetParam("REMOTE_ADDR", _request.envp);
-    std::string _request_uri = FCGX_GetParam("REQUEST_URI", _request.envp);
-    std::string _query_string = FCGX_GetParam("QUERY_STRING", _request.envp);
-    std::string _document_uri = FCGX_GetParam("DOCUMENT_URI", _request.envp);
-    std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
-    std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
-    std::string _http_cookie;
+//     std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
+//     std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
+//     std::string _remote_addr = FCGX_GetParam("REMOTE_ADDR", _request.envp);
+//     std::string _request_uri = FCGX_GetParam("REQUEST_URI", _request.envp);
+//     std::string _query_string = FCGX_GetParam("QUERY_STRING", _request.envp);
+//     std::string _document_uri = FCGX_GetParam("DOCUMENT_URI", _request.envp);
+//     std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
+//     std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
+//     std::string _http_cookie;
 
-    bool _cookie = false;
+//     bool _cookie = false;
 
-    void _web_header();
+//     void _web_header();
 
-    /* method */
-    void _method_get();
-    void _method_post();
+//     /* method */
+//     void _method_get();
+//     void _method_post();
 
-    /* pages */
-    void _page_unknown();
-    void _page_index();
-    void _page_login();
-};
+//     /* pages */
+//     void _page_unknown();
+//     void _page_index();
+//     void _page_login();
+// };
+
+// enum method
+// {
+//     _unknown_method = -1,
+//     _GET = 1,
+//     _POST = 2
+// };
+
+// class page
+// {
+// public:
+//     page();
+//     ~page();
+
+// protected:
+//     std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
+//     std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
+//     std::string _remote_addr = FCGX_GetParam("REMOTE_ADDR", _request.envp);
+//     std::string _request_uri = FCGX_GetParam("REQUEST_URI", _request.envp);
+//     std::string _query_string = FCGX_GetParam("QUERY_STRING", _request.envp);
+//     std::string _document_uri = FCGX_GetParam("DOCUMENT_URI", _request.envp);
+//     std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
+//     std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
+//     std::string _http_cookie;
+
+//     bool _cookie = false;
+
+// private:
+//     /* data */
+// };
+
+// page::page(/* args */)
+// {
+// }
+
+// page::~page()
+// {
+// }
 
 #endif // WEB_PAGE_H

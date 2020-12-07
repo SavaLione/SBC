@@ -31,13 +31,19 @@
 
 /**
  * @file
- * @brief Web page
+ * @brief Web methods
  * @author SavaLione
- * @date 22 Nov 2020
+ * @date 07 Dec 2020
  */
-#include "web/page.h"
+#ifndef WEB_METHOD_H
+#define WEB_METHOD_H
 
-#include "web/mime.h"
+enum method
+{
+    _unknown_method = -1,
+    _GET = 1,
+    _POST = 2,
+    _JSON = 3
+};
 
-#include "io/logger.h"
-
+#endif // WEB_METHOD_H

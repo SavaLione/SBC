@@ -31,13 +31,8 @@
 
 /**
  * @file
- * @brief Web page
+ * @brief Web methods
  * @author SavaLione
- * @date 22 Nov 2020
+ * @date 07 Dec 2020
  */
-#include "web/page.h"
-
-#include "web/mime.h"
-
-#include "io/logger.h"
-
+#include "web/method.h"

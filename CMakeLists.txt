@@ -111,6 +111,21 @@ set(SBC_TIME_SRC
     src/time/wait_time.cpp
 )
 
+set(SBC_WEB_PAGES_SRC
+	src/web/pages/about.cpp
+	src/web/pages/about.h
+	src/web/pages/index.cpp
+	src/web/pages/index.h
+	src/web/pages/login.cpp
+	src/web/pages/login.h
+	src/web/pages/nologin.cpp
+	src/web/pages/nologin.h
+	src/web/pages/page_template.cpp
+	src/web/pages/page_template.h
+	src/web/pages/register.cpp
+	src/web/pages/register.h
+)
+
 set(SBC_WEB_SRC
     src/web/web.h
     src/web/web.cpp
@@ -120,6 +135,9 @@ set(SBC_WEB_SRC
     src/web/mime.cpp
     src/web/cookie.h
     src/web/cookie.cpp
+    src/web/method.h
+    src/web/method.cpp
+    ${SBC_WEB_PAGES_SRC}
 )
 
 set(SBC_SRC

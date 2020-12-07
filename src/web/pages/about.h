@@ -31,13 +31,23 @@
 
 /**
  * @file
- * @brief Web page
+ * @brief About
  * @author SavaLione
- * @date 22 Nov 2020
+ * @date 07 Dec 2020
  */
-#include "web/page.h"
+#ifndef WEB_PAGE_ABOUT_H
+#define WEB_PAGE_ABOUT_H
 
-#include "web/mime.h"
+#include "web/pages/page_template.h"
 
-#include "io/logger.h"
+class about : public page_template
+{
+public:
+    about() : page_template("about", text_html){};
+    ~about();
 
+private:
+    virtual void _body();
+};
+
+#endif // WEB_PAGE_ABOUT_H

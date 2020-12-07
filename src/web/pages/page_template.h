@@ -31,13 +31,49 @@
 
 /**
  * @file
- * @brief Web page
+ * @brief Page template
  * @author SavaLione
- * @date 22 Nov 2020
+ * @date 07 Dec 2020
  */
-#include "web/page.h"
+#ifndef WEB_PAGE_PAGE_TEMPLATE_H
+#define WEB_PAGE_PAGE_TEMPLATE_H
+
+#include <string>
 
 #include "web/mime.h"
 
-#include "io/logger.h"
+class page_template
+{
+public:
+    page_template(std::string name, mime m)
+        : _name(name), _mime(m){};
+    ~page_template();
 
+    operator std::string()
+    {
+        _html();
+        _head();
+        _body();
+        _add_content("</html>");
+        return _content;
+    };
+
+protected:
+    std::string _get_name();
+    void _add_content(std::string content);
+    void _debug();
+
+    virtual void _html();
+    virtual void _head();
+    virtual void _body();
+
+private:
+    std::string _name = "page_template";
+
+    std::string _content = mime_type(_mime);
+    std::string _end_tag = "";
+
+    mime _mime = text_html;
+};
+
+#endif // WEB_PAGE_PAGE_TEMPLATE_H

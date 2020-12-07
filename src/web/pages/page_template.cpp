@@ -31,13 +31,68 @@
 
 /**
  * @file
- * @brief Web page
+ * @brief Page template
  * @author SavaLione
- * @date 22 Nov 2020
+ * @date 07 Dec 2020
  */
-#include "web/page.h"
-
-#include "web/mime.h"
+#include "web/pages/page_template.h"
 
 #include "io/logger.h"
 
+page_template::~page_template()
+{
+}
+
+std::string page_template::_get_name()
+{
+    return _name;
+}
+
+void page_template::_add_content(std::string content)
+{
+    _content += content;
+    _content += "\n";
+}
+
+void page_template::_debug()
+{
+    spdlog::debug("Page: {}", _name);
+    spdlog::debug("Content:\n{}{}\n", _content, _end_tag);
+}
+
+void page_template::_html()
+{
+    _add_content("<!doctype html>");
+    _add_content("<html lang=\"en\">");
+}
+
+void page_template::_head()
+{
+    _add_content("<head>");
+
+    _add_content("<meta charset=\"utf-8\">");
+    _add_content("");
+    _add_content("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
+    _add_content("<meta name=\"description\" content=\"\">");
+    _add_content("<meta name=\"author\" content=\"SavaLione\">");
+    _add_content("<link rel=\"icon\" href=\"../favicon.ico\">");
+    _add_content("");
+    {
+        std::string s = "<title>";
+        s += _name;
+        s += "</title>";
+        _add_content(s);
+    }
+    _add_content("");
+    _add_content("<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">");
+    _add_content("");
+    _add_content("<link href=\"form-validation.css\" rel=\"stylesheet\">");
+    _add_content("");
+
+    _add_content("</head>");
+}
+
+void page_template::_body()
+{
+
+}
