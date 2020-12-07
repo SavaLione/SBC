@@ -61,6 +61,8 @@ public:
     {
         _init();
 
+        _html_header();
+
         _html();
         _head();
         _body();
