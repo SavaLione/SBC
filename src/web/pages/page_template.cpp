@@ -100,7 +100,7 @@ void page_template::_head()
     _add_content("");
     _add_content("<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">");
     _add_content("");
-    _add_content("<link href=\"assets/form-validation.css\" rel=\"stylesheet\">");
+    _add_content("<link href=\"assets/css/form-validation.css\" rel=\"stylesheet\">");
     _add_content("");
 
     _add_content("</head>");
