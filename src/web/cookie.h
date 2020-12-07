@@ -74,6 +74,32 @@ private:
     std::vector<user> _users;
 };
 
+struct cookie_pair
+{
+    std::string key, value;
+};
+
+std::vector<cookie_pair> get_cookie(std::string c)
+{
+    std::vector<cookie_pair> ret;
+
+    return ret;
+}
+
+std::string set_cookie(std::vector<cookie_pair> const& c)
+{
+    std::string ret = "Set-cookie: ";
+    for(int i = 0; i < c.size(); i++)
+    {
+        ret += c[i].key;
+        ret += "=";
+        ret += c[i].value;
+        ret += "; ";
+    }
+
+    return ret;
+}
+
 /* */
 
 //#define BOOST_SPIRIT_DEBUG
@@ -296,5 +322,40 @@ private:
     qi::rule<It, bool()>              secure_av, httponly_av;
     qi::rule<It, ast::extension_av()> extension_av;
 };
+
+/* example */
+
+/*
+int main()
+{
+    using It = std::string::const_iterator;
+    for (std::string const s : {
+            "Set-Cookie: name=value",
+            "Set-Cookie: name=value; Path=/; Domain=domain.com",
+            "set-cookie: name=value; path=/; domain=domain.com",
+            //// not actually rfc 6265 conformant:
+            //"Set-Cookie: name=value;path=/;domain=domain.com",
+
+            // actually a wednesday:
+            "Set-Cookie: name=value; path=/; domain=.mydomain.com; expires=Thu, 01-Jan-2070 00:00:10 GMT; comment=no_comment"
+            })
+    {
+        It f = s.begin(), l = s.end();
+        std::cout << "Parsing '" << s << "'\n";
+
+        ast::cookie cookie;
+        bool ok = qi::parse(f,l,set_cookie<It>(),cookie);
+
+        if (ok) {
+            std::cout << " -- Parse success: " << cookie << "\n";
+        }
+        else
+            std::cout << " -- Parse failure\n";
+
+        if (f!=l)
+            std::cout << " -- Remaining unparsed: '" << std::string(f,l) << "'\n";
+    }
+}
+*/
 
 #endif // WEB_COOKIE_H

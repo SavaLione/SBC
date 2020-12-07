@@ -119,6 +119,33 @@ void sbc_test()
     cookie_instance.debug();
 }
 
+void sbc_test_cookie()
+{
+    spdlog::info("Start SBC cookie test.");
+
+    std::string s_cookie_to_parse = "Cookie: uuid=12c96548-6c4e-47c4-a929-87dc06409d57; username=SavaLione;";
+
+    std::vector<cookie_pair> cookies;
+    {
+        cookie_pair c;
+        c.key = "uuid";
+        c.value = "12c96548-6c4e-47c4-a929-87dc06409d57";
+        cookies.push_back(c);
+    }
+
+    {
+        cookie_pair c;
+        c.key = "username";
+        c.value = "SavaLione";
+        cookies.push_back(c);
+    }
+
+    for(int i = 0; i < cookies.size(); i++)
+    {
+        spdlog::debug("Cookie[{}]: {} {}", i, cookies[i].key, cookies[i].value);
+    }
+}
+
 int main(int argc, char *argv[])
 {
     /* Logger initialization */
@@ -141,6 +168,7 @@ int main(int argc, char *argv[])
 
     /* Тестирование некоторых функций */
     std::thread thread_sbc_test(sbc_test);
+    std::thread thread_sbc_test_cookie(sbc_test_cookie);
 
     if (thread_web_server.joinable())
     {
@@ -158,6 +186,12 @@ int main(int argc, char *argv[])
     {
         thread_sbc_test.join();
         spdlog::info("Stop SBC test.");
+    }
+
+    if (thread_sbc_test_cookie.joinable())
+    {
+        thread_sbc_test_cookie.join();
+        spdlog::info("Stop SBC cookie test.");
     }
 
     return 0;
