@@ -56,9 +56,6 @@ void page_template::_add_content(std::string content)
 
 void page_template::debug()
 {
-    spdlog::debug("Page: {}", _name);
-    spdlog::debug("Content:\n{}{}\n", _content);
-
     spdlog::debug("REQUEST_METHOD: [{}]", _request_method);
     spdlog::debug("CONTENT_LENGTH: [{}]", _content_length);
     spdlog::debug("REMOTE_ADDR: [{}]", _remote_addr);
