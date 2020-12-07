@@ -140,10 +140,7 @@ void sbc_test_cookie()
         cookies.push_back(c);
     }
 
-    for(int i = 0; i < cookies.size(); i++)
-    {
-        spdlog::debug("Cookie[{}]: {} {}", i, cookies[i].key, cookies[i].value);
-    }
+    spdlog::debug(set_cookie(cookies));
 }
 
 int main(int argc, char *argv[])
