@@ -57,7 +57,7 @@ void page_template::_add_content(std::string content)
 void page_template::_debug()
 {
     spdlog::debug("Page: {}", _name);
-    spdlog::debug("Content:\n{}{}\n", _content, _end_tag);
+    spdlog::debug("Content:\n{}{}\n", _content);
 }
 
 void page_template::_html()

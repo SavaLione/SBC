@@ -43,7 +43,7 @@
 class about : public page_template
 {
 public:
-    about() : page_template("about", text_html){};
+    about() : page_template("about", text_html, false){};
     ~about();
 
 private:

@@ -46,6 +46,12 @@ void about::_body()
     _add_content("<body>");
 
     _add_content("Hello from about page");
-    
+    _add_content("");
+    _add_content("<form method=\"post\">");
+    _add_content("<label for=\"fname\">First name:</label>");
+    _add_content("<input type=\"text\" id=\"fname\" name=\"fname\"><br><br>");
+    _add_content("<input type=\"submit\" value=\"Submit\">");
+    _add_content("</form>");
+
     _add_content("</body>");
 }

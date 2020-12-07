@@ -40,15 +40,18 @@
 
 #include <string>
 
+#include "core/user.h"
+
 #include "web/mime.h"
 #include "web/method.h"
 #include "web/mime.h"
+#include "web/cookie.h"
 
 class page_template
 {
 public:
-    page_template(std::string name, mime m)
-        : _name(name), _mime(m){};
+    page_template(std::string name, mime m, bool required_authorization)
+        : _name(name), _mime(m), _required_authorization(required_authorization){};
     ~page_template();
 
     operator std::string()
@@ -73,12 +76,15 @@ private:
     std::string _name = "page_template";
 
     std::string _content = mime_type(_mime);
-    std::string _end_tag = "";
 
     mime _mime = text_html;
 
+    user _user;
+
     /* Чтобы просматривать эту страницу, нужна авторизация? */
     bool _required_authorization = true;
+
+
 };
 
 #endif // WEB_PAGE_PAGE_TEMPLATE_H
