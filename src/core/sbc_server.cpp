@@ -151,8 +151,8 @@ int main(int argc, char *argv[])
     /* uuid */
     uuid &uuid_instance = uuid::Instance();
 
-    /* cookie */
-    cookie &cookie_instance = cookie::Instance();
+    /* cookie_repository */
+    cookie_repository &cookie_repository_instance = cookie_repository::Instance();
 
     /* Запуск web сервера */
     std::thread thread_web_server(web_server);

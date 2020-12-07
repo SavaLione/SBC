@@ -40,6 +40,9 @@
 
 #include <string>
 
+#include <fcgi_config.h>
+#include <fcgiapp.h>
+
 #include "core/user.h"
 
 #include "web/mime.h"
@@ -50,12 +53,14 @@
 class page_template
 {
 public:
-    page_template(std::string name, mime m, bool required_authorization)
-        : _name(name), _mime(m), _required_authorization(required_authorization){};
+    page_template(std::string name, mime m, bool required_authorization, FCGX_Request &request)
+        : _name(name), _mime(m), _required_authorization(required_authorization), _request(request){};
     ~page_template();
 
     operator std::string()
     {
+        _init();
+
         _html();
         _head();
         _body();
@@ -63,28 +68,46 @@ public:
         return _content;
     };
 
+    void debug();
+
 protected:
     std::string _get_name();
     void _add_content(std::string content);
-    void _debug();
+    virtual void _init();
 
     virtual void _html();
     virtual void _head();
     virtual void _body();
 
 private:
+    FCGX_Request &_request;
+
     std::string _name = "page_template";
 
     std::string _content = mime_type(_mime);
 
     mime _mime = text_html;
+    method _method = _unknown_method;
 
     user _user;
 
     /* Чтобы просматривать эту страницу, нужна авторизация? */
     bool _required_authorization = true;
 
+    std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
+    std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
+    std::string _remote_addr = FCGX_GetParam("REMOTE_ADDR", _request.envp);
+    std::string _request_uri = FCGX_GetParam("REQUEST_URI", _request.envp);
+    std::string _query_string = FCGX_GetParam("QUERY_STRING", _request.envp);
+    std::string _document_uri = FCGX_GetParam("DOCUMENT_URI", _request.envp);
+    std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
+    std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
+    std::string _http_cookie;
 
+    void _get_method();
+
+    /* Cookie установлены? */
+    bool _is_cookie_set = false;
 };
 
 #endif // WEB_PAGE_PAGE_TEMPLATE_H

@@ -42,17 +42,38 @@
 
 #include "core/user.h"
 
+struct cookie_pair
+{
+    std::string key, value;
+};
+
 class cookie
 {
 public:
+    cookie();
+    ~cookie();
+};
+
+cookie::cookie()
+{
+}
+
+cookie::~cookie()
+{
+}
+
+
+class cookie_repository
+{
+public:
     /* constructor */
-    static cookie &Instance()
+    static cookie_repository &Instance()
     {
-        static cookie c;
-        return c;
+        static cookie_repository cookie_rep;
+        return cookie_rep;
     }
 
-    ~cookie();
+    ~cookie_repository();
 
     /* functions */
     const void add_user(user &u);
@@ -66,9 +87,9 @@ public:
 
 private:
     /* constructor */
-    cookie();
-    cookie(cookie const &) = delete;
-    cookie &operator=(cookie const &) = delete;
+    cookie_repository();
+    cookie_repository(cookie_repository const &) = delete;
+    cookie_repository &operator=(cookie_repository const &) = delete;
 
     /* variables */
     std::vector<user> _users;

@@ -41,9 +41,14 @@
 enum method
 {
     _unknown_method = -1,
-    _GET = 1,
-    _POST = 2,
-    _JSON = 3
+    _OPTIONS = 1,
+    _GET = 2,
+    _HEAD = 3,
+    _POST = 4,
+    _PUT = 5,
+    _DELETE = 6,
+    _TRACE = 7,
+    _CONNECT = 8
 };
 
 #endif // WEB_METHOD_H

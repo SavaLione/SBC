@@ -86,7 +86,7 @@ static void *_fcgi_page(void *a)
         }
         /* Request is accepted */
 
-        /* Пробуем поличить данные */
+        /* Пробуем получить данные */
         char str_post[2048];
         // int FCGX_GetStr(char * str, int n, FCGX_Stream *stream);
         while (FCGX_GetStr(str_post, sizeof(str_post), request.in) > 0)
@@ -156,8 +156,41 @@ static void *_fcgi_page(void *a)
         // p.show();
 
         /* new test */
-        about about_page;
+
+        /* Получить значение переменной */
+        // server_name = FCGX_GetParam("SERVER_NAME", request.envp);
+
+        // std::string s_request_method = FCGX_GetParam("REQUEST_METHOD", request.envp);
+        // std::string s_content_length = FCGX_GetParam("CONTENT_LENGTH", request.envp);
+        // std::string s_remote_addr = FCGX_GetParam("REMOTE_ADDR", request.envp);
+        // std::string s_request_uri = FCGX_GetParam("REQUEST_URI", request.envp);
+        // std::string s_query_string = FCGX_GetParam("QUERY_STRING", request.envp);
+        // std::string s_document_uri = FCGX_GetParam("DOCUMENT_URI", request.envp);
+        // std::string s_document_root = FCGX_GetParam("DOCUMENT_ROOT", request.envp);
+        // std::string s_http_host = FCGX_GetParam("HTTP_HOST", request.envp);
+        // std::string s_http_cookie;
+        // if (FCGX_GetParam("HTTP_COOKIE", request.envp) != NULL)
+        // {
+        //     s_http_cookie = FCGX_GetParam("HTTP_COOKIE", request.envp);
+        // }
+        // else
+        // {
+        //     s_http_cookie = "NULL";
+        // }
+
+        // spdlog::debug("REQUEST_METHOD: {}", s_request_method);
+        // spdlog::debug("CONTENT_LENGTH: {}", s_content_length);
+        // spdlog::debug("REMOTE_ADDR: {}", s_remote_addr);
+        // spdlog::debug("REQUEST_URI: {}", s_request_uri);
+        // spdlog::debug("QUERY_STRING: {}", s_query_string);
+        // spdlog::debug("DOCUMENT_URI: {}", s_document_uri);
+        // spdlog::debug("DOCUMENT_ROOT: {}", s_document_root);
+        // spdlog::debug("HTTP_HOST: {}", s_http_host);
+        // spdlog::debug("HTTP_COOKIE: {}", s_http_cookie);
+
+        about about_page(request);
         std::string s = about_page;
+        about_page.debug();
         FCGX_PutS(s.c_str(), request.out);
 
         /* Закрыть текущее соединение */

@@ -43,7 +43,7 @@
 class about : public page_template
 {
 public:
-    about() : page_template("about", text_html, false){};
+    about(FCGX_Request &request) : page_template("about", text_html, false, request){};
     ~about();
 
 private:
