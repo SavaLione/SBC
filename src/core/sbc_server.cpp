@@ -98,7 +98,7 @@ void sbc_test()
     spdlog::info("Start SBC test.");
 
     /* cookie */
-    cookie &cookie_instance = cookie::Instance();
+    cookie_repository &cookie_instance = cookie_repository::Instance();
 
     cookie_instance.debug();
 
