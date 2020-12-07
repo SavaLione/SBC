@@ -37,7 +37,6 @@
  */
 #include "web/web.h"
 
-#include "web/page.h"
 #include "web/pages/about.h"
 
 #include "core/settings.h"

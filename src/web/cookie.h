@@ -42,25 +42,25 @@
 
 #include "core/user.h"
 
-struct cookie_pair
-{
-    std::string key, value;
-};
+// struct cookie_pair
+// {
+//     std::string key, value;
+// };
 
-class cookie
-{
-public:
-    cookie();
-    ~cookie();
-};
+// class cookie
+// {
+// public:
+//     cookie();
+//     ~cookie();
+// };
 
-cookie::cookie()
-{
-}
+// cookie::cookie()
+// {
+// }
 
-cookie::~cookie()
-{
-}
+// cookie::~cookie()
+// {
+// }
 
 
 class cookie_repository
