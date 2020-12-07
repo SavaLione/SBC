@@ -54,6 +54,13 @@ void page_template::_add_content(std::string content)
     _content += "\n";
 }
 
+void page_template::_html_header()
+{
+    _content = mime_type(_mime);
+    _content += "Set-Cookie: author=SavaLione;\r\n";
+    _content += "\r\n";
+}
+
 void page_template::debug()
 {
     spdlog::debug("REQUEST_METHOD: [{}]", _request_method);

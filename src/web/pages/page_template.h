@@ -75,6 +75,9 @@ protected:
     void _add_content(std::string content);
     virtual void _init();
 
+    /* Системный заголовок. Тип контента, Cookies и прочее. */
+    virtual void _html_header();
+
     virtual void _html();
     virtual void _head();
     virtual void _body();
@@ -84,7 +87,7 @@ private:
 
     std::string _name = "page_template";
 
-    std::string _content = mime_type(_mime);
+    std::string _content = "";
 
     mime _mime = text_html;
     method _method = _unknown_method;
