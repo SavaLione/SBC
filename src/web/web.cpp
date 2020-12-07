@@ -157,7 +157,8 @@ static void *_fcgi_page(void *a)
 
         /* new test */
         about about_page;
-        FCGX_PutS(about_page.c_str(), request.out);
+        std::string s = about_page;
+        FCGX_PutS(s.c_str(), request.out);
 
         /* Закрыть текущее соединение */
         FCGX_Finish_r(&request);
