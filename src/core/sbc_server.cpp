@@ -122,25 +122,6 @@ void sbc_test()
 void sbc_test_cookie()
 {
     spdlog::info("Start SBC cookie test.");
-
-    std::string s_cookie_to_parse = "Cookie: uuid=12c96548-6c4e-47c4-a929-87dc06409d57; username=SavaLione;";
-
-    std::vector<cookie_pair> cookies;
-    {
-        cookie_pair c;
-        c.key = "uuid";
-        c.value = "12c96548-6c4e-47c4-a929-87dc06409d57";
-        cookies.push_back(c);
-    }
-
-    {
-        cookie_pair c;
-        c.key = "username";
-        c.value = "SavaLione";
-        cookies.push_back(c);
-    }
-
-    spdlog::debug(set_cookie(cookies));
 }
 
 int main(int argc, char *argv[])

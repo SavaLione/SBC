@@ -74,30 +74,4 @@ private:
     std::vector<user> _users;
 };
 
-struct cookie_pair
-{
-    std::string key, value;
-};
-
-std::vector<cookie_pair> get_cookie(std::string c)
-{
-    std::vector<cookie_pair> ret;
-
-    return ret;
-}
-
-std::string set_cookie(std::vector<cookie_pair> const& c)
-{
-    std::string ret = "Set-cookie: ";
-    for(int i = 0; i < c.size(); i++)
-    {
-        ret += c[i].key;
-        ret += "=";
-        ret += c[i].value;
-        ret += "; ";
-    }
-
-    return ret;
-}
-
 #endif // WEB_COOKIE_H
