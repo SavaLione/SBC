@@ -188,9 +188,8 @@ static void *_fcgi_page(void *a)
         // spdlog::debug("HTTP_COOKIE: {}", s_http_cookie);
 
         about about_page(request);
-        std::string s = about_page;
         about_page.debug();
-        FCGX_PutS(s.c_str(), request.out);
+        about_page.show();
 
         /* Закрыть текущее соединение */
         FCGX_Finish_r(&request);

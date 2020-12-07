@@ -50,15 +50,16 @@ std::string page_template::_get_name()
 
 void page_template::_add_content(std::string content)
 {
-    _content += content;
-    _content += "\n";
+    std::string s = content;
+    s += "\r\n";
+    FCGX_PutS(s.c_str(), _request.out);
 }
 
 void page_template::_html_header()
 {
-    _content = mime_type(_mime);
-    _content += "Set-Cookie: author=SavaLione;\r\n";
-    _content += "\r\n";
+    _add_content(mime_type(_mime));
+    _add_content("Set-Cookie: author=SavaLione;");
+    _add_content("");
 }
 
 void page_template::debug()
@@ -175,4 +176,17 @@ void page_template::_get_method()
         _method = _CONNECT;
         return;
     }
+}
+
+void page_template::show()
+{
+    _init();
+
+    _html_header();
+
+    _html();
+    _head();
+    _body();
+
+    _add_content("</html>");
 }

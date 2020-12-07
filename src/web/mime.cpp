@@ -43,180 +43,180 @@ const char *mime_type(mime m)
     {
     /* Application */
     case application_edi_x12:
-        return "Content-type: application/EDI-X12\r\n";
+        return "Content-type: application/EDI-X12";
         break;
     case application_edifact:
-        return "Content-type: application/EDIFACT\r\n";
+        return "Content-type: application/EDIFACT";
         break;
     case application_javascript:
-        return "Content-type: application/javascript\r\n";
+        return "Content-type: application/javascript";
         break;
     case application_octet_stream:
-        return "Content-type: application/octet-stream\r\n";
+        return "Content-type: application/octet-stream";
         break;
     case application_ogg:
-        return "Content-type: application/ogg\r\n";
+        return "Content-type: application/ogg";
         break;
     case application_pdf:
-        return "Content-type: application/pdf\r\n";
+        return "Content-type: application/pdf";
         break;
     case application_xhtml_xml:
-        return "Content-type: application/xhtml+xml\r\n";
+        return "Content-type: application/xhtml+xml";
         break;
     case application_x_shockwave_flash:
-        return "Content-type: application/x-shockwave-flash\r\n";
+        return "Content-type: application/x-shockwave-flash";
         break;
     case application_json:
-        return "Content-type: application/json\r\n";
+        return "Content-type: application/json";
         break;
     case application_ld_json:
-        return "Content-type: application/ld+json\r\n";
+        return "Content-type: application/ld+json";
         break;
     case application_xml:
-        return "Content-type: application/xml\r\n";
+        return "Content-type: application/xml";
         break;
     case application_zip:
-        return "Content-type: application/zip\r\n";
+        return "Content-type: application/zip";
         break;
     case application_x_www_form_urlencoded:
-        return "Content-type: application/x-www-form-urlencoded\r\n";
+        return "Content-type: application/x-www-form-urlencoded";
         break;
 
     /* Audio */
     case audio_mpeg:
-        return "Content-type: audio/mpeg\r\n";
+        return "Content-type: audio/mpeg";
         break;
     case audio_x_ms_wma:
-        return "Content-type: audio/x-ms-wma\r\n";
+        return "Content-type: audio/x-ms-wma";
         break;
     case audio_vnd_rn_realaudio:
-        return "Content-type: audio/vnd.rn-realaudio\r\n";
+        return "Content-type: audio/vnd.rn-realaudio";
         break;
     case audio_x_wav:
-        return "Content-type: audio/x-wav\r\n";
+        return "Content-type: audio/x-wav";
         break;
     /* Image */
     case image_gif:
-        return "Content-type: image/gif\r\n";
+        return "Content-type: image/gif";
         break;
     case image_jpeg:
-        return "Content-type: image/jpeg\r\n";
+        return "Content-type: image/jpeg";
         break;
     case image_png:
-        return "Content-type: image/png\r\n";
+        return "Content-type: image/png";
         break;
     case image_tiff:
-        return "Content-type: image/tiff\r\n";
+        return "Content-type: image/tiff";
         break;
     case image_vnd_microsoft_icon:
-        return "Content-type: image/vnd.microsoft.icon\r\n";
+        return "Content-type: image/vnd.microsoft.icon";
         break;
     case image_x_icon:
-        return "Content-type: image/x-icon\r\n";
+        return "Content-type: image/x-icon";
         break;
     case image_vnd_djvu:
-        return "Content-type: image/vnd.djvu\r\n";
+        return "Content-type: image/vnd.djvu";
         break;
     case image_svg_xml:
-        return "Content-type: image/svg+xml\r\n";
+        return "Content-type: image/svg+xml";
         break;
 
     /* Multipart */
     case multipart_mixed:
-        return "Content-type: multipart/mixed\r\n";
+        return "Content-type: multipart/mixed";
         break;
     case multipart_alternative:
-        return "Content-type: multipart/alternative\r\n";
+        return "Content-type: multipart/alternative";
         break;
     case multipart_related:
-        return "Content-type: multipart/related\r\n";
+        return "Content-type: multipart/related";
         break;
     case multipart_form_data:
-        return "Content-type: multipart/form-data\r\n";
+        return "Content-type: multipart/form-data";
         break;
 
     /* Text */
     case text_css:
-        return "Content-type: text/css\r\n";
+        return "Content-type: text/css";
         break;
     case text_csv:
-        return "Content-type: text/csv\r\n";
+        return "Content-type: text/csv";
         break;
     case text_html:
-        return "Content-type: text/html\r\n";
+        return "Content-type: text/html";
         break;
     case text_javascript:
-        return "Content-type: text/javascript\r\n";
+        return "Content-type: text/javascript";
         break;
     case text_plain:
-        return "Content-type: text/plain\r\n";
+        return "Content-type: text/plain";
         break;
     case text_xml:
-        return "Content-type: text/xml\r\n";
+        return "Content-type: text/xml";
         break;
 
     /* Video */
     case video_mpeg:
-        return "Content-type: video/mpeg\r\n";
+        return "Content-type: video/mpeg";
         break;
     case video_mp4:
-        return "Content-type: video/mp4\r\n";
+        return "Content-type: video/mp4";
         break;
     case video_quicktime:
-        return "Content-type: video/quicktime\r\n";
+        return "Content-type: video/quicktime";
         break;
     case video_x_ms_wmv:
-        return "Content-type: video/x-ms-wmv\r\n";
+        return "Content-type: video/x-ms-wmv";
         break;
     case video_x_msvideo:
-        return "Content-type: video/x-msvideo\r\n";
+        return "Content-type: video/x-msvideo";
         break;
     case video_x_flv:
-        return "Content-type: video/x-flv\r\n";
+        return "Content-type: video/x-flv";
         break;
     case video_webm:
-        return "Content-type: video/webm\r\n";
+        return "Content-type: video/webm";
         break;
 
     /* VND */
     case application_vnd_oasis_opendocument_text:
-        return "Content-type: application/vnd.oasis.opendocument.text\r\n";
+        return "Content-type: application/vnd.oasis.opendocument.text";
         break;
     case application_vnd_oasis_opendocument_spreadsheet:
-        return "Content-type: application/vnd.oasis.opendocument.spreadsheet\r\n";
+        return "Content-type: application/vnd.oasis.opendocument.spreadsheet";
         break;
     case application_vnd_oasis_opendocument_presentation:
-        return "Content-type: application/vnd.oasis.opendocument.presentation\r\n";
+        return "Content-type: application/vnd.oasis.opendocument.presentation";
         break;
     case application_vnd_oasis_opendocument_graphics:
-        return "Content-type: application/vnd.oasis.opendocument.graphics\r\n";
+        return "Content-type: application/vnd.oasis.opendocument.graphics";
         break;
     case application_vnd_ms_excel:
-        return "Content-type: application/vnd.ms-excel\r\n";
+        return "Content-type: application/vnd.ms-excel";
         break;
     case application_vnd_openxmlformats_officedocument_spreadsheetml_sheet:
-        return "Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\r\n";
+        return "Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
         break;
     case application_vnd_ms_powerpoint:
-        return "Content-type: application/vnd.ms-powerpoint\r\n";
+        return "Content-type: application/vnd.ms-powerpoint";
         break;
     case application_vnd_openxmlformats_officedocument_presentationml_presentation:
-        return "Content-type: application/vnd.openxmlformats-officedocument.presentationml.presentation\r\n";
+        return "Content-type: application/vnd.openxmlformats-officedocument.presentationml.presentation";
         break;
     case application_msword:
-        return "Content-type: application/msword\r\n";
+        return "Content-type: application/msword";
         break;
     case application_vnd_openxmlformats_officedocument_wordprocessingml_document:
-        return "Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document\r\n";
+        return "Content-type: application/vnd.openxmlformats-officedocument.wordprocessingml.document";
         break;
     case application_vnd_mozilla_xul_xml:
-        return "Content-type: application/vnd.mozilla.xul+xml\r\n";
+        return "Content-type: application/vnd.mozilla.xul+xml";
         break;
     default:
-        return "Content-type: text/html\r\n";
+        return "Content-type: text/html";
         break;
     }
-    return "Content-type: text/html\r\n";
+    return "Content-type: text/html";
 }
 
-// return "Content-type: \r\n";
+// return "Content-type: ";

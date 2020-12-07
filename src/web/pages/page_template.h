@@ -57,18 +57,7 @@ public:
         : _name(name), _mime(m), _required_authorization(required_authorization), _request(request){};
     ~page_template();
 
-    operator std::string()
-    {
-        _init();
-
-        _html_header();
-
-        _html();
-        _head();
-        _body();
-        _add_content("</html>");
-        return _content;
-    };
+    void show();
 
     void debug();
 
@@ -89,7 +78,7 @@ private:
 
     std::string _name = "page_template";
 
-    std::string _content = "";
+    // std::string _content = "";
 
     mime _mime = text_html;
     method _method = _unknown_method;
