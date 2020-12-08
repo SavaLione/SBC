@@ -47,21 +47,8 @@ void request_handler::_init()
 {
     _recognize_cookie();
 
-    switch (_page)
-    {
-    case about:
-    {
-        about a = about();
-        _show_page(a);
-    }
-    break;
-    default:
-    {
-        about a = about();
-        _show_page(a);
-    }
-    break;
-    }
+    about a();
+    _show_page(a);
 }
 
 void request_handler::_recognize_cookie()
