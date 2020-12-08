@@ -35,7 +35,7 @@
  * @author SavaLione
  * @date 08 Dec 2020
  */
-#include "web/pages.h"
+#include "web/page.h"
 
 std::string get_page_name(page p)
 {
@@ -53,10 +53,9 @@ std::string get_page_name(page p)
     case nologin:
         return "/nologin";
         break;
-    case register:
-        return "/register";
+    case registration:
+        return "/registration";
         break;
-
     default:
         return "/page_not_exist";
         break;
@@ -86,9 +85,9 @@ page recognize_page(std::string const &unprocessed_page)
         return nologin;
     }
 
-    if (unprocessed_page.find(get_page_name(register)) >= 0)
+    if (unprocessed_page.find(get_page_name(registration)) >= 0)
     {
-        return register;
+        return registration;
     }
 
     return not_exist;

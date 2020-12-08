@@ -50,7 +50,7 @@ enum page
     index,
     login,
     nologin,
-    register,
+    registration,
     not_exist
 };
 
