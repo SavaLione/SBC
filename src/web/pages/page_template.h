@@ -69,6 +69,9 @@ protected:
     /* Системный заголовок. Тип контента, Cookies и прочее. */
     virtual void _html_header();
 
+    /* Системный заголовок с Cookie */
+    virtual void _html_header_cookie();
+
     virtual void _html();
     virtual void _head();
     virtual void _body();

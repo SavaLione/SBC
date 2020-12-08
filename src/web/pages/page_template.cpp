@@ -60,8 +60,13 @@ void page_template::_add_content(std::string content)
 void page_template::_html_header()
 {
     _add_content(mime_type(_mime));
-    _add_content("Set-Cookie: author=SavaLione;");
+    _html_header_cookie();
     _add_content("");
+}
+
+void page_template::_html_header_cookie()
+{
+    _add_content("Set-Cookie: author=SavaLione;");
 }
 
 void page_template::_html()
@@ -98,6 +103,13 @@ void page_template::_head()
 
 void page_template::_body()
 {
+    _add_content("<body>");
+
+    _add_content("");
+    _add_content("Hello from page_template.h");
+    _add_content("");
+
+    _add_content("</body>");
 }
 
 void page_template::_init()
