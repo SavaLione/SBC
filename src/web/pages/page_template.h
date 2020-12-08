@@ -57,10 +57,12 @@ public:
 
     void show();
 
-    const operator std::string() const
+    operator std::string() const
     {
         return _content;
     }
+
+    std::string const& get = _content;
 
 protected:
     std::string _get_name();
