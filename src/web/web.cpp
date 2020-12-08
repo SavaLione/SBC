@@ -96,7 +96,7 @@ static void *_fcgi_page(void *a)
         /* */
         request_handler rh(request);
         spdlog::debug("=========== New request ===========");
-        spdlod::debug("uri: {}", rh.get_request_uri());
+        spdlog::debug("uri: {}", rh.get_request_uri());
 
         /* Закрыть текущее соединение */
         FCGX_Finish_r(&request);
