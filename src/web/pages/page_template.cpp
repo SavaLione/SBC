@@ -50,9 +50,11 @@ std::string page_template::_get_name()
 
 void page_template::_add_content(std::string content)
 {
-    std::string s = content;
-    s += "\r\n";
-    FCGX_PutS(s.c_str(), _request.out);
+    // std::string s = content;
+    // s += "\r\n";
+    // FCGX_PutS(s.c_str(), _request.out);
+    _content += content;
+    _content += "\r\n";
 }
 
 void page_template::_html_header()
@@ -64,7 +66,7 @@ void page_template::_html_header()
 
 void page_template::debug()
 {
-    
+
 }
 
 void page_template::_html()

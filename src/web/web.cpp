@@ -38,7 +38,6 @@
 #include "web/web.h"
 
 #include "web/request_handler.h"
-#include "web/pages/about.h"
 
 #include "core/settings.h"
 
@@ -98,9 +97,6 @@ static void *_fcgi_page(void *a)
         request_handler rh(request);
         spdlog::debug("=========== New request ===========");
         spdlod::debug("uri: {}", rh.get_request_uri());
-
-        about about_page();
-        about_page.show();
 
         /* Закрыть текущее соединение */
         FCGX_Finish_r(&request);

@@ -59,6 +59,11 @@ public:
 
     void debug();
 
+    operator std::string const
+    {
+        return _content;
+    }
+
 protected:
     std::string _get_name();
     void _add_content(std::string content);
@@ -70,6 +75,8 @@ protected:
     virtual void _html();
     virtual void _head();
     virtual void _body();
+
+    std::string _content = "";
 
 private:
     std::string _name = "page_template";
