@@ -50,6 +50,7 @@ void request_handler::_init()
     _recognize_cookie();
 
     spdlog::debug("uri: {}", _request_uri);
+    spdlog::debug("page: {}", get_page_name(_page));
 
     switch (_page)
     {
