@@ -39,6 +39,8 @@
 
 #include "web/page.h"
 
+#include "io/logger.h"
+
 request_handler::~request_handler()
 {
 }
