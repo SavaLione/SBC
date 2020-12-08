@@ -72,27 +72,27 @@ page recognize_page(std::string const &unprocessed_page)
     spdlog::debug("index: {}", unprocessed_page.find(get_page_name(page_index)));
     spdlog::debug("login: {}", unprocessed_page.find(get_page_name(page_login)));
 
-    if (unprocessed_page.find(get_page_name(page_about)) >= 0)
+    if (unprocessed_page.find(get_page_name(page_about)) != std::string::npos)
     {
         return page_about;
     }
 
-    if (unprocessed_page.find(get_page_name(page_index)) >= 0)
+    if (unprocessed_page.find(get_page_name(page_index)) != std::string::npos)
     {
         return page_index;
     }
 
-    if (unprocessed_page.find(get_page_name(page_login)) >= 0)
+    if (unprocessed_page.find(get_page_name(page_login)) != std::string::npos)
     {
         return page_login;
     }
 
-    if (unprocessed_page.find(get_page_name(page_nologin)) >= 0)
+    if (unprocessed_page.find(get_page_name(page_nologin)) != std::string::npos)
     {
         return page_nologin;
     }
 
-    if (unprocessed_page.find(get_page_name(page_registration)) >= 0)
+    if (unprocessed_page.find(get_page_name(page_registration)) != std::string::npos)
     {
         return page_registration;
     }
