@@ -68,20 +68,20 @@ private:
     FCGX_Request &_request;
 
     /* Тип запроса */
-    std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
+    const std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
 
     /* Длинна запроса */
-    std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
+    const std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
 
     /* Адрес клиента */
-    std::string _remote_addr = FCGX_GetParam("REMOTE_ADDR", _request.envp);
+    const std::string _remote_addr = FCGX_GetParam("REMOTE_ADDR", _request.envp);
 
     /* Запрашиваемый uri */
-    std::string _request_uri = FCGX_GetParam("REQUEST_URI", _request.envp);
-    std::string _query_string = FCGX_GetParam("QUERY_STRING", _request.envp);
-    std::string _document_uri = FCGX_GetParam("DOCUMENT_URI", _request.envp);
-    std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
-    std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
+    const std::string _request_uri = FCGX_GetParam("REQUEST_URI", _request.envp);
+    const std::string _query_string = FCGX_GetParam("QUERY_STRING", _request.envp);
+    const std::string _document_uri = FCGX_GetParam("DOCUMENT_URI", _request.envp);
+    const std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
+    const std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
 
     /* Тип запроса */
     method _method = recognize_method(_request_method);
@@ -92,7 +92,7 @@ private:
         Cookie: username=SavaLione; uuid=aa-bb-cc-dd; some=Soome; 
         Если в запросе от клиента небыло cookie, строка становится равна NULL
     */
-    std::string _http_cookie = (FCGX_GetParam("HTTP_COOKIE", _request.envp) != NULL) ? FCGX_GetParam("HTTP_COOKIE", _request.envp) : "NULL";
+    const std::string _http_cookie = (FCGX_GetParam("HTTP_COOKIE", _request.envp) != NULL) ? FCGX_GetParam("HTTP_COOKIE", _request.envp) : "NULL";
 
     /* Cookie установлены? */
     bool _is_cookie_set = false;
