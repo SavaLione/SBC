@@ -62,7 +62,7 @@ public:
         return _content;
     }
 
-    const &std::string get();
+    std::string get();
 
 protected:
     std::string _get_name();
