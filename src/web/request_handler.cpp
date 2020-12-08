@@ -44,22 +44,10 @@ request_handler::~request_handler()
 void request_handler::_init()
 {
     _recognize_cookie();
-    _recognize_method();
 }
 
 void request_handler::_recognize_cookie()
 {
-    // if (FCGX_GetParam("HTTP_COOKIE", _request.envp) != NULL)
-    // {
-    //     _http_cookie = FCGX_GetParam("HTTP_COOKIE", _request.envp);
-    //     _is_cookie_set = true;
-    // }
-    // else
-    // {
-    //     _http_cookie = "NULL";
-    //     _is_cookie_set = false;
-    // }
-
     if (_http_cookie == "NULL")
     {
         _is_cookie_set = false;
@@ -68,61 +56,4 @@ void request_handler::_recognize_cookie()
     {
         _is_cookie_set = true;
     }
-    
-}
-
-void request_handler::_recognize_method()
-{
-    if (_request_method == "OPTIONS")
-    {
-        _method = _OPTIONS;
-        return;
-    }
-
-    if (_request_method == "GET")
-    {
-        _method = _GET;
-        return;
-    }
-
-    if (_request_method == "HEAD")
-    {
-        _method = _HEAD;
-        return;
-    }
-
-    if (_request_method == "POST")
-    {
-        _method = _POST;
-        return;
-    }
-
-    if (_request_method == "PUT")
-    {
-        _method = _PUT;
-        return;
-    }
-
-    if (_request_method == "DELETE")
-    {
-        _method = _DELETE;
-        return;
-    }
-
-    if (_request_method == "TRACE")
-    {
-        _method = _TRACE;
-        return;
-    }
-
-    if (_request_method == "CONNECT")
-    {
-        _method = _CONNECT;
-        return;
-    }
-}
-
-const method request_handler::get_method()
-{
-    return _method;
 }

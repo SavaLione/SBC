@@ -36,3 +36,46 @@
  * @date 07 Dec 2020
  */
 #include "web/method.h"
+
+method recognize_method(std::string const &unprocessed_method)
+{
+    if (unprocessed_method == "OPTIONS")
+    {
+        return _OPTIONS;
+    }
+
+    if (unprocessed_method == "GET")
+    {
+        return _GET;
+    }
+
+    if (unprocessed_method == "HEAD")
+    {
+        return _HEAD;
+    }
+
+    if (unprocessed_method == "POST")
+    {
+        return _POST;
+    }
+
+    if (unprocessed_method == "PUT")
+    {
+        return _PUT;
+    }
+
+    if (unprocessed_method == "DELETE")
+    {
+        return _DELETE;
+    }
+
+    if (unprocessed_method == "TRACE")
+    {
+        return _TRACE;
+    }
+
+    if (unprocessed_method == "CONNECT")
+    {
+        return _CONNECT;
+    }
+}

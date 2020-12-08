@@ -55,8 +55,11 @@ public:
     request_handler(FCGX_Request &request) : _request(request) { _init(); };
     ~request_handler();
 
-    /* Получение типа запроса */
-    const method get_method();
+    /* Получаем тип метода */
+    method get_method() const { return _method; };
+
+    /* Получаем запрашиваемый uri */
+    std::string get_request_uri() const { return _request_uri; };
 
 private:
     /* variables */
@@ -65,7 +68,7 @@ private:
     FCGX_Request &_request;
 
     /* Тип запроса */
-    method _method = _unknown_method;
+    method _method = recognize_method(_request_method);
 
     /* Тип запроса */
     std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
@@ -94,6 +97,7 @@ private:
     /* Cookie установлены? */
     bool _is_cookie_set = false;
 
+    /* Обработанные Cookie */
     cookie _cookie(_http_cookie);
 
     /* functions */
@@ -103,9 +107,6 @@ private:
 
     /* Распознать установленны ли Cookie */
     void _recognize_cookie();
-
-    /* Распознать тип запроса */
-    void _recognize_method();
 };
 
 #endif // WEB_REQUEST_HANDLER_H

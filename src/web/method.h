@@ -38,6 +38,8 @@
 #ifndef WEB_METHOD_H
 #define WEB_METHOD_H
 
+#include <string>
+
 enum method
 {
     _unknown_method = -1,
@@ -50,5 +52,7 @@ enum method
     _TRACE = 7,
     _CONNECT = 8
 };
+
+method recognize_method(std::string const &unprocessed_method);
 
 #endif // WEB_METHOD_H

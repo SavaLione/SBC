@@ -37,6 +37,7 @@
  */
 #include "web/web.h"
 
+#include "web/request_handler.h"
 #include "web/pages/about.h"
 
 #include "core/settings.h"
@@ -93,103 +94,13 @@ static void *_fcgi_page(void *a)
             spdlog::debug("POST: {}", str_post);
         }
 
-        /* Получить значение переменной */
-        // server_name = FCGX_GetParam("SERVER_NAME", request.envp);
-
-        // std::string s_request_method = FCGX_GetParam("REQUEST_METHOD", request.envp);
-        // std::string s_content_length = FCGX_GetParam("CONTENT_LENGTH", request.envp);
-        // std::string s_remote_addr = FCGX_GetParam("REMOTE_ADDR", request.envp);
-        // std::string s_request_uri = FCGX_GetParam("REQUEST_URI", request.envp);
-        // std::string s_query_string = FCGX_GetParam("QUERY_STRING", request.envp);
-        // std::string s_document_uri = FCGX_GetParam("DOCUMENT_URI", request.envp);
-        // std::string s_document_root = FCGX_GetParam("DOCUMENT_ROOT", request.envp);
-        // std::string s_http_host = FCGX_GetParam("HTTP_HOST", request.envp);
-        // std::string s_http_cookie;
-        // if (FCGX_GetParam("HTTP_COOKIE", request.envp) != NULL)
-        // {
-        //     s_http_cookie = FCGX_GetParam("HTTP_COOKIE", request.envp);
-        // }
-        // else
-        // {
-        //     s_http_cookie = "NULL";
-        // }
-
-        // spdlog::debug("REQUEST_METHOD: {}", s_request_method);
-        // spdlog::debug("CONTENT_LENGTH: {}", s_content_length);
-        // spdlog::debug("REMOTE_ADDR: {}", s_remote_addr);
-        // spdlog::debug("REQUEST_URI: {}", s_request_uri);
-        // spdlog::debug("QUERY_STRING: {}", s_query_string);
-        // spdlog::debug("DOCUMENT_URI: {}", s_document_uri);
-        // spdlog::debug("DOCUMENT_ROOT: {}", s_document_root);
-        // spdlog::debug("HTTP_HOST: {}", s_http_host);
-        // spdlog::debug("HTTP_COOKIE: {}", s_http_cookie);
-
-        // /* Вывести все HTTP-заголовки (каждый заголовок с новой строки) */
-        // FCGX_PutS("Content-type: text/html\r\n", request.out);
-        // /* Между заголовками и телом ответа нужно вывести пустую строку */
-        // FCGX_PutS("\r\n", request.out);
-
-        // /* Тело ответа: html код */
-        // FCGX_PutS("<html>\r\n", request.out);
-        // FCGX_PutS("<head>\r\n", request.out);
-        // FCGX_PutS("<title>FastCGI Hello! (multi-threaded C, fcgiapp library)</title>\r\n", request.out);
-        // FCGX_PutS("</head>\r\n", request.out);
-        // FCGX_PutS("<body>\r\n", request.out);
-        // FCGX_PutS("<h1>FastCGI Hello! (multi-threaded C, fcgiapp library)</h1>\r\n", request.out);
-        // FCGX_PutS("<p>Request accepted from host <i>", request.out);
-        // FCGX_PutS(server_name ? server_name : "?", request.out);
-        // FCGX_PutS("</i></p>\r\n", request.out);
-
-        // FCGX_PutS("<p>Connection count: <i>", request.out);
-
-        // std::string s_conn = std::to_string(_connection_count);
-        // FCGX_PutS(s_conn.c_str(), request.out);
-        // FCGX_PutS("</i></p>\r\n", request.out);
-
-        // FCGX_PutS("</body>\r\n", request.out);
-        // FCGX_PutS("</html>\r\n", request.out);
-
-        // _connection_count++;
-
-        // page p(request);
-        // p.show();
-
-        /* new test */
-
-        /* Получить значение переменной */
-        // server_name = FCGX_GetParam("SERVER_NAME", request.envp);
-
-        // std::string s_request_method = FCGX_GetParam("REQUEST_METHOD", request.envp);
-        // std::string s_content_length = FCGX_GetParam("CONTENT_LENGTH", request.envp);
-        // std::string s_remote_addr = FCGX_GetParam("REMOTE_ADDR", request.envp);
-        // std::string s_request_uri = FCGX_GetParam("REQUEST_URI", request.envp);
-        // std::string s_query_string = FCGX_GetParam("QUERY_STRING", request.envp);
-        // std::string s_document_uri = FCGX_GetParam("DOCUMENT_URI", request.envp);
-        // std::string s_document_root = FCGX_GetParam("DOCUMENT_ROOT", request.envp);
-        // std::string s_http_host = FCGX_GetParam("HTTP_HOST", request.envp);
-        // std::string s_http_cookie;
-        // if (FCGX_GetParam("HTTP_COOKIE", request.envp) != NULL)
-        // {
-        //     s_http_cookie = FCGX_GetParam("HTTP_COOKIE", request.envp);
-        // }
-        // else
-        // {
-        //     s_http_cookie = "NULL";
-        // }
-
-        // spdlog::debug("REQUEST_METHOD: {}", s_request_method);
-        // spdlog::debug("CONTENT_LENGTH: {}", s_content_length);
-        // spdlog::debug("REMOTE_ADDR: {}", s_remote_addr);
-        // spdlog::debug("REQUEST_URI: {}", s_request_uri);
-        // spdlog::debug("QUERY_STRING: {}", s_query_string);
-        // spdlog::debug("DOCUMENT_URI: {}", s_document_uri);
-        // spdlog::debug("DOCUMENT_ROOT: {}", s_document_root);
-        // spdlog::debug("HTTP_HOST: {}", s_http_host);
-        // spdlog::debug("HTTP_COOKIE: {}", s_http_cookie);
+        /* */
+        request_handler rh(request);
+        spdlog::debug("=========== New request ===========");
+        spdlod::debug("uri: {}", rh.get_request_uri());
 
         about about_page();
         about_page.show();
-        about_page.debug();
 
         /* Закрыть текущее соединение */
         FCGX_Finish_r(&request);
