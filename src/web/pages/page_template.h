@@ -59,7 +59,7 @@ public:
 
     void debug();
 
-    operator std::string const
+    operator std::string() const
     {
         return _content;
     }
