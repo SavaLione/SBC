@@ -31,112 +31,31 @@
 
 /**
  * @file
- * @brief Web page
+ * @brief Список всех страниц
  * @author SavaLione
- * @date 22 Nov 2020
+ * @date 08 Dec 2020
  */
 #ifndef WEB_PAGE_H
 #define WEB_PAGE_H
 
-#include <string>
+#include "web/pages/about.h"
+#include "web/pages/index.h"
+#include "web/pages/login.h"
+#include "web/pages/nologin.h"
+#include "web/pages/register.h"
 
-#include <fcgi_config.h>
-#include <fcgiapp.h>
+enum page
+{
+    about,
+    index,
+    login,
+    nologin,
+    register,
+    not_exist
+};
 
-// enum site_pages
-// {
-//     _unknown_page = -1,
-//     _index = 1,
-//     _login = 2
-// };
+page recognize_page(std::string const &unprocessed_page);
 
-// enum method
-// {
-//     _unknown_method = -1,
-//     _GET = 1,
-//     _POST = 2
-// };
-
-// class page
-// {
-// public:
-//     page(FCGX_Request &request) : _request(request) { _init(); };
-//     ~page();
-
-//     void show();
-
-// private:
-//     FCGX_Request &_request;
-
-//     void _init();
-//     void _debug();
-
-//     site_pages const _get_site_page();
-//     site_pages _site_page = _unknown_page;
-
-//     method const _get_method();
-//     method _method = _unknown_method;
-
-//     std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
-//     std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
-//     std::string _remote_addr = FCGX_GetParam("REMOTE_ADDR", _request.envp);
-//     std::string _request_uri = FCGX_GetParam("REQUEST_URI", _request.envp);
-//     std::string _query_string = FCGX_GetParam("QUERY_STRING", _request.envp);
-//     std::string _document_uri = FCGX_GetParam("DOCUMENT_URI", _request.envp);
-//     std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
-//     std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
-//     std::string _http_cookie;
-
-//     bool _cookie = false;
-
-//     void _web_header();
-
-//     /* method */
-//     void _method_get();
-//     void _method_post();
-
-//     /* pages */
-//     void _page_unknown();
-//     void _page_index();
-//     void _page_login();
-// };
-
-// enum method
-// {
-//     _unknown_method = -1,
-//     _GET = 1,
-//     _POST = 2
-// };
-
-// class page
-// {
-// public:
-//     page();
-//     ~page();
-
-// protected:
-//     std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
-//     std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
-//     std::string _remote_addr = FCGX_GetParam("REMOTE_ADDR", _request.envp);
-//     std::string _request_uri = FCGX_GetParam("REQUEST_URI", _request.envp);
-//     std::string _query_string = FCGX_GetParam("QUERY_STRING", _request.envp);
-//     std::string _document_uri = FCGX_GetParam("DOCUMENT_URI", _request.envp);
-//     std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
-//     std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
-//     std::string _http_cookie;
-
-//     bool _cookie = false;
-
-// private:
-//     /* data */
-// };
-
-// page::page(/* args */)
-// {
-// }
-
-// page::~page()
-// {
-// }
+std::string get_page_name(page p);
 
 #endif // WEB_PAGE_H

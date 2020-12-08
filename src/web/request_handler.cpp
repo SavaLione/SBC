@@ -37,6 +37,8 @@
  */
 #include "web/request_handler.h"
 
+#include "web/page.h"
+
 request_handler::~request_handler()
 {
 }
@@ -44,6 +46,22 @@ request_handler::~request_handler()
 void request_handler::_init()
 {
     _recognize_cookie();
+
+    switch (_page)
+    {
+    case about:
+    {
+        about a();
+        _show_page(a);
+        break;
+    }
+    default:
+    {
+        about a();
+        _show_page(a);
+        break;
+    }
+    }
 }
 
 void request_handler::_recognize_cookie()
@@ -56,4 +74,9 @@ void request_handler::_recognize_cookie()
     {
         _is_cookie_set = true;
     }
+}
+
+void request_handler::_show_page(std::string const &p)
+{
+    FCGX_PutS(p, _request.out);
 }

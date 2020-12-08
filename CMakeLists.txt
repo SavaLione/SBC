@@ -123,7 +123,7 @@ set(SBC_WEB_PAGES_SRC
 	src/web/pages/page_template.cpp
 	src/web/pages/page_template.h
 	src/web/pages/register.cpp
-	src/web/pages/register.h
+    src/web/pages/register.h
 )
 
 set(SBC_WEB_SRC

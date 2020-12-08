@@ -31,60 +31,13 @@
 
 /**
  * @file
- * @brief Page template
+ * @brief Web page
  * @author SavaLione
- * @date 07 Dec 2020
+ * @date 22 Nov 2020
  */
-#ifndef WEB_PAGE_PAGE_TEMPLATE_H
-#define WEB_PAGE_PAGE_TEMPLATE_H
-
-#include <string>
-
-#include <fcgi_config.h>
-#include <fcgiapp.h>
-
-#include "core/user.h"
+#include "web/page.h"
 
 #include "web/mime.h"
-#include "web/cookie.h"
 
-class page_template
-{
-public:
-    page_template(std::string name, mime m, bool required_authorization)
-        : _name(name), _mime(m), _required_authorization(required_authorization){};
-    ~page_template();
+#include "io/logger.h"
 
-    void show();
-
-    operator std::string() const
-    {
-        return _content;
-    }
-
-protected:
-    std::string _get_name();
-    void _add_content(std::string content);
-    virtual void _init();
-
-    /* Системный заголовок. Тип контента, Cookies и прочее. */
-    virtual void _html_header();
-
-    virtual void _html();
-    virtual void _head();
-    virtual void _body();
-
-    std::string _content = "";
-
-private:
-    std::string _name = "page_template";
-
-    mime _mime = text_html;
-
-    user _user;
-
-    /* Чтобы просматривать эту страницу, нужна авторизация? */
-    bool _required_authorization = true;
-};
-
-#endif // WEB_PAGE_PAGE_TEMPLATE_H

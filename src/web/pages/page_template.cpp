@@ -64,11 +64,6 @@ void page_template::_html_header()
     _add_content("");
 }
 
-void page_template::debug()
-{
-
-}
-
 void page_template::_html()
 {
     _add_content("<!doctype html>");

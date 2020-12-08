@@ -45,6 +45,7 @@
 
 #include "web/method.h"
 #include "web/cookie.h"
+#include "web/page.h"
 
 /*
     Обработка запроса FastCGI
@@ -86,6 +87,9 @@ private:
     /* Тип запроса */
     method _method = recognize_method(_request_method);
 
+    /* Нужная нам страница */
+    page _page = recognize_page(_request_uri);
+
     /*
         Переменная хранит в себе необработанную строку с Cookie
         Пример:
@@ -107,6 +111,9 @@ private:
 
     /* Распознать установленны ли Cookie */
     void _recognize_cookie();
+
+    /* Показать страницу пользователю */
+    void _show_page(std::string const& p);
 };
 
 #endif // WEB_REQUEST_HANDLER_H

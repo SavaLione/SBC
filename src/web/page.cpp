@@ -31,13 +31,65 @@
 
 /**
  * @file
- * @brief Web page
+ * @brief Список всех страниц
  * @author SavaLione
- * @date 22 Nov 2020
+ * @date 08 Dec 2020
  */
-#include "web/page.h"
+#include "web/pages.h"
 
-#include "web/mime.h"
+std::string get_page_name(page p)
+{
+    switch (p)
+    {
+    case about:
+        return "/about";
+        break;
+    case index:
+        return "/index";
+        break;
+    case login:
+        return "/login";
+        break;
+    case nologin:
+        return "/nologin";
+        break;
+    case register:
+        return "/register";
+        break;
 
-#include "io/logger.h"
+    default:
+        return "/page_not_exist";
+        break;
+    }
+    return "/page_not_exist";
+}
 
+page recognize_page(std::string const &unprocessed_page)
+{
+    if (unprocessed_page.find(get_page_name(about)) >= 0)
+    {
+        return about;
+    }
+
+    if (unprocessed_page.find(get_page_name(index)) >= 0)
+    {
+        return index;
+    }
+
+    if (unprocessed_page.find(get_page_name(login)) >= 0)
+    {
+        return login;
+    }
+
+    if (unprocessed_page.find(get_page_name(nologin)) >= 0)
+    {
+        return nologin;
+    }
+
+    if (unprocessed_page.find(get_page_name(register)) >= 0)
+    {
+        return register;
+    }
+
+    return not_exist;
+}
