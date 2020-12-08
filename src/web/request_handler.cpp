@@ -47,8 +47,21 @@ void request_handler::_init()
 {
     _recognize_cookie();
 
-    about a;
-    _show_page(a);
+    switch (_page)
+    {
+    case page_about:
+    {
+        about a;
+        _show_page(a);
+        break;
+    }
+    default:
+    {
+        about a;
+        _show_page(a);
+        break;
+    }
+    }
 }
 
 void request_handler::_recognize_cookie()
