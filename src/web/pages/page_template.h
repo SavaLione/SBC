@@ -46,15 +46,13 @@
 #include "core/user.h"
 
 #include "web/mime.h"
-#include "web/method.h"
-#include "web/mime.h"
 #include "web/cookie.h"
 
 class page_template
 {
 public:
-    page_template(std::string name, mime m, bool required_authorization, FCGX_Request &request)
-        : _name(name), _mime(m), _required_authorization(required_authorization), _request(request){};
+    page_template(std::string name, mime m, bool required_authorization)
+        : _name(name), _mime(m), _required_authorization(required_authorization){};
     ~page_template();
 
     void show();
@@ -74,34 +72,14 @@ protected:
     virtual void _body();
 
 private:
-    FCGX_Request &_request;
-
     std::string _name = "page_template";
 
-    // std::string _content = "";
-
     mime _mime = text_html;
-    method _method = _unknown_method;
 
     user _user;
 
     /* Чтобы просматривать эту страницу, нужна авторизация? */
     bool _required_authorization = true;
-
-    std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
-    std::string _content_length = FCGX_GetParam("CONTENT_LENGTH", _request.envp);
-    std::string _remote_addr = FCGX_GetParam("REMOTE_ADDR", _request.envp);
-    std::string _request_uri = FCGX_GetParam("REQUEST_URI", _request.envp);
-    std::string _query_string = FCGX_GetParam("QUERY_STRING", _request.envp);
-    std::string _document_uri = FCGX_GetParam("DOCUMENT_URI", _request.envp);
-    std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
-    std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
-    std::string _http_cookie;
-
-    void _get_method();
-
-    /* Cookie установлены? */
-    bool _is_cookie_set = false;
 };
 
 #endif // WEB_PAGE_PAGE_TEMPLATE_H

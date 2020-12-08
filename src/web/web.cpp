@@ -187,7 +187,7 @@ static void *_fcgi_page(void *a)
         // spdlog::debug("HTTP_HOST: {}", s_http_host);
         // spdlog::debug("HTTP_COOKIE: {}", s_http_cookie);
 
-        about about_page(request);
+        about about_page();
         about_page.show();
         about_page.debug();
 

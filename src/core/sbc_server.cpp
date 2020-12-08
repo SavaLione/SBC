@@ -49,7 +49,7 @@
 
 #include "web/web.h"
 #include "web/mime.h"
-#include "web/cookie.h"
+#include "web/cookie_repository.h"
 
 void web_server()
 {

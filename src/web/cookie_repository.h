@@ -31,70 +31,49 @@
 
 /**
  * @file
- * @brief Cookie
+ * @brief Cookie repository
  * @author SavaLione
- * @date 24 Nov 2020
+ * @date 08 Dec 2020
  */
-#ifndef WEB_COOKIE_H
-#define WEB_COOKIE_H
+#ifndef WEB_COOKIE_REPOSITORY_H
+#define WEB_COOKIE_REPOSITORY_H
 
-#include <string>
+#include <vector>
 
-/*
-    Пара cookie
-    key - ключ
-    value - значение
-*/
-struct cookie_pair
-{
-    const std::string key;
-    std::string value;
-};
+#include "core/user.h"
 
-class cookie
+#include "web/cookie.h"
+
+class cookie_repository
 {
 public:
-    cookie(std::string const &unprocessed_cookies) : _unprocessed_cookies(unprocessed_cookies) { _init(); };
-    ~cookie();
-
-    /* Получаем пару cookie uuid */
-    cookie_pair get_uuid();
-
-    /*
-        Возвращаем строку вида:
-        Set-Cookie: uuid=aa-bb-cc-dd; 
-    */
-    operator std::string() const
+    /* constructor */
+    static cookie_repository &Instance()
     {
-        return "Set-Cookie: " + _uuid.key + "=" + _uuid.value + ";" + " ";
+        static cookie_repository cookie_rep;
+        return cookie_rep;
     }
 
+    ~cookie_repository();
+
+    /* functions */
+    const void add_user(user &u);
+
+    bool have_user(std::string uuid);
+    user get_user(std::string uuid);
+
+    const void remove_user(std::string uuid);
+
+    void debug();
+
 private:
-    /* 
-        Необработанные cookie
-        Строка вида:
-        Cookie: username=SavaLione; uuid=aa-bb-cc-dd; some=Soome; 
-    */
-    std::string const &_unprocessed_cookies;
+    /* constructor */
+    cookie_repository();
+    cookie_repository(cookie_repository const &) = delete;
+    cookie_repository &operator=(cookie_repository const &) = delete;
 
-    /* Разделитель cookie данных */
-    char separator = ';';
-
-    /* Инициализация объекта. Получение cookie из строки. */
-    void _init();
-
-    /* Уникальный идентификатор пользователя */
-    cookie_pair _uuid = {"uuid", ""};
-
-    /* uuid есть в cookie? Идентификатор задан? */
-    bool _uuid_set = false;
-
-    /* 
-        Получение значения по ключу
-        true - значение найдено и присвоено паре
-        false - значение не найдено и не присвоено паре
-    */
-    bool _get(cookie_pair &c);
+    /* variables */
+    std::vector<user> _users;
 };
 
-#endif // WEB_COOKIE_H
+#endif // WEB_COOKIE_REPOSITORY_H

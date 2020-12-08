@@ -31,70 +31,74 @@
 
 /**
  * @file
- * @brief Cookie
+ * @brief Cookie repository
  * @author SavaLione
- * @date 24 Nov 2020
+ * @date 08 Dec 2020
  */
-#ifndef WEB_COOKIE_H
-#define WEB_COOKIE_H
+#include "web/cookie_repository.h"
 
-#include <string>
+#include "io/logger.h"
 
-/*
-    Пара cookie
-    key - ключ
-    value - значение
-*/
-struct cookie_pair
+cookie_repository::cookie_repository()
 {
-    const std::string key;
-    std::string value;
-};
+    spdlog::info("Cookie initialization");
+}
 
-class cookie
+cookie_repository::~cookie_repository()
 {
-public:
-    cookie(std::string const &unprocessed_cookies) : _unprocessed_cookies(unprocessed_cookies) { _init(); };
-    ~cookie();
+}
 
-    /* Получаем пару cookie uuid */
-    cookie_pair get_uuid();
+const void cookie_repository::add_user(user &u)
+{
+    _users.push_back(u);
+}
 
-    /*
-        Возвращаем строку вида:
-        Set-Cookie: uuid=aa-bb-cc-dd; 
-    */
-    operator std::string() const
+const void cookie_repository::remove_user(std::string uuid)
+{
+    for (int i = 0; i < _users.size(); i++)
     {
-        return "Set-Cookie: " + _uuid.key + "=" + _uuid.value + ";" + " ";
+        if (_users[i].get_uuid() == uuid)
+        {
+            _users.erase(_users.begin() + i);
+            break;
+        }
     }
+}
 
-private:
-    /* 
-        Необработанные cookie
-        Строка вида:
-        Cookie: username=SavaLione; uuid=aa-bb-cc-dd; some=Soome; 
-    */
-    std::string const &_unprocessed_cookies;
+bool cookie_repository::have_user(std::string uuid)
+{
+    for (int i = 0; i < _users.size(); i++)
+    {
+        if (_users[i].get_uuid() == uuid)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
-    /* Разделитель cookie данных */
-    char separator = ';';
+user cookie_repository::get_user(std::string uuid)
+{
+    for (int i = 0; i < _users.size(); i++)
+    {
+        if (_users[i].get_uuid() == uuid)
+        {
+            return _users[i];
+        }
+    }
+    user u;
+    return u;
+}
 
-    /* Инициализация объекта. Получение cookie из строки. */
-    void _init();
-
-    /* Уникальный идентификатор пользователя */
-    cookie_pair _uuid = {"uuid", ""};
-
-    /* uuid есть в cookie? Идентификатор задан? */
-    bool _uuid_set = false;
-
-    /* 
-        Получение значения по ключу
-        true - значение найдено и присвоено паре
-        false - значение не найдено и не присвоено паре
-    */
-    bool _get(cookie_pair &c);
-};
-
-#endif // WEB_COOKIE_H
+void cookie_repository::debug()
+{
+    spdlog::debug("cookie_repository users: {}", _users.size());
+    for (int i = 0; i < _users.size(); i++)
+    {
+        spdlog::debug("---cookie_repository--[{}]", i);
+        spdlog::debug("name: {}", _users[i].get_name());
+        spdlog::debug("username: {}", _users[i].get_username());
+        spdlog::debug("uuid: {}", _users[i].get_uuid());
+    }
+    
+}

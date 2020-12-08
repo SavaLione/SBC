@@ -38,68 +38,41 @@
 
 #include "web/cookie.h"
 
-#include "io/logger.h"
-
-cookie_repository::cookie_repository()
-{
-    spdlog::info("Cookie initialization");
-}
-
-cookie_repository::~cookie_repository()
+cookie::~cookie()
 {
 }
 
-const void cookie_repository::add_user(user &u)
+cookie_pair cookie::get_uuid()
 {
-    _users.push_back(u);
+    return _uuid;
 }
 
-const void cookie_repository::remove_user(std::string uuid)
+void cookie::_init()
 {
-    for (int i = 0; i < _users.size(); i++)
+    _uuid_set = _get(_uuid);
+}
+
+bool cookie::_get(cookie_pair &c)
+{
+    int pos = _unprocessed_cookies.find(c.key);
+    if (pos >= 0)
     {
-        if (_users[i].get_uuid() == uuid)
+        for (int i = pos + c.key.size() + 1; i < _unprocessed_cookies.size(); i++)
         {
-            _users.erase(_users.begin() + i);
-            break;
+            if (_unprocessed_cookies[i] != separator)
+            {
+                c.value += _unprocessed_cookies[i];
+            }
+            else
+            {
+                break;
+            }
         }
+        return true;
     }
-}
-
-bool cookie_repository::have_user(std::string uuid)
-{
-    for (int i = 0; i < _users.size(); i++)
+    else
     {
-        if (_users[i].get_uuid() == uuid)
-        {
-            return true;
-        }
+        return false;
     }
     return false;
-}
-
-user cookie_repository::get_user(std::string uuid)
-{
-    for (int i = 0; i < _users.size(); i++)
-    {
-        if (_users[i].get_uuid() == uuid)
-        {
-            return _users[i];
-        }
-    }
-    user u;
-    return u;
-}
-
-void cookie_repository::debug()
-{
-    spdlog::debug("cookie_repository users: {}", _users.size());
-    for (int i = 0; i < _users.size(); i++)
-    {
-        spdlog::debug("---cookie_repository--[{}]", i);
-        spdlog::debug("name: {}", _users[i].get_name());
-        spdlog::debug("username: {}", _users[i].get_username());
-        spdlog::debug("uuid: {}", _users[i].get_uuid());
-    }
-    
 }

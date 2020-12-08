@@ -31,70 +31,98 @@
 
 /**
  * @file
- * @brief Cookie
+ * @brief Обработчик веб запросов
  * @author SavaLione
- * @date 24 Nov 2020
+ * @date 08 Dec 2020
  */
-#ifndef WEB_COOKIE_H
-#define WEB_COOKIE_H
+#include "web/request_handler.h"
 
-#include <string>
-
-/*
-    Пара cookie
-    key - ключ
-    value - значение
-*/
-struct cookie_pair
+request_handler::~request_handler()
 {
-    const std::string key;
-    std::string value;
-};
+}
 
-class cookie
+void request_handler::_init()
 {
-public:
-    cookie(std::string const &unprocessed_cookies) : _unprocessed_cookies(unprocessed_cookies) { _init(); };
-    ~cookie();
+    _recognize_cookie();
+    _recognize_method();
+}
 
-    /* Получаем пару cookie uuid */
-    cookie_pair get_uuid();
+void request_handler::_recognize_cookie()
+{
+    // if (FCGX_GetParam("HTTP_COOKIE", _request.envp) != NULL)
+    // {
+    //     _http_cookie = FCGX_GetParam("HTTP_COOKIE", _request.envp);
+    //     _is_cookie_set = true;
+    // }
+    // else
+    // {
+    //     _http_cookie = "NULL";
+    //     _is_cookie_set = false;
+    // }
 
-    /*
-        Возвращаем строку вида:
-        Set-Cookie: uuid=aa-bb-cc-dd; 
-    */
-    operator std::string() const
+    if (_http_cookie == "NULL")
     {
-        return "Set-Cookie: " + _uuid.key + "=" + _uuid.value + ";" + " ";
+        _is_cookie_set = false;
+    }
+    else
+    {
+        _is_cookie_set = true;
+    }
+    
+}
+
+void request_handler::_recognize_method()
+{
+    if (_request_method == "OPTIONS")
+    {
+        _method = _OPTIONS;
+        return;
     }
 
-private:
-    /* 
-        Необработанные cookie
-        Строка вида:
-        Cookie: username=SavaLione; uuid=aa-bb-cc-dd; some=Soome; 
-    */
-    std::string const &_unprocessed_cookies;
+    if (_request_method == "GET")
+    {
+        _method = _GET;
+        return;
+    }
 
-    /* Разделитель cookie данных */
-    char separator = ';';
+    if (_request_method == "HEAD")
+    {
+        _method = _HEAD;
+        return;
+    }
 
-    /* Инициализация объекта. Получение cookie из строки. */
-    void _init();
+    if (_request_method == "POST")
+    {
+        _method = _POST;
+        return;
+    }
 
-    /* Уникальный идентификатор пользователя */
-    cookie_pair _uuid = {"uuid", ""};
+    if (_request_method == "PUT")
+    {
+        _method = _PUT;
+        return;
+    }
 
-    /* uuid есть в cookie? Идентификатор задан? */
-    bool _uuid_set = false;
+    if (_request_method == "DELETE")
+    {
+        _method = _DELETE;
+        return;
+    }
 
-    /* 
-        Получение значения по ключу
-        true - значение найдено и присвоено паре
-        false - значение не найдено и не присвоено паре
-    */
-    bool _get(cookie_pair &c);
-};
+    if (_request_method == "TRACE")
+    {
+        _method = _TRACE;
+        return;
+    }
 
-#endif // WEB_COOKIE_H
+    if (_request_method == "CONNECT")
+    {
+        _method = _CONNECT;
+        return;
+    }
+}
+
+const method request_handler::get_method()
+{
+    return _method;
+}
