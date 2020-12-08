@@ -46,12 +46,12 @@
 
 enum page
 {
-    about,
-    index,
-    login,
-    nologin,
-    registration,
-    not_exist
+    page_about,
+    page_index,
+    page_login,
+    page_nologin,
+    page_registration,
+    page_not_exist
 };
 
 page recognize_page(std::string const &unprocessed_page);

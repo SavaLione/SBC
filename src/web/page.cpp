@@ -41,19 +41,19 @@ std::string get_page_name(page p)
 {
     switch (p)
     {
-    case about:
+    case page_about:
         return "/about";
         break;
-    case index:
+    case page_index:
         return "/index";
         break;
-    case login:
+    case page_login:
         return "/login";
         break;
-    case nologin:
+    case page_nologin:
         return "/nologin";
         break;
-    case registration:
+    case page_registration:
         return "/registration";
         break;
     default:
@@ -65,30 +65,30 @@ std::string get_page_name(page p)
 
 page recognize_page(std::string const &unprocessed_page)
 {
-    if (unprocessed_page.find(get_page_name(about)) >= 0)
+    if (unprocessed_page.find(get_page_name(page_about)) >= 0)
     {
-        return about;
+        return page_about;
     }
 
-    if (unprocessed_page.find(get_page_name(index)) >= 0)
+    if (unprocessed_page.find(get_page_name(page_index)) >= 0)
     {
-        return index;
+        return page_index;
     }
 
-    if (unprocessed_page.find(get_page_name(login)) >= 0)
+    if (unprocessed_page.find(get_page_name(page_login)) >= 0)
     {
-        return login;
+        return page_login;
     }
 
-    if (unprocessed_page.find(get_page_name(nologin)) >= 0)
+    if (unprocessed_page.find(get_page_name(page_nologin)) >= 0)
     {
-        return nologin;
+        return page_nologin;
     }
 
-    if (unprocessed_page.find(get_page_name(registration)) >= 0)
+    if (unprocessed_page.find(get_page_name(page_registration)) >= 0)
     {
-        return registration;
+        return page_registration;
     }
 
-    return not_exist;
+    return page_not_exist;
 }
