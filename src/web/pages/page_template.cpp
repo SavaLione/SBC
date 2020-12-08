@@ -117,3 +117,8 @@ void page_template::show()
 
     _add_content("</html>");
 }
+
+const &std::string get()
+{
+    return _content;
+}
