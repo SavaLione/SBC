@@ -102,13 +102,6 @@ void page_template::_body()
 
 void page_template::_init()
 {
-
-}
-
-void page_template::show()
-{
-    _init();
-
     _html_header();
 
     _html();
@@ -116,9 +109,4 @@ void page_template::show()
     _body();
 
     _add_content("</html>");
-}
-
-std::string page_template::get()
-{
-    return _content;
 }

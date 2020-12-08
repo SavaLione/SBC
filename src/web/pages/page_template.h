@@ -55,14 +55,11 @@ public:
         : _name(name), _mime(m), _required_authorization(required_authorization){};
     ~page_template();
 
-    void show();
-
-    operator std::string() const
+    operator std::string()
     {
+        _init();
         return _content;
     }
-
-    std::string get();
 
 protected:
     std::string _get_name();
