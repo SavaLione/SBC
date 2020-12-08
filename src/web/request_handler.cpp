@@ -53,14 +53,14 @@ void request_handler::_init()
     {
         about a();
         _show_page(a);
-        break;
     }
+    break;
     default:
     {
         about a();
         _show_page(a);
-        break;
     }
+    break;
     }
 }
 
