@@ -47,8 +47,8 @@ public:
     ~about();
 
 private:
-    virtual void _body();
     virtual void _head();
+    virtual void _body();
 };
 
 #endif // WEB_PAGE_ABOUT_H

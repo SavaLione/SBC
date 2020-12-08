@@ -55,6 +55,12 @@ void request_handler::_init()
         _show_page(a);
         break;
     }
+    case page_login:
+    {
+        login l;
+        _show_page(l);
+        break;
+    }
     default:
     {
         about a;
