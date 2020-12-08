@@ -37,8 +37,6 @@
  */
 #include "web/page.h"
 
-#include "io/logger.h"
-
 std::string get_page_name(page p)
 {
     switch (p)
@@ -67,11 +65,6 @@ std::string get_page_name(page p)
 
 page recognize_page(std::string const &unprocessed_page)
 {
-    spdlog::debug("page: {}", unprocessed_page);
-    spdlog::debug("about: {}", unprocessed_page.find(get_page_name(page_about)));
-    spdlog::debug("index: {}", unprocessed_page.find(get_page_name(page_index)));
-    spdlog::debug("login: {}", unprocessed_page.find(get_page_name(page_login)));
-
     if (unprocessed_page.find(get_page_name(page_about)) != std::string::npos)
     {
         return page_about;

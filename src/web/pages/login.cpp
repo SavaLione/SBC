@@ -66,7 +66,7 @@ void login::_body()
 {
     _add_content("  <body class=\"text-center\">");
 
-    _add_content("    <form method=POST class=\"form-signin\">");
+    _add_content("    <form method=\"post\" class=\"form-signin\">");
     _add_content("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">");
     _add_content("      <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>");
     _add_content("      <label for=\"inputEmail\" class=\"sr-only\">Email address</label>");
@@ -81,6 +81,6 @@ void login::_body()
     _add_content("      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Sign in</button>");
     _add_content("      <p class=\"mt-5 mb-3 text-muted\">&copy; 2020 SBC team</p>");
     _add_content("    </form>");
-    
+
     _add_content("  </body>");
 }
