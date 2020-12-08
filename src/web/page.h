@@ -42,7 +42,7 @@
 #include "web/pages/index.h"
 #include "web/pages/login.h"
 #include "web/pages/nologin.h"
-#include "web/pages/register.h"
+#include "web/pages/registration.h"
 
 enum page
 {
