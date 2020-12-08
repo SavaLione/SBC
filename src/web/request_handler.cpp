@@ -47,8 +47,8 @@ void request_handler::_init()
 {
     _recognize_cookie();
 
-    about about_page();
-    _show_page(about_page);
+    about a();
+    _show_page(a);
 }
 
 void request_handler::_recognize_cookie()
