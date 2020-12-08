@@ -57,7 +57,7 @@ public:
 
     void show();
 
-    operator std::string() const
+    const operator std::string() const
     {
         return _content;
     }
