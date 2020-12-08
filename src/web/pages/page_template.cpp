@@ -118,7 +118,7 @@ void page_template::show()
     _add_content("</html>");
 }
 
-std::string get()
+std::string page_template::get()
 {
     return _content;
 }
