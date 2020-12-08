@@ -68,9 +68,6 @@ private:
     FCGX_Request &_request;
 
     /* Тип запроса */
-    method _method = recognize_method(_request_method);
-
-    /* Тип запроса */
     std::string _request_method = FCGX_GetParam("REQUEST_METHOD", _request.envp);
 
     /* Длинна запроса */
@@ -85,6 +82,9 @@ private:
     std::string _document_uri = FCGX_GetParam("DOCUMENT_URI", _request.envp);
     std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
     std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
+
+    /* Тип запроса */
+    method _method = recognize_method(_request_method);
 
     /*
         Переменная хранит в себе необработанную строку с Cookie
