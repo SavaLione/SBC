@@ -51,13 +51,13 @@ void request_handler::_init()
     {
     case about:
     {
-        about a();
+        about a = about();
         _show_page(a);
     }
     break;
     default:
     {
-        about a();
+        about a = about();
         _show_page(a);
     }
     break;
@@ -78,5 +78,5 @@ void request_handler::_recognize_cookie()
 
 void request_handler::_show_page(std::string const &p)
 {
-    FCGX_PutS(p, _request.out);
+    FCGX_PutS(p.c_str(), _request.out);
 }
