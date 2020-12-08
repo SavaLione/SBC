@@ -43,15 +43,45 @@ about::~about()
 
 void about::_body()
 {
-    _add_content("<body>");
+    _add_content("<body class=\"text-center\">");
 
-    _add_content("Hello from about page");
-    _add_content("");
-    _add_content("<form method=\"post\">");
-    _add_content("<label for=\"fname\">First name:</label>");
-    _add_content("<input type=\"text\" id=\"fname\" name=\"fname\"><br><br>");
-    _add_content("<input type=\"submit\" value=\"Submit\">");
-    _add_content("</form>");
-
+    _add_content("<div class=\"container\">");
+    _add_content("<div class=\"row\">");
+    _add_content("<div class=\"col-sm-4\">");
+    _add_content("<h3>Ресурсы:</h3>");
+    _add_content("<p>Ссылка на gihub: <a href=\"https://github.com/SavaLione/SBC\">github.com/SavaLione/SBC</a></p>");
+    _add_content("</div>");
+    _add_content("<div class=\"col-sm-4\">");
+    _add_content("<h3>Что такое SBC?</h3>");
+    _add_content("<p>SBC расшифровывается как: Scanning Bar Codes или: Сканирование штриховых кодов</p>");
+    _add_content("</div>");
+    _add_content("<div class=\"col-sm-4\">");
+    _add_content("<h3>Авторы:</h3>");
+    _add_content("<p>Корецкий Даниил</p>");
+    _add_content("<p>Лахманец Илья</p>");
+    _add_content("<p>Медведева Юлия</p>");
+    _add_content("<p>Потоцкий Савелий</p>");
+    _add_content("</div>");
+    _add_content("</div>");
+    _add_content("</div>");
+    
     _add_content("</body>");
+}
+
+void about::_head()
+{
+    _add_content("<head>");
+
+    _add_content("<meta charset=\"utf-8\">");
+    _add_content("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
+    _add_content("<meta name=\"description\" content=\"SBC\">");
+    _add_content("<meta name=\"author\" content=\"SBC team\">");
+    _add_content("<link rel=\"icon\" href=\"/assets/favicon.ico\">");
+
+    _add_content("<title>About</title>");
+
+    _add_content("<!-- Bootstrap core CSS -->");
+    _add_content("<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">");
+
+    _add_content("</head>");
 }

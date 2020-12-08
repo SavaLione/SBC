@@ -48,6 +48,7 @@ public:
 
 private:
     virtual void _body();
+    virtual void _head();
 };
 
 #endif // WEB_PAGE_ABOUT_H
