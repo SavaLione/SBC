@@ -47,6 +47,8 @@ void request_handler::_init()
 {
     _recognize_cookie();
 
+    spdlog::debug("uri: {}", _request_uri);
+
     switch (_page)
     {
     case page_about:
