@@ -47,7 +47,7 @@ void request_handler::_init()
 {
     _recognize_cookie();
 
-    about a();
+    about a;
     std::string s = a.get();
     // _show_page(a.get());
 }
