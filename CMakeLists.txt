@@ -141,8 +141,6 @@ set(SBC_WEB_SRC
     src/web/cookie.cpp
     src/web/method.h
     src/web/method.cpp
-    src/web/web_request.h
-    src/web/web_request.cpp
     src/web/request_handler.h
     src/web/request_handler.cpp
     src/web/cookie_repository.h

@@ -51,6 +51,8 @@ enum role
     BANNED = 100
 };
 
+
+
 class user
 {
 public:
@@ -58,14 +60,21 @@ public:
     user(bool is_user_set) : _is_user_set(is_user_set) { _init(); };
     ~user();
 
-    /* set */
-    const void set_name(std::string name);
-    const void set_username(std::string username);
-    const void set_email(std::string email);
-    const void set_phone(std::string phone);
-    const void set_password(std::string password);
-
+    const void set_id(std::string const& id);
+    const void set_username(std::string const& username);
+    const void set_password(std::string const& password);
+    const void set_name(std::string const& name);
+    const void set_email(std::string const& email);
+    const void set_phone(std::string const& phone);
     const void set_role(role r);
+    const void set_registration_date(std::string const& registration_date);
+    const void set_last_time_online(std::string const& last_time_online);
+    const void set_description(std::string const& description);
+    const void set_department(std::string const& department);
+    const void set_branch(std::string const& branch);
+    const void set_is_user_active(std::string const& description);
+    const void set_registration_confirmation_code(std::string const& registration_confirmation_code);
+    const void set_city(std::string const& city);
 
     /* get */
     std::string get_name();
