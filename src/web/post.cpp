@@ -41,8 +41,11 @@ post::~post()
 {
 }
 
+#include "io/logger.h"
+
 void post::_init()
 {
+    spdlog::debug("post:: {}", _unprocessed_post);
 }
 
 void post::_get(post_pair &pp)
