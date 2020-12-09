@@ -31,64 +31,23 @@
 
 /**
  * @file
- * @brief Список всех страниц
+ * @brief Страница не найдена
  * @author SavaLione
- * @date 08 Dec 2020
+ * @date 09 Dec 2020
  */
-#include "web/page.h"
+#ifndef WEB_PAGES_NOT_FOUND_H
+#define WEB_PAGES_NOT_FOUND_H
 
-std::string get_page_name(page p)
+#include "web/pages/page_template.h"
+
+class not_found : public page_template
 {
-    switch (p)
-    {
-    case page_about:
-        return "/about";
-        break;
-    case page_index:
-        return "/index";
-        break;
-    case page_login:
-        return "/login";
-        break;
-    case page_nologin:
-        return "/nologin";
-        break;
-    case page_registration:
-        return "/registration";
-        break;
-    default:
-        return "/not_found";
-        break;
-    }
-    return "/not_found";
-}
+public:
+    not_found() : page_template("not_found", text_html, false){};
+    ~not_found();
+private:
+    virtual void _head();
+    virtual void _body();
+};
 
-page recognize_page(std::string const &unprocessed_page)
-{
-    if (unprocessed_page.find(get_page_name(page_about)) != std::string::npos)
-    {
-        return page_about;
-    }
-
-    if (unprocessed_page.find(get_page_name(page_index)) != std::string::npos)
-    {
-        return page_index;
-    }
-
-    if (unprocessed_page.find(get_page_name(page_login)) != std::string::npos)
-    {
-        return page_login;
-    }
-
-    if (unprocessed_page.find(get_page_name(page_nologin)) != std::string::npos)
-    {
-        return page_nologin;
-    }
-
-    if (unprocessed_page.find(get_page_name(page_registration)) != std::string::npos)
-    {
-        return page_registration;
-    }
-
-    return page_not_found;
-}
+#endif // WEB_PAGES_NOT_FOUND_H

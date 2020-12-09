@@ -31,64 +31,43 @@
 
 /**
  * @file
- * @brief Список всех страниц
+ * @brief Страница не найдена
  * @author SavaLione
- * @date 08 Dec 2020
+ * @date 09 Dec 2020
  */
-#include "web/page.h"
+#include "web/pages/not_found.h"
 
-std::string get_page_name(page p)
+not_found::~not_found()
 {
-    switch (p)
-    {
-    case page_about:
-        return "/about";
-        break;
-    case page_index:
-        return "/index";
-        break;
-    case page_login:
-        return "/login";
-        break;
-    case page_nologin:
-        return "/nologin";
-        break;
-    case page_registration:
-        return "/registration";
-        break;
-    default:
-        return "/not_found";
-        break;
-    }
-    return "/not_found";
 }
 
-page recognize_page(std::string const &unprocessed_page)
+void not_found::_head()
 {
-    if (unprocessed_page.find(get_page_name(page_about)) != std::string::npos)
-    {
-        return page_about;
-    }
+    _add_content("  <head>");
 
-    if (unprocessed_page.find(get_page_name(page_index)) != std::string::npos)
-    {
-        return page_index;
-    }
+    _add_content("    <meta charset=\"utf-8\">");
+    _add_content("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
+    _add_content("    <meta name=\"description\" content=\"SBC\">");
+    _add_content("    <meta name=\"author\" content=\"SBC team\">");
+    _add_content("    <link rel=\"icon\" href=\"/assets/favicon.ico\">");
 
-    if (unprocessed_page.find(get_page_name(page_login)) != std::string::npos)
-    {
-        return page_login;
-    }
+    _add_content("    <title>Страница не найдена</title>");
 
-    if (unprocessed_page.find(get_page_name(page_nologin)) != std::string::npos)
-    {
-        return page_nologin;
-    }
+    _add_content("    <!-- Bootstrap core CSS -->");
+    _add_content("    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">");
 
-    if (unprocessed_page.find(get_page_name(page_registration)) != std::string::npos)
-    {
-        return page_registration;
-    }
+    _add_content("    <!--  Page not found css -->");
+    _add_content("    <link href=\"/assets/css/not_found.css\" rel=\"stylesheet\">");
 
-    return page_not_found;
+    _add_content("  </head>");
+}
+
+void not_found::_body()
+{
+    _add_content("  <div class=\"d-flex justify-content-center align-items-center\" id=\"main\">");
+    _add_content("      <h1 class=\"mr-3 pr-3 align-top border-right inline-block align-content-center\"><a href=\"/index\">404</a></h1>");
+    _add_content("      <div class=\"inline-block align-middle\">");
+    _add_content("      	<h2 class=\"font-weight-normal lead\" id=\"desc\">Запрошенная вами страница не найдена.</h2>");
+    _add_content("      </div>");
+    _add_content("  </div>");
 }

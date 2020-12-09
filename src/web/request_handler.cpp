@@ -65,8 +65,8 @@ void request_handler::_init()
     }
     default:
     {
-        about a;
-        _show_page(a);
+        not_found nf;
+        _show_page(nf);
         break;
     }
     }

@@ -43,6 +43,7 @@
 #include "web/pages/login.h"
 #include "web/pages/nologin.h"
 #include "web/pages/registration.h"
+#include "web/pages/not_found.h"
 
 enum page
 {
@@ -51,7 +52,7 @@ enum page
     page_login,
     page_nologin,
     page_registration,
-    page_not_exist
+    page_not_found
 };
 
 page recognize_page(std::string const &unprocessed_page);
