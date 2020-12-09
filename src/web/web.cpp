@@ -85,13 +85,13 @@ static void *_fcgi_page(void *a)
         }
         /* Request is accepted */
 
-        /* Пробуем получить данные */
-        char str_post[2048];
-        // int FCGX_GetStr(char * str, int n, FCGX_Stream *stream);
-        while (FCGX_GetStr(str_post, sizeof(str_post), request.in) > 0)
-        {
-            spdlog::debug("POST: {}", str_post);
-        }
+        // /* Пробуем получить данные */
+        // char str_post[2048];
+        // // int FCGX_GetStr(char * str, int n, FCGX_Stream *stream);
+        // while (FCGX_GetStr(str_post, sizeof(str_post), request.in) > 0)
+        // {
+        //     spdlog::debug("POST: {}", str_post);
+        // }
 
         /* Обрабатываем запрос */
         request_handler rh(request);
