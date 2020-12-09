@@ -40,7 +40,7 @@
 
 #include "web/pages/page_template.h"
 
-class login : public page_template
+class login : protected page_template
 {
 public:
     login(user const& u) : page_template("login", text_html, false, u){};
