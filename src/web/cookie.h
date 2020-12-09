@@ -60,6 +60,9 @@ public:
     /* Получаем пару cookie uuid */
     cookie_pair get_uuid();
 
+    /* uuid установлен? */
+    bool is_uuid_set();
+
     /*
         Возвращаем строку вида:
         Set-Cookie: uuid=aa-bb-cc-dd; 

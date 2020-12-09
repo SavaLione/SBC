@@ -82,6 +82,6 @@ virtual void test_page::_body()
     _add_content("    </div>");
 
     _add_content("  </div>");
-    
+
     _add_content("</body>");
 }

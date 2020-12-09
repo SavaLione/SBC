@@ -83,3 +83,8 @@ bool cookie::_get(cookie_pair &c)
     }
     return false;
 }
+
+bool cookie::is_uuid_set()
+{
+    return _uuid_set;
+}

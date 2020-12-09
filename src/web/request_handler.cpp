@@ -48,39 +48,22 @@ request_handler::~request_handler()
 void request_handler::_init()
 {
     _recognize_cookie();
+    _recognize_user();
 
     switch (_page)
     {
     case page_about:
-    {
-        about a;
-        _show_page(a);
+        _show_page_about();
         break;
-    }
     case page_login:
-    {
-        login l;
-        _show_page(l);
+        _show_page_login();
         break;
-    }
     case page_test_page:
-    {
-        page_test_page ptp;
-        _show_page(ptp);
+        _show_page_test_page();
         break;
-    }
-    case page_test_page:
-    {
-        test_page tp;
-        _show_page(tp);
-        break;
-    }
     default:
-    {
-        not_found nf;
-        _show_page(nf);
+        _show_page_not_found();
         break;
-    }
     }
 }
 
@@ -99,4 +82,80 @@ void request_handler::_recognize_cookie()
 void request_handler::_show_page(std::string const &p)
 {
     FCGX_PutS(p.c_str(), _request.out);
+}
+
+void request_handler::_show_page_about()
+{
+    about a(_user);
+    _show_page(a);
+}
+
+void request_handler::_show_page_login()
+{
+    login l(_user);
+    _show_page(l);
+}
+
+void request_handler::_show_page_not_found()
+{
+    not_found nf(_user);
+    _show_page(nf);
+}
+
+void request_handler::_show_page_test_page()
+{
+    _debug();
+}
+
+void request_handler::_recognize_user()
+{
+    /* cookie_repository */
+    cookie_repository &cookie_repository_instance = cookie_repository::Instance();
+
+    /* Проверяем, есть ли в запросе cookie uuid */
+    if (_cookie.is_uuid_set())
+    {
+        /* Выполняем проверку, есть ли uuid в базе */
+        if (cookie_repository_instance.have_user(_cookie.get_uuid().value))
+        {
+            /* Есть */
+            _user = cookie_repository_instance.get_user(_cookie.get_uuid().value);
+            _user.set_user(true);
+        }
+        else
+        {
+            /* Нет */
+            _user.set_user(false);
+        }
+    }
+    else
+    {
+        /* uuid не установлен */
+        /* нет uuid, значит и пользователя в запросе нет */
+        _user.set_user(false);
+    }
+}
+
+void request_handler::_debug()
+{
+    spdlog::("");
+    spdlog::("REQUEST_METHOD: {}", _request_method);
+    spdlog::("CONTENT_LENGTH: {}", _content_length);
+    spdlog::("REMOTE_ADDR: {}", _remote_addr);
+    spdlog::("REQUEST_URI: {}", _request_uri);
+    spdlog::("QUERY_STRING: {}", _query_string);
+    spdlog::("DOCUMENT_URI: {}", _document_uri);
+    spdlog::("DOCUMENT_ROOT: {}", _document_root);
+    spdlog::("HTTP_HOST: {}", _http_host);
+    spdlog::("COOKIE: {}", _http_cookie);
+    spdlog::("");
+    if(_user.get_is_user_set())
+    {
+        spdlog::("Пользователь установлен");
+    }
+    else
+    {
+        spdlog::("Пользователь НЕ установлен");
+    }
+    spdlog::("");
 }

@@ -43,7 +43,7 @@
 class not_found : public page_template
 {
 public:
-    not_found() : page_template("not_found", text_html, false){};
+    not_found(user const& u) : page_template("not_found", text_html, false, u){};
     ~not_found();
 private:
     virtual void _head();

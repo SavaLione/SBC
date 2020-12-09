@@ -40,11 +40,7 @@
 
 user::user()
 {
-    /* uuid */
-    uuid &uuid_instance = uuid::Instance();
-    _uuid = uuid_instance.get();
-
-    _set_last_time_online();
+    _init();
 }
 
 user::~user()
@@ -128,4 +124,23 @@ const void user::_set_last_time_online()
 {
     current_time curr_t;
     _last_time_online = curr_t.s_date();
+}
+
+user::_init()
+{
+    /* uuid */
+    uuid &uuid_instance = uuid::Instance();
+    _uuid = uuid_instance.get();
+
+    _set_last_time_online();
+}
+
+void user::set_user(bool is_user_set)
+{
+    _is_user_set = is_user_set;
+}
+
+bool user::get_is_user_set()
+{
+    return _is_user_set;
 }

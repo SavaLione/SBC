@@ -59,8 +59,13 @@ public:
     /* functions */
     const void add_user(user &u);
 
+    /* Данный uuid есть в базе? */
     bool have_user(std::string uuid);
+
+    /* Получаем пользователя по uuid */
     user get_user(std::string uuid);
+
+
 
     const void remove_user(std::string uuid);
 

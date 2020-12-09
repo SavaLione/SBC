@@ -47,6 +47,8 @@
 #include "web/cookie.h"
 #include "web/page.h"
 
+#include "web/cookie_repository.h"
+
 /*
     Обработка запроса FastCGI
 */
@@ -104,6 +106,9 @@ private:
     /* Обработанные Cookie */
     cookie _cookie = cookie(_http_cookie);
 
+    /* Пользователь */
+    user _user;
+
     /* functions */
 
     /* Инициализация. Получение всех переменных и прочее. */
@@ -112,8 +117,26 @@ private:
     /* Распознать установленны ли Cookie */
     void _recognize_cookie();
 
+    /* Распознать, есть ли пользователь по cookie uuid */
+    void _recognize_user();
+
     /* Показать страницу пользователю */
-    void _show_page(std::string const& p);
+    void _show_page(std::string const &p);
+
+    /* Показать страницу About */
+    void _show_page_about();
+
+    /* Показать страницу Login */
+    void _show_page_login();
+
+    /* Показать страницу Not found */
+    void _show_page_not_found();
+
+    /* Показать страницу Test */
+    void _show_page_test_page();
+
+    /* Вывести отладочную информацию в консоль */
+    void _debug();
 };
 
 #endif // WEB_REQUEST_HANDLER_H

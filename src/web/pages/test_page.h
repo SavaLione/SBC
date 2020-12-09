@@ -43,7 +43,7 @@
 class test_page : public page_template
 {
 public:
-    test_page() : page_template("Test_page", text_html, false){};
+    test_page(user const& u) : page_template("Test_page", text_html, true, u){};
     ~test_page();
 private:
     virtual void _head();

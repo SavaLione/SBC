@@ -51,8 +51,8 @@
 class page_template
 {
 public:
-    page_template(std::string name, mime m, bool required_authorization)
-        : _name(name), _mime(m), _required_authorization(required_authorization){};
+    page_template(std::string name, mime m, bool required_authorization, user const& u)
+        : _name(name), _mime(m), _required_authorization(required_authorization), _user(u){};
     ~page_template();
 
     operator std::string()
@@ -78,12 +78,15 @@ protected:
 
     std::string _content = "";
 
+    bool _get_required_authorization();
+
+    /* Пользователь */
+    user const& _user;
+
 private:
     std::string _name = "page_template";
 
     mime _mime = text_html;
-
-    user _user;
 
     /* Чтобы просматривать эту страницу, нужна авторизация? */
     bool _required_authorization = true;

@@ -55,6 +55,7 @@ class user
 {
 public:
     user();
+    user(bool is_user_set) : _is_user_set(is_user_set) { _init(); };
     ~user();
 
     /* set */
@@ -77,6 +78,20 @@ public:
 
     role get_role();
 
+    /*
+        Устанавливаем состояние пользователя
+        true - пользователь есть, данные заполнены
+        false - пользователя нет, данные не заполнены
+    */
+    void set_user(bool is_user_set);
+
+    /*
+        Получаем состояние пользователя
+        true - пользователь есть, данные заполнены
+        false - пользователя нет, данные не заполнены
+    */
+    bool get_is_user_set();
+
 private:
     /* variables */
     std::string _name = "";
@@ -89,8 +104,13 @@ private:
 
     role _role = DEFAULT;
 
+    bool _is_user_set = false;
+
     /* private functions */
     const void _set_last_time_online();
+
+    /* Инициализация user */
+    void _init();
 };
 
 #endif // CORE_USER_H

@@ -122,3 +122,8 @@ void page_template::_init()
 
     _add_content("</html>");
 }
+
+bool page_template::_get_required_authorization()
+{
+    return _required_authorization;
+}
