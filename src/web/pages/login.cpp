@@ -66,7 +66,7 @@ void login::_body()
 {
     _add_content("  <body class=\"text-center\">");
 
-    if (1)
+    if (_user.get_is_user_set())
     {
         /* Пользователь уже есть в системе */
         _add_content("<div class=\"form-signin\">");
