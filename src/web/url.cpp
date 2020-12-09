@@ -54,8 +54,8 @@ const std::string url_decode(std::string const &str)
             /* decode hexidecimal value */
             if (pos + 2 < str.size())
             {
-                decode_buf[0] = s[++pos];
-                decode_buf[1] = s[++pos];
+                decode_buf[0] = str[++pos];
+                decode_buf[1] = str[++pos];
                 decode_buf[2] = '\0';
                 result += static_cast<char>(strtol(decode_buf, nullptr, 16));
             }

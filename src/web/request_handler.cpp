@@ -49,6 +49,7 @@ void request_handler::_init()
 {
     _recognize_cookie();
     _recognize_user();
+    _recognize_post();
 
     switch (_page)
     {
@@ -76,6 +77,17 @@ void request_handler::_recognize_cookie()
     else
     {
         _is_cookie_set = true;
+    }
+}
+
+void request_handler::_recognize_post()
+{
+    /*
+        Тут можно получить несколько строк, но получаем толлько одну
+    */
+    while (FCGX_GetStr(string_post, sizeof(string_post), _request.in) > 0)
+    {
+
     }
 }
 
@@ -114,7 +126,7 @@ void request_handler::_recognize_user()
     cookie_repository &cookie_repository_instance = cookie_repository::Instance();
 
     /* Проверяем, есть ли в запросе cookie uuid */
-    if (_cookie.is_uuid_set())
+    if (_cookie.get_uuid().set)
     {
         /* Выполняем проверку, есть ли uuid в базе */
         if (cookie_repository_instance.have_user(_cookie.get_uuid().value))

@@ -87,6 +87,12 @@ private:
     const std::string _document_root = FCGX_GetParam("DOCUMENT_ROOT", _request.envp);
     const std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
 
+    /* Максимальная длина post запроса */
+    const int post_max_length = 2048;
+
+    /* Переменная с post запросом */
+    char string_post[post_max_length];
+
     /* Тип запроса */
     method _method = recognize_method(_request_method);
 
@@ -123,6 +129,9 @@ private:
 
     /* Распознать, есть ли пользователь по cookie uuid */
     void _recognize_user();
+
+    /* Распознать, есть ли post */
+    void _recognize_post();
 
     /* Показать страницу пользователю */
     void _show_page(std::string const &p);

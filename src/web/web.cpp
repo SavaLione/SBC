@@ -93,16 +93,6 @@ static void *_fcgi_page(void *a)
             spdlog::debug("POST: {}", str_post);
         }
 
-        const int I_MAX_LENGTH = 2048;
-        std::string s_post = "";
-        std::string s_post_all = "";
-        while (FCGX_GetStr(s_post.c_str(), I_MAX_LENGTH, request.in) > 0)
-        {
-            s_post_all += s_post;
-        }
-        spdlog::debug("POST ALL: {}", s_post_all);
-        
-
         /* Обрабатываем запрос */
         request_handler rh(request);
 
