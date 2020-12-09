@@ -41,7 +41,7 @@ test_page::~test_page()
 {
 }
 
-virtual void test_page::_head()
+void test_page::_head()
 {
     _add_content("<head>");
 
@@ -59,7 +59,7 @@ virtual void test_page::_head()
     _add_content("</head>");
 }
 
-virtual void test_page::_body()
+void test_page::_body()
 {
     _add_content("<body class=\"text-center\">");
 
