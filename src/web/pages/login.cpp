@@ -88,7 +88,7 @@ void login::_body()
         _add_content("      <input type=\"password\" name=\"password\" id=\"input_password\" class=\"form-control\" placeholder=\"Password\" required>");
         _add_content("      <div class=\"checkbox mb-3\">");
         _add_content("        <label>");
-        _add_content("          <input type=\"checkbox_remember_me\" name=\"checkbox\" value=\"remember-me\"> Remember me");
+        _add_content("          <input type=\"checkbox\" name=\"checkbox\" id=\"checkbox_remember_me\" value=\"remember-me\"> Remember me");
         _add_content("        </label>");
         _add_content("      </div>");
         _add_content("      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Sign in</button>");
