@@ -42,7 +42,7 @@
 
 enum method
 {
-    _unknown_method = -1,
+    _UNKNOWN = -1,
     _OPTIONS = 1,
     _GET = 2,
     _HEAD = 3,

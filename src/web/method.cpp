@@ -78,6 +78,8 @@ method recognize_method(std::string const &unprocessed_method)
     {
         return _CONNECT;
     }
+
+    return _UNKNOWN;
 }
 
 const std::string string_method(method const &m)
