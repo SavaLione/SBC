@@ -44,11 +44,13 @@
     Пара cookie
     key - ключ
     value - значение
+    set - установлена ли пара?
 */
 struct cookie_pair
 {
     const std::string key;
     std::string value;
+    bool set = false;
 };
 
 class cookie
@@ -59,9 +61,6 @@ public:
 
     /* Получаем пару cookie uuid */
     cookie_pair get_uuid();
-
-    /* uuid установлен? */
-    bool is_uuid_set();
 
     /*
         Возвращаем строку вида:
@@ -81,7 +80,7 @@ private:
     std::string const &_unprocessed_cookies;
 
     /* Разделитель cookie данных */
-    char separator = ';';
+    char _separator = ';';
 
     /* Инициализация объекта. Получение cookie из строки. */
     void _init();
@@ -89,15 +88,12 @@ private:
     /* Уникальный идентификатор пользователя */
     cookie_pair _uuid = {"uuid", ""};
 
-    /* uuid есть в cookie? Идентификатор задан? */
-    bool _uuid_set = false;
-
     /* 
         Получение значения по ключу
         true - значение найдено и присвоено паре
         false - значение не найдено и не присвоено паре
     */
-    bool _get(cookie_pair &c);
+    void _get(cookie_pair &c);
 };
 
 #endif // WEB_COOKIE_H

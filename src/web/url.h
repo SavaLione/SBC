@@ -31,57 +31,18 @@
 
 /**
  * @file
- * @brief Cookie
+ * @brief Обработка url
  * @author SavaLione
- * @date 24 Nov 2020
+ * @date 09 Dec 2020
  */
+#ifndef WEB_URL_H
+#define WEB_URL_H
 
-#include "web/cookie.h"
+#include <string>
+/* Расшифровка url записи */
+const std::string url_decode(std::string const& str);
 
-cookie::~cookie()
-{
-}
+/* Кодирование записи в url вид */
+const std::string url_encode(std::string const& str);
 
-cookie_pair cookie::get_uuid()
-{
-    return _uuid;
-}
-
-void cookie::_init()
-{
-    _get(_uuid);
-}
-
-void cookie::_get(cookie_pair &c)
-{
-    /*
-        Тут возможно нетепичное поведение, когда pos будет равна FFFFFFFF,
-        хотя подстроки нет.
-        Можно использовать != std::string::npos , но тогда мы будем проверять два
-        раза на нахождение. Возможно есть алгоритм лучше. Надо будет исправить при
-        следующей работе с cookie.
-
-        upd:
-        После проверки, при отсутствии значения, pos был равен -1
-    */
-    int pos = _unprocessed_cookies.find(c.key);
-    if (pos >= 0)
-    {
-        for (int i = pos + c.key.size() + 1; i < _unprocessed_cookies.size(); i++)
-        {
-            if (_unprocessed_cookies[i] != _separator)
-            {
-                c.value += _unprocessed_cookies[i];
-            }
-            else
-            {
-                break;
-            }
-        }
-        c.set = true;
-    }
-    else
-    {
-        c.set = false;
-    }
-}
+#endif // WEB_URL_H

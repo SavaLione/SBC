@@ -147,6 +147,10 @@ set(SBC_WEB_SRC
     src/web/request_handler.cpp
     src/web/cookie_repository.h
     src/web/cookie_repository.cpp
+    src/web/post.h
+    src/web/post.cpp
+    src/web/url.h
+    src/web/url.cpp
     ${SBC_WEB_PAGES_SRC}
 )
 

@@ -31,57 +31,76 @@
 
 /**
  * @file
- * @brief Cookie
+ * @brief Обработка post запроса
  * @author SavaLione
- * @date 24 Nov 2020
+ * @date 09 Dec 2020
  */
+#ifndef WEB_POST_H
+#define WEB_POST_H
 
-#include "web/cookie.h"
+#include <string>
 
-cookie::~cookie()
+#include "web/url.h"
+
+/*
+    Пара post
+    key - ключ
+    value - значение
+    set - установлена ли пара?
+*/
+struct post_pair
 {
-}
+    const std::string key;
+    std::string value;
+    bool set = false;
+};
 
-cookie_pair cookie::get_uuid()
+class post
 {
-    return _uuid;
-}
+public:
+    post(std::string const &unprocessed_post) : _unprocessed_post(unprocessed_post) { _init(); };
+    ~post();
 
-void cookie::_init()
-{
-    _get(_uuid);
-}
+    /* Получаем пару post email */
+    const post_pair get_email() const
+    {
+        return _email;
+    }
 
-void cookie::_get(cookie_pair &c)
-{
-    /*
-        Тут возможно нетепичное поведение, когда pos будет равна FFFFFFFF,
-        хотя подстроки нет.
-        Можно использовать != std::string::npos , но тогда мы будем проверять два
-        раза на нахождение. Возможно есть алгоритм лучше. Надо будет исправить при
-        следующей работе с cookie.
+    /* Получаем пару post password */
+    const post_pair get_password() const
+    {
+        return _password;
+    }
 
-        upd:
-        После проверки, при отсутствии значения, pos был равен -1
+private:
+    /* 
+        Необработанный post запрос
+        Строка вида:
+        email=sava%40savalione.com&password=asd&checkbox=remember-me
     */
-    int pos = _unprocessed_cookies.find(c.key);
-    if (pos >= 0)
-    {
-        for (int i = pos + c.key.size() + 1; i < _unprocessed_cookies.size(); i++)
-        {
-            if (_unprocessed_cookies[i] != _separator)
-            {
-                c.value += _unprocessed_cookies[i];
-            }
-            else
-            {
-                break;
-            }
-        }
-        c.set = true;
-    }
-    else
-    {
-        c.set = false;
-    }
-}
+    std::string const &_unprocessed_post;
+
+    /*
+        Обработанный post запрос
+        Строка вида:
+        email=sava@savalione.com&password=asd&checkbox=remember-me
+    */
+    std::string const _decoded_uncompressed_post = url_decode(_unprocessed_post);
+
+    /* Разделитель post данных */
+    char _separator = '&';
+
+    /* Инициализация объекта. Получение post из строки. */
+    void _init();
+
+    /* Адрес электронной почты пользователя */
+    post_pair _email = {"email", ""};
+
+    /* Пароль пользователя */
+    post_pair _password = {"password", ""};
+
+    void _get(post_pair &pp);
+};
+
+#endif // WEB_POST_H

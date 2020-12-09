@@ -46,6 +46,7 @@
 #include "web/method.h"
 #include "web/cookie.h"
 #include "web/page.h"
+#include "web/post.h"
 
 #include "web/cookie_repository.h"
 
@@ -105,6 +106,9 @@ private:
 
     /* Обработанные Cookie */
     cookie _cookie = cookie(_http_cookie);
+
+    /* Обработанный post запрос */
+    // post _post = post(_)
 
     /* Пользователь */
     user _user;

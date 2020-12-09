@@ -31,57 +31,40 @@
 
 /**
  * @file
- * @brief Cookie
+ * @brief Обработка post запроса
  * @author SavaLione
- * @date 24 Nov 2020
+ * @date 09 Dec 2020
  */
+#include "web/post.h"
 
-#include "web/cookie.h"
-
-cookie::~cookie()
+post::~post()
 {
 }
 
-cookie_pair cookie::get_uuid()
+void post::_init()
 {
-    return _uuid;
 }
 
-void cookie::_init()
+void post::_get(post_pair &pp)
 {
-    _get(_uuid);
-}
-
-void cookie::_get(cookie_pair &c)
-{
-    /*
-        Тут возможно нетепичное поведение, когда pos будет равна FFFFFFFF,
-        хотя подстроки нет.
-        Можно использовать != std::string::npos , но тогда мы будем проверять два
-        раза на нахождение. Возможно есть алгоритм лучше. Надо будет исправить при
-        следующей работе с cookie.
-
-        upd:
-        После проверки, при отсутствии значения, pos был равен -1
-    */
-    int pos = _unprocessed_cookies.find(c.key);
+    int pos = _decoded_uncompressed_post.find(pp.key);
     if (pos >= 0)
     {
-        for (int i = pos + c.key.size() + 1; i < _unprocessed_cookies.size(); i++)
+        for (int i = pos + pp.key.size() + 1; i < _decoded_uncompressed_post.size(); i++)
         {
-            if (_unprocessed_cookies[i] != _separator)
+            if (_decoded_uncompressed_post[i] != _separator)
             {
-                c.value += _unprocessed_cookies[i];
+                pp.value += _decoded_uncompressed_post[i];
             }
             else
             {
                 break;
             }
         }
-        c.set = true;
+        pp.set = true;
     }
     else
     {
-        c.set = false;
+        pp.set = false;
     }
 }
