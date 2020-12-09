@@ -91,7 +91,7 @@ private:
     static const int _post_max_length = 2048;
 
     /* Переменная с post запросом */
-    char string_post[_post_max_length];
+    char _string_post[_post_max_length];
 
     /* Тип запроса */
     method _method = recognize_method(_request_method);

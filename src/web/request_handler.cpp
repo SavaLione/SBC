@@ -82,12 +82,13 @@ void request_handler::_recognize_cookie()
 
 void request_handler::_recognize_post()
 {
-    /*
-        Тут можно получить несколько строк, но получаем толлько одну
-    */
-    while (FCGX_GetStr(string_post, sizeof(string_post), _request.in) > 0)
+    /* Работаем только с post запросами */
+    if (_method == _POST)
     {
-
+        /* Тут можно получить несколько строк, но получаем толлько одну */
+        while (FCGX_GetStr(_string_post, sizeof(_string_post), _request.in) > 0)
+        {
+        }
     }
 }
 
@@ -117,7 +118,6 @@ void request_handler::_show_page_not_found()
 
 void request_handler::_show_page_test_page()
 {
-    
 }
 
 void request_handler::_recognize_user()
@@ -162,7 +162,7 @@ void request_handler::_debug()
     spdlog::debug("HTTP_HOST: {}", _http_host);
     spdlog::debug("COOKIE: {}", _http_cookie);
     spdlog::debug("");
-    if(_user.get_is_user_set())
+    if (_user.get_is_user_set())
     {
         spdlog::debug("Пользователь установлен");
     }
@@ -171,4 +171,6 @@ void request_handler::_debug()
         spdlog::debug("Пользователь НЕ установлен");
     }
     spdlog::debug("");
+
+    spdlog::debug("post: {}", _string_post);
 }
