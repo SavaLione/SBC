@@ -58,6 +58,7 @@ struct post_pair
 class post
 {
 public:
+    post();
     post(std::string const &unprocessed_post) : _unprocessed_post(unprocessed_post) { _init(); };
     ~post();
 
@@ -73,13 +74,20 @@ public:
         return _password;
     }
 
+    /* 
+        Устанавливаем необработанный post запрос
+        Необходимо при инициализации класса вида:
+        post p;
+    */
+    void set(std::string const& unprocessed_post);
+
 private:
     /* 
         Необработанный post запрос
         Строка вида:
         email=sava%40savalione.com&password=asd&checkbox=remember-me
     */
-    std::string const &_unprocessed_post;
+    std::string _unprocessed_post;
 
     /*
         Обработанный post запрос

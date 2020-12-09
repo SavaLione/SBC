@@ -43,9 +43,18 @@ post::~post()
 
 #include "io/logger.h"
 
+post::post()
+{
+}
+
+void post::set(std::string const &unprocessed_post)
+{
+    _unprocessed_post = unprocessed_post;
+    spdlog::debug("post:: {}", _unprocessed_post);
+}
+
 void post::_init()
 {
-    spdlog::debug("post:: {}", _unprocessed_post);
 }
 
 void post::_get(post_pair &pp)
