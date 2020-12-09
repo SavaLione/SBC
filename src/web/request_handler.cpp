@@ -85,6 +85,7 @@ void request_handler::_recognize_post()
     /* Работаем только с post запросами */
     if (_method == _POST)
     {
+        exit(0);
         /* Тут можно получить несколько строк, но получаем толлько одну */
         while (FCGX_GetStr(_string_post, sizeof(_string_post), _request.in) > 0)
         {
