@@ -88,10 +88,10 @@ private:
     const std::string _http_host = FCGX_GetParam("HTTP_HOST", _request.envp);
 
     /* Максимальная длина post запроса */
-    const int post_max_length = 2048;
+    static const int _post_max_length = 2048;
 
     /* Переменная с post запросом */
-    char string_post[post_max_length];
+    char string_post[_post_max_length];
 
     /* Тип запроса */
     method _method = recognize_method(_request_method);
