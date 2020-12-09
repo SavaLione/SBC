@@ -113,7 +113,11 @@ private:
     /* Обработанные Cookie */
     cookie _cookie = cookie(_http_cookie);
 
-    /* Обработанный post запрос */
+    /* 
+        Post запрос
+        Необработанный
+        будет обработан после _post.set(_string_post);
+    */
     post _post;
 
     /* Пользователь */

@@ -177,14 +177,8 @@ void request_handler::_debug()
     }
     spdlog::debug("");
 
-    std::string s_post = "";
-    for (int i = 0; i < sizeof(_string_post); i++)
-    {
-        s_post += _string_post[i];
-    }
-    
     spdlog::debug("post: {}", _string_post);
-    spdlog::debug("post: {}", s_post);
-    std::cout << "cout post: " << _string_post << std::endl;
-    std::cout << "cout post: " << s_post << std::endl;
+
+    
+
 }
