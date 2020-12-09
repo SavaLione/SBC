@@ -79,7 +79,7 @@ void login::_body()
     else
     {
         /* Пользователя нет в системе */
-        _add_content("    <form method=\"post\" class=\"form-signin\">");
+        _add_content("    <form method=\"post\" action=\"/login\" class=\"form-signin\">");
         _add_content("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">");
         _add_content("      <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>");
         _add_content("      <label for=\"inputEmail\" class=\"sr-only\">Email address</label>");
