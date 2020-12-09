@@ -126,7 +126,7 @@ const void user::_set_last_time_online()
     _last_time_online = curr_t.s_date();
 }
 
-user::_init()
+void user::_init()
 {
     /* uuid */
     uuid &uuid_instance = uuid::Instance();
