@@ -90,7 +90,10 @@ public:
         true - пользователь есть, данные заполнены
         false - пользователя нет, данные не заполнены
     */
-    bool get_is_user_set();
+    const bool get_is_user_set() const
+    {
+        return _is_user_set;
+    }
 
 private:
     /* variables */

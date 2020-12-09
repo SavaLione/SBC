@@ -139,8 +139,3 @@ void user::set_user(bool is_user_set)
 {
     _is_user_set = is_user_set;
 }
-
-bool user::get_is_user_set()
-{
-    return _is_user_set;
-}
