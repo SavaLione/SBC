@@ -82,6 +82,7 @@ void request_handler::_recognize_cookie()
 
 void request_handler::_recognize_post()
 {
+    spdlog::debug("_recognize_post() _method: {}", string_method(_method));
     /* Работаем только с post запросами */
     if (_method == _POST)
     {
