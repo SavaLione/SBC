@@ -162,6 +162,8 @@ void request_handler::_debug()
     spdlog::debug("HTTP_HOST: {}", _http_host);
     spdlog::debug("COOKIE: {}", _http_cookie);
     spdlog::debug("");
+    spdlog::debug("_method: {}", string_method(_method));
+    spdlog::debug("");
     if (_user.get_is_user_set())
     {
         spdlog::debug("Пользователь установлен");
