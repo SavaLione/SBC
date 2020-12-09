@@ -81,6 +81,7 @@ void request_handler::_recognize_cookie()
 
 void request_handler::_show_page(std::string const &p)
 {
+    _debug();
     FCGX_PutS(p.c_str(), _request.out);
 }
 
@@ -104,7 +105,7 @@ void request_handler::_show_page_not_found()
 
 void request_handler::_show_page_test_page()
 {
-    _debug();
+    
 }
 
 void request_handler::_recognize_user()
