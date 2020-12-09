@@ -53,6 +53,10 @@ enum method
     _CONNECT = 8
 };
 
+/* Распознать тип запроса по строке */
 method recognize_method(std::string const &unprocessed_method);
+
+/* Получить строковое представление метода */
+const std::string string_method(method const& m);
 
 #endif // WEB_METHOD_H

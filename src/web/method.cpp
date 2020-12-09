@@ -79,3 +79,37 @@ method recognize_method(std::string const &unprocessed_method)
         return _CONNECT;
     }
 }
+
+const std::string string_method(method const &m)
+{
+    switch (m)
+    {
+    case _OPTIONS:
+        return "OPTIONS";
+        break;
+    case _GET:
+        return "GET";
+        break;
+    case _HEAD:
+        return "HEAD";
+        break;
+    case _POST:
+        return "POST";
+        break;
+    case _PUT:
+        return "PUT";
+        break;
+    case _DELETE:
+        return "DELETE";
+        break;
+    case _TRACE:
+        return "TRACE";
+        break;
+    case _CONNECT:
+        return "CONNECT";
+        break;
+    default:
+        break;
+    }
+    return "UNKNOWN";
+}
