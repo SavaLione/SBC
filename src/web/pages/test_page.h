@@ -31,43 +31,23 @@
 
 /**
  * @file
- * @brief Страница не найдена
+ * @brief Тестовая страница
  * @author SavaLione
  * @date 09 Dec 2020
  */
-#include "web/pages/not_found.h"
+#ifndef WEB_PAGES_TEST_PAGE_H
+#define WEB_PAGES_TEST_PAGE_H
 
-not_found::~not_found()
+#include "web/pages/page_template.h"
+
+class test_page : public page_template
 {
-}
+public:
+    test_page() : page_template("Test_page", text_html, false){};
+    ~test_page();
+private:
+    virtual void _head();
+    virtual void _body();
+};
 
-void not_found::_head()
-{
-    _add_content("  <head>");
-
-    _add_content("    <meta charset=\"utf-8\">");
-    _add_content("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
-    _add_content("    <meta name=\"description\" content=\"SBC\">");
-    _add_content("    <meta name=\"author\" content=\"SBC team\">");
-    _add_content("    <link rel=\"icon\" href=\"/assets/favicon.ico\">");
-
-    _add_content("    <title>Страница не найдена</title>");
-
-    _add_content("    <!-- Bootstrap core CSS -->");
-    _add_content("    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">");
-
-    _add_content("    <!--  Page not found css -->");
-    _add_content("    <link href=\"/assets/css/not_found.css\" rel=\"stylesheet\">");
-
-    _add_content("  </head>");
-}
-
-void not_found::_body()
-{
-    _add_content("  <div class=\"d-flex justify-content-center align-items-center\" id=\"main\">");
-    _add_content("      <h1 class=\"mr-3 pr-3 align-top border-right inline-block align-content-center\"><a href=\"/index\">404</a></h1>");
-    _add_content("      <div class=\"inline-block align-middle\">");
-    _add_content("      	<h2 class=\"font-weight-normal lead\" id=\"desc\">Запрошенная вами страница не найдена.</h2>");
-    _add_content("      </div>");
-    _add_content("  </div>");
-}
+#endif // WEB_PAGES_TEST_PAGE_H

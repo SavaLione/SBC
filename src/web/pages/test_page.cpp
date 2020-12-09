@@ -31,43 +31,57 @@
 
 /**
  * @file
- * @brief Страница не найдена
+ * @brief Тестовая страница
  * @author SavaLione
  * @date 09 Dec 2020
  */
-#include "web/pages/not_found.h"
+#include "web/pages/test_page.h"
 
-not_found::~not_found()
+test_page::~test_page()
 {
 }
 
-void not_found::_head()
+virtual void test_page::_head()
 {
-    _add_content("  <head>");
+    _add_content("<head>");
 
-    _add_content("    <meta charset=\"utf-8\">");
-    _add_content("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
-    _add_content("    <meta name=\"description\" content=\"SBC\">");
-    _add_content("    <meta name=\"author\" content=\"SBC team\">");
-    _add_content("    <link rel=\"icon\" href=\"/assets/favicon.ico\">");
+    _add_content("  <meta charset=\"utf-8\">");
+    _add_content("  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
+    _add_content("  <meta name=\"description\" content=\"SBC\">");
+    _add_content("  <meta name=\"author\" content=\"SBC team\">");
+    _add_content("  <link rel=\"icon\" href=\"/assets/favicon.ico\">");
 
-    _add_content("    <title>Страница не найдена</title>");
+    _add_content("  <title>Test</title>");
 
-    _add_content("    <!-- Bootstrap core CSS -->");
-    _add_content("    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">");
+    _add_content("  <!-- Bootstrap core CSS -->");
+    _add_content("  <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">");
 
-    _add_content("    <!--  Page not found css -->");
-    _add_content("    <link href=\"/assets/css/not_found.css\" rel=\"stylesheet\">");
-
-    _add_content("  </head>");
+    _add_content("</head>");
 }
 
-void not_found::_body()
+virtual void test_page::_body()
 {
-    _add_content("  <div class=\"d-flex justify-content-center align-items-center\" id=\"main\">");
-    _add_content("      <h1 class=\"mr-3 pr-3 align-top border-right inline-block align-content-center\"><a href=\"/index\">404</a></h1>");
-    _add_content("      <div class=\"inline-block align-middle\">");
-    _add_content("      	<h2 class=\"font-weight-normal lead\" id=\"desc\">Запрошенная вами страница не найдена.</h2>");
+    _add_content("<body class=\"text-center\">");
+
+    _add_content("  <div class=\"container\">");
+    _add_content("    <div class=\"row\">");
+
+    _add_content("      <div class=\"col\">");
+    _add_content("        <h3>Переменные, проверки:</h3>");
+    _add_content("        <p>a: a</p>");
+    _add_content("        <p>b: b</p>");
     _add_content("      </div>");
+    _add_content("      <div class=\"col\">");
+    _add_content("        <h3>Данные</h3>");
+    _add_content("        <p>Данные</p>");
+    _add_content("      </div>");
+    _add_content("      <div class=\"col\">");
+    _add_content("        <h3>Пользователь:</h3>");
+    _add_content("        <p>some: some</p>");
+    _add_content("      </div>");
+    _add_content("    </div>");
+
     _add_content("  </div>");
+    
+    _add_content("</body>");
 }

@@ -56,6 +56,9 @@ std::string get_page_name(page p)
     case page_registration:
         return "/registration";
         break;
+    case page_test_page:
+        return "/test";
+        break;
     default:
         return "/not_found";
         break;
@@ -88,6 +91,11 @@ page recognize_page(std::string const &unprocessed_page)
     if (unprocessed_page.find(get_page_name(page_registration)) != std::string::npos)
     {
         return page_registration;
+    }
+
+    if (unprocessed_page.find(get_page_name(page_test_page)) != std::string::npos)
+    {
+        return page_test_page;
     }
 
     return page_not_found;

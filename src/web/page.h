@@ -44,6 +44,7 @@
 #include "web/pages/nologin.h"
 #include "web/pages/registration.h"
 #include "web/pages/not_found.h"
+#include "web/pages/test_page.h"
 
 enum page
 {
@@ -52,6 +53,7 @@ enum page
     page_login,
     page_nologin,
     page_registration,
+    page_test_page,
     page_not_found
 };
 

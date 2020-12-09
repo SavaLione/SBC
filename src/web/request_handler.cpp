@@ -63,6 +63,18 @@ void request_handler::_init()
         _show_page(l);
         break;
     }
+    case page_test_page:
+    {
+        page_test_page ptp;
+        _show_page(ptp);
+        break;
+    }
+    case page_test_page:
+    {
+        test_page tp;
+        _show_page(tp);
+        break;
+    }
     default:
     {
         not_found nf;

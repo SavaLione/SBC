@@ -126,6 +126,8 @@ set(SBC_WEB_PAGES_SRC
     src/web/pages/registration.h
     src/web/pages/not_found.h
     src/web/pages/not_found.cpp
+    src/web/pages/test_page.h
+    src/web/pages/test_page.cpp
 )
 
 set(SBC_WEB_SRC
