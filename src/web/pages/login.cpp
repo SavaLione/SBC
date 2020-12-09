@@ -66,21 +66,33 @@ void login::_body()
 {
     _add_content("  <body class=\"text-center\">");
 
-    _add_content("    <form method=\"post\" class=\"form-signin\">");
-    _add_content("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">");
-    _add_content("      <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>");
-    _add_content("      <label for=\"inputEmail\" class=\"sr-only\">Email address</label>");
-    _add_content("      <input type=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required autofocus>");
-    _add_content("      <label for=\"inputPassword\" class=\"sr-only\">Password</label>");
-    _add_content("      <input type=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" required>");
-    _add_content("      <div class=\"checkbox mb-3\">");
-    _add_content("        <label>");
-    _add_content("          <input type=\"checkbox\" value=\"remember-me\"> Remember me");
-    _add_content("        </label>");
-    _add_content("      </div>");
-    _add_content("      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Sign in</button>");
-    _add_content("      <p class=\"mt-5 mb-3 text-muted\">&copy; 2020 SBC team</p>");
-    _add_content("    </form>");
+    if (1)
+    {
+        /* Пользователь уже есть в системе */
+        _add_content("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">");
+        _add_content("      <h1 class=\"h3 mb-3 font-weight-normal\">Вы уже зарегистрированы в системе</h1>");
+        _add_content("      <a href=\"/index\" class=\"btn btn-lg btn-primary btn-block\" role=\"button\">Перейти на главную страницу</a>");
+        _add_content("      <p class=\"mt-5 mb-3 text-muted\">&copy; 2020 SBC team</p>");
+    }
+    else
+    {
+        /* Пользователя нет в системе */
+        _add_content("    <form method=\"post\" class=\"form-signin\">");
+        _add_content("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">");
+        _add_content("      <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>");
+        _add_content("      <label for=\"inputEmail\" class=\"sr-only\">Email address</label>");
+        _add_content("      <input type=\"email\" id=\"inputEmail\" class=\"form-control\" placeholder=\"Email address\" required autofocus>");
+        _add_content("      <label for=\"inputPassword\" class=\"sr-only\">Password</label>");
+        _add_content("      <input type=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" required>");
+        _add_content("      <div class=\"checkbox mb-3\">");
+        _add_content("        <label>");
+        _add_content("          <input type=\"checkbox\" value=\"remember-me\"> Remember me");
+        _add_content("        </label>");
+        _add_content("      </div>");
+        _add_content("      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Sign in</button>");
+        _add_content("      <p class=\"mt-5 mb-3 text-muted\">&copy; 2020 SBC team</p>");
+        _add_content("    </form>");
+    }
 
     _add_content("  </body>");
 }
