@@ -149,6 +149,8 @@ void request_handler::_recognize_user()
     }
 }
 
+#include <iostream>
+
 void request_handler::_debug()
 {
     spdlog::debug("");
@@ -182,4 +184,6 @@ void request_handler::_debug()
     
     spdlog::debug("post: {}", _string_post);
     spdlog::debug("post: {}", s_post);
+    std::cout << "cout post: " << _string_post << std::endl;
+    std::cout << "cout post: " << s_post << std::endl;
 }
