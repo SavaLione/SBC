@@ -114,7 +114,7 @@ private:
     cookie _cookie = cookie(_http_cookie);
 
     /* Обработанный post запрос */
-    post _post = post(_string_post);
+    post _post;
 
     /* Пользователь */
     user _user;
