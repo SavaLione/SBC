@@ -109,6 +109,7 @@ const std::string string_method(method const &m)
         return "CONNECT";
         break;
     default:
+        return "UNKNOWN";
         break;
     }
     return "UNKNOWN";
