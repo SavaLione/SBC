@@ -65,7 +65,7 @@ void not_found::_head()
 void not_found::_body()
 {
     _add_content("  <div class=\"d-flex justify-content-center align-items-center\" id=\"main\">");
-    _add_content("      <h1 class=\"mr-3 pr-3 align-top border-right inline-block align-content-center\"><a href=\"/index\">404</a></h1>");
+    _add_content("      <h1 class=\"mr-3 pr-3 align-top border-right inline-block align-content-center\"><a href=\"index\">404</a></h1>");
     _add_content("      <div class=\"inline-block align-middle\">");
     _add_content("      	<h2 class=\"font-weight-normal lead\" id=\"desc\">Запрошенная вами страница не найдена.</h2>");
     _add_content("      </div>");
