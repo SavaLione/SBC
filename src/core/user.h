@@ -42,8 +42,12 @@
 
 #include "time/current_time.h"
 
+/*
+    Роль пользователя в системе 
+*/
 enum role
 {
+    ROLE_NOT_SET = -1,
     DEFAULT = 0,
     GUEST = 1,
     MANAGER = 2,
@@ -51,69 +55,28 @@ enum role
     BANNED = 100
 };
 
-struct string_pair
+/*
+    Статус пользователя(класса)
+    USER_NOT_SET - пользователь не установлен
+    USER_NOT_FOUND - пользователь не найден
+    USER_SET - пользователь установлен
+*/
+enum user_status
 {
-    std::string str = "";
-    bool set = false;
+    USER_NOT_SET = -1,
+    USER_NOT_FOUND = 0,
+    USER_SET = 1,
 };
-
-struct role_pair
-{
-    role r;
-    bool set = false;
-};
-
-
 
 class user
 {
 public:
-    user();
-    user(bool is_user_set) : _is_user_set(is_user_set) { _init(); };
+    user(std::string const &username) = _username(username) { _init(); };
     ~user();
 
-    const void set_id(std::string const& id);
-    const void set_username(std::string const& username);
-    const void set_password(std::string const& password);
-    const void set_name(std::string const& name);
-    const void set_email(std::string const& email);
-    const void set_phone(std::string const& phone);
-    const void set_role(role r);
-    const void set_registration_date(std::string const& registration_date);
-    const void set_last_time_online(std::string const& last_time_online);
-    const void set_description(std::string const& description);
-    const void set_department(std::string const& department);
-    const void set_branch(std::string const& branch);
-    const void set_is_user_active(std::string const& description);
-    const void set_registration_confirmation_code(std::string const& registration_confirmation_code);
-    const void set_city(std::string const& city);
-
-    /* get */
-    std::string get_name();
-    std::string get_username();
-    std::string get_email();
-    std::string get_phone();
-    std::string get_password();
-    std::string get_last_time_online();
-    std::string get_uuid();
-
-    role get_role();
-
-    /*
-        Устанавливаем состояние пользователя
-        true - пользователь есть, данные заполнены
-        false - пользователя нет, данные не заполнены
-    */
-    void set_user(bool is_user_set);
-
-    /*
-        Получаем состояние пользователя
-        true - пользователь есть, данные заполнены
-        false - пользователя нет, данные не заполнены
-    */
-    const bool get_is_user_set() const
+    const user_status get_user_status() const
     {
-        return _is_user_set;
+        return _user_status;
     }
 
 private:
@@ -121,52 +84,52 @@ private:
     int _id = -1;
 
     /* Логин */
-    std::string _username = "";
+    std::string const& _username;
 
     /* Пароль */
-    std::string _password = "";
+    std::string _password;
 
     /* ФИО */
-    std::string _name = "";
+    std::string _name;
 
     /* Адрес электронной почты */
-    std::string _email = "";
+    std::string _email;
 
     /* Номер телефона */
-    std::string _phone = "";
+    std::string _phone;
 
     /* Роль в системе */
-    role _role = DEFAULT;
+    role _role = ROLE_NOT_SET;
 
     /* Дата регистрации */
-    std::string _registration_date = "";
+    std::string _registration_date;
 
     /* Последний раз в сети */
-    std::string _last_time_online = "";
+    std::string _last_time_online;
 
     /* Описание пользователя */
-    std::string _description = "";
+    std::string _description;
 
     /* Отдел */
-    std::string _department = "";
+    std::string _department;
 
     /* Филиал */
-    std::string _branch = "";
+    std::string _branch;
 
     /* Активен пользователь? Есть доступ к системе? */
     bool _is_user_active = false;
 
     /* Код подтверждения регистрации */
-    std::string _registration_confirmation_code = "";
+    std::string _registration_confirmation_code;
 
     /* Город */
-    std::string _city = "";
+    std::string _city;
 
     /* Уникальный идентификатор */
-    std::string _uuid = "";
+    std::string _uuid;
 
-    /* Пользователь установлен? */
-    bool _is_user_set = false;
+    /* Статус пользователя(класса) */
+    user_status _user_status = USER_NOT_SET;
 
     /* Инициализация user */
     void _init();
