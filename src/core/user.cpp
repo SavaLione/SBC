@@ -44,5 +44,4 @@ user::~user()
 
 void user::_init()
 {
-
 }
