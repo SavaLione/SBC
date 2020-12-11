@@ -51,78 +51,125 @@ enum role
     BANNED = 100
 };
 
+struct string_pair
+{
+    std::string str = "";
+    bool set = false;
+};
+
+struct role_pair
+{
+    role r;
+    bool set = false;
+};
 
 
-// class user
-// {
-// public:
-//     user();
-//     user(bool is_user_set) : _is_user_set(is_user_set) { _init(); };
-//     ~user();
 
-//     const void set_id(std::string const& id);
-//     const void set_username(std::string const& username);
-//     const void set_password(std::string const& password);
-//     const void set_name(std::string const& name);
-//     const void set_email(std::string const& email);
-//     const void set_phone(std::string const& phone);
-//     const void set_role(role r);
-//     const void set_registration_date(std::string const& registration_date);
-//     const void set_last_time_online(std::string const& last_time_online);
-//     const void set_description(std::string const& description);
-//     const void set_department(std::string const& department);
-//     const void set_branch(std::string const& branch);
-//     const void set_is_user_active(std::string const& description);
-//     const void set_registration_confirmation_code(std::string const& registration_confirmation_code);
-//     const void set_city(std::string const& city);
+class user
+{
+public:
+    user();
+    user(bool is_user_set) : _is_user_set(is_user_set) { _init(); };
+    ~user();
 
-//     /* get */
-//     std::string get_name();
-//     std::string get_username();
-//     std::string get_email();
-//     std::string get_phone();
-//     std::string get_password();
-//     std::string get_last_time_online();
-//     std::string get_uuid();
+    const void set_id(std::string const& id);
+    const void set_username(std::string const& username);
+    const void set_password(std::string const& password);
+    const void set_name(std::string const& name);
+    const void set_email(std::string const& email);
+    const void set_phone(std::string const& phone);
+    const void set_role(role r);
+    const void set_registration_date(std::string const& registration_date);
+    const void set_last_time_online(std::string const& last_time_online);
+    const void set_description(std::string const& description);
+    const void set_department(std::string const& department);
+    const void set_branch(std::string const& branch);
+    const void set_is_user_active(std::string const& description);
+    const void set_registration_confirmation_code(std::string const& registration_confirmation_code);
+    const void set_city(std::string const& city);
 
-//     role get_role();
+    /* get */
+    std::string get_name();
+    std::string get_username();
+    std::string get_email();
+    std::string get_phone();
+    std::string get_password();
+    std::string get_last_time_online();
+    std::string get_uuid();
 
-//     /*
-//         Устанавливаем состояние пользователя
-//         true - пользователь есть, данные заполнены
-//         false - пользователя нет, данные не заполнены
-//     */
-//     void set_user(bool is_user_set);
+    role get_role();
 
-//     /*
-//         Получаем состояние пользователя
-//         true - пользователь есть, данные заполнены
-//         false - пользователя нет, данные не заполнены
-//     */
-//     const bool get_is_user_set() const
-//     {
-//         return _is_user_set;
-//     }
+    /*
+        Устанавливаем состояние пользователя
+        true - пользователь есть, данные заполнены
+        false - пользователя нет, данные не заполнены
+    */
+    void set_user(bool is_user_set);
 
-// private:
-//     /* variables */
-//     std::string _name = "";
-//     std::string _username = "";
-//     std::string _email = "";
-//     std::string _phone = "";
-//     std::string _password = "";
-//     std::string _last_time_online = "";
-//     std::string _uuid = "";
+    /*
+        Получаем состояние пользователя
+        true - пользователь есть, данные заполнены
+        false - пользователя нет, данные не заполнены
+    */
+    const bool get_is_user_set() const
+    {
+        return _is_user_set;
+    }
 
-//     role _role = DEFAULT;
+private:
+    /* id пользователя */
+    int _id = -1;
 
-//     bool _is_user_set = false;
+    /* Логин */
+    std::string _username = "";
 
-//     /* private functions */
-//     const void _set_last_time_online();
+    /* Пароль */
+    std::string _password = "";
 
-//     /* Инициализация user */
-//     void _init();
-// };
+    /* ФИО */
+    std::string _name = "";
+
+    /* Адрес электронной почты */
+    std::string _email = "";
+
+    /* Номер телефона */
+    std::string _phone = "";
+
+    /* Роль в системе */
+    role _role = DEFAULT;
+
+    /* Дата регистрации */
+    std::string _registration_date = "";
+
+    /* Последний раз в сети */
+    std::string _last_time_online = "";
+
+    /* Описание пользователя */
+    std::string _description = "";
+
+    /* Отдел */
+    std::string _department = "";
+
+    /* Филиал */
+    std::string _branch = "";
+
+    /* Активен пользователь? Есть доступ к системе? */
+    bool _is_user_active = false;
+
+    /* Код подтверждения регистрации */
+    std::string _registration_confirmation_code = "";
+
+    /* Город */
+    std::string _city = "";
+
+    /* Уникальный идентификатор */
+    std::string _uuid = "";
+
+    /* Пользователь установлен? */
+    bool _is_user_set = false;
+
+    /* Инициализация user */
+    void _init();
+};
 
 #endif // CORE_USER_H

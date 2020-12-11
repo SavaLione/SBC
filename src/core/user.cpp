@@ -38,104 +38,104 @@
 #include "core/user.h"
 #include "core/uuid.h"
 
-// user::user()
-// {
-//     _init();
-// }
+user::user()
+{
+    _init();
+}
 
-// user::~user()
-// {
-// }
+user::~user()
+{
+}
 
-// /* set */
-// const void user::set_name(std::string name)
-// {
-//     _name = name;
-// }
+/* set */
+const void user::set_name(std::string name)
+{
+    _name = name;
+}
 
-// const void user::set_username(std::string username)
-// {
-//     _username = username;
-// }
+const void user::set_username(std::string username)
+{
+    _username = username;
+}
 
-// const void user::set_email(std::string email)
-// {
-//     _email = email;
-// }
+const void user::set_email(std::string email)
+{
+    _email = email;
+}
 
-// const void user::set_phone(std::string phone)
-// {
-//     _phone = phone;
-// }
+const void user::set_phone(std::string phone)
+{
+    _phone = phone;
+}
 
-// const void user::set_password(std::string password)
-// {
-//     _password = password;
-// }
+const void user::set_password(std::string password)
+{
+    _password = password;
+}
 
-// const void user::set_role(role r)
-// {
-//     _role = r;
-// }
+const void user::set_role(role r)
+{
+    _role = r;
+}
 
-// /* get */
-// std::string user::get_name()
-// {
-//     return _name;
-// }
+/* get */
+std::string user::get_name()
+{
+    return _name;
+}
 
-// std::string user::get_username()
-// {
-//     return _username;
-// }
+std::string user::get_username()
+{
+    return _username;
+}
 
-// std::string user::get_email()
-// {
-//     return _email;
-// }
+std::string user::get_email()
+{
+    return _email;
+}
 
-// std::string user::get_phone()
-// {
-//     return _phone;
-// }
+std::string user::get_phone()
+{
+    return _phone;
+}
 
-// std::string user::get_password()
-// {
-//     return _password;
-// }
+std::string user::get_password()
+{
+    return _password;
+}
 
-// std::string user::get_last_time_online()
-// {
-//     return _last_time_online;
-// }
+std::string user::get_last_time_online()
+{
+    return _last_time_online;
+}
 
-// role user::get_role()
-// {
-//     return _role;
-// }
+role user::get_role()
+{
+    return _role;
+}
 
-// std::string user::get_uuid()
-// {
-//     return _uuid;
-// }
+std::string user::get_uuid()
+{
+    return _uuid;
+}
 
-// /* private functions */
-// const void user::_set_last_time_online()
-// {
-//     current_time curr_t;
-//     _last_time_online = curr_t.s_date();
-// }
+/* private functions */
+const void user::_set_last_time_online()
+{
+    current_time curr_t;
+    _last_time_online = curr_t.s_date();
+}
 
-// void user::_init()
-// {
-//     /* uuid */
-//     uuid &uuid_instance = uuid::Instance();
-//     _uuid = uuid_instance.get();
+void user::_init()
+{
+    /* uuid */
+    uuid &uuid_instance = uuid::Instance();
+    _uuid = uuid_instance.get();
 
-//     _set_last_time_online();
-// }
+    _set_last_time_online();
+}
 
-// void user::set_user(bool is_user_set)
-// {
-//     _is_user_set = is_user_set;
-// }
+void user::set_user(bool is_user_set)
+{
+    _is_user_set = is_user_set;
+}
