@@ -67,7 +67,7 @@ find_package(SQLite3 REQUIRED)
 # spdlog
 find_package(spdlog REQUIRED)
 
-# SOCI
+# Soci
 find_package(Soci REQUIRED)
 
 set(SBC_CORE_SRC
@@ -228,6 +228,12 @@ target_link_libraries(${SBC_PROJECT} fcgi)
 
 # spdlog
 target_link_libraries(${SBC_PROJECT} spdlog::spdlog)
+
+# Soci
+if(SOCI_FOUND)
+    target_include_directories(${SBC_PROJECT} PUBLIC ${SOCI_INCLUDE_DIRS})
+    target_link_libraries (${SBC_PROJECT} ${SOCI_LIBRARY})
+endif()
 
 #################################################################################
 project(${SBC_CLIENT_PROJECT} VERSION ${SBC_CLIENT_PROJECT_VERSION})
