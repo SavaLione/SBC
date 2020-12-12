@@ -45,14 +45,14 @@
 /*
     Роль пользователя в системе 
 */
-enum role
+enum user_role
 {
-    ROLE_NOT_SET = -1,
-    DEFAULT = 0,
-    GUEST = 1,
-    MANAGER = 2,
-    ADMINISTRATOR = 3,
-    BANNED = 100
+    USER_ROLE_NOT_SET = -1,
+    USER_ROLE_DEFAULT = 0,
+    USER_ROLE_GUEST = 1,
+    USER_ROLE_MANAGER = 2,
+    USER_ROLE_ADMINISTRATOR = 3,
+    USER_ROLE_BANNED = 100
 };
 
 /*
@@ -89,7 +89,7 @@ struct user
     std::string _phone;
 
     /* Роль в системе */
-    role _role = ROLE_NOT_SET;
+    user_role _user_role = USER_ROLE_NOT_SET;
 
     /* Дата регистрации */
     std::string _registration_date;
@@ -118,7 +118,7 @@ struct user
     /* Уникальный идентификатор */
     std::string _uuid;
 
-    /* Статус пользователя(класса) */
+    /* Статус пользователя(структуры) */
     user_status _user_status = USER_NOT_SET;
 };
 
