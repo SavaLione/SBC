@@ -130,6 +130,7 @@ void request_handler::_recognize_user()
 
         /* Пытаемся получить пользователя по uuid */
         /* Тут надо исправить, упор идёт на uuid, а мы ещё можем обрабатывать username */
+        _user._uuid = _cookie.get_uuid();
         _user_handler.get();
     }
     else
