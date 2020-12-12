@@ -65,7 +65,7 @@ find_package(SQLite3 REQUIRED)
 find_package(spdlog REQUIRED)
 
 # SOCI
-find_package(SOCI REQUIRED)
+find_package(Soci REQUIRED)
 
 set(SBC_CORE_SRC
     src/core/sbc_server.cpp
