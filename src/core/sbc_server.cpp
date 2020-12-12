@@ -107,6 +107,7 @@ void sbc_test()
         user savalione;
         savalione._username = "SavaLione";
         savalione._name = "Sava Lione";
+        savalione._uuid = "aa-bb-cc-dd";
 
         cookie_instance.add(savalione);
     }
@@ -115,6 +116,7 @@ void sbc_test()
     user testuser;
     testuser._username = "testname";
     testuser._name = "Test User";
+    testuser._uuid = "cc-cc-cc-cc";
 
     cookie_instance.add(testuser);
     /* testuser */
@@ -125,13 +127,14 @@ void sbc_test()
         user some;
         some._username = "some";
         some._name = "Some User Name";
+        some._uuid = "dd-dd-dd-dd";
 
         cookie_instance.add(some);
     }
 
     cookie_instance.debug();
 
-    cookie_instance.remove(testuser);
+    //cookie_instance.remove(testuser);
 
     cookie_instance.debug();
 }
