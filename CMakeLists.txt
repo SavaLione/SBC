@@ -232,7 +232,7 @@ target_link_libraries(${SBC_PROJECT} spdlog::spdlog)
 # Soci
 if(SOCI_FOUND)
     target_include_directories(${SBC_PROJECT} PUBLIC ${SOCI_INCLUDE_DIRS})
-    target_link_libraries (${SBC_PROJECT} ${SOCI_LIBRARY})
+    target_link_libraries (${SBC_PROJECT} soci)
 endif()
 
 #################################################################################
