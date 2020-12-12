@@ -40,33 +40,8 @@
 
 #include <string>
 
-#include "time/current_time.h"
-
-/*
-    Роль пользователя в системе 
-*/
-enum user_role
-{
-    USER_ROLE_NOT_SET = -1,
-    USER_ROLE_DEFAULT = 0,
-    USER_ROLE_GUEST = 1,
-    USER_ROLE_MANAGER = 2,
-    USER_ROLE_ADMINISTRATOR = 3,
-    USER_ROLE_BANNED = 100
-};
-
-/*
-    Статус пользователя(класса)
-    USER_NOT_SET - пользователь не установлен
-    USER_NOT_FOUND - пользователь не найден
-    USER_SET - пользователь установлен
-*/
-enum user_status
-{
-    USER_NOT_SET = -1,
-    USER_NOT_FOUND = 0,
-    USER_SET = 1,
-};
+#include "core/user_role.h"
+#include "core/user_status.h"
 
 struct user
 {
@@ -119,41 +94,7 @@ struct user
     std::string _uuid;
 
     /* Статус пользователя(структуры) */
-    user_status _user_status = USER_NOT_SET;
-};
-
-class user_handler
-{
-private:
-    /* data */
-public:
-    user_handler(/* args */);
-    ~user_handler();
-};
-
-user_handler::user_handler(/* args */)
-{
-}
-
-user_handler::~user_handler()
-{
-}
-
-
-class user
-{
-public:
-    user(std::string const &username) = _username(username) { _init(); };
-    ~user();
-
-    const user_status get_user_status() const
-    {
-        return _user_status;
-    }
-
-private:
-    /* Инициализация user */
-    void _init();
+    user_status _user_status = USER_STATUS_NOT_SET;
 };
 
 #endif // CORE_USER_H

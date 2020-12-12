@@ -31,64 +31,43 @@
 
 /**
  * @file
- * @brief Cookie repository
+ * @brief Обработка структуры пользователя. Получение данных и прочее
  * @author SavaLione
- * @date 08 Dec 2020
+ * @date 12 Dec 2020
  */
-#ifndef WEB_COOKIE_REPOSITORY_H
-#define WEB_COOKIE_REPOSITORY_H
+#include "core/user_handler.h"
 
-#include <vector>
+#include "io/logger.h"
 
-#include "core/user.h"
+#include "web/cookie_repository.h"
 
-#include "web/cookie.h"
-
-class cookie_repository
+user_handler::~user_handler()
 {
-public:
-    /* constructor */
-    static cookie_repository &Instance()
-    {
-        static cookie_repository cookie_rep;
-        return cookie_rep;
-    }
+}
 
-    ~cookie_repository();
+void user_handler::_init()
+{
+    _show_debug();
+}
 
-    /* Добавляем пользователя в cookie репозиторий */
-    const void add_user(user const &u);
-
-    /* Данный uuid есть в базе? */
-    bool have_user(std::string uuid);
-
-    /* Получаем пользователя по uuid */
-    user get_user(std::string uuid);
-
-    const void remove_user(std::string uuid);
-
-    /*
-        Данный пользователь есть в базе?
-        Проверка по username и uuid
-    */
-    bool have_user(user const &u);
-
-    /*
-        Получаем пользователя
-        При ошибке ставим соответствующий статус
-    */
-    void get(user &u);
-
-    void debug();
-
-private:
-    /* constructor */
-    cookie_repository();
-    cookie_repository(cookie_repository const &) = delete;
-    cookie_repository &operator=(cookie_repository const &) = delete;
-
-    /* variables */
-    std::vector<user> _users;
-};
-
-#endif // WEB_COOKIE_REPOSITORY_H
+void user_handler::_show_debug()
+{
+    spdlog::debug("user_handler::_show()");
+    spdlog::debug("_id: {}", _user._id);
+    spdlog::debug("_username: {}", _user._username);
+    spdlog::debug("_password: {}", _user._password);
+    spdlog::debug("_name: {}", _user._name);
+    spdlog::debug("_email: {}", _user._email);
+    spdlog::debug("_phone:", _user._phone);
+    spdlog::debug("_user_role: {}", string_user_role(_user._user_role));
+    spdlog::debug("_registration_date: {}", _user._registration_date);
+    spdlog::debug("_last_time_online: {}", _user._last_time_online);
+    spdlog::debug("_description: {}", _user._description);
+    spdlog::debug("_department: {}", _user._department);
+    spdlog::debug("_branch: {}", _user._branch);
+    spdlog::debug("_is_user_active: {}", _user._is_user_active);
+    spdlog::debug("_registration_confirmation_code: {}", _user._registration_confirmation_code);
+    spdlog::debug("_city: {}", _user._city);
+    spdlog::debug("_uuid: {}", _user._uuid);
+    spdlog::debug("_user_status: {}", string_user_status(_user._user_status));
+}

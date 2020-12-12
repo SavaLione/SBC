@@ -74,6 +74,12 @@ set(SBC_CORE_SRC
     src/core/uuid.cpp
     src/core/user.h
     src/core/user.cpp
+    src/core/user_handler.h
+    src/core/user_handler.cpp
+    src/core/user_role.h
+    src/core/user_role.cpp
+    src/core/user_status.h
+    src/core/user_status.cpp
 )
 
 set(SBC_IO_SRC

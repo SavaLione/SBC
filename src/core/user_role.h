@@ -31,64 +31,35 @@
 
 /**
  * @file
- * @brief Cookie repository
+ * @brief Роль пользователя в системе
  * @author SavaLione
- * @date 08 Dec 2020
+ * @date 12 Dec 2020
  */
-#ifndef WEB_COOKIE_REPOSITORY_H
-#define WEB_COOKIE_REPOSITORY_H
+#ifndef CORE_USER_ROLE_H
+#define CORE_USER_ROLE_H
 
-#include <vector>
+#include <string>
 
-#include "core/user.h"
-
-#include "web/cookie.h"
-
-class cookie_repository
+/*
+    Роль пользователя в системе 
+    USER_ROLE_NOT_SET - Роль не установлена
+    USER_ROLE_DEFAULT - Стандартная роль
+    USER_ROLE_GUEST - Роль гостя
+    USER_ROLE_MANAGER - Роль менеджера
+    USER_ROLE_ADMINISTRATOR - Роль администратора
+    USER_ROLE_BANNED - Пользователь забанен. Нет доступа к системе
+*/
+enum user_role
 {
-public:
-    /* constructor */
-    static cookie_repository &Instance()
-    {
-        static cookie_repository cookie_rep;
-        return cookie_rep;
-    }
-
-    ~cookie_repository();
-
-    /* Добавляем пользователя в cookie репозиторий */
-    const void add_user(user const &u);
-
-    /* Данный uuid есть в базе? */
-    bool have_user(std::string uuid);
-
-    /* Получаем пользователя по uuid */
-    user get_user(std::string uuid);
-
-    const void remove_user(std::string uuid);
-
-    /*
-        Данный пользователь есть в базе?
-        Проверка по username и uuid
-    */
-    bool have_user(user const &u);
-
-    /*
-        Получаем пользователя
-        При ошибке ставим соответствующий статус
-    */
-    void get(user &u);
-
-    void debug();
-
-private:
-    /* constructor */
-    cookie_repository();
-    cookie_repository(cookie_repository const &) = delete;
-    cookie_repository &operator=(cookie_repository const &) = delete;
-
-    /* variables */
-    std::vector<user> _users;
+    USER_ROLE_NOT_SET = -1,
+    USER_ROLE_DEFAULT = 0,
+    USER_ROLE_GUEST = 1,
+    USER_ROLE_MANAGER = 2,
+    USER_ROLE_ADMINISTRATOR = 3,
+    USER_ROLE_BANNED = 100
 };
 
-#endif // WEB_COOKIE_REPOSITORY_H
+/* Получить строковое представление статуса пользователя */
+const std::string string_user_role(user_role const &role);
+
+#endif // CORE_USER_ROLE_H

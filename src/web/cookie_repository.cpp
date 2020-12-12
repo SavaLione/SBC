@@ -48,7 +48,7 @@ cookie_repository::~cookie_repository()
 {
 }
 
-const void cookie_repository::add_user(user &u)
+const void cookie_repository::add_user(user const &u)
 {
     _users.push_back(u);
 }
@@ -57,7 +57,7 @@ const void cookie_repository::remove_user(std::string uuid)
 {
     for (int i = 0; i < _users.size(); i++)
     {
-        if (_users[i].get_uuid() == uuid)
+        if (_users[i]._uuid == uuid)
         {
             _users.erase(_users.begin() + i);
             break;
@@ -69,7 +69,7 @@ bool cookie_repository::have_user(std::string uuid)
 {
     for (int i = 0; i < _users.size(); i++)
     {
-        if (_users[i].get_uuid() == uuid)
+        if (_users[i].uuid == uuid)
         {
             return true;
         }
@@ -81,7 +81,7 @@ user cookie_repository::get_user(std::string uuid)
 {
     for (int i = 0; i < _users.size(); i++)
     {
-        if (_users[i].get_uuid() == uuid)
+        if (_users[i]._uuid == uuid)
         {
             return _users[i];
         }
@@ -96,9 +96,42 @@ void cookie_repository::debug()
     for (int i = 0; i < _users.size(); i++)
     {
         spdlog::debug("---cookie_repository--[{}]", i);
-        spdlog::debug("name: {}", _users[i].get_name());
-        spdlog::debug("username: {}", _users[i].get_username());
-        spdlog::debug("uuid: {}", _users[i].get_uuid());
+        spdlog::debug("username: {}", _users[i]._username);
+        spdlog::debug("name: {}", _users[i]._name);
+        spdlog::debug("uuid: {}", _users[i]._uuid);
     }
-    
+}
+
+bool have_user(user const &u)
+{
+    /*
+        Проверяем, указан ли username или uuid
+    */
+    if (u._username.empty() && u._uuid.empty())
+    {
+        /* username и uuid не указан */
+        return false;
+    }
+    else
+    {
+        /* username или uuid указан */
+    }
+
+    return false;
+}
+
+void cookie_repository::get(user &u)
+{
+    /*
+        Проверяем, указан ли username или uuid
+    */
+    if (u._username.empty() && u._uuid.empty())
+    {
+        /* username и uuid не указан */
+        return false;
+    }
+    else
+    {
+        /* username или uuid указан */
+    }
 }

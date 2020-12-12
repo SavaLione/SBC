@@ -39,3 +39,7 @@ documentation/
 
 # test
 test/build/
+
+
+# Visual Studio Code
+.vscode/

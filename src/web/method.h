@@ -57,6 +57,6 @@ enum method
 method recognize_method(std::string const &unprocessed_method);
 
 /* Получить строковое представление метода */
-const std::string string_method(method const& m);
+const std::string string_method(method const &m);
 
 #endif // WEB_METHOD_H

@@ -31,64 +31,27 @@
 
 /**
  * @file
- * @brief Cookie repository
+ * @brief Обработка структуры пользователя. Получение данных и прочее
  * @author SavaLione
- * @date 08 Dec 2020
+ * @date 12 Dec 2020
  */
-#ifndef WEB_COOKIE_REPOSITORY_H
-#define WEB_COOKIE_REPOSITORY_H
-
-#include <vector>
+#ifndef CORE_USER_HANDLER_H
+#define CORE_USER_HANDLER_H
 
 #include "core/user.h"
 
-#include "web/cookie.h"
-
-class cookie_repository
+class user_handler
 {
 public:
-    /* constructor */
-    static cookie_repository &Instance()
-    {
-        static cookie_repository cookie_rep;
-        return cookie_rep;
-    }
-
-    ~cookie_repository();
-
-    /* Добавляем пользователя в cookie репозиторий */
-    const void add_user(user const &u);
-
-    /* Данный uuid есть в базе? */
-    bool have_user(std::string uuid);
-
-    /* Получаем пользователя по uuid */
-    user get_user(std::string uuid);
-
-    const void remove_user(std::string uuid);
-
-    /*
-        Данный пользователь есть в базе?
-        Проверка по username и uuid
-    */
-    bool have_user(user const &u);
-
-    /*
-        Получаем пользователя
-        При ошибке ставим соответствующий статус
-    */
-    void get(user &u);
-
-    void debug();
+    user_handler(user &u) : _user(u) { _init(); };
+    ~user_handler();
 
 private:
-    /* constructor */
-    cookie_repository();
-    cookie_repository(cookie_repository const &) = delete;
-    cookie_repository &operator=(cookie_repository const &) = delete;
+    user &_user;
+    void _init();
 
-    /* variables */
-    std::vector<user> _users;
+    /* Вывести на консоль в debug структуру пользователя */
+    void _show_debug();
 };
 
-#endif // WEB_COOKIE_REPOSITORY_H
+#endif // CORE_USER_HANDLER_H

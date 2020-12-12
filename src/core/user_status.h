@@ -31,64 +31,30 @@
 
 /**
  * @file
- * @brief Cookie repository
+ * @brief Статус пользователя
  * @author SavaLione
- * @date 08 Dec 2020
+ * @date 12 Dec 2020
  */
-#ifndef WEB_COOKIE_REPOSITORY_H
-#define WEB_COOKIE_REPOSITORY_H
+#ifndef CORE_USER_STATUS_H
+#define CORE_USER_STATUS_H
 
-#include <vector>
+#include <string>
 
-#include "core/user.h"
-
-#include "web/cookie.h"
-
-class cookie_repository
+/*
+    Статус пользователя(структуры)
+    USER_STATUS_NOT_SET - пользователь не установлен
+    USER_STATUS_NOT_FOUND - пользователь не найден
+    USER_STATUS_SET - пользователь установлен
+*/
+enum user_status
 {
-public:
-    /* constructor */
-    static cookie_repository &Instance()
-    {
-        static cookie_repository cookie_rep;
-        return cookie_rep;
-    }
-
-    ~cookie_repository();
-
-    /* Добавляем пользователя в cookie репозиторий */
-    const void add_user(user const &u);
-
-    /* Данный uuid есть в базе? */
-    bool have_user(std::string uuid);
-
-    /* Получаем пользователя по uuid */
-    user get_user(std::string uuid);
-
-    const void remove_user(std::string uuid);
-
-    /*
-        Данный пользователь есть в базе?
-        Проверка по username и uuid
-    */
-    bool have_user(user const &u);
-
-    /*
-        Получаем пользователя
-        При ошибке ставим соответствующий статус
-    */
-    void get(user &u);
-
-    void debug();
-
-private:
-    /* constructor */
-    cookie_repository();
-    cookie_repository(cookie_repository const &) = delete;
-    cookie_repository &operator=(cookie_repository const &) = delete;
-
-    /* variables */
-    std::vector<user> _users;
+    USER_STATUS_USERNAME_AND_UUID_NOT_SET = -100,
+    USER_STATUS_NOT_SET = -1,
+    USER_STATUS_NOT_FOUND = 0,
+    USER_STATUS_SET = 1,
 };
 
-#endif // WEB_COOKIE_REPOSITORY_H
+/* Получить строковое представление статуса пользователя */
+const std::string string_user_status(user_status const &status);
+
+#endif // CORE_USER_STATUS_H
