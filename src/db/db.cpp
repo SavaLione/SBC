@@ -44,7 +44,7 @@
 
 struct userss
 {
-    int id = -1,
+    int id = -1;
     std::string username;
     std::string password;
     std::string email;
