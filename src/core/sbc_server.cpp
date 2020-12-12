@@ -106,7 +106,7 @@ void sbc_test()
     {
         user savalione;
         savalione._username = "SavaLione";
-        savalione._name("Sava Lione");
+        savalione._name = "Sava Lione";
 
         cookie_instance.add(savalione);
     }

@@ -53,7 +53,7 @@ const void cookie_repository::add(user const &u)
     _users.push_back(u);
 }
 
-const void remove(user const &u)
+const void cookie_repository::remove(user const &u)
 {
     bool uuid_set = false;
     bool username_set = false;
