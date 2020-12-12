@@ -52,7 +52,7 @@ struct userss
 
 void db_test_open()
 {
-    soci::session sql(soci::sqlite3, "sbc.db");
+    soci::session sql("sqlite3", "sbc.db");
 
     userss u;
 
