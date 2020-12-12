@@ -47,6 +47,8 @@
 #include "net/server.h"
 
 #include "db/db_sqlite.h"
+#include "db/db.h"
+
 
 #include "web/web.h"
 #include "web/mime.h"
@@ -86,7 +88,7 @@ void sbc_console()
     {
         if (!line.empty())
         {
-            if(line == "exit")
+            if (line == "exit")
             {
                 exit(0);
             }
@@ -144,6 +146,12 @@ void sbc_test_cookie()
     spdlog::info("Start SBC cookie test.");
 }
 
+void sbc_test_db()
+{
+    spdlog::info("Start SBC db test.");
+    db_test_open();
+}
+
 int main(int argc, char *argv[])
 {
     /* Logger initialization */
@@ -170,6 +178,7 @@ int main(int argc, char *argv[])
     /* Тестирование некоторых функций */
     std::thread thread_sbc_test(sbc_test);
     std::thread thread_sbc_test_cookie(sbc_test_cookie);
+    std::thread thread_sbc_test_db(sbc_test_db);
 
     if (thread_web_server.joinable())
     {
@@ -199,6 +208,12 @@ int main(int argc, char *argv[])
     {
         thread_sbc_test_cookie.join();
         spdlog::info("Stop SBC cookie test.");
+    }
+
+    if (thread_sbc_test_db.joinable())
+    {
+        thread_sbc_test_db.join();
+        spdlog::info("Stop SBC db test.");
     }
 
     return 0;

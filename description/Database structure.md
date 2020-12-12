@@ -22,3 +22,14 @@ is_user_active - Активен пользователь? Есть доступ 
 registration_confirmation_code - Код подтверждения регистрации
 city - Город
 ```
+
+## Тестовый запрос
+
+```sql
+CREATE TABLE "users" (
+	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"username"	TEXT NOT NULL UNIQUE,
+	"password"	TEXT NOT NULL,
+	"email"	TEXT
+);
+```

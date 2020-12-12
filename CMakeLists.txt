@@ -115,6 +115,8 @@ set(SBC_DB_SQLITE_SRC
 )
 
 set(SBC_DB_SRC
+    src/db/db.h
+    src/db/db.cpp
     src/db/db_sqlite.h
     src/db/db_sqlite.cpp
     src/db/db_mysql.h
