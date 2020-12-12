@@ -35,6 +35,9 @@ set(SBC_PROJECT_VERSION "0.0.1")
 set(SBC_CLIENT_PROJECT "sbc-client")
 set(SBC_CLIENT_PROJECT_VERSION "0.0.1")
 
+# custom modules
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+
 # flags
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
