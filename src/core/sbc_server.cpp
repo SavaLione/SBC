@@ -40,6 +40,7 @@
 
 #include "core/settings.h"
 #include "core/uuid.h"
+#include "core/user.h"
 
 #include "io/logger.h"
 
@@ -104,33 +105,33 @@ void sbc_test()
 
     {
         user savalione;
-        savalione.set_name("SavaLione");
-        savalione.set_username("savalione");
+        savalione._username = "SavaLione";
+        savalione._name("Sava Lione");
 
-        cookie_instance.add_user(savalione);
+        cookie_instance.add(savalione);
     }
 
     /* testuser */
     user testuser;
-    testuser.set_name("Test User");
-    testuser.set_username("testname");
+    testuser._username = "testname";
+    testuser._name = "Test User";
 
-    cookie_instance.add_user(testuser);
+    cookie_instance.add(testuser);
     /* testuser */
 
     cookie_instance.debug();
 
     {
         user some;
-        some.set_name("Some");
-        some.set_username("some");
+        some._username = "some";
+        some._name = "Some User Name";
 
-        cookie_instance.add_user(some);
+        cookie_instance.add(some);
     }
 
     cookie_instance.debug();
 
-    cookie_instance.remove_user(testuser.get_uuid());
+    cookie_instance.remove(testuser);
 
     cookie_instance.debug();
 }

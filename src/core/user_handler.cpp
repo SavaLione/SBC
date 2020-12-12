@@ -47,5 +47,4 @@ user_handler::~user_handler()
 
 void user_handler::_init()
 {
-    _show_debug();
 }
