@@ -49,25 +49,3 @@ void user_handler::_init()
 {
     _show_debug();
 }
-
-void user_handler::_show_debug()
-{
-    spdlog::debug("user_handler::_show()");
-    spdlog::debug("_id: {}", _user._id);
-    spdlog::debug("_username: {}", _user._username);
-    spdlog::debug("_password: {}", _user._password);
-    spdlog::debug("_name: {}", _user._name);
-    spdlog::debug("_email: {}", _user._email);
-    spdlog::debug("_phone:", _user._phone);
-    spdlog::debug("_user_role: {}", string_user_role(_user._user_role));
-    spdlog::debug("_registration_date: {}", _user._registration_date);
-    spdlog::debug("_last_time_online: {}", _user._last_time_online);
-    spdlog::debug("_description: {}", _user._description);
-    spdlog::debug("_department: {}", _user._department);
-    spdlog::debug("_branch: {}", _user._branch);
-    spdlog::debug("_is_user_active: {}", _user._is_user_active);
-    spdlog::debug("_registration_confirmation_code: {}", _user._registration_confirmation_code);
-    spdlog::debug("_city: {}", _user._city);
-    spdlog::debug("_uuid: {}", _user._uuid);
-    spdlog::debug("_user_status: {}", string_user_status(_user._user_status));
-}

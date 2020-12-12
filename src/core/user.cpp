@@ -36,12 +36,27 @@
  * @date 25 Nov 2020
  */
 #include "core/user.h"
-#include "core/uuid.h"
 
-user::~user()
-{
-}
+#include "io/logger.h"
 
-void user::_init()
+const void user_debug(user const &u)
 {
+    spdlog::debug("user_handler::_show()");
+    spdlog::debug("_id: {}", u._id);
+    spdlog::debug("_username: {}", u._username);
+    spdlog::debug("_password: {}", u._password);
+    spdlog::debug("_name: {}", u._name);
+    spdlog::debug("_email: {}", u._email);
+    spdlog::debug("_phone:", u._phone);
+    spdlog::debug("_user_role: {}", string_user_role(u._user_role));
+    spdlog::debug("_registration_date: {}", u._registration_date);
+    spdlog::debug("_last_time_online: {}", u._last_time_online);
+    spdlog::debug("_description: {}", u._description);
+    spdlog::debug("_department: {}", u._department);
+    spdlog::debug("_branch: {}", u._branch);
+    spdlog::debug("_is_user_active: {}", u._is_user_active);
+    spdlog::debug("_registration_confirmation_code: {}", u._registration_confirmation_code);
+    spdlog::debug("_city: {}", u._city);
+    spdlog::debug("_uuid: {}", u._uuid);
+    spdlog::debug("_user_status: {}", string_user_status(u._user_status));
 }

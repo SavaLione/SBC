@@ -49,7 +49,7 @@ struct user
     int _id = -1;
 
     /* Логин */
-    std::string const &_username;
+    std::string _username;
 
     /* Пароль */
     std::string _password;
@@ -96,5 +96,8 @@ struct user
     /* Статус пользователя(структуры) */
     user_status _user_status = USER_STATUS_NOT_SET;
 };
+
+/* Вывести на консоль в debug структуру пользователя */
+const void user_debug(user const &u);
 
 #endif // CORE_USER_H

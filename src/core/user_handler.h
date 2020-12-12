@@ -49,9 +49,6 @@ public:
 private:
     user &_user;
     void _init();
-
-    /* Вывести на консоль в debug структуру пользователя */
-    void _show_debug();
 };
 
 #endif // CORE_USER_HANDLER_H
