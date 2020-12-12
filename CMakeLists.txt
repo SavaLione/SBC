@@ -64,6 +64,9 @@ find_package(SQLite3 REQUIRED)
 # spdlog
 find_package(spdlog REQUIRED)
 
+# SOCI
+find_package(SOCI REQUIRED)
+
 set(SBC_CORE_SRC
     src/core/sbc_server.cpp
     src/core/blowfish.h
