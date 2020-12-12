@@ -31,82 +31,36 @@
 
 /**
  * @file
- * @brief Settings
+ * @brief Кодировка базы данных SQLite
  * @author SavaLione
- * @date 16 Nov 2020
+ * @date 12 Dec 2020
  */
-#include "core/settings.h"
+#include "db/sqlite/sqlite_encoding.h"
 
-#include "io/logger.h"
-
-settings::settings()
+const std::string string_sqlite_encoding(sqlite_encoding const &encoding)
 {
-    spdlog::info("Settings initialization");
+    switch (encoding)
+    {
+    case SQLITE_ENCODING_UTF_8:
+        return "UTF-8";
+        break;
+    case SQLITE_ENCODING_UTF_16:
+        return "UTF-16";
+        break;
+    case SQLITE_ENCODING_UTF_16_LE:
+        return "UTF-16le";
+        break;
+    case SQLITE_ENCODING_UTF_16_BE:
+        return "UTF-16be";
+        break;
+    default:
+        return "UTF-8";
+        break;
+    }
+    return "UTF-8";
 }
 
-settings::~settings()
+const std::string get_sqlite_encoding(sqlite_encoding const &encoding)
 {
-}
-
-log_level settings::l_level()
-{
-    return _l_level;
-}
-
-std::string settings::ip()
-{
-    return _ip;
-}
-
-int settings::port()
-{
-    return _port;
-}
-
-std::string settings::fcgi_socket_path()
-{
-    std::string ret = _fcgi_socket_address;
-    ret += ":";
-    ret += _fcgi_socket_port;
-    return ret;
-}
-
-int settings::fcgi_thread_count()
-{
-    return _fcgi_thread_count;
-}
-
-database settings::db()
-{
-    return _db;
-}
-
-std::string settings::db_host()
-{
-    return _db_host;
-}
-
-std::string settings::db_name()
-{
-    return _db_name;
-}
-
-std::string settings::db_username()
-{
-    return _db_username;
-}
-
-std::string settings::db_password()
-{
-    return _db_password;
-}
-
-std::string settings::db_sqlite_name()
-{
-    return _db_sqlite_name;
-}
-
-const std::string settings::db_sqlite_pragma()
-{
-    return get_sqlite_synchronous(_db_sqlite_synchronous) + get_sqlite_encoding(_db_sqlite_encoding) + get_sqlite_journal_mode(_db_sqlite_journal_mode);
+    return "PRAGMA encoding = \'" + string_sqlite_encoding(encoding) + "\';";
 }

@@ -141,8 +141,6 @@ void request_handler::_recognize_user()
     }
 }
 
-#include <iostream>
-
 void request_handler::_debug()
 {
     spdlog::debug("");

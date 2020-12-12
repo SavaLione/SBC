@@ -99,6 +99,15 @@ set(SBC_PLATFORM_SRC
     src/platform/platform.cpp
 )
 
+set(SBC_DB_SQLITE_SRC
+    src/db/sqlite/sqlite_encoding.cpp
+    src/db/sqlite/sqlite_encoding.h
+    src/db/sqlite/sqlite_journal_mode.cpp
+    src/db/sqlite/sqlite_journal_mode.h
+    src/db/sqlite/sqlite_synchronous.cpp
+    src/db/sqlite/sqlite_synchronous.h
+)
+
 set(SBC_DB_SRC
     src/db/db_sqlite.h
     src/db/db_sqlite.cpp
@@ -106,6 +115,7 @@ set(SBC_DB_SRC
     src/db/db_mysql.cpp
     src/db/db_mariadb.h
     src/db/db_mariadb.cpp
+    ${SBC_DB_SQLITE_SRC}
 )
 
 set(SBC_TIME_SRC

@@ -31,82 +31,29 @@
 
 /**
  * @file
- * @brief Settings
+ * @brief Тип журнала базы данных SQLite
  * @author SavaLione
- * @date 16 Nov 2020
+ * @date 12 Dec 2020
  */
-#include "core/settings.h"
+#ifndef DB_SQLITE_SQLITE_JOURNAL_MODE_H
+#define DB_SQLITE_SQLITE_JOURNAL_MODE_H
 
-#include "io/logger.h"
+#include <string>
 
-settings::settings()
+enum sqlite_journal_mode
 {
-    spdlog::info("Settings initialization");
-}
+    SQLITE_JOURNAL_MODE_DELETE,
+    SQLITE_JOURNAL_MODE_TRUNCATE,
+    SQLITE_JOURNAL_MODE_PERSIST,
+    SQLITE_JOURNAL_MODE_MEMORY,
+    SQLITE_JOURNAL_MODE_WAL,
+    SQLITE_JOURNAL_MODE_OFF
+};
 
-settings::~settings()
-{
-}
+/* Получить строковое представление типа журнала sqlite */
+const std::string string_sqlite_journal_mode(sqlite_journal_mode const &journal_mode);
 
-log_level settings::l_level()
-{
-    return _l_level;
-}
+/* Получить строку с параметром для sqlite */
+const std::string get_sqlite_journal_mode(sqlite_journal_mode const &journal_mode);
 
-std::string settings::ip()
-{
-    return _ip;
-}
-
-int settings::port()
-{
-    return _port;
-}
-
-std::string settings::fcgi_socket_path()
-{
-    std::string ret = _fcgi_socket_address;
-    ret += ":";
-    ret += _fcgi_socket_port;
-    return ret;
-}
-
-int settings::fcgi_thread_count()
-{
-    return _fcgi_thread_count;
-}
-
-database settings::db()
-{
-    return _db;
-}
-
-std::string settings::db_host()
-{
-    return _db_host;
-}
-
-std::string settings::db_name()
-{
-    return _db_name;
-}
-
-std::string settings::db_username()
-{
-    return _db_username;
-}
-
-std::string settings::db_password()
-{
-    return _db_password;
-}
-
-std::string settings::db_sqlite_name()
-{
-    return _db_sqlite_name;
-}
-
-const std::string settings::db_sqlite_pragma()
-{
-    return get_sqlite_synchronous(_db_sqlite_synchronous) + get_sqlite_encoding(_db_sqlite_encoding) + get_sqlite_journal_mode(_db_sqlite_journal_mode);
-}
+#endif // DB_SQLITE_SQLITE_JOURNAL_MODE_H

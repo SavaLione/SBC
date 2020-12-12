@@ -60,14 +60,12 @@ public:
     ~request_handler();
 
     /* Получаем тип метода */
-    method get_method() const { return _method; };
+    const method get_method() const { return _method; };
 
     /* Получаем запрашиваемый uri */
-    std::string get_request_uri() const { return _request_uri; };
+    const std::string get_request_uri() const { return _request_uri; };
 
 private:
-    /* variables */
-
     /* Запрос от FastCGI */
     FCGX_Request &_request;
 

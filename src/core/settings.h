@@ -40,6 +40,10 @@
 
 #include <string>
 
+#include "db/sqlite/sqlite_encoding.h"
+#include "db/sqlite/sqlite_journal_mode.h"
+#include "db/sqlite/sqlite_synchronous.h"
+
 enum database
 {
     SQLITE = 1,
@@ -83,7 +87,11 @@ public:
     std::string db_username();
     std::string db_password();
 
+    /* Получить название базы данных sqlite */
     std::string db_sqlite_name();
+
+    /* Получить переменные SQLite */
+    const std::string db_sqlite_pragma();
 
 private:
     settings();
@@ -94,21 +102,47 @@ private:
     /* На время разработки SBC */
     log_level _l_level = DEBUG;
 
+    /* ip sbc сервера */
     std::string _ip = "0.0.0.0";
+
+    /* Порт sbc сервера */
     int _port = 12340;
     
-    // std::string _fcgi_socket_path = "127.0.0.1:9000";
+    /* ip FastCGI сервера */
     std::string _fcgi_socket_address = "127.0.0.1";
+
+    /* Порт FastCGI сервера */
     std::string _fcgi_socket_port = "9000";
+
+    /* Количество FastCGI потоков */
     int _fcgi_thread_count = 8;
 
-    database _db = MYSQL;
+    /* Тип базы данных */
+    database _db = SQLITE;
+
+    /* Адрес базы данных (если база данных не встраиваемая) */
     std::string _db_host = "tcp://127.0.0.1:3306";
+
+    /* Имя пользователя базы данных (если база данных не встраиваемая) */
     std::string _db_username = "username";
+
+    /* Пароль пользователя базы данных (если база данных не встраиваемая) */
     std::string _db_password = "password";
+
+    /* Имя базы данных (если база данных не встраиваемая) */
     std::string _db_name = "db_name";
 
-    std::string _db_sqlite_name = "db_name.db";
+    /* Название встраиваемой базы данных SQLite */
+    std::string _db_sqlite_name = "db_sbc.db";
+
+    /* Тип синхронизации базы данных SQLite */
+    sqlite_synchronous _db_sqlite_synchronous = SQLITE_SYNCHRONOUS_OFF;
+
+    /* Кодировка базы данных SQLite */
+    sqlite_encoding _db_sqlite_encoding = SQLITE_ENCODING_UTF_8;
+
+    /* Тип журнала базы данных SQLite */
+    sqlite_journal_mode _db_sqlite_journal_mode = SQLITE_JOURNAL_MODE_DELETE;
 
 };
 
