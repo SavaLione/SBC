@@ -68,23 +68,13 @@ enum user_status
     USER_SET = 1,
 };
 
-class user
+struct user
 {
-public:
-    user(std::string const &username) = _username(username) { _init(); };
-    ~user();
-
-    const user_status get_user_status() const
-    {
-        return _user_status;
-    }
-
-private:
     /* id пользователя */
     int _id = -1;
 
     /* Логин */
-    std::string const& _username;
+    std::string const &_username;
 
     /* Пароль */
     std::string _password;
@@ -130,7 +120,38 @@ private:
 
     /* Статус пользователя(класса) */
     user_status _user_status = USER_NOT_SET;
+};
 
+class user_handler
+{
+private:
+    /* data */
+public:
+    user_handler(/* args */);
+    ~user_handler();
+};
+
+user_handler::user_handler(/* args */)
+{
+}
+
+user_handler::~user_handler()
+{
+}
+
+
+class user
+{
+public:
+    user(std::string const &username) = _username(username) { _init(); };
+    ~user();
+
+    const user_status get_user_status() const
+    {
+        return _user_status;
+    }
+
+private:
     /* Инициализация user */
     void _init();
 };
