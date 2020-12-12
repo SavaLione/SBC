@@ -48,8 +48,8 @@ request_handler::~request_handler()
 void request_handler::_init()
 {
     _recognize_cookie();
-    _recognize_user();
     _recognize_post();
+    _recognize_user();
 
     switch (_page)
     {
@@ -129,24 +129,16 @@ void request_handler::_recognize_user()
     /* Проверяем, есть ли в запросе cookie uuid */
     if (_cookie.get_uuid().set)
     {
-        /* Выполняем проверку, есть ли uuid в базе */
-        if (cookie_repository_instance.have_user(_cookie.get_uuid().value))
-        {
-            /* Есть */
-            _user = cookie_repository_instance.get_user(_cookie.get_uuid().value);
-            _user.set_user(true);
-        }
-        else
-        {
-            /* Нет */
-            _user.set_user(false);
-        }
+        /* uuid установлен */
+
+        /* Пытаемся получить пользователя по uuid */
+        cookie_repository_instance.get(_user);
     }
     else
     {
         /* uuid не установлен */
         /* нет uuid, значит и пользователя в запросе нет */
-        _user.set_user(false);
+        _user._user_status = USER_STATUS_NOT_SET;
     }
 }
 
@@ -167,7 +159,7 @@ void request_handler::_debug()
     spdlog::debug("");
     spdlog::debug("_method: {}", string_method(_method));
     spdlog::debug("");
-    if (_user.get_is_user_set())
+    if (_user._user_status == USER_STATUS_SET)
     {
         spdlog::debug("Пользователь установлен");
     }
@@ -178,7 +170,5 @@ void request_handler::_debug()
     spdlog::debug("");
 
     spdlog::debug("post: {}", _string_post);
-
-    
 
 }
