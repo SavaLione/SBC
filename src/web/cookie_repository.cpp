@@ -48,46 +48,57 @@ cookie_repository::~cookie_repository()
 {
 }
 
-const void cookie_repository::add_user(user const &u)
+const void cookie_repository::add(user const &u)
 {
     _users.push_back(u);
 }
 
-const void cookie_repository::remove_user(std::string uuid)
+const void remove(user const &u)
 {
-    for (int i = 0; i < _users.size(); i++)
-    {
-        if (_users[i]._uuid == uuid)
-        {
-            _users.erase(_users.begin() + i);
-            break;
-        }
-    }
-}
+    bool uuid_set = false;
+    bool username_set = false;
 
-bool cookie_repository::have_user(std::string uuid)
-{
-    for (int i = 0; i < _users.size(); i++)
+    /* Проверяем, указан ли uuid */
+    if (!u._uuid.empty())
     {
-        if (_users[i].uuid == uuid)
-        {
-            return true;
-        }
+        /* uuid указан */
+        uuid_set = true;
     }
-    return false;
-}
 
-user cookie_repository::get_user(std::string uuid)
-{
+    /* Проверяем, указан ли username */
+    if (!u._username.empty())
+    {
+        /* username указан */
+        username_set = true;
+    }
+
+    /* Проверяем, указан ли uuid и username */
+    if (!uuid_set && !username_set)
+    {
+        /* uuid и username не установлены */
+        return;
+    }
+
     for (int i = 0; i < _users.size(); i++)
     {
-        if (_users[i]._uuid == uuid)
+        if (uuid_set)
         {
-            return _users[i];
+            if (_users[i]._uuid == u._uuid)
+            {
+                _users.erase(_users.begin() + i);
+                break;
+            }
+        }
+
+        if (username_set)
+        {
+            if (_users[i]._username == u._username)
+            {
+                _users.erase(_users.begin() + i);
+                break;
+            }
         }
     }
-    user u;
-    return u;
 }
 
 void cookie_repository::debug()
@@ -95,43 +106,65 @@ void cookie_repository::debug()
     spdlog::debug("cookie_repository users: {}", _users.size());
     for (int i = 0; i < _users.size(); i++)
     {
-        spdlog::debug("---cookie_repository--[{}]", i);
+        spdlog::debug("--- {} ---", i);
         spdlog::debug("username: {}", _users[i]._username);
         spdlog::debug("name: {}", _users[i]._name);
         spdlog::debug("uuid: {}", _users[i]._uuid);
     }
 }
 
-bool have_user(user const &u)
-{
-    /*
-        Проверяем, указан ли username или uuid
-    */
-    if (u._username.empty() && u._uuid.empty())
-    {
-        /* username и uuid не указан */
-        return false;
-    }
-    else
-    {
-        /* username или uuid указан */
-    }
-
-    return false;
-}
-
 void cookie_repository::get(user &u)
 {
-    /*
-        Проверяем, указан ли username или uuid
-    */
-    if (u._username.empty() && u._uuid.empty())
+    bool uuid_set = false;
+    bool username_set = false;
+
+    /* Проверяем, указан ли uuid */
+    if (!u._uuid.empty())
     {
-        /* username и uuid не указан */
-        return false;
+        /* uuid указан */
+        uuid_set = true;
+    }
+
+    /* Проверяем, указан ли username */
+    if (!u._username.empty())
+    {
+        /* username указан */
+        username_set = true;
+    }
+
+    /* Проверяем, указан ли uuid и username */
+    if (!uuid_set && !username_set)
+    {
+        /* uuid и username не установлены */
+        return;
     }
     else
     {
-        /* username или uuid указан */
+        for (int i = 0; i < _users.size(); i++)
+        {
+            if (uuid_set)
+            {
+                if (_users[i]._uuid == u._uuid)
+                {
+                    u = _users[i];
+
+                    u._user_status = USER_STATUS_SET;
+
+                    return;
+                }
+            }
+
+            if (username_set)
+            {
+                if (_users[i]._username == u._username)
+                {
+                    u = _users[i];
+
+                    u._user_status = USER_STATUS_SET;
+
+                    return;
+                }
+            }
+        }
     }
 }

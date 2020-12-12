@@ -57,21 +57,13 @@ public:
     ~cookie_repository();
 
     /* Добавляем пользователя в cookie репозиторий */
-    const void add_user(user const &u);
-
-    /* Данный uuid есть в базе? */
-    bool have_user(std::string uuid);
-
-    /* Получаем пользователя по uuid */
-    user get_user(std::string uuid);
-
-    const void remove_user(std::string uuid);
+    const void add(user const &u);
 
     /*
-        Данный пользователь есть в базе?
-        Проверка по username и uuid
+        Удаляем пользователя из cookie репозитория
+        Удаляем по username или uuid
     */
-    bool have_user(user const &u);
+    const void remove(user const &u);
 
     /*
         Получаем пользователя
@@ -79,6 +71,7 @@ public:
     */
     void get(user &u);
 
+    /* Вывести всех пользователей из репозитория в debug лог */
     void debug();
 
 private:
