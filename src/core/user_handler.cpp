@@ -48,6 +48,7 @@ user_handler::~user_handler()
 const void user_handler::get()
 {
     _init();
+    user_debug(_user);
 }
 
 void user_handler::_init()
