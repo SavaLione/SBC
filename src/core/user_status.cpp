@@ -44,6 +44,12 @@ const std::string string_user_status(user_status const &status)
     case USER_STATUS_USERNAME_AND_UUID_NOT_SET:
         return "USER_STATUS_USERNAME_AND_UUID_NOT_SET";
         break;
+    case USER_STATUS_UUID_NOT_SET:
+        return "USER_STATUS_UUID_NOT_SET";
+        break;
+    case USER_STATUS_USERNAME_NOT_SET:
+        return "USER_STATUS_USERNAME_NOT_SET";
+        break;
     case USER_STATUS_NOT_SET:
         return "USER_STATUS_NOT_SET";
         break;
@@ -54,8 +60,8 @@ const std::string string_user_status(user_status const &status)
         return "USER_STATUS_SET";
         break;
     default:
-        return "USER_STATUS_NOT_SET";
+        return "Unknown user status. Check user_status.h";
         break;
     }
-    return "USER_STATUS_NOT_SET";
+    return "Unknown user status. Check user_status.h";
 }

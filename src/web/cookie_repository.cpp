@@ -168,3 +168,57 @@ void cookie_repository::get(user &u)
         }
     }
 }
+
+void cookie_repository::get_by_uuid(user &u)
+{
+    /* Проверяем, указан ли uuid */
+    if (u._uuid.empty())
+    {
+        /* uuid не указан */
+        u._user_status = USER_STATUS_UUID_NOT_SET;
+        return;
+    }
+
+    for (int i = 0; i < _users.size(); i++)
+    {
+
+        if (_users[i]._uuid == u._uuid)
+        {
+            u = _users[i];
+
+            u._user_status = USER_STATUS_SET;
+
+            return;
+        }
+    }
+
+    /* Если попали сюда, значит uuid не найден в базу. Ставим соответствующий статус */
+    u._user_status = USER_STATUS_NOT_FOUND;
+}
+
+void cookie_repository::get_by_username(user &u)
+{
+    /* Проверяем, указан ли username */
+    if (u._username.empty())
+    {
+        /* username не указан */
+        u._user_status = USER_STATUS_USERNAME_NOT_SET;
+        return;
+    }
+
+    for (int i = 0; i < _users.size(); i++)
+    {
+
+        if (_users[i]._username == u._username)
+        {
+            u = _users[i];
+
+            u._user_status = USER_STATUS_SET;
+
+            return;
+        }
+    }
+
+    /* Если попали сюда, значит username не найден в базу. Ставим соответствующий статус */
+    u._user_status = USER_STATUS_NOT_FOUND;
+}

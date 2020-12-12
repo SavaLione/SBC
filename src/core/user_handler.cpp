@@ -45,6 +45,64 @@ user_handler::~user_handler()
 {
 }
 
+const void user_handler::get()
+{
+    _init();
+}
+
 void user_handler::_init()
 {
+    /* Доступ к cookie repository */
+    cookie_repository &cookie_instance = cookie_repository::Instance();
+
+    /* Проверяем, указан ли uuid */
+    if (!_user._uuid.empty())
+    {
+        /* uuid указан */
+        _is_uuid_set = true;
+    }
+
+    /* Проверяем, указан ли username */
+    if (!_user._username.empty())
+    {
+        /* username указан */
+        _is_username_set = true;
+    }
+
+    /* Проверяем, указан ли uuid и username */
+    if (!_is_uuid_set && !_is_username_set)
+    {
+        /* uuid и username не установлены */
+        /* Мы не можем получить пользователя без uuid или username */
+        _user._user_status == USER_STATUS_NOT_SET;
+        return;
+    }
+
+    /* Если установлен uuid, пытаемся найти пользователя в cookie_repository */
+    if (_is_uuid_set)
+    {
+        cookie_instance.get_by_uuid(_user);
+
+        if (_user._user_status == USER_STATUS_SET)
+        {
+            /* Пользователь найден в cookie repository */
+            return;
+        }
+    }
+
+    /* Если установлен username, пытаемся найти пользователя в cookie_repository */
+    if (_is_username_set)
+    {
+        cookie_instance.get_by_uuid(_user);
+
+        if (_user._user_status == USER_STATUS_SET)
+        {
+            /* Пользователь найден в cookie repository */
+            return;
+        }
+    }
+
+    /* Если попали сюда, значит пользователя нет в cookie repository */
+    /* Надо найти его в базе данных */
+
 }

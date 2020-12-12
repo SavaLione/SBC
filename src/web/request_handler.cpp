@@ -123,16 +123,14 @@ void request_handler::_show_page_test_page()
 
 void request_handler::_recognize_user()
 {
-    /* cookie_repository */
-    cookie_repository &cookie_repository_instance = cookie_repository::Instance();
-
     /* Проверяем, есть ли в запросе cookie uuid */
     if (_cookie.get_uuid().set)
     {
         /* uuid установлен */
 
         /* Пытаемся получить пользователя по uuid */
-        cookie_repository_instance.get(_user);
+        /* Тут надо исправить, упор идёт на uuid, а мы ещё можем обрабатывать username */
+        _user_handler.get();
     }
     else
     {

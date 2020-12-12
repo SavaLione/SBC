@@ -43,12 +43,21 @@
 class user_handler
 {
 public:
-    user_handler(user &u) : _user(u) { _init(); };
+    user_handler(user &u) : _user(u){};
     ~user_handler();
+
+    /* Получаем пользователя */
+    const void get();
 
 private:
     user &_user;
     void _init();
+
+    /* Указан ли uuid? */
+    bool _is_uuid_set = false;
+
+    /* Указан ли username? */
+    bool _is_username_set = false;
 };
 
 #endif // CORE_USER_HANDLER_H

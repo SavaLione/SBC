@@ -48,7 +48,7 @@
 #include "web/page.h"
 #include "web/post.h"
 
-#include "web/cookie_repository.h"
+#include "core/user_handler.h"
 
 /*
     Обработка запроса FastCGI
@@ -122,6 +122,9 @@ private:
 
     /* Пользователь */
     user _user;
+
+    /* Обработка пользователя */
+    user_handler _user_handler = user_handler(_user);
 
     /* functions */
 
