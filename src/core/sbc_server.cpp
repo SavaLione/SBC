@@ -150,7 +150,15 @@ void sbc_test_cookie()
 void sbc_test_db()
 {
     spdlog::info("Start SBC db test.");
+
+    execution_time et;
+
+    spdlog::debug("START");
+    et.start();
     db_test_open();
+    spdlog::debug("STOP");
+    spdlog::debug("Time: {}", et.s_duration);
+    spdlog::debug("-----------------");
 }
 
 int main(int argc, char *argv[])
