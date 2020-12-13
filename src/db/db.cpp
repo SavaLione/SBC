@@ -45,6 +45,8 @@
 #include <soci/sqlite3/soci-sqlite3.h>
 
 #include <string>
+#include <map>
+#include <sstream>
 
 struct userss
 {
