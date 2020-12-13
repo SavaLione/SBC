@@ -68,7 +68,7 @@ private:
     db_n &operator=(db_n const &) = delete;
 
     const int _pool_size = 10;
-    soci::connection_pool _pool(_pool_size);
+    soci::connection_pool _pool = soci::connection_pool(_pool_size);
 };
 
 #endif // TESTS_SBC_DB_TEST_H
