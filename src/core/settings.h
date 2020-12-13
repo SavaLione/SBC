@@ -46,10 +46,14 @@
 
 enum database
 {
-    SQLITE = 1,
-    MYSQL = 2,
-    MARIADB = 3,
-    POSTGRESQL = 4
+    ORACLE,
+    POSTGRESQL,
+    MYSQL,
+    MARIADB,
+    SQLITE3,
+    FIREBIRD,
+    ODBC,
+    DB2
 };
 
 enum log_level
@@ -93,6 +97,9 @@ public:
     /* Получить переменные SQLite */
     const std::string db_sqlite_pragma();
 
+    /* Получить строковое представление базы данных */
+    const std::string db_string_name();
+
 private:
     settings();
     settings(settings const &) = delete;
@@ -107,7 +114,7 @@ private:
 
     /* Порт sbc сервера */
     int _port = 12340;
-    
+
     /* ip FastCGI сервера */
     std::string _fcgi_socket_address = "127.0.0.1";
 
@@ -118,7 +125,7 @@ private:
     int _fcgi_thread_count = 8;
 
     /* Тип базы данных */
-    database _db = SQLITE;
+    database _db = SQLITE3;
 
     /* Адрес базы данных (если база данных не встраиваемая) */
     std::string _db_host = "tcp://127.0.0.1:3306";
@@ -143,7 +150,6 @@ private:
 
     /* Тип журнала базы данных SQLite */
     sqlite_journal_mode _db_sqlite_journal_mode = SQLITE_JOURNAL_MODE_DELETE;
-
 };
 
 #endif // CORE_SETTINGS_H

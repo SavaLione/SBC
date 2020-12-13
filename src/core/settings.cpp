@@ -110,3 +110,16 @@ const std::string settings::db_sqlite_pragma()
 {
     return get_sqlite_synchronous(_db_sqlite_synchronous) + get_sqlite_encoding(_db_sqlite_encoding) + get_sqlite_journal_mode(_db_sqlite_journal_mode);
 }
+
+const std::string settings::db_string_name()
+{
+    switch (_db)
+    {
+    case /* constant-expression */:
+        /* code */
+        break;
+    
+    default:
+        break;
+    }
+}
