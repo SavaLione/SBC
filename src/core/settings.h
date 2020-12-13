@@ -97,9 +97,6 @@ public:
     /* Получить переменные SQLite */
     const std::string db_sqlite_pragma();
 
-    /* Получить строковое представление базы данных */
-    const std::string db_string_name();
-
 private:
     settings();
     settings(settings const &) = delete;
