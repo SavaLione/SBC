@@ -46,4 +46,29 @@
 
 #include "time/execution_time.h"
 
+static const int I_COUNT_OPERATIONS = 1000;
+static const std::string S_SELECT_QUERY = "SELECT 1;";
+
+class db
+{
+public:
+    static db &instance()
+    {
+        static db d;
+        return d;
+    }
+    ~db();
+
+    /* Выполнить sql запрос */
+    const void execute(std::string const &query);
+
+private:
+    db();
+    db(db const &) = delete;
+    db &operator=(db const &) = delete;
+
+    const size_t _pool_size = 10;
+    soci::connection_pool _pool(_pool_size);
+};
+
 #endif // TESTS_SBC_DB_TEST_H

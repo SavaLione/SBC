@@ -97,6 +97,9 @@ public:
     /* Получить переменные SQLite */
     const std::string db_sqlite_pragma();
 
+    /* Получить размер пула библиотеки soci */
+    const int db_soci_pool_size();
+
 private:
     settings();
     settings(settings const &) = delete;
@@ -147,6 +150,9 @@ private:
 
     /* Тип журнала базы данных SQLite */
     sqlite_journal_mode _db_sqlite_journal_mode = SQLITE_JOURNAL_MODE_DELETE;
+
+    /* Размер пула библиотеки soci */
+    int _db_soci_pool_size = 10;
 };
 
 #endif // CORE_SETTINGS_H

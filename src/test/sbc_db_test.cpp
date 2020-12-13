@@ -37,7 +37,61 @@
  */
 #include "test/sbc_db_test.h"
 
+#include <thread>
+
+void start_db()
+{
+    db &db_instance = db::instance();
+}
+
+void test_single_thread()
+{
+    db &db_instance = db::instance();
+
+    for (size_t i = 0; i < I_COUNT_OPERATIONS; i++)
+    {
+        db_instance.execute(S_SELECT_QUERY);
+    }
+    
+}
+
 int main()
 {
+    execution_time et;
+    start_db();
+
+    et.start();
+    test_single_thread();
+    spdlog::info("Time: {}", et.s_duration());
+
     return 0;
+}
+
+db::db()
+{
+    spdlog::info("Start db");
+    try
+    {
+        for (size_t i = 0; i != _pool_size; ++i)
+        {
+            soci::session &sql = _pool.at(i);
+
+            sql.open("sqlite3", "test.db");
+        }
+    }
+    catch (const std::exception &e)
+    {
+        spdlog::error(e.what());
+    }
+}
+
+db::~db()
+{
+}
+
+const void db::execute(std::string const &query)
+{
+    soci::session sql(_pool);
+
+    sql << query;
 }
