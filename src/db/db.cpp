@@ -81,9 +81,10 @@ void db_test_open()
     // static const std::string s_select = "SELECT * FROM users WHERE username = \'some\';";
     static const std::string s_select = "SELECT * FROM users;";
 
+    soci::session sql("sqlite3", "sbc.db");
+
     for (int i = 0; i < 1000; i++)
     {
-        soci::session sql("sqlite3", "sbc.db");
         soci::row r;
         userss u;
         sql << s_select, soci::into(r);
