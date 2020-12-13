@@ -157,7 +157,7 @@ void sbc_test_db()
     et.start();
     db_test_open();
     spdlog::debug("STOP");
-    spdlog::debug("Time: {}", et.s_duration);
+    spdlog::debug("Time: {}", et.s_duration());
     spdlog::debug("-----------------");
 }
 
