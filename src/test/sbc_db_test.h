@@ -46,22 +46,4 @@
 
 #include "time/execution_time.h"
 
-class db
-{
-public:
-    db();
-    ~db();
-private:
-    /* data */
-};
-
-db::db()
-{
-}
-
-db::~db()
-{
-}
-
-
 #endif // TESTS_SBC_DB_TEST_H
