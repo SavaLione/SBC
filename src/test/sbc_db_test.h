@@ -67,7 +67,7 @@ private:
     db(db const &) = delete;
     db &operator=(db const &) = delete;
 
-    const size_t _pool_size = 10;
+    const std::size_t _pool_size = 10;
     soci::connection_pool _pool(_pool_size);
 };
 
