@@ -92,7 +92,7 @@ void db_test_open()
 
         for (std::size_t i = 0; i != r.size(); ++i)
         {
-            const column_properties &props = r.get_properties(i);
+            const soci::column_properties &props = r.get_properties(i);
 
             doc << '<' << props.get_name() << '>';
 
