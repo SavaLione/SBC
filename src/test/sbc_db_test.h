@@ -47,7 +47,7 @@
 #include "time/execution_time.h"
 
 static const int I_COUNT_OPERATIONS = 1000;
-static const std::string S_SELECT_QUERY = "SELECT 1;";
+std::string S_SELECT_QUERY = "SELECT 1;";
 
 class db
 {
@@ -67,7 +67,7 @@ private:
     db(db const &) = delete;
     db &operator=(db const &) = delete;
 
-    const std::size_t _pool_size = 10;
+    const int _pool_size = 10;
     soci::connection_pool _pool(_pool_size);
 };
 

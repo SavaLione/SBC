@@ -72,7 +72,7 @@ db::db()
     spdlog::info("Start db");
     try
     {
-        for (std::size_t i = 0; i != _pool_size; ++i)
+        for (int i = 0; i != _pool_size; ++i)
         {
             soci::session &sql = _pool.at(i);
 
