@@ -47,6 +47,7 @@
 #include <string>
 #include <map>
 #include <sstream>
+#include <iostream>
 
 struct userss
 {
@@ -123,6 +124,7 @@ void db_test_open()
         }
         doc << "</row>";
 
-        spdlog::debug(doc);
+        // spdlog::debug(doc);
+        std::cout << doc << std::endl;
     }
 }
