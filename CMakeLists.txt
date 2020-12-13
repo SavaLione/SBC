@@ -260,3 +260,50 @@ if(Protobuf_FOUND)
     target_include_directories(${SBC_CLIENT_PROJECT} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
     target_link_libraries(${SBC_CLIENT_PROJECT} ${Protobuf_LIBRARY})
 endif()
+
+#################################################################################
+project(sbc-db-test)
+
+set(SBC_DB_TEST_SRC
+    src/test/sbc_db_test.h
+    src/test/sbc_db_test.cpp
+    src/time/current_time.h
+    src/time/current_time.cpp
+    src/time/execution_time.h
+    src/time/execution_time.cpp
+    src/time/wait_time.h
+    src/time/wait_time.cpp
+)
+
+# executable
+add_executable(sbc-db-test ${SBC_DB_TEST_SRC})
+target_include_directories(sbc-db-test PUBLIC ${PROJECT_SOURCE_DIR}/src)
+
+if(Threads_FOUND)
+    # Threads
+    target_link_libraries(sbc-db-test Threads::Threads)
+endif()
+
+if(Boost_FOUND)
+    target_include_directories(sbc-db-test PUBLIC ${Boost_INCLUDE_DIRS})
+    target_link_libraries(sbc-db-test ${Boost_LIBRARIES})
+endif()
+
+if(UNIX)
+    target_include_directories(sbc-db-test PUBLIC /usr/include)
+    target_link_libraries(sbc-db-test mysqlcppconn)
+endif()
+
+# spdlog
+target_link_libraries(sbc-db-test spdlog::spdlog)
+
+# Soci
+if(SOCI_FOUND)
+    target_include_directories(sbc-db-test PUBLIC ${SOCI_INCLUDE_DIRS})
+    target_link_libraries (sbc-db-test ${SOCI_LIBRARY})
+endif()
+
+if(SQLite3_FOUND)
+    target_include_directories(sbc-db-test PUBLIC ${SQLite3_INCLUDE_DIRS})
+    target_link_libraries (sbc-db-test ${SQLite3_LIBRARIES})
+endif()
