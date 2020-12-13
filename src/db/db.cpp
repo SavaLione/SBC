@@ -123,8 +123,5 @@ void db_test_open()
             doc << "</" << props.get_name() << '>' << std::endl;
         }
         doc << "</row>";
-
-        // spdlog::debug(doc);
-        std::cout << doc << std::endl;
     }
 }
