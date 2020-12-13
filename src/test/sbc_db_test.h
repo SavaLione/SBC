@@ -49,23 +49,23 @@
 static const int I_COUNT_OPERATIONS = 1000;
 std::string S_SELECT_QUERY = "SELECT 1;";
 
-class db
+class db_n
 {
 public:
-    static db &instance()
+    static db_n &instance()
     {
-        static db d;
+        static db_n d;
         return d;
     }
-    ~db();
+    ~db_n();
 
     /* Выполнить sql запрос */
     const void execute(std::string const &query);
 
 private:
-    db();
-    db(db const &) = delete;
-    db &operator=(db const &) = delete;
+    db_n();
+    db_n(db_n const &) = delete;
+    db_n &operator=(db_n const &) = delete;
 
     const int _pool_size = 10;
     soci::connection_pool _pool(_pool_size);

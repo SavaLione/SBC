@@ -41,12 +41,12 @@
 
 void start_db()
 {
-    db &db_instance = db::instance();
+    db_n &db_instance = db_n::instance();
 }
 
 void test_single_thread()
 {
-    db &db_instance = db::instance();
+    db_n &db_instance = db_n::instance();
 
     for (size_t i = 0; i < I_COUNT_OPERATIONS; i++)
     {
@@ -67,7 +67,7 @@ int main()
     return 0;
 }
 
-db::db()
+db_n::db_n()
 {
     spdlog::info("Start db");
     try
@@ -85,11 +85,11 @@ db::db()
     }
 }
 
-db::~db()
+db_n::~db_n()
 {
 }
 
-const void db::execute(std::string const &query)
+const void db_n::execute(std::string const &query)
 {
     soci::session sql(_pool);
 
