@@ -35,11 +35,26 @@ set(SBC_PROJECT_VERSION "0.0.1")
 set(SBC_CLIENT_PROJECT "sbc-client")
 set(SBC_CLIENT_PROJECT_VERSION "0.0.1")
 
+# examples
+option(SBC_PROJECT_EXAMPLES "${SBC_PROJECT}. Build examples" OFF)
+option(SBC_CLIENT_EXAMPLES  "${SBC_CLIENT}. Build examples" OFF)
+
+# tests
+option(SBC_PROJECT_TESTS "${SBC_PROJECT}. Build tests" OFF)
+option(SBC_CLIENT_TESTS  "${SBC_CLIENT}. Build tests" OFF)
+
+set(SBC_TESTS_ENABLED 0)
+
+if(SBC_PROJECT_TESTS OR SBC_CLIENT_TESTS)
+    set(SBC_TESTS_ENABLED 1)
+else()
+    set(SBC_TESTS_ENABLED 0)
+endif()
+
 # custom modules
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
 # flags
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
 
 project(${SBC_PROJECT}
@@ -70,8 +85,18 @@ find_package(spdlog REQUIRED)
 # Soci
 find_package(Soci REQUIRED)
 
-set(SBC_CORE_SRC
+# gtest
+if(SBC_TESTS_ENABLED)
+    find_package(GTest REQUIRED)
+endif()
+
+################################################################################# sbc
+
+set(SBC_CORE_MAIN_SRC
     src/core/sbc_server.cpp
+)
+
+set(SBC_CORE_SRC
     src/core/blowfish.h
     src/core/blowfish.cpp
     src/core/settings.h
@@ -194,30 +219,34 @@ set(SBC_PROTOBUFF_SRC
 PROTOBUF_GENERATE_CPP(PROTO_SRCS PROTO_HDRS ${SBC_PROTOBUFF_SRC})
 
 # executable
-add_executable(${SBC_PROJECT} ${SBC_SRC} ${PROTO_SRCS} ${PROTO_HDRS})
+add_executable(${SBC_PROJECT} ${SBC_SRC} ${SBC_CORE_MAIN_SRC} ${PROTO_SRCS} ${PROTO_HDRS})
 target_include_directories(${SBC_PROJECT} PUBLIC ${PROJECT_SOURCE_DIR}/src)
 
+# Threads
 if(Threads_FOUND)
-    # Threads
     target_link_libraries(${SBC_PROJECT} Threads::Threads)
 endif()
 
+# Boost
 if(Boost_FOUND)
     target_include_directories(${SBC_PROJECT} PUBLIC ${Boost_INCLUDE_DIRS})
     target_link_libraries(${SBC_PROJECT} ${Boost_LIBRARIES})
 endif()
 
+# UNIX
 if(UNIX)
     target_include_directories(${SBC_PROJECT} PUBLIC /usr/include)
-    target_link_libraries(${SBC_PROJECT} mysqlcppconn)
+#    target_link_libraries(${SBC_PROJECT} mysqlcppconn)
 endif()
 
+# Protocol buffer
 if(Protobuf_FOUND)
     target_include_directories(${SBC_PROJECT} PUBLIC ${PROTOBUF_INCLUDE_DIRS})
     target_include_directories(${SBC_PROJECT} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
     target_link_libraries(${SBC_PROJECT} ${Protobuf_LIBRARY})
 endif()
 
+# SQLite
 if(SQLite3_FOUND)
     target_include_directories(${SBC_PROJECT} PUBLIC ${SQLite3_INCLUDE_DIRS})
     target_link_libraries (${SBC_PROJECT} ${SQLite3_LIBRARIES})
@@ -235,7 +264,7 @@ if(SOCI_FOUND)
     target_link_libraries (${SBC_PROJECT} ${SOCI_LIBRARY})
 endif()
 
-#################################################################################
+################################################################################# sbc-client
 project(${SBC_CLIENT_PROJECT} VERSION ${SBC_CLIENT_PROJECT_VERSION})
 
 set(SBC_CLIENT_CORE_SRC
@@ -261,7 +290,7 @@ if(Protobuf_FOUND)
     target_link_libraries(${SBC_CLIENT_PROJECT} ${Protobuf_LIBRARY})
 endif()
 
-#################################################################################
+################################################################################# sbc-db-test
 project(sbc-db-test)
 
 set(SBC_DB_TEST_SRC
@@ -306,4 +335,67 @@ endif()
 if(SQLite3_FOUND)
     target_include_directories(sbc-db-test PUBLIC ${SQLite3_INCLUDE_DIRS})
     target_link_libraries (sbc-db-test ${SQLite3_LIBRARIES})
+endif()
+
+################################################################################# sbc - tests
+if(SBC_PROJECT_TESTS)
+    set(SBC_PROJECT_TESTS_NAME "${SBC_PROJECT}-tests")
+    project(${SBC_PROJECT_TESTS_NAME})
+
+    set(SBC_PROJECT_TESTS_MAIN_SRC
+        tests/core/sbc_tests.h
+        tests/core/sbc_tests.cpp
+    )
+
+    # executable
+    add_executable(${SBC_PROJECT_TESTS_NAME} ${SBC_SRC} ${SBC_PROJECT_TESTS_MAIN_SRC} ${PROTO_SRCS} ${PROTO_HDRS})
+    target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/src)
+    target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/tests)
+    target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC ${GTEST_INCLUDE_DIRS})
+
+    # Threads
+    if(Threads_FOUND)
+        target_link_libraries(${SBC_PROJECT_TESTS_NAME} Threads::Threads)
+    endif()
+
+    # Boost
+    if(Boost_FOUND)
+        target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
+        target_link_libraries(${SBC_PROJECT} ${Boost_LIBRARIES})
+    endif()
+
+    # UNIX
+    if(UNIX)
+        target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC /usr/include)
+#       target_link_libraries(${SBC_PROJECT_TESTS_NAME} mysqlcppconn)
+    endif()
+
+    # Protocol buffer
+    if(Protobuf_FOUND)
+        target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC ${PROTOBUF_INCLUDE_DIRS})
+        target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+        target_link_libraries(${SBC_PROJECT_TESTS_NAME} ${Protobuf_LIBRARY})
+    endif()
+
+    # SQLite
+    if(SQLite3_FOUND)
+        target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC ${SQLite3_INCLUDE_DIRS})
+        target_link_libraries (${SBC_PROJECT_TESTS_NAME} ${SQLite3_LIBRARIES})
+    endif()
+
+    # fcgi
+    target_link_libraries(${SBC_PROJECT_TESTS_NAME} fcgi)
+
+    # spdlog
+    target_link_libraries(${SBC_PROJECT_TESTS_NAME} spdlog::spdlog)
+
+    # Soci
+    if(SOCI_FOUND)
+        target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC ${SOCI_INCLUDE_DIRS})
+        target_link_libraries (${SBC_PROJECT_TESTS_NAME} ${SOCI_LIBRARY})
+    endif()
+
+    # gtest
+    target_link_libraries(${SBC_PROJECT_TESTS_NAME} ${GTEST_LIBRARIES})
+
 endif()

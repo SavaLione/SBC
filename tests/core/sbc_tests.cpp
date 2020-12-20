@@ -31,44 +31,16 @@
 
 /**
  * @file
- * @brief Тест некоторых функций
- * @author SavaLione
- * @date 13 Dec 2020
+ * @brief Тесты
+ * @author SavaLione, Darlakon
+ * @date 20 Dec 2020
  */
-#ifndef TESTS_SBC_DB_TEST_H
-#define TESTS_SBC_DB_TEST_H
+#include "core/sbc_tests.h"
 
-#include <string>
-#include <spdlog/spdlog.h>
+#include <gtest/gtest.h>
 
-#include <soci/soci.h>
-#include <soci/sqlite3/soci-sqlite3.h>
-
-#include "time/execution_time.h"
-
-static const int I_COUNT_OPERATIONS = 10000;
-std::string S_SELECT_QUERY = "SELECT 1;";
-
-class db_n
+int main()
 {
-public:
-    static db_n &instance()
-    {
-        static db_n d;
-        return d;
-    }
-    ~db_n();
-
-    /* Выполнить sql запрос */
-    const void execute(std::string const &query);
-
-private:
-    db_n();
-    db_n(db_n const &) = delete;
-    db_n &operator=(db_n const &) = delete;
-
-    const int _pool_size = 10;
-    soci::connection_pool _pool = soci::connection_pool(_pool_size);
-};
-
-#endif // TESTS_SBC_DB_TEST_H
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
