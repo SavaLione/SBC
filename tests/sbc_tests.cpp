@@ -35,7 +35,7 @@
  * @author SavaLione, Darlakon
  * @date 20 Dec 2020
  */
-#include "core/sbc_tests.h"
+#include "sbc_tests.h"
 
 #include <gtest/gtest.h>
 

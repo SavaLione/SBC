@@ -343,8 +343,8 @@ if(SBC_PROJECT_TESTS)
     project(${SBC_PROJECT_TESTS_NAME})
 
     set(SBC_PROJECT_TESTS_MAIN_SRC
-        tests/core/sbc_tests.h
-        tests/core/sbc_tests.cpp
+        tests/sbc_tests.h
+        tests/sbc_tests.cpp
     )
 
     # executable
