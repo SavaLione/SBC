@@ -1,6 +1,7 @@
 /*
  * SPDX-License-Identifier: BSD-3-Clause
  * 
+ * Copyright (c) 2020, Darlakon
  * Copyright (c) 2020, Savely Pototsky (SavaLione)
  * All rights reserved.
  *
