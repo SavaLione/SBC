@@ -345,6 +345,10 @@ if(SBC_PROJECT_TESTS)
     set(SBC_PROJECT_TESTS_MAIN_SRC
         tests/sbc_tests.h
         tests/sbc_tests.cpp
+        tests/blowfish_test.h
+        tests/blowfish_test.cpp
+        tests/settings_test.h
+        tests/settings_test.cpp
     )
 
     # executable
