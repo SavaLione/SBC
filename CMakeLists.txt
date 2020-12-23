@@ -349,6 +349,8 @@ if(SBC_PROJECT_TESTS)
         tests/blowfish_test.cpp
         tests/settings_test.h
         tests/settings_test.cpp
+        tests/uuid_test.h
+        tests/uuid_test.cpp
     )
 
     # executable
