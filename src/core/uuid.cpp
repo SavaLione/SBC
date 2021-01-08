@@ -50,9 +50,9 @@
 uuid::uuid()
 {
     spdlog::info("uuid initialization");
-    spdlog::info("Random uuid: {}", boost::lexical_cast<std::string>(_gen()));
-    spdlog::info("Random uuid: {}", boost::lexical_cast<std::string>(_gen()));
-    spdlog::info("Random uuid: {}", boost::lexical_cast<std::string>(_gen()));
+    // spdlog::info("Random uuid: {}", boost::lexical_cast<std::string>(_gen()));
+    // spdlog::info("Random uuid: {}", boost::lexical_cast<std::string>(_gen()));
+    // spdlog::info("Random uuid: {}", boost::lexical_cast<std::string>(_gen()));
 }
 
 uuid::~uuid()
