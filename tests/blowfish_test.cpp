@@ -103,38 +103,5 @@ TEST_F(blowfish_test, string_test_decrypt_1)
     std::string message_encrypt = bf.Encrypt_CBC(message);
     std::string message_decrypt = bf.Decrypt_CBC(message_encrypt);
 
-    ASSERT_EQ(message, message_decrypt);
-}
-
-TEST_F(blowfish_test, string_test_decrypt_2)
-{
-    BLOWFISH bf("FEDCBA9876543210");
-
-    const std::string message = "Some";
-    std::string message_encrypt = bf.Encrypt_CBC(message);
-    std::string message_decrypt = bf.Decrypt_CBC(message_encrypt);
-
-    ASSERT_EQ(message, message_decrypt);
-}
-
-TEST_F(blowfish_test, string_test_decrypt_3)
-{
-    BLOWFISH bf("FEDCBA9876543210");
-
-    const std::string message = "Some new";
-    std::string message_encrypt = bf.Encrypt_CBC(message);
-    std::string message_decrypt = bf.Decrypt_CBC(message_encrypt);
-
-    ASSERT_EQ(message, message_decrypt);
-}
-
-TEST_F(blowfish_test, string_test_decrypt_4)
-{
-    BLOWFISH bf("FEDCBA9876543210");
-
-    const std::string message = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    std::string message_encrypt = bf.Encrypt_CBC(message);
-    std::string message_decrypt = bf.Decrypt_CBC(message_encrypt);
-
-    ASSERT_EQ(message, message_decrypt);
+    ASSERT_EQ(message, message_decrypt) << "\nmessage:\n" << message << "\nmessage_encrypt:\n" << message_encrypt << "\nmessage_decrypt:\n" << message_decrypt << "\n";
 }
