@@ -56,7 +56,7 @@ TEST_F(blowfish_test, test_1)
     std::string message_decrypt = bf.Decrypt_CBC(message_encrypt);
 
     ASSERT_EQ(message, message_decrypt);
-    ASSERT_EQ(1, 0) << "\nmessage:\n" << message << "\nmessage_encrypt:\n" << message_encrypt << "\nmessage_decrypt:\n" << message_decrypt << "\n";
+    ASSERT_EQ(1, 0) << "\nkeyIV:\n" << bf.GetIV() << "\nmessage:\n" << message << "\nmessage_encrypt:\n" << message_encrypt << "\nmessage_decrypt:\n" << message_decrypt << "\n";
 }
 
 TEST_F(blowfish_test, test_2)
