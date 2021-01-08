@@ -45,18 +45,6 @@
 
 #include <openssl/sha.h>
 
-// std::string sha_1(std::string const &message)
-// {
-//     unsigned char msg[message.size()];
-//     unsigned char result[SHA_DIGEST_LENGTH]; // SHA_DIGEST_LENGTH = 20
-
-//     std::copy(message.begin(), message.end(), msg);
-
-//     SHA1(msg, sizeof(msg), result);
-
-//     return std::string(reinterpret_cast<char *>(result), sizeof(result));
-// }
-
 std::string sha_1(std::string const &message)
 {
     unsigned char hash[SHA_DIGEST_LENGTH]; // SHA_DIGEST_LENGTH = 20
