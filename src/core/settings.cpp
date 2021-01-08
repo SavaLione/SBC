@@ -115,3 +115,8 @@ const int settings::db_soci_pool_size()
 {
     return _db_soci_pool_size;
 }
+
+hash settings::password_hash()
+{
+    return _password_hash;
+}

@@ -66,6 +66,12 @@ enum log_level
     CRITICAL = 6
 };
 
+enum hash
+{
+    SHA_1,
+    SHA_256
+};
+
 class settings
 {
 public:
@@ -99,6 +105,9 @@ public:
 
     /* Получить размер пула библиотеки soci */
     const int db_soci_pool_size();
+
+    /* Получить тип хэша паролей */
+    hash password_hash();
 
 private:
     settings();
@@ -153,6 +162,9 @@ private:
 
     /* Размер пула библиотеки soci */
     int _db_soci_pool_size = 10;
+
+    /* В каком виде хранятся пароли */
+    hash _password_hash = SHA_256;
 };
 
 #endif // CORE_SETTINGS_H
