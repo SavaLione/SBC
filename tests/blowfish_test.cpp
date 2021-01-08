@@ -94,10 +94,12 @@ TEST_F(blowfish_test, test_4)
 TEST_F(blowfish_test, test_ECB)
 {
     BLOWFISH bf("FEDCBA9876543210");
+    byte key[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+    bf.SetIV(key);
     bf.IvSet = true;
 
     const std::string message = "Hello";
-    const std::string answer = "0000";
+    const std::string answer = "62A68CD118000000A1688A536073D7B5452C69418DE9EF8B";
     std::string message_encrypt = bf.Encrypt_CBC(message);
 
     ASSERT_EQ(message_encrypt, answer);
