@@ -47,7 +47,7 @@ sha_test::~sha_test()
 {
 }
 
-TEST_F(sha_test, sha_1_equality_test_1)
+TEST_F(sha_test, sha_1_equality_test)
 {
     const std::string answer = "f7ff9e8b7bb2e09b70935a5d785e0cc5d9d0abf0";
 
@@ -57,22 +57,12 @@ TEST_F(sha_test, sha_1_equality_test_1)
     ASSERT_EQ(result, answer);
 }
 
-TEST_F(sha_test, sha_1_equality_test_2)
+TEST_F(sha_test, sha_256_equality_test)
 {
-    const std::string answer = "a453f317c358a729d5a4e85bcca7e21c3054d184";
-    
-    std::string to_sha_1 = "SBC";
-    std::string result = sha_1(to_sha_1);
+    const std::string answer = "f7ff9e8b7bb2e09b70935a5d785e0cc5d9d0abf0";
 
-    ASSERT_EQ(result, answer);
-}
-
-TEST_F(sha_test, sha_1_equality_test_3)
-{
-    const std::string answer = "19afa2a4a37462c7b940a6c4c61363d49c3a35f4";
-    
-    std::string to_sha_1 = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    std::string result = sha_1(to_sha_1);
+    std::string to_sha_256 = "Hello";
+    std::string result = sha_256(to_sha_256);
 
     ASSERT_EQ(result, answer);
 }

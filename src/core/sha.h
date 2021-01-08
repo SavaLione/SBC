@@ -42,4 +42,6 @@
 
 std::string sha_1(std::string const& message);
 
+std::string sha_256(std::string const& message);
+
 #endif // CORE_SHA_H

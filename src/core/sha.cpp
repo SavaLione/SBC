@@ -37,8 +37,6 @@
  */
 #include "core/sha.h"
 
-#include <iostream>
-
 #include <cstring>
 
 #include <openssl/sha.h>
@@ -52,7 +50,20 @@ std::string sha_1(std::string const &message)
 
     SHA1(msg, sizeof(msg), result);
 
-    std::cout << result << std::endl;
+    return std::string(reinterpret_cast<char *>(result), sizeof(result));
+}
 
-    return std::string(reinterpret_cast<char *>(result));
+std::string sha_256(std::string const &message)
+{
+    unsigned char hash[SHA256_DIGEST_LENGTH];
+    SHA256_CTX sha256;
+    SHA256_Init(&sha256);
+    SHA256_Update(&sha256, message.c_str(), message.size());
+    SHA256_Final(hash, &sha256);
+    stringstream ss;
+    for (int i = 0; i < SHA256_DIGEST_LENGTH; i++)
+    {
+        ss << hex << setw(2) << setfill('0') << (int)hash[i];
+    }
+    return ss.str();
 }
