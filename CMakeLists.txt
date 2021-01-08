@@ -368,6 +368,8 @@ if(SBC_PROJECT_TESTS)
         tests/settings_test.cpp
         tests/uuid_test.h
         tests/uuid_test.cpp
+        tests/sha_test.h
+        tests/sha_test.cpp
     )
 
     # executable
