@@ -56,7 +56,6 @@ TEST_F(blowfish_test, test_1)
     std::string message_decrypt = bf.Decrypt_CBC(message_encrypt);
 
     ASSERT_EQ(message, message_decrypt);
-    ASSERT_EQ(1, 0) << "\nkeyIV:\n" << bf.GetIV() << "\nmessage:\n" << message << "\nmessage_encrypt:\n" << message_encrypt << "\nmessage_decrypt:\n" << message_decrypt << "\n";
 }
 
 TEST_F(blowfish_test, test_2)
@@ -90,4 +89,16 @@ TEST_F(blowfish_test, test_4)
     std::string message_decrypt = bf.Decrypt_CBC(message_encrypt);
 
     ASSERT_EQ(message, message_decrypt);
+}
+
+TEST_F(blowfish_test, test_ECB)
+{
+    BLOWFISH bf("FEDCBA9876543210");
+    bf.IvSet = true;
+
+    const std::string message = "Hello";
+    const std::string answer = "0000";
+    std::string message_encrypt = bf.Encrypt_CBC(message);
+
+    ASSERT_EQ(message_encrypt, answer);
 }
