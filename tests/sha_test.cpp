@@ -59,7 +59,7 @@ TEST_F(sha_test, sha_1_equality_test)
 
 TEST_F(sha_test, sha_256_equality_test)
 {
-    const std::string answer = "f7ff9e8b7bb2e09b70935a5d785e0cc5d9d0abf0";
+    const std::string answer = "185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969";
 
     std::string to_sha_256 = "Hello";
     std::string result = sha_256(to_sha_256);
