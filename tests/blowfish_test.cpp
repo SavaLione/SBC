@@ -49,7 +49,7 @@ blowfish_test::~blowfish_test()
 
 TEST_F(blowfish_test, test_encrypt_1)
 {
-    BLOWFISH bf("FEDCBA9876543210");
+    BLOWFISH bf("FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210");
 
     const std::string message = "Hello";
     std::string message_encrypt = bf.Encrypt_CBC(message);
