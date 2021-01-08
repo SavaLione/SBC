@@ -99,7 +99,7 @@ TEST_F(blowfish_test, test_ECB)
     bf.IvSet = true;
 
     const std::string message = "Hello";
-    const std::string answer = "62A68CD118000000A1688A536073D7B5452C69418DE9EF8B";
+    const std::string answer = "00000000000000001A12C3D561AB4F506FC606D2346053A0";
     std::string message_encrypt = bf.Encrypt_CBC(message);
 
     ASSERT_EQ(message_encrypt, answer);
