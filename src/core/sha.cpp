@@ -64,7 +64,7 @@ std::string sha_256(std::string const &message)
     SHA256_Init(&sha256);
     SHA256_Update(&sha256, message.c_str(), message.size());
     SHA256_Final(hash, &sha256);
-    stringstream ss;
+    std::stringstream ss;
     for (int i = 0; i < SHA256_DIGEST_LENGTH; i++)
     {
         ss << std::hex << std::setw(2) << setfill('0') << (int)hash[i];
