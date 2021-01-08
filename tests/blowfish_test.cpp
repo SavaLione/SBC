@@ -47,9 +47,9 @@ blowfish_test::~blowfish_test()
 {
 }
 
-TEST_F(blowfish_test, test_encrypt_1)
+TEST_F(blowfish_test, test_1)
 {
-    BLOWFISH bf("FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210FEDCBA9876543210");
+    BLOWFISH bf("FEDCBA9876543210");
 
     const std::string message = "Hello";
     std::string message_encrypt = bf.Encrypt_CBC(message);
@@ -59,18 +59,7 @@ TEST_F(blowfish_test, test_encrypt_1)
     ASSERT_EQ(1, 0) << "\nmessage:\n" << message << "\nmessage_encrypt:\n" << message_encrypt << "\nmessage_decrypt:\n" << message_decrypt << "\n";
 }
 
-TEST_F(blowfish_test, test_decrypt_1)
-{
-    BLOWFISH bf("FEDCBA9876543210");
-
-    const std::string message = "Hello";
-    std::string message_encrypt = bf.Encrypt_CBC(message);
-    std::string message_decrypt = bf.Decrypt_CBC(message_encrypt);
-
-    ASSERT_EQ(message, message_decrypt);
-}
-
-TEST_F(blowfish_test, test_decrypt_2)
+TEST_F(blowfish_test, test_2)
 {
     BLOWFISH bf("FEDCBA9876543210");
 
@@ -81,7 +70,7 @@ TEST_F(blowfish_test, test_decrypt_2)
     ASSERT_EQ(message, message_decrypt);
 }
 
-TEST_F(blowfish_test, test_decrypt_3)
+TEST_F(blowfish_test, test_3)
 {
     BLOWFISH bf("FEDCBA9876543210");
 
@@ -92,7 +81,7 @@ TEST_F(blowfish_test, test_decrypt_3)
     ASSERT_EQ(message, message_decrypt);
 }
 
-TEST_F(blowfish_test, test_decrypt_4)
+TEST_F(blowfish_test, test_4)
 {
     BLOWFISH bf("FEDCBA9876543210");
 
