@@ -37,6 +37,8 @@
  */
 #include "core/sha.h"
 
+#include <iostream>
+
 #include <cstring>
 
 #include <openssl/sha.h>
@@ -49,6 +51,8 @@ std::string sha_1(std::string const &message)
     std::copy(message.begin(), message.end(), msg);
 
     SHA1(msg, sizeof(msg), result);
+
+    std::cout << result << std::endl;
 
     return std::string(reinterpret_cast<char *>(result));
 }
