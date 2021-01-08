@@ -40,8 +40,10 @@
 
 #include <string>
 
+/* Получение sha-1 хеша */
 std::string sha_1(std::string const& message);
 
+/* Получение sha-256 хеша */
 std::string sha_256(std::string const& message);
 
 #endif // CORE_SHA_H

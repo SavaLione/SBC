@@ -40,9 +40,6 @@
 #include <iomanip>
 #include <sstream>
 
-// ...
-#include <cstring>
-
 #include <openssl/sha.h>
 
 std::string sha_1(std::string const &message)
