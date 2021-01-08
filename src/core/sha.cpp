@@ -61,9 +61,15 @@ std::string sha_1(std::string const &message)
 {
     unsigned char hash[SHA_DIGEST_LENGTH]; // SHA_DIGEST_LENGTH = 20
 
-    SHA1(reinterpret_cast<const unsigned char*>(message.c_str()), message.size(), hash);
+    SHA1(reinterpret_cast<const unsigned char *>(message.c_str()), message.size(), hash);
 
-    return std::string("sup");
+    std::stringstream ss;
+    for (int i = 0; i < SHA_DIGEST_LENGTH; i++)
+    {
+        ss << std::hex << std::setw(2) << std::setfill('0') << (int)hash[i];
+    }
+
+    return ss.str();
 }
 
 std::string sha_256(std::string const &message)
