@@ -61,7 +61,7 @@ std::string sha_1(std::string const &message)
 {
     unsigned char hash[SHA_DIGEST_LENGTH]; // SHA_DIGEST_LENGTH = 20
 
-    SHA1(message.c_str(), message.size(), hash);
+    SHA1(reinterpret_cast<const unsigned char*>message.c_str(), message.size(), hash);
 
     return std::string("sup");
 }
