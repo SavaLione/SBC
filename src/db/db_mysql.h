@@ -38,34 +38,34 @@
 #ifndef DB_DB_MYSQL_H
 #define DB_DB_MYSQL_H
 
-#include <string>
-#include <vector>
+// #include <string>
+// #include <vector>
 
-#include <mysql_connection.h>
+// #include <mysql_connection.h>
 
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
+// #include <cppconn/driver.h>
+// #include <cppconn/exception.h>
+// #include <cppconn/resultset.h>
+// #include <cppconn/statement.h>
 
-class db_mysql
-{
-public:
-    db_mysql();
-    ~db_mysql();
+// class db_mysql
+// {
+// public:
+//     db_mysql();
+//     ~db_mysql();
 
-    bool answer(std::string const &request, std::vector<std::string> &return_data);
+//     bool answer(std::string const &request, std::vector<std::string> &return_data);
 
-private:
-    sql::Connection *con;
-    sql::Statement *stmt;
+// private:
+//     sql::Connection *con;
+//     sql::Statement *stmt;
 
-    bool _open = false;
+//     bool _open = false;
 
-    std::string _host;
-    std::string _username;
-    std::string _password;
-    std::string _name;
-};
+//     std::string _host;
+//     std::string _username;
+//     std::string _password;
+//     std::string _name;
+// };
 
 #endif // DB_DB_MYSQL_H

@@ -35,50 +35,50 @@
  * @author SavaLione
  * @date 17 Nov 2020
  */
-#include "db/db_mysql.h"
+// #include "db/db_mysql.h"
 
-#include "core/settings.h"
+// #include "core/settings.h"
 
-db_mysql::db_mysql()
-{
-    settings &settings_instance = settings::Instance();
+// db_mysql::db_mysql()
+// {
+//     settings &settings_instance = settings::Instance();
 
-    _host = settings_instance.db_host();
-    _username = settings_instance.db_username();
-    _password = settings_instance.db_password();
-    _name = settings_instance.db_name();
+//     _host = settings_instance.db_host();
+//     _username = settings_instance.db_username();
+//     _password = settings_instance.db_password();
+//     _name = settings_instance.db_name();
 
-    // cout << "Connect to db" << endl;
-    try
-    {
-        sql::Driver *driver;
-        driver = get_driver_instance();
-        con = driver->connect(_host, _username, _password);
-        con->setSchema(_name);
-        stmt = con->createStatement();
-        _open = true;
-    }
-    catch (sql::SQLException &e)
-    {
-        // cout << "# ERR: SQLException in " << __FILE__;
-        // cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
-        // cout << "# ERR: " << e.what();
-        // cout << " (MySQL error code: " << e.getErrorCode();
-        // cout << ", SQLState: " << e.getSQLState() << " )" << endl;
-        _open = false;
-    }
-}
+//     // cout << "Connect to db" << endl;
+//     try
+//     {
+//         sql::Driver *driver;
+//         driver = get_driver_instance();
+//         con = driver->connect(_host, _username, _password);
+//         con->setSchema(_name);
+//         stmt = con->createStatement();
+//         _open = true;
+//     }
+//     catch (sql::SQLException &e)
+//     {
+//         // cout << "# ERR: SQLException in " << __FILE__;
+//         // cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+//         // cout << "# ERR: " << e.what();
+//         // cout << " (MySQL error code: " << e.getErrorCode();
+//         // cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+//         _open = false;
+//     }
+// }
 
-db_mysql::~db_mysql()
-{
-    delete stmt;
-    delete con;
-    _open = false;
-}
+// db_mysql::~db_mysql()
+// {
+//     delete stmt;
+//     delete con;
+//     _open = false;
+// }
 
-bool db_mysql::answer(std::string const &request, std::vector<std::string> &return_data)
-{
-    std::vector<std::string> ret;
+// bool db_mysql::answer(std::string const &request, std::vector<std::string> &return_data)
+// {
+//     std::vector<std::string> ret;
 
     
-}
+// }

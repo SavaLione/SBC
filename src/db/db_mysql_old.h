@@ -38,41 +38,41 @@
 #ifndef DB_DB_MYSQL_H
 #define DB_DB_MYSQL_H
 
-#include <string>
-#include <vector>
+// #include <string>
+// #include <vector>
 
-/* Standard C++ includes */
-#include <stdlib.h>
-#include <iostream>
+// /* Standard C++ includes */
+// #include <stdlib.h>
+// #include <iostream>
 
-/*
-    Include directly the different
-    headers from cppconn/ and mysql_driver.h + mysql_util.h
-    (and mysql_connection.h)
-*/
-#include <mysql_connection.h>
+// /*
+//     Include directly the different
+//     headers from cppconn/ and mysql_driver.h + mysql_util.h
+//     (and mysql_connection.h)
+// */
+// #include <mysql_connection.h>
 
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
+// #include <cppconn/driver.h>
+// #include <cppconn/exception.h>
+// #include <cppconn/resultset.h>
+// #include <cppconn/statement.h>
 
-class db_mysql
-{
-public:
-    db_mysql();
-    ~db_mysql();
-    // void run();
-    void runc();
-    const bool has(std::string const &table_name, std::string const &column_name, std::string const &data);
-    const bool add(std::string const &table_name, std::vector<std::string> const &column_names, std::vector<std::string> const &data);
-    const std::string get_string(std::string const &table_name, std::string const &column_name, std::string const &where);
+// class db_mysql
+// {
+// public:
+//     db_mysql();
+//     ~db_mysql();
+//     // void run();
+//     void runc();
+//     const bool has(std::string const &table_name, std::string const &column_name, std::string const &data);
+//     const bool add(std::string const &table_name, std::vector<std::string> const &column_names, std::vector<std::string> const &data);
+//     const std::string get_string(std::string const &table_name, std::string const &column_name, std::string const &where);
 
-    std::vector<std::string> vec_answer(std::string const &table_name, std::vector<std::string> const &column_names,  std::string const &where); /* TODO */
+//     std::vector<std::string> vec_answer(std::string const &table_name, std::vector<std::string> const &column_names,  std::string const &where); /* TODO */
 
-private:
-    sql::Connection *con;
-    sql::Statement *stmt;
-};
+// private:
+//     sql::Connection *con;
+//     sql::Statement *stmt;
+// };
 
 #endif // DB_DB_MYSQL_H
