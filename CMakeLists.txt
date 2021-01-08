@@ -85,6 +85,9 @@ find_package(spdlog REQUIRED)
 # Soci
 find_package(Soci REQUIRED)
 
+# OpenSSL
+find_package(OpenSSL REQUIRED)
+
 # gtest
 if(SBC_TESTS_ENABLED)
     find_package(GTest REQUIRED)
@@ -111,6 +114,8 @@ set(SBC_CORE_SRC
     src/core/user_role.cpp
     src/core/user_status.h
     src/core/user_status.cpp
+    src/core/sha.h
+    src/core/sha.cpp
 )
 
 set(SBC_IO_SRC
@@ -249,7 +254,7 @@ endif()
 # SQLite
 if(SQLite3_FOUND)
     target_include_directories(${SBC_PROJECT} PUBLIC ${SQLite3_INCLUDE_DIRS})
-    target_link_libraries (${SBC_PROJECT} ${SQLite3_LIBRARIES})
+    target_link_libraries(${SBC_PROJECT} ${SQLite3_LIBRARIES})
 endif()
 
 # fcgi
@@ -258,10 +263,16 @@ target_link_libraries(${SBC_PROJECT} fcgi)
 # spdlog
 target_link_libraries(${SBC_PROJECT} spdlog::spdlog)
 
+# OpenSSL
+if(OPENSSL_FOUND)
+    target_include_directories(${SBC_PROJECT} PUBLIC ${OPENSSL_INCLUDE_DIR})
+    target_link_libraries(${SBC_PROJECT} ${OPENSSL_LIBRARIES})
+endif()
+
 # Soci
 if(SOCI_FOUND)
     target_include_directories(${SBC_PROJECT} PUBLIC ${SOCI_INCLUDE_DIRS})
-    target_link_libraries (${SBC_PROJECT} ${SOCI_LIBRARY})
+    target_link_libraries(${SBC_PROJECT} ${SOCI_LIBRARY})
 endif()
 
 ################################################################################# sbc-client
@@ -288,6 +299,12 @@ if(Protobuf_FOUND)
     target_include_directories(${SBC_CLIENT_PROJECT} PUBLIC ${PROTOBUF_INCLUDE_DIRS})
     target_include_directories(${SBC_CLIENT_PROJECT} PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
     target_link_libraries(${SBC_CLIENT_PROJECT} ${Protobuf_LIBRARY})
+endif()
+
+# OpenSSL
+if(OPENSSL_FOUND)
+    target_include_directories(${SBC_PROJECT} PUBLIC ${OPENSSL_INCLUDE_DIR})
+    target_link_libraries(${SBC_PROJECT} ${OPENSSL_LIBRARIES})
 endif()
 
 ################################################################################# sbc-db-test
@@ -399,6 +416,12 @@ if(SBC_PROJECT_TESTS)
     if(SOCI_FOUND)
         target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC ${SOCI_INCLUDE_DIRS})
         target_link_libraries (${SBC_PROJECT_TESTS_NAME} ${SOCI_LIBRARY})
+    endif()
+
+    # OpenSSL
+    if(OPENSSL_FOUND)
+        target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC ${OPENSSL_INCLUDE_DIR})
+        target_link_libraries(${SBC_PROJECT_TESTS_NAME} ${OPENSSL_LIBRARIES})
     endif()
 
     # gtest
