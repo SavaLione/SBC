@@ -37,6 +37,10 @@
  */
 #include "core/sha.h"
 
+#include <iomanip>
+#include <sstream>
+
+// ...
 #include <cstring>
 
 #include <openssl/sha.h>
@@ -63,7 +67,7 @@ std::string sha_256(std::string const &message)
     stringstream ss;
     for (int i = 0; i < SHA256_DIGEST_LENGTH; i++)
     {
-        ss << hex << setw(2) << setfill('0') << (int)hash[i];
+        ss << std::hex << std::setw(2) << setfill('0') << (int)hash[i];
     }
     return ss.str();
 }
