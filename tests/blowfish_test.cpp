@@ -52,7 +52,7 @@ TEST_F(blowfish_test, string_test_encrypt_1)
     BLOWFISH bf("FEDCBA9876543210");
 
     std::string to_blowfish = "Hello";
-    std::string blowfish_result = "o2vdeN2ilTE=";
+    std::string blowfish_result = "7E06EF51A06513BE2A0DDF346FE4F3682DACABC62CC23D31";
 
     std::string result = bf.Encrypt_CBC(to_blowfish);
 
@@ -64,7 +64,7 @@ TEST_F(blowfish_test, string_test_encrypt_2)
     BLOWFISH bf("FEDCBA9876543210");
 
     std::string to_blowfish = "Some";
-    std::string blowfish_result = "33MYdOooWZk=";
+    std::string blowfish_result = "9DEDF65D0D37FF2226B9AD938B72D34812982518130AE858";
 
     std::string result = bf.Encrypt_CBC(to_blowfish);
 
@@ -76,7 +76,7 @@ TEST_F(blowfish_test, string_test_encrypt_3)
     BLOWFISH bf("FEDCBA9876543210");
 
     std::string to_blowfish = "Some new";
-    std::string blowfish_result = "qHxbEcwcAKablzGwBFug5Q==";
+    std::string blowfish_result = "320491D0BF5343B8EAE90D60400CB007B7384B3A20B1DB42";
 
     std::string result = bf.Encrypt_CBC(to_blowfish);
 
@@ -88,7 +88,7 @@ TEST_F(blowfish_test, string_test_encrypt_4)
     BLOWFISH bf("FEDCBA9876543210");
 
     std::string to_blowfish = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    std::string blowfish_result = "ezGSp0ueMekaBfTktDUMlx4hINjW0WE5ZdFW+NiZ/rHPAF00GZusSwLEJM2ACSuN3ygRQNdg0I3Uf2mm7hvwZa7blOwNzZ7F4W49LQ3Yr0pu4xQOJp15yirkdrHuei5uO5/IeyEtzS0YrojdpPqgvEQ1mnhT81ceQQs12mexb1PdMW6CkZ2wceAfnToNGIJaaybrNxBycFbblz09zMhiyvZ6amcoPVUGalhMP9FsBgQ45z+FoXEXETqK7s63Vf3P/AHZOLWmRN5TrzZ1Q3sOfyF5c8z49hMN8FzaMLL4Cpi60vQU0Zvuqg4i3wvkZ/XCR2AK+4VNq/ARoq5yMeYO2X+NFFZcXL8O3CP1dh5BrGbO9swE20c2gb04RyC9MP/YYhh2VZVTCHYITngPZcE9lFRaNnrnMzn0UaJux6omLH7Kpgpz+Fub1sAuDmE2rw/wKtahEkwHKM/812uDiXOY4iJFMc+0sUkXJMHuH+XUc5IOINqz8SNUlaEJDaaNjWWtBJg8+N+ge6r3olZBLHhSzJeq/DzEBroQY/qi++RnValhedmWMm8IrIlVAhtCqmGVrogroCizBuf9GkSb8n/vkw==";
+    std::string blowfish_result = "8264D1A649DFA1D8B9FE3A7478A5826CA8A8BD8CFEBFF9D6DBACCFB84626CF89ED310FE46E69F09F131A3F4E2BFEA36E070588A4A9D28DC38ECFF45C10A1AEB9E25ABC0BE16A4E2A6F570DF327E9B71B8E80C3D313C78225D963B7C918E829340D04616DE566F6807E93078C615A46539AD24CA8DDB572F1C4C6FED6F373FE67754BC8F73E21B0DE0DB328F5EA0E2AA937F01B7456855D35BC4B66451E3C641D0B1199E5287B250673A9284D3CC75C185258C222E98C3F893A857576AAE17BCDC153DECC2B4CA76AF75E3925EB5FC4D4416AC2E20FC9D100F5E547A25697180160A264C9A44FFD4DB4819CF99692E5599F9AB6AEDD0A5D4FF15A104AAFD9815C16D26014A73EE67900C72097E16F504908B7EAFC5460A1CA9E8EDF5E5F5AE774FD27E5F1BFF11C8B87B6C6B7E376AEBEB2E5C23983BF583C9E8FF69BD087E8B3436A0103A556FF3794652269852266908197EB65D43BD43E965B8BD9F039895A14A894263D823855C61CF338A0F792C0B9418968E5CD08F079116C8938901730045B3F2E1DF8BB0ED5E7827F1713848BD92B33A26DD2D32196EF80B291CA02C3FD383EB2A85547B00AD59DB066A8A2B7BB5EE53E899CC36761FD76159BB91FC234D905558994276FD3A317FDDDED900A";
 
     std::string result = bf.Encrypt_CBC(to_blowfish);
 
@@ -99,7 +99,7 @@ TEST_F(blowfish_test, string_test_decrypt_1)
 {
     BLOWFISH bf("FEDCBA9876543210");
 
-    std::string from_blowfish = "o2vdeN2ilTE=";
+    std::string from_blowfish = "7E06EF51A06513BE2A0DDF346FE4F3682DACABC62CC23D31";
     std::string original = "Hello";
 
     std::string result = bf.Decrypt_CBC(from_blowfish);
@@ -111,7 +111,7 @@ TEST_F(blowfish_test, string_test_decrypt_2)
 {
     BLOWFISH bf("FEDCBA9876543210");
 
-    std::string from_blowfish = "33MYdOooWZk=";
+    std::string from_blowfish = "9DEDF65D0D37FF2226B9AD938B72D34812982518130AE858";
     std::string original = "Some";
 
     std::string result = bf.Decrypt_CBC(from_blowfish);
@@ -123,7 +123,7 @@ TEST_F(blowfish_test, string_test_decrypt_3)
 {
     BLOWFISH bf("FEDCBA9876543210");
 
-    std::string from_blowfish = "qHxbEcwcAKablzGwBFug5Q==";
+    std::string from_blowfish = "320491D0BF5343B8EAE90D60400CB007B7384B3A20B1DB42";
     std::string original = "Some new";
 
     std::string result = bf.Decrypt_CBC(from_blowfish);
@@ -135,7 +135,7 @@ TEST_F(blowfish_test, string_test_decrypt_4)
 {
     BLOWFISH bf("FEDCBA9876543210");
 
-    std::string from_blowfish = "ezGSp0ueMekaBfTktDUMlx4hINjW0WE5ZdFW+NiZ/rHPAF00GZusSwLEJM2ACSuN3ygRQNdg0I3Uf2mm7hvwZa7blOwNzZ7F4W49LQ3Yr0pu4xQOJp15yirkdrHuei5uO5/IeyEtzS0YrojdpPqgvEQ1mnhT81ceQQs12mexb1PdMW6CkZ2wceAfnToNGIJaaybrNxBycFbblz09zMhiyvZ6amcoPVUGalhMP9FsBgQ45z+FoXEXETqK7s63Vf3P/AHZOLWmRN5TrzZ1Q3sOfyF5c8z49hMN8FzaMLL4Cpi60vQU0Zvuqg4i3wvkZ/XCR2AK+4VNq/ARoq5yMeYO2X+NFFZcXL8O3CP1dh5BrGbO9swE20c2gb04RyC9MP/YYhh2VZVTCHYITngPZcE9lFRaNnrnMzn0UaJux6omLH7Kpgpz+Fub1sAuDmE2rw/wKtahEkwHKM/812uDiXOY4iJFMc+0sUkXJMHuH+XUc5IOINqz8SNUlaEJDaaNjWWtBJg8+N+ge6r3olZBLHhSzJeq/DzEBroQY/qi++RnValhedmWMm8IrIlVAhtCqmGVrogroCizBuf9GkSb8n/vkw==";
+    std::string from_blowfish = "8264D1A649DFA1D8B9FE3A7478A5826CA8A8BD8CFEBFF9D6DBACCFB84626CF89ED310FE46E69F09F131A3F4E2BFEA36E070588A4A9D28DC38ECFF45C10A1AEB9E25ABC0BE16A4E2A6F570DF327E9B71B8E80C3D313C78225D963B7C918E829340D04616DE566F6807E93078C615A46539AD24CA8DDB572F1C4C6FED6F373FE67754BC8F73E21B0DE0DB328F5EA0E2AA937F01B7456855D35BC4B66451E3C641D0B1199E5287B250673A9284D3CC75C185258C222E98C3F893A857576AAE17BCDC153DECC2B4CA76AF75E3925EB5FC4D4416AC2E20FC9D100F5E547A25697180160A264C9A44FFD4DB4819CF99692E5599F9AB6AEDD0A5D4FF15A104AAFD9815C16D26014A73EE67900C72097E16F504908B7EAFC5460A1CA9E8EDF5E5F5AE774FD27E5F1BFF11C8B87B6C6B7E376AEBEB2E5C23983BF583C9E8FF69BD087E8B3436A0103A556FF3794652269852266908197EB65D43BD43E965B8BD9F039895A14A894263D823855C61CF338A0F792C0B9418968E5CD08F079116C8938901730045B3F2E1DF8BB0ED5E7827F1713848BD92B33A26DD2D32196EF80B291CA02C3FD383EB2A85547B00AD59DB066A8A2B7BB5EE53E899CC36761FD76159BB91FC234D905558994276FD3A317FDDDED900A";
     std::string original = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
     std::string result = bf.Decrypt_CBC(from_blowfish);
