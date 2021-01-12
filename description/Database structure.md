@@ -25,10 +25,11 @@ city - Город
 
 # Запросы к базам данных
 ## Запрос на создание таблицы с пользователями
-
+### users
+#### sqlite
 ```sql
 CREATE TABLE IF NOT EXISTS "users" (
-	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+	"id"	INTEGER NOT NULL PRIMARY KEY UNIQUE,
 	"username"	TEXT NOT NULL UNIQUE,
 	"password"	TEXT NOT NULL,
 	"name" TEXT,
@@ -44,4 +45,8 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"registration_confirmation_code"	TEXT,
 	"city"	TEXT
 );
+```
+
+```
+AUTOINCREMENT - при INTEGER PRIMARY KEY, ячейка будет автоматически AUTOINCREMENT
 ```
