@@ -38,6 +38,9 @@
 #ifndef DB_DB_H
 #define DB_DB_H
 
+#include <soci/soci.h>
+#include <soci/sqlite3/soci-sqlite3.h>
+
 #include "core/settings.h"
 
 void db_test_open();

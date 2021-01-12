@@ -41,9 +41,6 @@
 
 #include "io/logger.h"
 
-#include <soci/soci.h>
-#include <soci/sqlite3/soci-sqlite3.h>
-
 #include <string>
 #include <map>
 #include <sstream>
