@@ -158,33 +158,22 @@ void db::request(std::string const &r)
 
 void db::create()
 {
-    if (_db_type == SQLITE3)
-    {
-        _create_sqlite();
-    }
-}
+    soci::session sql(_pool);
 
-void db::_create_sqlite()
-{
-    std::string sql_request = "";
-
-    sql_request += "CREATE TABLE IF NOT EXISTS \"users\" (";
-    sql_request += "	\"id\"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,";
-    sql_request += "	\"username\"	TEXT NOT NULL UNIQUE,";
-    sql_request += "	\"password\"	TEXT NOT NULL,";
-    sql_request += "	\"name\" TEXT,";
-    sql_request += "	\"email\"	TEXT,";
-    sql_request += "	\"phone\"	TEXT,";
-    sql_request += "	\"role\"	TEXT,";
-    sql_request += "	\"registration_date\"	TEXT,";
-    sql_request += "	\"last_time_online\"	TEXT,";
-    sql_request += "	\"description\"	TEXT,";
-    sql_request += "	\"department\"	TEXT,";
-    sql_request += "	\"branch\"	TEXT,";
-    sql_request += "	\"is_user_active\"	TEXT,";
-    sql_request += "	\"registration_confirmation_code\"	TEXT,";
-    sql_request += "	\"city\"	TEXT";
-    sql_request += ");";
-
-    request(sql_request);
+    soci::ddl_type ddl = sql.create_table("users");
+    ddl.column("id", soci::dt_integer)("not null")("primary key")("autoincrement");
+    ddl.column("username", soci::dt_string);
+    ddl.column("password", soci::dt_string);
+    ddl.column("name", soci::dt_string);
+    ddl.column("email", soci::dt_string);
+    ddl.column("phone", soci::dt_string);
+    ddl.column("role", soci::dt_string);
+    ddl.column("registration_date", soci::dt_string);
+    ddl.column("last_time_online", soci::dt_string);
+    ddl.column("description", soci::dt_string);
+    ddl.column("department", soci::dt_string);
+    ddl.column("branch", soci::dt_string);
+    ddl.column("is_user_active", soci::dt_string);
+    ddl.column("registration_confirmation_code", soci::dt_string);
+    ddl.column("city", soci::dt_string);
 }

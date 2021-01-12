@@ -78,9 +78,6 @@ private:
 
     /* Инициализация базы данных SQLite3 */
     void _initialization_sqlite();
-
-    /* Создаём таблицу/базу SQLite3 */
-    void _create_sqlite();
 };
 
 #endif // DB_DB_H
