@@ -43,7 +43,7 @@
 
 #include "core/settings.h"
 
-soci::connection_pool _pool(16);
+class soci::connection_pool _pool(16);
 
 class db
 {
