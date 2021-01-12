@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 {
     if (argc < 2)
     {
-        std::cout << "Usage: dev index.html" << std::endl;
+        std::cout << "Usage: sbc-dev index.html" << std::endl;
         exit(1);
     }
 
