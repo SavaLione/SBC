@@ -30,7 +30,7 @@
 cmake_minimum_required (VERSION 3.13.1)
 
 set(SBC_PROJECT "sbc")
-set(SBC_PROJECT_VERSION "0.0.1")
+set(SBC_PROJECT_VERSION "0.7.3")
 
 set(SBC_CLIENT_PROJECT "sbc-client")
 set(SBC_CLIENT_PROJECT_VERSION "0.0.1")
@@ -38,12 +38,12 @@ set(SBC_CLIENT_PROJECT_VERSION "0.0.1")
 # project
 option(SBC_PROJECT_SBC "${SBC_PROJECT}. Build sbc" ON)
 option(SBC_PROJECT_SBC_CLIENT "${SBC_PROJECT}. Build sbc-client" ON)
-option(SBC_PROJECT_DEV "${SBC_PROJECT}. Build dev" OFF)
+option(SBC_PROJECT_DEV "${SBC_PROJECT}. Build sbc-dev" OFF)
 
 # examples
 option(SBC_PROJECT_EXAMPLES "${SBC_PROJECT}. Build sbc examples" OFF)
 option(SBC_CLIENT_EXAMPLES  "${SBC_CLIENT}. Build sbc-client examples" OFF)
-option(SBC_DEV_EXAMPLES  "${SBC_CLIENT}. Build dev examples" OFF)
+option(SBC_DEV_EXAMPLES  "${SBC_CLIENT}. Build sbc-dev examples" OFF)
 
 # tests
 option(SBC_PROJECT_TESTS "${SBC_PROJECT}. Build tests" OFF)
@@ -387,9 +387,9 @@ if(SBC_PROJECT_TESTS)
 
 endif()
 
-################################################################################# dev
+################################################################################# sbc - dev
 if(SBC_PROJECT_DEV)
-    set(SBC_PROJECT_DEV_NAME "dev")
+    set(SBC_PROJECT_DEV_NAME "${SBC_PROJECT}-dev")
     project(${SBC_PROJECT_DEV_NAME})
 
     set(SBC_PROJECT_DEV_SRC
