@@ -61,7 +61,7 @@ public:
     void create();
 
 private:
-    db() : _pool(16){ _init(); };
+    db() : _pool(soci::connection_pool(16)){ _init(); };
     db(db const &) = delete;
     db &operator=(db const &) = delete;
 
@@ -73,7 +73,7 @@ private:
     int _connection_pool_size;
 
     // soci::connection_pool _pool(_connection_pool_size);
-    soci::connection_pool &_pool;
+    soci::connection_pool _pool;
 
     /* Инициализация базы данных SQLite3 */
     void _initialization_sqlite();
