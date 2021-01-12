@@ -43,8 +43,6 @@
 
 #include "core/settings.h"
 
-class soci::connection_pool;
-
 class db
 {
 public:
@@ -63,18 +61,19 @@ public:
     void create();
 
 private:
-    db();
+    db() : _pool(soci::connection_pool(16)){ _init(); };
     db(db const &) = delete;
     db &operator=(db const &) = delete;
 
-    /* Settings initialization */
-    settings &_settings_instance = settings::Instance();
+    /* Инициализация класса */
+    void _init();
 
-    database _db_type = _settings_instance.db();
+    database _db_type;
 
-    int _connection_pool_size = _settings_instance.pool_size();
+    int _connection_pool_size;
 
-    soci::connection_pool _pool(_connection_pool_size);
+    // soci::connection_pool _pool(_connection_pool_size);
+    soci::connection_pool &_pool;
 
     /* Инициализация базы данных SQLite3 */
     void _initialization_sqlite();

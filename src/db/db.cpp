@@ -39,12 +39,22 @@
 
 #include "core/settings.h"
 
-db::db()
+// db::db()
+// {
+//     if (_db_type == SQLITE3)
+//     {
+//         _initialization_sqlite();
+//     }
+// }
+
+void db::_init()
 {
-    if (_db_type == SQLITE3)
-    {
-        _initialization_sqlite();
-    }
+    /* Settings initialization */
+    settings &_settings_instance = settings::Instance();
+
+    _db_type = _settings_instance.db();
+
+    _connection_pool_size = _settings_instance.pool_size();
 }
 
 db::~db()
