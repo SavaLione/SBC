@@ -63,7 +63,7 @@ db::db()
         soci::session sql(*_db.get_pool());
 
         int is_table_found = -1;
-        sql << "SELECT name FROM sqlite_master WHERE type='table' AND name='users'", into(is_table_found);
+        sql << "SELECT name FROM sqlite_master WHERE type='table' AND name='users'", soci::into(is_table_found);
 
         spdlog::error("sqlite: {}", is_table_found);
     }
