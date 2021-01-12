@@ -98,7 +98,7 @@ bool db_pool::connect(std::string const &connect_string, std::size_t n)
     return (_pool != nullptr);
 }
 
-bool db_pool::connect(std::string const &backend_name, std::string const &connect_string, std::size_t)
+bool db_pool::connect(std::string const &backend_name, std::string const &connect_string, std::size_t n)
 {
     if (_pool != nullptr)
     {
