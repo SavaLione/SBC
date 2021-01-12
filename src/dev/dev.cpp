@@ -100,9 +100,15 @@ void parse(std::string const &file_name)
         bool is_line_empty = true;
         for (int z = 0; z < vec_file[i].size(); z++)
         {
-            if (vec_file[i][z] != ' ')
+            switch (vec_file[i][z])
             {
+            case ' ':
+                break;
+            case '	':
+                break;
+            default:
                 is_line_empty = false;
+                break;
             }
         }
 
