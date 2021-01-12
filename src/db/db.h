@@ -61,7 +61,7 @@ public:
     void create();
 
 private:
-    db() : _pool(soci::connection_pool(16)){ _init(); };
+    db() : _pool(16){ _init(); };
     db(db const &) = delete;
     db &operator=(db const &) = delete;
 
