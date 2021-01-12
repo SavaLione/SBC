@@ -82,9 +82,26 @@ void db::create()
         {
             soci::ddl_type ddl = sql.create_table("users");
 
-            ddl.column("id", soci::dt_integer)("not null AUTOINCREMENT");
+            ddl.column("id", soci::dt_integer)("not null");
             ddl.unique("users", "id");
             ddl.primary_key("users", "id");
+
+            ddl.column("username", soci::dt_string)("not null");
+            ddl.unique("users", "username");
+
+            ddl.column("password", soci::dt_string);
+            ddl.column("name", soci::dt_string);
+            ddl.column("email", soci::dt_string);
+            ddl.column("phone", soci::dt_string);
+            ddl.column("role", soci::dt_string);
+            ddl.column("registration_date", soci::dt_string);
+            ddl.column("last_time_online", soci::dt_string);
+            ddl.column("description", soci::dt_string);
+            ddl.column("department", soci::dt_string);
+            ddl.column("branch", soci::dt_string);
+            ddl.column("is_user_active", soci::dt_string);
+            ddl.column("registration_confirmation_code", soci::dt_string);
+            ddl.column("city", soci::dt_string);
 
 
         }
