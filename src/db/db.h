@@ -43,8 +43,6 @@
 
 #include "core/settings.h"
 
-void db_test_open();
-
 class db
 {
 public:
