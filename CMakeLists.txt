@@ -398,5 +398,5 @@ if(SBC_PROJECT_DEV)
     )
 
     add_executable(${SBC_PROJECT_DEV_NAME} ${SBC_PROJECT_DEV_SRC})
-    target_include_directories(${SBC_PROJECT_DEV} PUBLIC ${PROJECT_SOURCE_DIR}/src)
+    target_include_directories(${SBC_PROJECT_DEV_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/src)
 endif()
