@@ -73,7 +73,7 @@ private:
     // const int _connection_pool_size = _settings_instance.pool_size();
     const int _connection_pool_size = 16;
 
-    soci::connection_pool _pool = soci::connection_pool(_connection_pool_size);
+    soci::connection_pool _pool(_connection_pool_size);
 
     /* Инициализация базы данных SQLite3 */
     void _initialization_sqlite();
