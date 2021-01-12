@@ -43,7 +43,7 @@
 
 #include "core/settings.h"
 
-class soci::connection_pool _pool(16);
+class soci::connection_pool;
 
 class db
 {
@@ -74,7 +74,7 @@ private:
 
     int _connection_pool_size = _settings_instance.pool_size();
 
-    soci::connection_pool &_pool;
+    soci::connection_pool &_pool(_connection_pool_size);
 
     /* Инициализация базы данных SQLite3 */
     void _initialization_sqlite();
