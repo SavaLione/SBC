@@ -268,7 +268,7 @@ endif()
 # Soci
 if(SOCI_FOUND)
     target_include_directories(${SBC_PROJECT} PUBLIC ${SOCI_INCLUDE_DIRS})
-    target_link_libraries(${SBC_PROJECT} ${SOCI_sqlite3_PLUGIN} ${SOCI_LIBRARY})
+    target_link_libraries(${SBC_PROJECT} ${SOCI_LIBRARY})
 endif()
 
 ################################################################################# sbc-client
@@ -342,7 +342,7 @@ target_link_libraries(sbc-db-test spdlog::spdlog)
 # Soci
 if(SOCI_FOUND)
     target_include_directories(sbc-db-test PUBLIC ${SOCI_INCLUDE_DIRS})
-    target_link_libraries (sbc-db-test ${SOCI_sqlite3_PLUGIN} ${SOCI_LIBRARY})
+    target_link_libraries (sbc-db-test ${SOCI_LIBRARY})
 endif()
 
 if(SQLite3_FOUND)
@@ -413,7 +413,7 @@ if(SBC_PROJECT_TESTS)
     # Soci
     if(SOCI_FOUND)
         target_include_directories(${SBC_PROJECT_TESTS_NAME} PUBLIC ${SOCI_INCLUDE_DIRS})
-        target_link_libraries (${SBC_PROJECT_TESTS_NAME} ${SOCI_sqlite3_PLUGIN} ${SOCI_LIBRARY})
+        target_link_libraries (${SBC_PROJECT_TESTS_NAME} ${SOCI_LIBRARY})
     endif()
 
     # OpenSSL
