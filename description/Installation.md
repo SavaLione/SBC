@@ -218,3 +218,24 @@ server {
         }
 }
 ```
+
+# Сборка документации к проекту (не обязательно)
+## Зависимости
+* Doxygen
+* Graphviz (не обязательно)
+
+## Установка зависимостей
+### Doxygen
+```sh
+sudo apt install doxygen
+```
+
+### Graphviz (не обязательно)
+```sh
+sudo apt install graphviz
+```
+
+## Сборка документации
+```sh
+doxygen
+```
