@@ -5,6 +5,10 @@
 * sbc-tests - Автоматические тесты
 * dev - Дополнительные инструменты для разработки проекта sbc
 
+Стандартные порты:
+* 9000  - FastCGI (web интерфейс)
+* 12340 - Порт sbc сервера
+
 ## Зависимости
 ### sbc
 * C++ (c++11 и выше)
@@ -17,6 +21,7 @@
 * spdlog (тестировалось на версии 1:1.5.0-1)
 * SOCI 4.0+
 * OpenSSL (тестировалось на версии 1.1.1f)
+* FastCGI (libfcgi) (тестировалось на версии 2.4.0-10build1)
 
 ### sbc-client
 * C++ (c++11 и выше)
@@ -35,6 +40,7 @@
 * spdlog (тестировалось на версии 1:1.5.0-1)
 * SOCI 4.0+
 * OpenSSL (тестировалось на версии 1.1.1f)
+* FastCGI (libfcgi) (тестировалось на версии 2.4.0-10build1)
 * Google C++ Testing Framework (gtest) (тестировалось на версии 1.10.0-2)
 
 ### dev
@@ -132,6 +138,11 @@ sudo ln -s /usr/lib/libgtest.a /usr/local/lib/gtest/libgtest.a
 sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/gtest/libgtest_main.a
 ```
 
+### FastCGI (libfcgi)
+```sh
+sudo pat install libfcgi-dev
+```
+
 ## Установка проекта sbc (*nix)
 ```sh
 git clone https://github.com/SavaLione/SBC.git
@@ -157,3 +168,53 @@ cmake .. -DSBC_PROJECT_TESTS=on -DSBC_CLIENT_TESTS=on
 
 ## Установка проекта sbc (windows)
 Установка проекта под Windows возможна, но необходимо собрать все библиотеки с использованием MinGW64
+
+# Установка web интерфейса
+## Зависимости
+* nginx или apache
+* FastCGI (libfcgi)
+
+## Установка зависимостей (ubuntu)
+### nginx (если предполагается использование nginx web сервера)
+```sh
+sudo apt install nginx
+```
+
+### apache (если предполагается использование apache web сервера)
+```sh
+sudo apt install apache2
+```
+
+### FastCGI (libfcgi)
+```sh
+sudo pat install libfcgi-dev
+```
+
+## Установка web интерфейса проекта sbc
+Необходимо разместить дополнительные материалы (assets) по пути ```/assets``` (путь от домена)
+
+Веб серверу нужно указать путь к FastCGI порту
+
+### Пример конфигурации nginx
+```
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /home/savalione/www/assets;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location /assets {
+                try_files $uri $uri/ =404;
+        }
+
+        location / {
+                fastcgi_pass 127.0.0.1:9000;
+
+                include fastcgi_params;
+        }
+}
+```
