@@ -55,7 +55,7 @@ private:
   void do_read();
   void do_write(std::size_t length);
   boost::asio::ip::tcp::socket socket_;
-  enum { max_length = 8 * 1024 };        // 8 KiB
+  enum { max_length = 8 * 1024 };
   char data_[max_length];
 };
 
