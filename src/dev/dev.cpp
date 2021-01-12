@@ -38,7 +38,6 @@
 #include "dev/dev.h"
 
 #include <iostream>
-#include <vector>
 #include <fstream>
 
 int main(int argc, char *argv[])

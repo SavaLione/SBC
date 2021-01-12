@@ -39,6 +39,7 @@
 #define DEV_DEV_H
 
 #include <string>
+#include <vector>
 
 void parse(std::string const &file_name);
 std::string vec_to_string(std::vector<std::string> const &vec);
