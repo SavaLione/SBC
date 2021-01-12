@@ -81,7 +81,8 @@ void db::create()
 
         soci::ddl_type ddl = sql.create_table("users");
         // ddl.column("id", soci::dt_integer)("not null")("primary key")("autoincrement");
-        ddl.column("id", soci::dt_integer)("not null");
+        // ddl.column("id", soci::dt_integer)("not null");
+        ddl.column("id", soci::dt_integer);
         ddl.column("username", soci::dt_string);
         ddl.column("password", soci::dt_string);
         ddl.column("name", soci::dt_string);
