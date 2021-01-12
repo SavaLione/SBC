@@ -83,8 +83,6 @@ void db::create()
             soci::ddl_type ddl = sql.create_table("users");
 
             ddl.column("id", soci::dt_integer)("not null");
-            ddl.unique("users", "id");
-            ddl.primary_key("users", "id");
 
             // ddl.column("username", soci::dt_string)("not null unique");
             ddl.column("username", soci::dt_string)("not null");
@@ -104,7 +102,8 @@ void db::create()
             ddl.column("registration_confirmation_code", soci::dt_string);
             ddl.column("city", soci::dt_string);
 
-
+            ddl.unique("users", "id");
+            ddl.primary_key("users", "id");
         }
     }
     catch (const std::exception &e)
