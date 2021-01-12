@@ -47,7 +47,7 @@ class db_pool
 {
 public:
     db_pool() : _pool(nullptr), _pool_size(0){};
-    ~db_pool(close(););
+    ~db_pool();
 
     soci::connection_pool *get_pool();
 

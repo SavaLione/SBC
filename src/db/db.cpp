@@ -39,11 +39,13 @@
 
 #include "core/settings.h"
 
+#include "io/logger.h"
+
 db::db()
 {
     std::string open_db_request = "";
 
-    if (_settings_instance.db == SQLITE3)
+    if (_settings_instance.db() == SQLITE3)
     {
         open_db_request = "";
         open_db_request += "dbname=";
@@ -67,7 +69,7 @@ void db::request(std::string const &r)
     }
     catch (const std::exception &e)
     {
-        std::cerr << e.what() << '\n';
+        spdlog::error(e.what());
     }
 }
 
@@ -96,6 +98,6 @@ void db::create()
     }
     catch (const std::exception &e)
     {
-        std::cerr << e.what() << '\n';
+        spdlog::error(e.what());
     }
 }
