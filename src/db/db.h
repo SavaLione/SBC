@@ -57,9 +57,6 @@ public:
     /* Простой запрос, без ответа */
     void request(std::string const &r);
 
-    /* Создаём таблицу/базу */
-    void create();
-
 private:
     db();
     db(db const &) = delete;
@@ -75,6 +72,9 @@ private:
 
     /* Доступ к базе данных через пул соединений */
     db_pool _db;
+
+    /* Создаём таблицу/базу */
+    void _create();
 };
 
 #endif // DB_DB_H

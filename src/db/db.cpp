@@ -53,6 +53,20 @@ db::db()
     }
 
     is_db_connect = _db.connect(_settings_instance.string_db_name(), open_db_request);
+
+    /*
+        sqlite3
+        Если таблицы users нет, создаём
+    */
+    if (_settings_instance.db() == SQLITE3)
+    {
+        soci::session sql(*_db.get_pool());
+
+        int is_table_found = -1;
+        sql << "SELECT name FROM sqlite_master WHERE type='table' AND name='users'", into(is_table_found);
+
+        spdlog::error("sqlite: {}", is_table_found);
+    }
 }
 
 db::~db()
@@ -73,7 +87,7 @@ void db::request(std::string const &r)
     }
 }
 
-void db::create()
+void db::_create()
 {
     try
     {
