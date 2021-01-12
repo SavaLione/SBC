@@ -62,13 +62,13 @@ db::db()
     {
         soci::session sql(*_db.get_pool());
 
-        int is_table_found = 0;
+        int is_table_found = -1;
         //sql << "SELECT name FROM sqlite_master WHERE type='table' AND name='users'", soci::into(is_table_found);
-        sql << "select username(*) from users", soci::into(is_table_found);
+        sql << "select username from users", soci::into(is_table_found);
 
         spdlog::error("sqlite: {}", is_table_found);
 
-        if (!is_table_found)
+        if (is_table_found < 0)
         {
             _create();
         }
