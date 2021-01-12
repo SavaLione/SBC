@@ -86,7 +86,8 @@ void db::create()
             ddl.unique("users", "id");
             ddl.primary_key("users", "id");
 
-            ddl.column("username", soci::dt_string)("not null unique");
+            // ddl.column("username", soci::dt_string)("not null unique");
+            ddl.column("username", soci::dt_string)("not null");
             // ddl.unique("users", "username");
 
             ddl.column("password", soci::dt_string);
