@@ -120,3 +120,8 @@ hash settings::password_hash()
 {
     return _password_hash;
 }
+
+const int settings::pool_size()
+{
+    return _pool_size;
+}

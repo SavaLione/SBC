@@ -46,7 +46,6 @@
 
 #include "net/server.h"
 
-#include "db/db_sqlite.h"
 #include "db/db.h"
 
 #include "web/web.h"
@@ -95,6 +94,16 @@ void sbc_console()
             }
         }
     }
+}
+
+/* Создание подключения к базе данных */
+void connect_db()
+{
+    /* Создание подключения к базе данных */
+    db &db_instance = db::instance();
+
+    /* Если таблица/база не найдены, создаём их */
+    db_instance.create();
 }
 
 void sbc_test()
@@ -174,6 +183,9 @@ int main(int argc, char *argv[])
 
     /* cookie_repository */
     cookie_repository &cookie_repository_instance = cookie_repository::Instance();
+
+    /* Создание подключения к базе данных */
+    connect_db();
 
     /* Запуск web сервера */
     std::thread thread_web_server(web_server);

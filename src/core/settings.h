@@ -109,6 +109,9 @@ public:
     /* Получить тип хэша паролей */
     hash password_hash();
 
+    /* Размер пула подключений SOCI (база данных) */
+    const int pool_size();
+
 private:
     settings();
     settings(settings const &) = delete;
@@ -165,6 +168,9 @@ private:
 
     /* В каком виде хранятся пароли */
     hash _password_hash = SHA_256;
+
+    /* Размер пула подключений SOCI (база данных) */
+    int _pool_size = 16;
 };
 
 #endif // CORE_SETTINGS_H

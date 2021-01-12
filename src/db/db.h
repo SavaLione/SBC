@@ -38,6 +38,46 @@
 #ifndef DB_DB_H
 #define DB_DB_H
 
+#include "core/settings.h"
+
 void db_test_open();
+
+class db
+{
+public:
+    static db &instance()
+    {
+        static db d;
+        return d;
+    }
+
+    ~db();
+
+    /* Простой запрос, без ответа */
+    void request(std::string const &r);
+
+    /* Создаём таблицу/базу */
+    void create();
+
+private:
+    db();
+    db(db const &) = delete;
+    db &operator=(db const &) = delete;
+
+    /* Settings initialization */
+    settings &_settings_instance = settings::Instance();
+
+    database _db_type = _settings_instance.db();
+
+    int _connection_pool_size = _settings_instance.pool_size();
+
+    soci::connection_pool _pool(_connection_pool_size);
+
+    /* Инициализация базы данных SQLite3 */
+    void _initialization_sqlite();
+
+    /* Создаём таблицу/базу SQLite3 */
+    void _create_sqlite();
+};
 
 #endif // DB_DB_H

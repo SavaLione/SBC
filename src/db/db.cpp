@@ -126,3 +126,68 @@ void db_test_open()
         doc << "</row>";
     }
 }
+
+db::db()
+{
+    if (_db_type == SQLITE3)
+    {
+        _initialization_sqlite();
+    }
+}
+
+db::~db()
+{
+}
+
+void db::_initialization_sqlite()
+{
+    for (int i = 0; i < _connection_pool_size; i++)
+    {
+        soci::session &sql = _pool.at(i);
+
+        std::string db_param = "dbname=";
+        db_param += _settings_instance.db_sqlite_name();
+
+        sql.open("sqlite3", db_param);
+    }
+}
+
+void db::request(std::string const &r)
+{
+    soci::session sql(_pool);
+
+    sql << r;
+}
+
+void db::create()
+{
+    if (_db_type == SQLITE3)
+    {
+        _create_sqlite();
+    }
+}
+
+void db::_create_sqlite()
+{
+    std::string sql_request = "";
+
+    sql_request += "CREATE TABLE IF NOT EXISTS \"users\" (";
+    sql_request += "	\"id\"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,";
+    sql_request += "	\"username\"	TEXT NOT NULL UNIQUE,";
+    sql_request += "	\"password\"	TEXT NOT NULL,";
+    sql_request += "	\"name\" TEXT,";
+    sql_request += "	\"email\"	TEXT,";
+    sql_request += "	\"phone\"	TEXT,";
+    sql_request += "	\"role\"	TEXT,";
+    sql_request += "	\"registration_date\"	TEXT,";
+    sql_request += "	\"last_time_online\"	TEXT,";
+    sql_request += "	\"description\"	TEXT,";
+    sql_request += "	\"department\"	TEXT,";
+    sql_request += "	\"branch\"	TEXT,";
+    sql_request += "	\"is_user_active\"	TEXT,";
+    sql_request += "	\"registration_confirmation_code\"	TEXT,";
+    sql_request += "	\"city\"	TEXT";
+    sql_request += ");";
+
+    request(sql_request);
+}

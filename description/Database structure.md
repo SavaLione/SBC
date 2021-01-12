@@ -23,13 +23,25 @@ registration_confirmation_code - Код подтверждения регист�
 city - Город
 ```
 
-## Тестовый запрос
+# Запросы к базам данных
+## Запрос на создание таблицы с пользователями
 
 ```sql
-CREATE TABLE "users" (
+CREATE TABLE IF NOT EXISTS "users" (
 	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	"username"	TEXT NOT NULL UNIQUE,
 	"password"	TEXT NOT NULL,
-	"email"	TEXT
+	"name" TEXT,
+	"email"	TEXT,
+	"phone"	TEXT,
+	"role"	TEXT,
+	"registration_date"	TEXT,
+	"last_time_online"	TEXT,
+	"description"	TEXT,
+	"department"	TEXT,
+	"branch"	TEXT,
+	"is_user_active"	TEXT,
+	"registration_confirmation_code"	TEXT,
+	"city"	TEXT
 );
 ```
