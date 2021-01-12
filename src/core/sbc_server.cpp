@@ -97,7 +97,7 @@ void sbc_test()
     /* cookie */
     cookie_repository &cookie_instance = cookie_repository::Instance();
 
-    cookie_instance.debug();
+    // cookie_instance.debug();
 
     {
         user savalione;
@@ -117,7 +117,7 @@ void sbc_test()
     cookie_instance.add(testuser);
     /* testuser */
 
-    cookie_instance.debug();
+    // cookie_instance.debug();
 
     {
         user some;
@@ -128,11 +128,11 @@ void sbc_test()
         cookie_instance.add(some);
     }
 
-    cookie_instance.debug();
+    // cookie_instance.debug();
 
     //cookie_instance.remove(testuser);
 
-    cookie_instance.debug();
+    // cookie_instance.debug();
 }
 
 void sbc_test_cookie()
