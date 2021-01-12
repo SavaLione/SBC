@@ -37,6 +37,8 @@
  */
 #include "db/db_pool.h"
 
+#include "io/logger.h"
+
 db_pool::~db_pool()
 {
     close();
@@ -85,7 +87,7 @@ bool db_pool::connect(std::string const &connect_string, std::size_t n)
     }
     catch (const std::exception &e)
     {
-        std::cerr << e.what() << '\n';
+        spdlog::error(e.what());
     }
 
     if (!is_connected)
@@ -134,7 +136,7 @@ bool db_pool::connect(std::string const &backend_name, std::string const &connec
     }
     catch (const std::exception &e)
     {
-        std::cerr << e.what() << '\n';
+        spdlog::error(e.what());
     }
 
     if (!is_connected)
@@ -161,7 +163,7 @@ void db_pool::close()
         }
         catch (const std::exception &e)
         {
-            std::cerr << e.what() << '\n';
+            spdlog::error(e.what());
         }
         _pool_size = 0;
     }
