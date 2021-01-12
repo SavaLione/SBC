@@ -79,8 +79,9 @@ void db::create()
     {
         soci::session sql(*_db.get_pool());
         {
-            // soci::ddl_type ddl = sql.create_table("users");
-            // ddl.column("id", soci::dt_integer);
+            soci::ddl_type ddl = sql.create_table("users");
+            
+            ddl.column("id", soci::dt_integer);
         }
     }
     catch (const std::exception &e)
