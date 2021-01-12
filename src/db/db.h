@@ -70,7 +70,7 @@ private:
 
     database _db_type = _settings_instance.db();
 
-    int _connection_pool_size = _settings_instance.pool_size();
+    const int _connection_pool_size = _settings_instance.pool_size();
 
     soci::connection_pool _pool = soci::connection_pool(_connection_pool_size);
 
