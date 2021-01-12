@@ -125,3 +125,44 @@ const int settings::pool_size()
 {
     return _pool_size;
 }
+
+std::string settings::string_db_name()
+{
+    switch (_db)
+    {
+    case ORACLE:
+        return "oracle";
+        break;
+    case POSTGRESQL:
+        return "postgresql";
+        break;
+    case MYSQL:
+        return "mysql";
+        break;
+    case MARIADB:
+        return "mysql";
+        break;
+    case SQLITE3:
+        return "sqlite3";
+        break;
+    /* В документации soci такого нет */
+    case FIREBIRD:
+        return "firebird";
+        break;
+    /* В документации soci такого нет */
+    case ODBC:
+        return "odbc";
+        break;
+    /* В документации soci такого нет */
+    case DB2:
+        return "db2";
+        break;
+    default:
+        /* Стандартная база данных sqlite3 */
+        return "sqlite3";
+        break;
+    }
+
+    /* Стандартная база данных sqlite3 */
+    return "sqlite3";
+}

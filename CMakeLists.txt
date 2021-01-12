@@ -147,6 +147,8 @@ set(SBC_DB_SQLITE_SRC
 set(SBC_DB_SRC
     src/db/db.h
     src/db/db.cpp
+    src/db/db_pool.h
+    src/db/db_pool.cpp
     ${SBC_DB_SQLITE_SRC}
 )
 

@@ -1,7 +1,7 @@
 /*
  * SPDX-License-Identifier: BSD-3-Clause
  * 
- * Copyright (c) 2020, Savely Pototsky (SavaLione)
+ * Copyright (c) 2021, Savely Pototsky (SavaLione)
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,50 +31,48 @@
 
 /**
  * @file
- * @brief Работа с базой данных
+ * @brief Пул для работы с базой данных
  * @author SavaLione
- * @date 13 Dec 2020
+ * @date 12 Jan 2021
  */
-#ifndef DB_DB_H
-#define DB_DB_H
+#ifndef DB_DB_POOL_H
+#define DB_DB_POOL_H
 
-#include <soci/sqlite3/soci-sqlite3.h>
+#include <soci/soci.h>
+#include <soci/connection-pool.h>
 
-#include "core/settings.h"
-#include "db/db_pool.h"
+#include <string>
 
-class db
+class db_pool
 {
 public:
-    static db &instance()
-    {
-        static db d;
-        return d;
-    }
+    db_pool() : _pool(nullptr), _pool_size(0){};
+    ~db_pool(close(););
 
-    ~db();
+    soci::connection_pool *get_pool();
 
-    /* Простой запрос, без ответа */
-    void request(std::string const &r);
+    /*
+        Подключение к базе данных
+        connect_string - строка с параметрами для подключения
+    */
+    bool connect(std::string const &connect_string, std::size_t n = 8);
 
-    /* Создаём таблицу/базу */
-    void create();
+    /*
+        Подключение к базе данных
+        backend_name - название базы данных
+        connect_string - строка с параметрами для подключения
+    */
+    bool connect(std::string const &backend_name, std::string const &connect_string, std::size_t n = 8);
+
+    /* Закрытие соединений в пуле */
+    void close();
 
 private:
-    db();
-    db(db const &) = delete;
-    db &operator=(db const &) = delete;
+    /* Пул */
+    soci::connection_pool *_pool;
 
-    /* Подключились ли мы к базе данных */
-    bool is_db_connect = false;
-
-    /* Settings initialization */
-    settings &_settings_instance = settings::Instance();
-
-    database _db_type = _settings_instance.db();
-
-    /* Доступ к базе данных через пул соединений */
-    db_pool _db;
+    /* Размер пула */
+    std::size_t _pool_size;
 };
 
-#endif // DB_DB_H
+#endif // DB_DB_POOL_H

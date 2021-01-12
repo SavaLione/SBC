@@ -91,6 +91,7 @@ public:
     std::string fcgi_socket_path();
     int fcgi_thread_count();
 
+    /* Тип базы данных */
     database db();
     std::string db_host();
     std::string db_name();
@@ -111,6 +112,9 @@ public:
 
     /* Размер пула подключений SOCI (база данных) */
     const int pool_size();
+
+    /* Строковое представление базы данных, для soci */
+    std::string string_db_name();
 
 private:
     settings();

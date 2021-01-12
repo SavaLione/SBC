@@ -39,66 +39,63 @@
 
 #include "core/settings.h"
 
-// db::db()
-// {
-//     if (_db_type == SQLITE3)
-//     {
-//         _initialization_sqlite();
-//     }
-// }
-
-void db::_init()
+db::db()
 {
-    /* Settings initialization */
-    settings &_settings_instance = settings::Instance();
+    std::string open_db_request = "";
 
-    _db_type = _settings_instance.db();
+    if (_settings_instance.db == SQLITE3)
+    {
+        open_db_request = "";
+        open_db_request += "dbname=";
+        open_db_request += _settings_instance.db_sqlite_name();
+    }
 
-    _connection_pool_size = _settings_instance.pool_size();
+    is_db_connect = _db.connect(_settings_instance.string_db_name(), open_db_request);
 }
 
 db::~db()
 {
 }
 
-void db::_initialization_sqlite()
-{
-    for (int i = 0; i < _connection_pool_size; i++)
-    {
-        soci::session &sql = _pool.at(i);
-
-        std::string db_param = "dbname=";
-        db_param += _settings_instance.db_sqlite_name();
-
-        sql.open("sqlite3", db_param);
-    }
-}
-
 void db::request(std::string const &r)
 {
-    soci::session sql(_pool);
+    try
+    {
+        soci::session sql(*_db.get_pool());
 
-    sql << r;
+        sql << r;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 void db::create()
 {
-    soci::session sql(_pool);
+    try
+    {
+        soci::session sql(*_db.get_pool());
 
-    soci::ddl_type ddl = sql.create_table("users");
-    ddl.column("id", soci::dt_integer)("not null")("primary key")("autoincrement");
-    ddl.column("username", soci::dt_string);
-    ddl.column("password", soci::dt_string);
-    ddl.column("name", soci::dt_string);
-    ddl.column("email", soci::dt_string);
-    ddl.column("phone", soci::dt_string);
-    ddl.column("role", soci::dt_string);
-    ddl.column("registration_date", soci::dt_string);
-    ddl.column("last_time_online", soci::dt_string);
-    ddl.column("description", soci::dt_string);
-    ddl.column("department", soci::dt_string);
-    ddl.column("branch", soci::dt_string);
-    ddl.column("is_user_active", soci::dt_string);
-    ddl.column("registration_confirmation_code", soci::dt_string);
-    ddl.column("city", soci::dt_string);
+        soci::ddl_type ddl = sql.create_table("users");
+        ddl.column("id", soci::dt_integer)("not null")("primary key")("autoincrement");
+        ddl.column("username", soci::dt_string);
+        ddl.column("password", soci::dt_string);
+        ddl.column("name", soci::dt_string);
+        ddl.column("email", soci::dt_string);
+        ddl.column("phone", soci::dt_string);
+        ddl.column("role", soci::dt_string);
+        ddl.column("registration_date", soci::dt_string);
+        ddl.column("last_time_online", soci::dt_string);
+        ddl.column("description", soci::dt_string);
+        ddl.column("department", soci::dt_string);
+        ddl.column("branch", soci::dt_string);
+        ddl.column("is_user_active", soci::dt_string);
+        ddl.column("registration_confirmation_code", soci::dt_string);
+        ddl.column("city", soci::dt_string);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
