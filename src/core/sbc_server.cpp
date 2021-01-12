@@ -80,22 +80,6 @@ void sbc_server()
     }
 }
 
-void sbc_console()
-{
-    spdlog::info("Start SBC console.");
-
-    for (std::string line; std::cout << " >" && std::getline(std::cin, line);)
-    {
-        if (!line.empty())
-        {
-            if (line == "exit")
-            {
-                exit(0);
-            }
-        }
-    }
-}
-
 /* Создание подключения к базе данных */
 void connect_db()
 {
@@ -179,9 +163,6 @@ int main(int argc, char *argv[])
     /* Запуск sbc сервера */
     std::thread thread_sbc_server(sbc_server);
 
-    /* Запуск консоли */
-    std::thread thread_sbc_console(sbc_console);
-
     /* Тестирование некоторых функций */
     std::thread thread_sbc_test(sbc_test);
     std::thread thread_sbc_test_cookie(sbc_test_cookie);
@@ -196,12 +177,6 @@ int main(int argc, char *argv[])
     {
         thread_sbc_server.join();
         spdlog::info("Stop SBC server.");
-    }
-
-    if (thread_sbc_console.joinable())
-    {
-        thread_sbc_console.join();
-        spdlog::info("Stop SBC console.");
     }
 
     if (thread_sbc_test.joinable())
