@@ -35,13 +35,20 @@ set(SBC_PROJECT_VERSION "0.0.1")
 set(SBC_CLIENT_PROJECT "sbc-client")
 set(SBC_CLIENT_PROJECT_VERSION "0.0.1")
 
+# project
+option(SBC_PROJECT_SBC "${SBC_PROJECT}. Build sbc" ON)
+option(SBC_PROJECT_SBC_CLIENT "${SBC_PROJECT}. Build sbc-client" ON)
+option(SBC_PROJECT_DEV "${SBC_PROJECT}. Build dev" OFF)
+
 # examples
-option(SBC_PROJECT_EXAMPLES "${SBC_PROJECT}. Build examples" OFF)
-option(SBC_CLIENT_EXAMPLES  "${SBC_CLIENT}. Build examples" OFF)
+option(SBC_PROJECT_EXAMPLES "${SBC_PROJECT}. Build sbc examples" OFF)
+option(SBC_CLIENT_EXAMPLES  "${SBC_CLIENT}. Build sbc-client examples" OFF)
+option(SBC_DEV_EXAMPLES  "${SBC_CLIENT}. Build dev examples" OFF)
 
 # tests
 option(SBC_PROJECT_TESTS "${SBC_PROJECT}. Build tests" OFF)
 option(SBC_CLIENT_TESTS  "${SBC_CLIENT}. Build tests" OFF)
+option(SBC_DEV_TESTS  "${SBC_CLIENT}. Build dev tests" OFF)
 
 set(SBC_TESTS_ENABLED 0)
 
@@ -378,4 +385,18 @@ if(SBC_PROJECT_TESTS)
     # gtest
     target_link_libraries(${SBC_PROJECT_TESTS_NAME} ${GTEST_LIBRARIES})
 
+endif()
+
+################################################################################# dev
+if(SBC_PROJECT_DEV)
+    set(SBC_PROJECT_DEV_NAME "dev")
+    project(${SBC_PROJECT_DEV_NAME})
+
+    set(SBC_PROJECT_DEV_SRC
+        src/dev/dev.h
+        src/dev/dev.cpp
+    )
+
+    add_executable(${SBC_PROJECT_DEV} ${SBC_PROJECT_DEV_SRC})
+    target_include_directories(${SBC_PROJECT_DEV} PUBLIC ${PROJECT_SOURCE_DIR}/src)
 endif()
