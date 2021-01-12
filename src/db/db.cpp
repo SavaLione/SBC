@@ -60,17 +60,23 @@ db::db()
     */
     if (_settings_instance.db() == SQLITE3)
     {
-        soci::session sql(*_db.get_pool());
-
-        int is_table_found = 0;
-        //sql << "SELECT name FROM sqlite_master WHERE type='table' AND name='users'", soci::into(is_table_found);
-        sql << "select count(*) from sqlite_master where type='table' and name='users'", soci::into(is_table_found);
-
-        spdlog::error("sqlite: {}", is_table_found);
-
-        if (!is_table_found)
+        try
         {
-            _create();
+            soci::session sql(*_db.get_pool());
+
+            int is_table_found = 0;
+            sql << "select count(*) from sqlite_master where type='table' and name='users'", soci::into(is_table_found);
+
+            if (!is_table_found)
+            {
+                spdlog::info("sqlite table users not exists");
+                spdlog::info("creating sqlite table users");
+                _create();
+            }
+        }
+        catch (const std::exception &e)
+        {
+            spdlog::error(e.what());
         }
     }
 }
