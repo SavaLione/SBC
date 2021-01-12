@@ -78,10 +78,15 @@ void db::create()
     try
     {
         soci::session sql(*_db.get_pool());
+
         {
             soci::ddl_type ddl = sql.create_table("users");
+
+            ddl.column("id", soci::dt_integer)("not null");
+            ddl.unique("users", "id");
+            ddl.primary_key("users", "id");
             
-            ddl.column("id", soci::dt_integer);
+
         }
     }
     catch (const std::exception &e)
