@@ -57,6 +57,9 @@
 
 void web_server()
 {
+        /* Создание подключения к базе данных */
+    db &db_instance = db::instance();
+    db_instance._test_table_test_print();
     spdlog::info("Start web FastCGI server.");
     web *web_f = new web();
 
@@ -65,6 +68,9 @@ void web_server()
 
 void sbc_server()
 {
+        /* Создание подключения к базе данных */
+    db &db_instance = db::instance();
+    db_instance._test_table_test_print();
     settings &settings_instance = settings::Instance();
 
     spdlog::info("Start SBC server.");
@@ -86,26 +92,15 @@ void connect_db()
 {
     /* Создание подключения к базе данных */
     db &db_instance = db::instance();
-
-    // db_instance._test_table_test_print();
-    
-    ///
-    db_pool db_p = db_instance.get();
-    soci::session sql(*db_p.get_pool());
-
-    try
-    {
-        sql << "SOMETHINGWRONG";
-    }
-    catch(const std::exception& e)
-    {
-        spdlog::error(e.what());
-    }
+    db_instance._test_table_test_print();
     
 }
 
 void sbc_test()
 {
+        /* Создание подключения к базе данных */
+    db &db_instance = db::instance();
+    db_instance._test_table_test_print();
     spdlog::info("Start SBC test.");
 
     /* cookie */
@@ -151,6 +146,9 @@ void sbc_test()
 
 void sbc_test_cookie()
 {
+        /* Создание подключения к базе данных */
+    db &db_instance = db::instance();
+    db_instance._test_table_test_print();
     spdlog::info("Start SBC cookie test.");
 }
 
