@@ -57,9 +57,6 @@
 
 void web_server()
 {
-        /* Создание подключения к базе данных */
-    db &db_instance = db::instance();
-    db_instance._test_table_test_print();
     spdlog::info("Start web FastCGI server.");
     web *web_f = new web();
 
@@ -68,9 +65,6 @@ void web_server()
 
 void sbc_server()
 {
-        /* Создание подключения к базе данных */
-    db &db_instance = db::instance();
-    db_instance._test_table_test_print();
     settings &settings_instance = settings::Instance();
 
     spdlog::info("Start SBC server.");
@@ -92,15 +86,10 @@ void connect_db()
 {
     /* Создание подключения к базе данных */
     db &db_instance = db::instance();
-    db_instance._test_table_test_print();
-    
 }
 
 void sbc_test()
 {
-        /* Создание подключения к базе данных */
-    db &db_instance = db::instance();
-    db_instance._test_table_test_print();
     spdlog::info("Start SBC test.");
 
     /* cookie */
@@ -144,14 +133,6 @@ void sbc_test()
     // cookie_instance.debug();
 }
 
-void sbc_test_cookie()
-{
-        /* Создание подключения к базе данных */
-    db &db_instance = db::instance();
-    db_instance._test_table_test_print();
-    spdlog::info("Start SBC cookie test.");
-}
-
 int main(int argc, char *argv[])
 {
     /* Logger initialization */
@@ -177,7 +158,6 @@ int main(int argc, char *argv[])
 
     /* Тестирование некоторых функций */
     std::thread thread_sbc_test(sbc_test);
-    std::thread thread_sbc_test_cookie(sbc_test_cookie);
 
     if (thread_web_server.joinable())
     {
@@ -195,12 +175,6 @@ int main(int argc, char *argv[])
     {
         thread_sbc_test.join();
         spdlog::info("Stop SBC test.");
-    }
-
-    if (thread_sbc_test_cookie.joinable())
-    {
-        thread_sbc_test_cookie.join();
-        spdlog::info("Stop SBC cookie test.");
     }
 
     return 0;
