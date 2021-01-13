@@ -39,6 +39,7 @@
 #define DB_TABLE_TEMPLATE_IMPL_H
 
 #include <regex>
+#include <numeric>
 
 /* Преобразование массива в вектор */
 template <typename T>
