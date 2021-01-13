@@ -81,9 +81,12 @@ void db::request(std::string const &r)
 
 void db::_create()
 {
+    spdlog::info("create()");
+
     try
     {
         soci::session sql(*_db.get_pool());
+        spdlog::info("backend_name: {}", sql.get_backend_name());
 
         if (sql.get_backend_name() == "sqlite")
         {
