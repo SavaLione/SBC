@@ -156,6 +156,11 @@ set(SBC_DB_SRC
     src/db/db.cpp
     src/db/db_pool.h
     src/db/db_pool.cpp
+    src/db/table_template.h
+    src/db/table_template_impl.h
+    src/db/table_template.cpp
+    src/db/table_users.h
+    src/db/table_users.cpp
     ${SBC_DB_SQLITE_SRC}
 )
 
