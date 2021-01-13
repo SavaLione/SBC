@@ -90,7 +90,8 @@ void connect_db()
     // db_instance._test_table_test_print();
     
     ///
-    soci::session sql(*db_instance.get().get_pool());
+    db_pool db_p = db_instance.get();
+    soci::session sql(*db_p.get_pool());
 }
 
 void sbc_test()
