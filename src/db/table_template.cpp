@@ -37,8 +37,6 @@
  */
 #include "db/table_template.h"
 
-#include "io/logger.h"
-
 table_template::table_template()
 {
 }
@@ -66,42 +64,3 @@ table_template &table_template::operator=(table_template const &rhs)
     }
     return *this;
 }
-
-template <>
-struct soci::type_conversion<table_template>
-{
-    typedef values base_type;
-
-    static void from_base(values const &v, indicator ind, table_template &p)
-    {
-        if (ind == i_null)
-        {
-            return;
-        }
-
-        try
-        {
-            p.id = v.get<int>("id", 0);
-        }
-        catch (std::exception const &e)
-        {
-            spdlog::error(e.what());
-        }
-    }
-
-    static void to_base(table_template const &p, values &v, indicator &ind)
-    {
-        try
-        {
-            v.set("id", p.id);
-
-            ind = i_ok;
-            return;
-        }
-        catch (std::exception const &e)
-        {
-            spdlog::error(e.what());
-        }
-        ind = i_null;
-    }
-};
