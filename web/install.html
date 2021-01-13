@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="SBC">
+        <meta name="author" content="SBC team">
+        <link rel="icon" href="/assets/favicon.ico">
+
+        <title>About</title>
+
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <style>
+            .code-format {
+                margin-bottom: 16px;
+            }
+
+            .code-format pre {
+                padding: 16px;
+                margin: 1em 0px;
+                overflow: auto;
+                font-size: 85%;
+                line-height: 1.45;
+                background-color: #f6f8fa;
+                border-radius: 6px;
+
+                word-break: normal;
+            }
+
+            p code {
+                padding: .2em .4em;
+                margin: 0;
+                font-size: 85%;
+                background-color: var(--color-markdown-code-bg);
+                border-radius: 6px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container pt-4 pb-4">
+            <div class="row">
+                <div class="col-3">
+                    <button class="btn btn-primary shadow w-100 mb-1" onclick="change_tab('server')">Установка сервера</button>
+                    <button class="btn btn-primary shadow w-100 mb-1" onclick="change_tab('mobile')">Установка мобильного приложения</button>
+                    <button class="btn btn-primary shadow w-100 mb-1" onclick="change_tab('team')">Команда разработки</button>
+                </div>
+                <div class="col-9">
+                    <div id="server" class="tab container-fluid">
+                        <h2>Установка сервера</h2>
+                        <p>Проект разделён на несколько частей:</p>
+                        <ul>
+                            <li>sbc - Сервер</li>
+                            <li>sbc-client - Консольный клиент</li>
+                            <li>sbc-tests - Автоматические тесты</li>
+                            <li>dev - Дополнительные инструменты для разработки проекта sbc</li>
+                        </ul>
+                        <p>Стандартные порты:</p>
+                        <ul>
+                            <li>9000 - FastCGI (web интерфейс)</li>
+                            <li>12340 - Порт sbc сервера</li>
+                        </ul>
+                        <div id="server-list" class="accordion">
+                            <div class="card">
+                                <div id="dependencies-header" class="card-header">
+                                    <h4 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#dependencies" aria-expanded="true" aria-controls="dependencies">
+                                            Установка зависимостей
+                                        </button>
+                                    </h4>
+                                </div>
+                                <div id="dependencies" class="collapse show" aria-labelledby="dependencies-header" data-parent="#server-list">
+                                    <div class="card-body">
+                                        <h5>Список зависимостей</h5>
+                                        <p><strong>sbc</strong></p>
+                                        <ul>
+                                            <li>C++ (c++11 и выше)</li>
+                                            <li>gcc (тестировалось на версии 9.3.0)</li>
+                                            <li>CMake 3.13.1+ (только на время сборки проекта)</li>
+                                            <li>Boost 1.71.0+</li>
+                                            <li>Threads (поставляется с gcc)</li>
+                                            <li>Protocol Buffers (тестировалось на версии 3.14.0)</li>
+                                            <li>SQLite3 (для поддержки sqlite)</li>
+                                            <li>spdlog (тестировалось на версии 1:1.5.0-1)</li>
+                                            <li>SOCI 4.0+</li>
+                                            <li>OpenSSL (тестировалось на версии 1.1.1f)</li>
+                                            <li>FastCGI (libfcgi) (тестировалось на версии 2.4.0-10build1)</li>
+                                        </ul>
+                                        <p><strong>sbc-client</strong></p>
+                                        <ul>
+                                            <li>C++ (c++11 и выше)</li>
+                                            <li>gcc (тестировалось на версии 9.3.0)</li>
+                                            <li>CMake 3.13.1+ (только на время сборки проекта)</li>
+                                            <li>Boost 1.71.0+</li>
+                                        </ul>
+                                        <p><strong>sbc-tests</strong></p>
+                                        <ul>
+                                            <li>C++ (c++11 и выше)</li>
+                                            <li>gcc (тестировалось на версии 9.3.0)</li>
+                                            <li>CMake 3.13.1+ (только на время сборки проекта)</li>
+                                            <li>Boost 1.71.0+</li>
+                                            <li>Threads (поставляется с gcc)</li>
+                                            <li>Protocol Buffers (тестировалось на версии 3.14.0)</li>
+                                            <li>SQLite3 (для поддержки sqlite)</li>
+                                            <li>spdlog (тестировалось на версии 1:1.5.0-1)</li>
+                                            <li>SOCI 4.0+</li>
+                                            <li>OpenSSL (тестировалось на версии 1.1.1f)</li>
+                                            <li>FastCGI (libfcgi) (тестировалось на версии 2.4.0-10build1)</li>
+                                            <li>Google C++ Testing Framework (gtest) (тестировалось на версии 1.10.0-2)</li>
+                                        </ul>
+                                        <p><strong>dev</strong></p>
+                                        <ul>
+                                            <li>C++ (c++11 и выше)</li>
+                                            <li>gcc (тестировалось на версии 9.3.0)</li>
+                                            <li>CMake 3.13.1+ (только на время сборки проекта)</li>
+                                        </ul>
+
+                                        <h5>Установка зависимостей (ubuntu)</h5>
+                                        <p><strong>Перед установкой пакетов желательно обновить список пакетов:</strong></p>
+                                        <div class="code-format"><pre>sudo apt update</pre></div>
+                                        <p><strong>gcc</strong></p>
+                                        <div class="code-format"><pre>sudo apt install build-essential</pre></div>
+                                        <p><strong>CMake</strong></p>
+                                        <div class="code-format"><pre>sudo apt install cmake</pre></div>
+                                        <p><strong>Boost</strong></p>
+                                        <div class="code-format"><pre>sudo apt install libboost-all-dev</pre></div>
+                                        <p><strong>Protocol Buffers</strong></p>
+                                        <div class="code-format">
+                                            <pre>
+sudo apt install autoconf automake libtool curl make g++ unzip
+git clone https://github.com/protocolbuffers/protobuf.git
+cd protobuf
+git submodule update --init --recursive
+./autogen.sh
+./configure
+make -j4
+make check
+sudo make install
+sudo ldconfig
+                                            </pre>
+                                        </div>
+                                        <div class="code-format">
+                                            <pre>
+-j4 после команды make означает, что компилируем проект 4 процессорными ядрами
+4 можно заменить на любое число. Также можно вовсе убрать -j4
+                                            </pre>
+                                        </div>
+                                        <p><strong>SQLite3 (для поддержки sqlite)</strong></p>
+                                        <div class="code-format"><pre>sudo apt install sqlite3 libsqlite3-dev</pre></div>
+                                        <p><strong>spdlog</strong></p>
+                                        <div class="code-format"><pre>sudo apt install libspdlog-dev</pre></div>
+                                        <p><strong>SOCI</strong></p>
+                                        <div class="code-format">
+                                            <pre>
+git clone https://github.com/SOCI/soci.git
+cd soci && mkdir build
+cd build
+cmake .. -DSOCI_CXX11=ON -DWITH_BOOST=ON
+make -j4
+sudo make install
+
+sudo cp /usr/local/lib64/libsoci_core.a /usr/local/lib/libsoci_core.a
+sudo cp /usr/local/lib64/libsoci_empty.a /usr/local/lib/libsoci_empty.a
+sudo cp /usr/local/lib64/libsoci_sqlite3.a /usr/local/lib/libsoci_sqlite3.a
+sudo ln -s /usr/local/lib64/libsoci_core.so  /usr/local/lib/libsoci_core.so
+sudo ln -s /usr/local/lib64/libsoci_empty.so /usr/local/lib/libsoci_empty.so
+sudo ln -s /usr/local/lib64/libsoci_sqlite3.so /usr/local/lib/libsoci_sqlite3.so
+
+sudo ln -s /usr/local/lib64/libsoci_core.so.4.0 /usr/local/lib/libsoci_core.so.4.0
+sudo ln -s /usr/local/lib64/libsoci_empty.so.4.0 /usr/local/lib/libsoci_empty.so.4.0
+sudo ln -s /usr/local/lib64/libsoci_sqlite3.so.4.0 /usr/local/lib/libsoci_sqlite3.so.4.0
+
+sudo ldconfig
+                                            </pre>
+                                        </div>
+                                        <div class="code-format">
+                                            <pre>
+-j4 после команды make означает, что компилируем проект 4 процессорными ядрами
+4 можно заменить на любое число. Также можно вовсе убрать -j4
+                                            </pre>
+                                        </div>
+                                        <p><strong>OpenSSL</strong></p>
+                                        <div class="code-format"><pre>sudo apt install libssl-dev</pre></div>
+                                        <p><strong>Google C++ Testing Framework (gtest)</strong></p>
+                                        <div class="code-format">
+                                            <pre>
+sudo apt install libgtest-dev
+cd /usr/src/gtest
+sudo cmake CMakeLists.txt
+sudo make -j4
+
+sudo cp *.a /usr/lib
+sudo ln -s /usr/lib/libgtest.a /usr/local/lib/gtest/libgtest.a
+sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/gtest/libgtest_main.a
+                                            </pre>
+                                        </div>
+                                        <div class="code-format">
+                                            <pre>
+-j4 после команды make означает, что компилируем проект 4 процессорными ядрами
+4 можно заменить на любое число. Также можно вовсе убрать -j4
+                                            </pre>
+                                        </div>
+                                        <p><strong>FastCGI (libfcgi)</strong></p>
+                                        <div class="code-format"><pre>sudo pat install libfcgi-dev</pre></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div id="sbc-header" class="card-header">
+                                    <h4 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#sbc" aria-expanded="false" aria-controls="sbc">
+                                            Установка проекта sbc (*nix)
+                                        </button>
+                                    </h4>
+                                </div>
+                                <div id="sbc" class="collapse" aria-labelledby="sbc-header" data-parent="#server-list">
+                                    <div class="card-body">
+                                        <div class="code-format">
+                                            <pre>
+git clone https://github.com/SavaLione/SBC.git
+cd SBC
+mkdir build
+cd build
+cmake ..
+make -j4
+                                            </pre>
+                                        </div>
+                                        <div class="code-format">
+                                            <pre>
+-j4 после команды make означает, что компилируем проект 4 процессорными ядрами
+4 можно заменить на любое число. Также можно вовсе убрать -j4
+                                            </pre>
+                                        </div>
+                                        <p>Для сборки автоматических тестов <code>sbc</code> нужно указать дополнительный флаг <code>-DSBC_PROJECT_TESTS=on</code></p>
+                                        <p>Для сборки автоматических тестов <code>sbc-client</code> нужно указать дополнительный флаг <code>-DSBC_CLIENT_TESTS=on</code></p>
+                                        <p>Для сборки автоматических тестов <code>dev</code> нужно указать дополнительный флаг <code>-DSBC_DEV_TESTS=on</code></p>
+                                        <p>Для сборки <code>dev</code> нужно указать дополнительный флаг <code>-DSBC_PROJECT_DEV=on</code></p>
+                                        <p>Пример:</p>
+                                        <div class="code-format"><pre>cmake .. -DSBC_PROJECT_TESTS=on -DSBC_CLIENT_TESTS=on</pre></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div id="web-header" class="card-header">
+                                    <h4 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#web" aria-expanded="false" aria-controls="web">
+                                            Установка web интерфейса
+                                        </button>
+                                    </h4>
+                                </div>
+                                <div id="web" class="collapse" aria-labelledby="web-header" data-parent="#server-list">
+                                    <div class="card-body">
+                                        <h5>Установка зависимостей (ubuntu)</h5>
+                                        <p><strong>nginx (если предполагается использование nginx web сервера)</strong></p>
+                                        <div class="code-format"><pre>sudo apt install nginx</pre></div>
+                                        <p><strong>apache (если предполагается использование apache web сервера)</strong></p>
+                                        <div class="code-format"><pre>sudo apt install apache2</pre></div>
+                                        <p><strong>FastCGI (libfcgi)</strong></p>
+                                        <div class="code-format"><pre>sudo pat install libfcgi-dev</pre></div>
+
+                                        <h5>Установка web интерфейса проекта sbc</h5>
+                                        <p>Необходимо разместить дополнительные материалы (assets) по пути /assets (путь от домена)</p>
+                                        <p>Веб серверу нужно указать путь к FastCGI порту</p>
+                                        <p><strong>Пример конфигурации nginx</strong></p>
+                                        <div class="code-format">
+                                            <pre>
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /home/savalione/www/assets;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location /assets {
+                try_files $uri $uri/ =404;
+        }
+
+        location / {
+                fastcgi_pass 127.0.0.1:9000;
+
+                include fastcgi_params;
+        }
+}
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div id="docs-header" class="card-header">
+                                    <h4 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#docs" aria-expanded="false" aria-controls="docs">
+                                            Сборка документации к проекту (не обязательно)
+                                        </button>
+                                    </h4>
+                                </div>
+                                <div id="docs" class="collapse" aria-labelledby="docs-header" data-parent="#server-list">
+                                    <div class="card-body">
+                                        <h5>Установка зависимостей</h5>
+                                        <p><strong>Doxygen</strong></p>
+                                        <div class="code-format"><pre>sudo apt install doxygen</pre></div>
+                                        <p><strong>Graphviz (не обязательно)</strong></p>
+                                        <div class="code-format"><pre>sudo apt install graphviz</pre></div>
+
+                                        <h5>Сборка документации</h5>
+                                        <div class="code-format"><pre>doxygen</pre></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="mobile" class="tab container-fluid">
+                        <h2>Установка мобильного приложения</h2>
+                        <h5>Для того, чтобы установить мобильное приложение, необходимо:</h5>
+                        <ul>
+                            <li>Для пользователей Android зайти на <a href="https://install.appcenter.ms/users/illyasviel/apps/code-scaner.android/distribution_groups/testers">страницу</a>;</li>
+                            <li>Найти последнюю доступную сборку приложения;</li>
+                            <li>Нажать на кнопку "Download" и дождаться окончания загрузки файла;</li>
+                            <li>Установить загруженный файл;</li>
+                            <li>Если установщик запрещает устанавливать приложения из неизвестных источников, то нужно отключить защиту в настройках устройства;</li>
+                            <li>Начать пользоваться.</li>
+                        </ul>
+                    </div>
+                    <div id="team" class="tab container-fluid">
+                        <h2>Команда разработки</h2>
+                        <p><a href="https://vk.com/savalione">Потоцкий Савелий</a> - серверная часть, веб интерфейс</p>
+                        <p><a href="https://vk.com/abs0lute.zer0">Лахманец Илья</a> - мобильное приложение</p>
+                        <p><a href="https://vk.com/yulia_medvedeva">Медведева Юлия</a> - анализ решений, присутствующих сейчас на рынке</p>
+                        <p><a href="https://vk.com/damak0rne">Корецкий Даниил</a> - project manager, тестировщик</p>
+                        <a class="btn btn-secondary" href="https://github.com/SavaLione/SBC">Ссылка на ресурсы</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script>
+                        var id_current_tab = null;
+
+                        $(function () {
+                            var tabs = $('.tab');
+                            tabs.each(function () {
+                                $(this).addClass('d-none');
+                            });
+
+                            change_tab(tabs.eq(0).attr('id'));
+                        });
+
+                        function change_tab(id_tab) {
+                            if (id_current_tab !== null) {
+                                $('#' + id_current_tab).removeClass('d-block');
+                                $('#' + id_current_tab).addClass('d-none');
+                            }
+
+                            $('#' + id_tab).removeClass('d-none');
+                            $('#' + id_tab).addClass('d-block');
+
+                            id_current_tab = id_tab;
+                        }
+        </script>
+    </body>
+</html>
