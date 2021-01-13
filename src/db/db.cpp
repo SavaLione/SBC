@@ -172,7 +172,7 @@ void db::_test_table_test_print()
     }
 }
 
-const db_pool &db::get();
+const db_pool &db::get()
 {
     return _db;
 }
