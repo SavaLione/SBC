@@ -157,22 +157,17 @@ void db::_test_table_test_print()
         soci::indicator ind;
 
         table_template tt;
-        
-        sql << "select * from test", soci::into(tt, ind);
 
-        if (ind == soci::i_null)
+        soci::rowset<table_template> rs = (sql.prepare << "SELECT * FROM test");
+
+        for (auto it = rs.begin(); it != rs.end(); it++)
         {
-            spdlog::error("Failed to select data from db");
+            table_template &i = *it;
+            i.print();
         }
-        else
-        {
-            tt.print();
-        }
-        
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
         spdlog::error(e.what());
     }
-    
 }
