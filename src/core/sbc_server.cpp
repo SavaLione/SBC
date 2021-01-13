@@ -86,6 +86,8 @@ void connect_db()
 {
     /* Создание подключения к базе данных */
     db &db_instance = db::instance();
+
+    db_instance._test_table_test_print();
 }
 
 void sbc_test()
