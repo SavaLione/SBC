@@ -133,6 +133,11 @@ void db::_create()
                     ddl.unique("test", "id");
                     ddl.primary_key("test", "id");
                 }
+
+                for (int i = 0; i < 128; i++)
+                {
+                    sql << "insert into test(id) values(" << i << ")";
+                }
             }
         }
     }
