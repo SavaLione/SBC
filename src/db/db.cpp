@@ -171,3 +171,8 @@ void db::_test_table_test_print()
         spdlog::error(e.what());
     }
 }
+
+const db_pool &db::get();
+{
+    return _db;
+}

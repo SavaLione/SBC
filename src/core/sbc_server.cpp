@@ -87,7 +87,10 @@ void connect_db()
     /* Создание подключения к базе данных */
     db &db_instance = db::instance();
 
-    db_instance._test_table_test_print();
+    // db_instance._test_table_test_print();
+    
+    ///
+    soci::session sql(*db_instance.get().get_pool());
 }
 
 void sbc_test()

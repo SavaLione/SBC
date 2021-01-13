@@ -60,6 +60,9 @@ public:
     /* тестирование */
     void _test_table_test_print();
 
+    /* Получаем пул */
+    const db_pool &get();
+
 private:
     db();
     db(db const &) = delete;
