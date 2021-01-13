@@ -146,3 +146,33 @@ void db::_create()
         spdlog::error(e.what());
     }
 }
+
+#include "db/table_template.h"
+
+void db::_test_table_test_print()
+{
+    try
+    {
+        soci::session sql(*_db.get_pool());
+        soci::indicator ind;
+
+        table_template tt;
+        
+        sql << "select * from test", soci::into(tt, ind);
+
+        if (ind == soci::i_null)
+        {
+            spdlog::error("Failed to select data from db");
+        }
+        else
+        {
+            tt.print();
+        }
+        
+    }
+    catch(const std::exception& e)
+    {
+        spdlog::error(e.what());
+    }
+    
+}

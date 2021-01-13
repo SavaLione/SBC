@@ -57,6 +57,9 @@ public:
     /* Простой запрос, без ответа */
     void request(std::string const &r);
 
+    /* тестирование */
+    void _test_table_test_print();
+
 private:
     db();
     db(db const &) = delete;
