@@ -92,6 +92,16 @@ void connect_db()
     ///
     db_pool db_p = db_instance.get();
     soci::session sql(*db_p.get_pool());
+
+    try
+    {
+        sql << "SOMETHINGWRONG";
+    }
+    catch(const std::exception& e)
+    {
+        spdlog::error(e.what());
+    }
+    
 }
 
 void sbc_test()
