@@ -58,27 +58,7 @@ db::db()
         sqlite3
         Если таблицы users нет, создаём
     */
-    if (_settings_instance.db() == SQLITE3)
-    {
-        try
-        {
-            soci::session sql(*_db.get_pool());
-
-            int is_table_found = 0;
-            sql << "select count(*) from sqlite_master where type='table' and name='users'", soci::into(is_table_found);
-
-            if (!is_table_found)
-            {
-                spdlog::info("sqlite table users not exists");
-                spdlog::info("creating sqlite table users");
-                _create();
-            }
-        }
-        catch (const std::exception &e)
-        {
-            spdlog::error(e.what());
-        }
-    }
+    _create();
 }
 
 db::~db()
@@ -105,27 +85,55 @@ void db::_create()
     {
         soci::session sql(*_db.get_pool());
 
+        if (sql.get_backend_name() == "sqlite")
         {
-            soci::ddl_type ddl = sql.create_table("users");
+            int table_users_found = 0;
+            int table_test_found = 0;
 
-            ddl.column("id", soci::dt_integer)("not null");
-            ddl.column("username", soci::dt_string)("not null unique");
-            ddl.column("password", soci::dt_string);
-            ddl.column("name", soci::dt_string);
-            ddl.column("email", soci::dt_string);
-            ddl.column("phone", soci::dt_string);
-            ddl.column("role", soci::dt_string);
-            ddl.column("registration_date", soci::dt_string);
-            ddl.column("last_time_online", soci::dt_string);
-            ddl.column("description", soci::dt_string);
-            ddl.column("department", soci::dt_string);
-            ddl.column("branch", soci::dt_string);
-            ddl.column("is_user_active", soci::dt_string);
-            ddl.column("registration_confirmation_code", soci::dt_string);
-            ddl.column("city", soci::dt_string);
+            sql << "select count(*) from sqlite_master where type='table' and name='users'", soci::into(table_users_found);
+            sql << "select count(*) from sqlite_master where type='table' and name='test'", soci::into(table_test_found);
 
-            ddl.unique("users", "id");
-            ddl.primary_key("users", "id");
+            if (!table_users_found)
+            {
+                spdlog::info("sqlite table users not exists. creating sqlite table users");
+
+                {
+                    soci::ddl_type ddl = sql.create_table("users");
+
+                    ddl.column("id", soci::dt_integer)("not null");
+                    ddl.column("username", soci::dt_string)("not null unique");
+                    ddl.column("password", soci::dt_string);
+                    ddl.column("name", soci::dt_string);
+                    ddl.column("email", soci::dt_string);
+                    ddl.column("phone", soci::dt_string);
+                    ddl.column("role", soci::dt_string);
+                    ddl.column("registration_date", soci::dt_string);
+                    ddl.column("last_time_online", soci::dt_string);
+                    ddl.column("description", soci::dt_string);
+                    ddl.column("department", soci::dt_string);
+                    ddl.column("branch", soci::dt_string);
+                    ddl.column("is_user_active", soci::dt_string);
+                    ddl.column("registration_confirmation_code", soci::dt_string);
+                    ddl.column("city", soci::dt_string);
+
+                    ddl.unique("users", "id");
+                    ddl.primary_key("users", "id");
+                }
+            }
+
+            if (!table_test_found)
+            {
+                spdlog::info("sqlite table test not exists. creating sqlite table test");
+
+                {
+                    soci::ddl_type ddl = sql.create_table("test");
+
+                    ddl.column("id", soci::dt_integer)("not null");
+
+                    ddl.unique("test", "id");
+                    ddl.primary_key("test", "id");
+                }
+            }
         }
     }
     catch (const std::exception &e)
