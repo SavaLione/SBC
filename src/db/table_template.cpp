@@ -52,7 +52,6 @@ void table_template::clear()
 
 void table_template::print()
 {
-    spdlog::debug("table_template::print()");
     spdlog::debug("id: {}", id);
 }
 
