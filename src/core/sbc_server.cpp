@@ -47,6 +47,7 @@
 #include "net/server.h"
 
 #include "db/db.h"
+#include "db/table_template.h"
 
 #include "web/web.h"
 #include "web/mime.h"
