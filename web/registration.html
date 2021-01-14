@@ -78,6 +78,14 @@
               </div>
             </div>
 
+            <div class="mb-3">
+              <label for="input_password">Password <span class="text-muted"></span></label>
+              <input type="password" name="input_password" class="form-control" id="input_password" placeholder="Your password here" required>
+              <div class="invalid-feedback">
+                Please enter a valid password.
+              </div>
+            </div>
+
             <hr class="mb-4">
 
             <div class="mb-3">
@@ -108,7 +116,7 @@
                 </div>
               </div>
               <div class="col-md-4 mb-3">
-                <label for="state">The Department</label>
+                <label for="state">The Department <span class="text-muted">(Optional)</span></label>
                 <select class="custom-select d-block w-100" id="input_department">
                   <option value="">Not set</option>
                   <option value="">Delivery</option>
@@ -121,6 +129,7 @@
                 </div>
               </div>
             </div>
+
             <hr class="mb-4">
             <div class="custom-control custom-checkbox">
               <input type="checkbox" name="input_terms_of_use" class="custom-control-input" id="input_terms_of_use" required>
