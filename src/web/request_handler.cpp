@@ -97,7 +97,11 @@ void request_handler::_recognize_post()
         while (FCGX_GetStr(_string_post, sizeof(_string_post), _request.in) > 0)
         {
         }
+        spdlog::debug("Pre _post.set()");
+        spdlog::debug(_string_post);
         _post.set(_string_post);
+        spdlog::debug(_string_post);
+        spdlog::debug("Post _post.set()");
     }
 }
 
