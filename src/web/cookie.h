@@ -56,7 +56,7 @@ struct cookie_pair
 class cookie
 {
 public:
-    cookie() {};
+    cookie(){};
     cookie(std::string const &unprocessed_cookies) : _unprocessed_cookies(unprocessed_cookies) { _init(); };
     ~cookie();
 
@@ -78,7 +78,7 @@ private:
         Строка вида:
         Cookie: username=SavaLione; uuid=aa-bb-cc-dd; some=Soome; 
     */
-    std::string const &_unprocessed_cookies;
+    std::string const _unprocessed_cookies;
 
     /* Разделитель cookie данных */
     char _separator = ';';
