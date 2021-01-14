@@ -166,3 +166,8 @@ std::string settings::string_db_name()
     /* Стандартная база данных sqlite3 */
     return "sqlite3";
 }
+
+application_level settings::app_level()
+{
+    return _app_level;
+}

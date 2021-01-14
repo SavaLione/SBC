@@ -72,6 +72,13 @@ enum hash
     SHA_256
 };
 
+enum application_level
+{
+    NORMAL,
+    DEBUG,
+    STATISTICS
+};
+
 class settings
 {
 public:
@@ -116,11 +123,18 @@ public:
     /* Строковое представление базы данных, для soci */
     std::string string_db_name();
 
+    /* Уровень работы приложения */
+    application_level app_level();
 private:
     settings();
     settings(settings const &) = delete;
     settings &operator=(settings const &) = delete;
 
+    /* Уровень работы приложения */
+    /* На время разработки SBC */
+    application_level _app_level = DEBUG;
+
+    /* Уровень логирования */
     // log_level _L_level = INFO;
     /* На время разработки SBC */
     log_level _l_level = DEBUG;
