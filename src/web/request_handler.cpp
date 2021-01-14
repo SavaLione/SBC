@@ -41,6 +41,9 @@
 
 #include "io/logger.h"
 
+#include "db/db.h"
+#include "db/table_users.h"
+
 request_handler::~request_handler()
 {
 }
@@ -50,6 +53,7 @@ void request_handler::_init()
     _recognize_cookie();
     _recognize_post();
     _recognize_user();
+    _processing_post_request();
 
     switch (_page)
     {
@@ -138,7 +142,6 @@ void request_handler::_recognize_user()
         /* uuid установлен */
 
         /* Пытаемся получить пользователя по uuid */
-        /* Тут надо исправить, упор идёт на uuid, а мы ещё можем обрабатывать username */
         _user._uuid = _cookie.get_uuid().value;
         _user_handler.get();
     }
@@ -176,5 +179,74 @@ void request_handler::_debug()
     spdlog::debug("");
 
     spdlog::debug("post: {}", _string_post);
+}
 
+void request_handler::_processing_post_request()
+{
+    /*
+        Определяем тип post запроса
+        login
+        registration
+    */
+    if (_method == _POST)
+    {
+        /* Пользователя нет в системе */
+        if (!_user._user_status == USER_STATUS_SET)
+        {
+            /* login post запрос */
+            if (_post.get_username().set && _post.get_password().set)
+            {
+                /* Создание подключения к базе данных */
+                db &db_instance = db::instance();
+                db_pool _db = db_instance.get();
+                soci::indicator ind;
+                table_users _users;
+
+                soci::session sql(*_db.get_pool());
+
+                // soci::rowset<table_users> rs = (sql.prepare << "SELECT * FROM users WHERE username='" << _post.get_username().value << "' and password='" << _post.get_password << "'");
+
+                sql << "SELECT * FROM users WHERE username='" << _post.get_username().value << "' and password='" << _post.get_password().value << "' LIMIT 1", soci::into(_users, ind);
+
+                if (ind == soci::i_null)
+                {
+                    spdlog::warn("could not find user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
+                }
+                else
+                {
+                    spdlog::info("found user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
+
+                    /* Нужно установить cookie */
+                    {
+                        std::string __uuid = _uuid_instance.get()
+
+                        cookie_pair uuid = {"uuid", __uuid, true};
+                        _cookie.set_uuid(uuid);
+
+                        user __u;
+                        __u._id = _users.id;
+                        __u._username = _users.username;
+                        __u._password = _users.password;
+                        __u._name = _users.name;
+                        __u._email = _users.email;
+                        __u._phone = _users.phone;
+                        __u._user_role = USER_ROLE_DEFAULT;
+                        __u._registration_date = _users.registration_date;
+                        __u._last_time_online = _users.last_time_online;
+                        __u._description = _users.description;
+                        __u._department = _users.department;
+                        __u._branch = _users.branch;
+                        __u._is_user_active = true;
+                        __u._registration_confirmation_code = _users.registration_confirmation_code;
+                        __u._city = _users.city;
+                        __u._uuid = uuid;
+                        __u._user_status = USER_STATUS_SET;
+                        
+                        _cookie_instance.add(__u);
+                    }
+                    return;
+                }
+            }
+        }
+    }
 }

@@ -43,12 +43,14 @@
 #include <fcgi_config.h>
 #include <fcgiapp.h>
 
+#include "web/cookie_repository.h"
 #include "web/method.h"
 #include "web/cookie.h"
 #include "web/page.h"
 #include "web/post.h"
 
 #include "core/user_handler.h"
+#include "core/uuid.h"
 
 /*
     Обработка запроса FastCGI
@@ -66,6 +68,12 @@ public:
     const std::string get_request_uri() const { return _request_uri; };
 
 private:
+    /* cookie */
+    cookie_repository &_cookie_instance = cookie_repository::Instance();
+
+    /* uuid */
+    uuid &_uuid_instance = uuid::Instance();
+
     /* Запрос от FastCGI */
     FCGX_Request &_request;
 
@@ -137,6 +145,9 @@ private:
 
     /* Распознать, есть ли post */
     void _recognize_post();
+
+    /* Определяем пост запрос */
+    void _processing_post_request();
 
     /* Показать страницу пользователю */
     void _show_page(std::string const &p);
