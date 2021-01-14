@@ -153,6 +153,9 @@ private:
     /* Показать страницу Test */
     void _show_page_test_page();
 
+    /* Показать страницу Registration */
+    void _show_page_registration();
+
     /* Вывести отладочную информацию в консоль */
     void _debug();
 };

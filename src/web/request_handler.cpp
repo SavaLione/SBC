@@ -121,6 +121,12 @@ void request_handler::_show_page_test_page()
 {
 }
 
+void request_handler::_show_page_registration()
+{
+    registration r(_user);
+    _show_page(r);
+}
+
 void request_handler::_recognize_user()
 {
     /* Проверяем, есть ли в запросе cookie uuid */
