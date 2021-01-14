@@ -116,8 +116,13 @@ void request_handler::_show_page_about()
 
 void request_handler::_show_page_login()
 {
+    spdlog::debug("----------------------------");
+    spdlog::debug("{}", _cookie.get_uuid());
     login l(_user, _cookie);
+    spdlog::debug("{}", _cookie.get_uuid());
     _show_page(l);
+    spdlog::debug("{}", _cookie.get_uuid());
+    spdlog::debug("----------------------------");
 }
 
 void request_handler::_show_page_not_found()
@@ -253,6 +258,7 @@ void request_handler::_processing_post_request()
 
                                 _cookie_instance.add(__u);
                             }
+
                             return;
                         }
                         else
@@ -260,7 +266,6 @@ void request_handler::_processing_post_request()
                             spdlog::warn("not found user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
                             spdlog::warn("_users.username, _users.password - empty");
                         }
-                        
                     }
                 }
                 catch (const std::exception &e)
