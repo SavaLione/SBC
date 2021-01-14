@@ -202,7 +202,7 @@ void request_handler::_processing_post_request()
             spdlog::debug(_post.get_password().value);
 
             /* registration post запрос */
-            if (_post.get_input_username().set && _post.get_input_password().set && _post.get_input_terms_of_use())
+            if (_post.get_input_username().set && _post.get_input_password().set && _post.get_input_terms_of_use().set)
             {
                 spdlog::debug("Регистрация пользователя в системе");
                 spdlog::debug(_post.get_input_username().value);
