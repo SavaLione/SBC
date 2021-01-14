@@ -115,7 +115,7 @@ void request_handler::_show_page_about()
 
 void request_handler::_show_page_login()
 {
-    login l(_user);
+    login l(_user, _cookie);
     _show_page(l);
 }
 

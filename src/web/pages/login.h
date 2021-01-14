@@ -43,8 +43,10 @@
 class login : public page_template
 {
 public:
-    login(user const& u) : page_template("login", text_html, false, u){};
+    login(user const &u) : page_template("login", text_html, false, u){};
+    login(user const &u, cookie &c) : page_template("login", text_html, false, u, c){};
     ~login();
+
 private:
     virtual void _head();
     virtual void _body();
