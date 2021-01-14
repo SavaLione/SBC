@@ -120,7 +120,7 @@ void db::_create()
                     ddl.primary_key("users", "id");
                 }
 
-                if (_settings_instance.app_level() == application_level::DEBUG)
+                if (_settings_instance.app_level() == application_level::APP_DEBUG)
                 {
                     for (int i = 1; i < 129; i++)
                     {

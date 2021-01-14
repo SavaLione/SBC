@@ -74,9 +74,9 @@ enum hash
 
 enum application_level
 {
-    NORMAL,
-    DEBUG,
-    STATISTICS
+    APP_NORMAL,
+    APP_DEBUG,
+    APP_STATISTICS
 };
 
 class settings
@@ -132,7 +132,7 @@ private:
 
     /* Уровень работы приложения */
     /* На время разработки SBC */
-    application_level _app_level = application_level::DEBUG;
+    application_level _app_level = application_level::APP_DEBUG;
 
     /* Уровень логирования */
     // log_level _L_level = INFO;
