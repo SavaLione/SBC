@@ -114,3 +114,9 @@ void cookie::set_uuid(cookie_pair const &uuid)
     _uuid.value = uuid.value;
     _uuid.set = true;
 }
+
+void cookie::set(std::string const &unprocessed_cookies)
+{
+    _unprocessed_cookies = unprocessed_cookies;
+    _init();
+}
