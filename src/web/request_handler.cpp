@@ -192,11 +192,12 @@ void request_handler::_processing_post_request()
     if (_method == _POST)
     {
         /* Пользователя нет в системе */
-        if (!(_user._user_status == USER_STATUS_SET))
+        if (_user._user_status != USER_STATUS_SET)
         {
             spdlog::debug("Пользователя нет в системе");
             spdlog::debug(_post.get_username().value);
             spdlog::debug(_post.get_password().value);
+
             /* login post запрос */
             if (_post.get_username().set && _post.get_password().set)
             {
