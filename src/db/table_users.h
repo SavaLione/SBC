@@ -38,6 +38,107 @@
 #ifndef DB_TABLE_USERS_H
 #define DB_TABLE_USERS_H
 
+#include "db/table_template.h"
 
+class table_users : public table_template
+{
+public:
+    std::string username = "";
+    std::string password = "";
+    std::string name = "";
+    std::string email = "";
+    std::string phone = "";
+    std::string role = "";
+    std::string registration_date = "";
+    std::string last_time_online = "";
+    std::string description = "";
+    std::string department = "";
+    std::string branch = "";
+    std::string is_user_active = "";
+    std::string registration_confirmation_code = "";
+    std::string city = "";
+
+    table_users();
+    ~table_users();
+
+    void clear();
+    void print();
+
+    table_users &operator=(table_users const &rhs);
+
+private:
+    /* data */
+};
+
+namespace soci
+{
+    template <>
+    struct type_conversion<table_users>
+    {
+        typedef values base_type;
+
+        static void from_base(values const &v, indicator ind, table_users &p)
+        {
+            if (ind == i_null)
+            {
+                return;
+            }
+
+            try
+            {
+                p.id = v.get<int>("id", 0);
+                p.username = v.get<std::string>("username", {});
+                p.password = v.get<std::string>("password", {});
+                p.name = v.get<std::string>("name", {});
+                p.email = v.get<std::string>("email", {});
+                p.phone = v.get<std::string>("phone", {});
+                p.role = v.get<std::string>("role", {});
+                p.registration_date = v.get<std::string>("registration_date", {});
+                p.last_time_online = v.get<std::string>("last_time_online", {});
+                p.description = v.get<std::string>("description", {});
+                p.department = v.get<std::string>("department", {});
+                p.branch = v.get<std::string>("branch", {});
+                p.is_user_active = v.get<std::string>("is_user_active", {});
+                p.registration_confirmation_code = v.get<std::string>("registration_confirmation_code", {});
+                p.city = v.get<std::string>("city", {});
+            }
+            catch (std::exception const &e)
+            {
+                spdlog::error(e.what());
+            }
+        }
+
+        static void to_base(table_users const &p, values &v, indicator &ind)
+        {
+            try
+            {
+                v.set("id", p.id);
+                v.set("username", p.username);
+                v.set("password", p.password);
+                v.set("name", p.name);
+                v.set("email", p.email);
+                v.set("phone", p.phone);
+                v.set("role", p.role);
+                v.set("registration_date", p.registration_date);
+                v.set("last_time_online", p.last_time_online);
+                v.set("description", p.description);
+                v.set("department", p.department);
+                v.set("branch", p.branch);
+                v.set("is_user_active", p.is_user_active);
+                v.set("registration_confirmation_code", p.registration_confirmation_code);
+                v.set("city", p.city);
+
+                ind = i_ok;
+                return;
+            }
+            catch (std::exception const &e)
+            {
+                spdlog::error(e.what());
+            }
+            ind = i_null;
+        }
+    };
+
+} // namespace soci
 
 #endif // DB_TABLE_USERS_H

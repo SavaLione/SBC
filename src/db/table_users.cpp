@@ -36,3 +36,72 @@
  * @date 13 Jan 2021
  */
 #include "db/table_users.h"
+
+table_users::table_users()
+{
+}
+
+table_users::~table_users()
+{
+}
+
+void table_users::clear()
+{
+    id = 0;
+    username = "";
+    password = "";
+    name = "";
+    email = "";
+    phone = "";
+    role = "";
+    registration_date = "";
+    last_time_online = "";
+    description = "";
+    department = "";
+    branch = "";
+    is_user_active = "";
+    registration_confirmation_code = "";
+    city = "";
+}
+
+void table_users::print()
+{
+    spdlog::debug("id: {}", id);
+    spdlog::debug("username: {}", username);
+    spdlog::debug("password: {}", password);
+    spdlog::debug("name: {}", name);
+    spdlog::debug("email: {}", email);
+    spdlog::debug("phone: {}", phone);
+    spdlog::debug("role: {}", role);
+    spdlog::debug("registration_date: {}", registration_date);
+    spdlog::debug("last_time_online: {}", last_time_online);
+    spdlog::debug("description: {}", description);
+    spdlog::debug("department: {}", department);
+    spdlog::debug("branch: {}", branch);
+    spdlog::debug("is_user_active: {}", is_user_active);
+    spdlog::debug("registration_confirmation_code: {}", registration_confirmation_code);
+    spdlog::debug("city: {}", city);
+}
+
+table_users &table_users::operator=(table_users const &rhs)
+{
+    if (this != &rhs)
+    {
+        id = rhs.id;
+        username = rhs.username;
+        password = rhs.password;
+        name = rhs.name;
+        email = rhs.email;
+        phone = rhs.phone;
+        role = rhs.role;
+        registration_date = rhs.registration_date;
+        last_time_online = rhs.last_time_online;
+        description = rhs.description;
+        department = rhs.department;
+        branch = rhs.branch;
+        is_user_active = rhs.is_user_active;
+        registration_confirmation_code = rhs.registration_confirmation_code;
+        city = rhs.city;
+    }
+    return *this;
+}
