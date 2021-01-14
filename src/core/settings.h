@@ -132,12 +132,12 @@ private:
 
     /* Уровень работы приложения */
     /* На время разработки SBC */
-    application_level _app_level = DEBUG;
+    application_level _app_level = application_level::DEBUG;
 
     /* Уровень логирования */
     // log_level _L_level = INFO;
     /* На время разработки SBC */
-    log_level _l_level = DEBUG;
+    log_level _l_level = log_level::DEBUG;
 
     /* ip sbc сервера */
     std::string _ip = "0.0.0.0";
