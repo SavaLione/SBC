@@ -38,6 +38,8 @@
 
 #include "web/cookie.h"
 
+#include <vector>
+
 cookie::~cookie()
 {
 }
@@ -86,29 +88,6 @@ void cookie::_get(cookie_pair &c)
     }
 }
 
-cookie::operator std::string()
-{
-    std::string result = "Set-Cookie: ";
-
-    if (_author.set)
-    {
-        result += _author.key;
-        result += "=";
-        result += _author.value;
-        result += "; ";
-    }
-
-    if (_uuid.set)
-    {
-        result += _uuid.key;
-        result += "=";
-        result += _uuid.value;
-        result += "; ";
-    }
-
-    return result;
-}
-
 void cookie::set_uuid(cookie_pair const &uuid)
 {
     _uuid.value = uuid.value;
@@ -123,22 +102,38 @@ void cookie::set(std::string const &unprocessed_cookies)
 
 std::string cookie::get()
 {
-    std::string result = "Set-Cookie: ";
+    std::vector<std::string> params;
+    std::string result = "";
 
     if (_author.set)
     {
-        result += _author.key;
-        result += "=";
-        result += _author.value;
-        result += "; ";
+        std::string res = "";
+        res += "Set-Cookie: ";
+        res += _author.key;
+        res += "=";
+        res += _author.value;
+        res += "; ";
+        params.push_back(res);
     }
 
     if (_uuid.set)
     {
-        result += _uuid.key;
-        result += "=";
-        result += _uuid.value;
-        result += "; ";
+        std::string res = "";
+        res += _uuid.key;
+        res += "=";
+        res += _uuid.value;
+        res += "; ";
+        params.push_back(res);
+    }
+
+    for (int i = 0; i < params.size(); i++)
+    {
+        result += params[i];
+
+        if (i != (params.size() - 1))
+        {
+            result += "\n";
+        }
     }
 
     return result;
