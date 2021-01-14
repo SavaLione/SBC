@@ -82,18 +82,19 @@ void login::_body()
         _add_content("    <form method=\"post\" class=\"form-signin\">");
         _add_content("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">");
         _add_content("      <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>");
-        _add_content("      <label for=\"input_email\" class=\"sr-only\">Email address</label>");
-        _add_content("      <input type=\"email\" name=\"email\" id=\"input_email\" class=\"form-control\" placeholder=\"Email address\" required autofocus>");
-        _add_content("      <label for=\"input_password\" class=\"sr-only\">Password</label>");
-        _add_content("      <input type=\"password\" name=\"password\" id=\"input_password\" class=\"form-control\" placeholder=\"Password\" required>");
+        _add_content("      <label for=\"username\" class=\"sr-only\">Username</label>");
+        _add_content("      <input type=\"text\" name=\"username\" id=\"username\" class=\"form-control\" placeholder=\"Username\" required autofocus>");
+        _add_content("      <label for=\"password\" class=\"sr-only\">Password</label>");
+        _add_content("      <input type=\"password\" name=\"password\" id=\"password\" class=\"form-control\" placeholder=\"Password\" required>");
         _add_content("      <div class=\"checkbox mb-3\">");
         _add_content("        <label>");
         _add_content("          <input type=\"checkbox\" name=\"checkbox\" id=\"checkbox_remember_me\" value=\"remember-me\"> Remember me");
         _add_content("        </label>");
         _add_content("      </div>");
         _add_content("      <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Sign in</button>");
-        _add_content("      <p class=\"mt-5 mb-3 text-muted\">&copy; 2020 SBC team</p>");
+        _add_content("      <p class=\"mt-5 mb-3 text-muted\">&copy; 2021 SBC team</p>");
         _add_content("    </form>");
+        _add_content("  </body>");
     }
 
     _add_content("  </body>");
