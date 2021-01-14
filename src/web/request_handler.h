@@ -117,7 +117,7 @@ private:
     bool _is_cookie_set = false;
 
     /* Обработанные Cookie */
-    cookie _cookie = cookie(_http_cookie);
+    cookie _cookie;
 
     /* 
         Post запрос

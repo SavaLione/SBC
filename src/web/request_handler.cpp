@@ -84,6 +84,7 @@ void request_handler::_recognize_cookie()
     else
     {
         _is_cookie_set = true;
+        _cookie.set(_http_cookie);
     }
 }
 
