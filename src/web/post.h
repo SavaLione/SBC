@@ -101,6 +101,11 @@ public:
         return _input_username;
     }
 
+    const post_pair get_input_password() const
+    {
+        return _input_password;
+    }
+
     const post_pair get_input_email() const
     {
         return _input_email;
@@ -119,6 +124,16 @@ public:
     const post_pair get_input_terms_of_use() const
     {
         return _input_terms_of_use;
+    }
+
+    const post_pair get_input_branch() const
+    {
+        return _input_branch;
+    }
+
+    const post_pair get_input_department() const
+    {
+        return _input_department;
     }
 
     /* 
@@ -161,10 +176,14 @@ private:
     post_pair _input_first_name = {"input_first_name", ""};
     post_pair _input_middle_name = {"input_middle_name", ""};
     post_pair _input_username = {"input_username", ""};
+    post_pair _input_password = {"input_password", ""};
     post_pair _input_email = {"input_email", ""};
     post_pair _input_address = {"input_address", ""};
     post_pair _input_phone = {"input_phone", ""};
     post_pair _input_terms_of_use = {"input_terms_of_use", ""};
+
+    post_pair _input_branch = {"input_branch", ""};
+    post_pair _input_department = {"input_department", ""};
 
     void _get(post_pair &pp);
 };

@@ -63,6 +63,7 @@ void post::_init()
     _get(_input_first_name);
     _get(_input_middle_name);
     _get(_input_username);
+    _get(_input_password);
     _get(_input_email);
     _get(_input_address);
     _get(_input_phone);
