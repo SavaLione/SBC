@@ -119,6 +119,29 @@ void db::_create()
                     ddl.unique("users", "id");
                     ddl.primary_key("users", "id");
                 }
+
+                if (_settings_instance.app_level() == application_level::DEBUG)
+                {
+                    for (int i = 1; i < 129; i++)
+                    {
+                        sql << "insert into users(id, username, password, name, email, phone, role, registration_date, last_time_online, description, department, branch, is_user_active, registration_confirmation_code) values("
+                            << i << ", "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "', "
+                            << "'testuser_" << i << "'"
+                            << ")";
+                    }
+                }
             }
 
             if (!table_test_found)
