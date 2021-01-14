@@ -51,8 +51,10 @@
 class page_template
 {
 public:
-    page_template(std::string name, mime m, bool required_authorization, user const& u)
+    page_template(std::string name, mime m, bool required_authorization, user const &u)
         : _name(name), _mime(m), _required_authorization(required_authorization), _user(u){};
+    page_template(std::string name, mime m, bool required_authorization, user const &u, cookie const &c)
+        : _name(name), _mime(m), _required_authorization(required_authorization), _user(u), _cookie(c){};
     ~page_template();
 
     operator std::string()
@@ -81,7 +83,10 @@ protected:
     bool _get_required_authorization();
 
     /* Пользователь */
-    user const& _user;
+    user const &_user;
+
+    /* Cookie */
+    cookie _cookie;
 
 private:
     std::string _name = "page_template";

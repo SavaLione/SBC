@@ -66,7 +66,8 @@ void page_template::_html_header()
 
 void page_template::_html_header_cookie()
 {
-    _add_content("Set-Cookie: author=SBC team;");
+    // _add_content("Set-Cookie: author=SBC team;");
+    _add_content(_cookie);
 }
 
 void page_template::_html()
