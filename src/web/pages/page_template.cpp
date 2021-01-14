@@ -68,6 +68,9 @@ void page_template::_html_header_cookie()
 {
     // _add_content("Set-Cookie: author=SBC team;");
     _add_content(_cookie);
+    spdlog::debug("--------------------------------------------");
+    spdlog::debug(_cookie);
+    spdlog::debug("--------------------------------------------");
 }
 
 void page_template::_html()
