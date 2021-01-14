@@ -124,8 +124,9 @@ void db::_create()
                 {
                     for (int i = 1; i < 129; i++)
                     {
-                        sql << "insert into users(id, username, password, name, email, phone, role, registration_date, last_time_online, description, department, branch, is_user_active, registration_confirmation_code) values("
+                        sql << "insert into users(id, username, password, name, email, phone, role, registration_date, last_time_online, description, department, branch, is_user_active, registration_confirmation_code, city) values("
                             << i << ", "
+                            << "'testuser_" << i << "', "
                             << "'testuser_" << i << "', "
                             << "'testuser_" << i << "', "
                             << "'testuser_" << i << "', "
