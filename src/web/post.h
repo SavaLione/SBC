@@ -141,7 +141,7 @@ private:
         Строка вида:
         email=sava@savalione.com&password=asd&checkbox=remember-me
     */
-    std::string const _decoded_uncompressed_post = url_decode(_unprocessed_post);
+    std::string _decoded_uncompressed_post;
 
     /* Разделитель post данных */
     char _separator = '&';

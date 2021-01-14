@@ -53,6 +53,8 @@ void post::set(std::string const &unprocessed_post)
 
 void post::_init()
 {
+    _decoded_uncompressed_post = url_decode(_unprocessed_post);
+
     _get(_username);
     _get(_email);
     _get(_password);
