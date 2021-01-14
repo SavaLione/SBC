@@ -294,8 +294,8 @@ void request_handler::_processing_post_request()
                     _users.registration_date = ct.s_date();
                     _users.last_time_online = ct.s_date();
                     _users.description = "";
-                    _users.department = _post.get_input_department();
-                    _users.branch = _post.get_input_branch();
+                    _users.department = _post.get_input_department().value;
+                    _users.branch = _post.get_input_branch().value;
                     _users.is_user_active = "true";
                     _users.registration_confirmation_code = "true";
                     _users.city = "";
