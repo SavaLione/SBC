@@ -79,7 +79,7 @@ public:
         Необходимо при инициализации класса вида:
         post p;
     */
-    void set(std::string const& unprocessed_post);
+    void set(std::string const &unprocessed_post);
 
 private:
     /* 
@@ -107,6 +107,15 @@ private:
 
     /* Пароль пользователя */
     post_pair _password = {"password", ""};
+
+    post_pair _input_last_name = {"input_last_name", ""};
+    post_pair _input_first_name = {"input_first_name", ""};
+    post_pair _input_middle_name = {"input_middle_name", ""};
+    post_pair _input_username = {"input_username", ""};
+    post_pair _input_email = {"input_email", ""};
+    post_pair _input_address = {"input_address", ""};
+    post_pair _input_phone = {"input_phone", ""};
+    post_pair _input_terms_of_use = {"input_terms_of_use", ""};
 
     void _get(post_pair &pp);
 };

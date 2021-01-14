@@ -55,6 +55,15 @@ void post::_init()
 {
     _get(_email);
     _get(_password);
+
+    _get(_input_last_name);
+    _get(_input_first_name);
+    _get(_input_middle_name);
+    _get(_input_username);
+    _get(_input_email);
+    _get(_input_address);
+    _get(_input_phone);
+    _get(_input_terms_of_use);
 }
 
 void post::_get(post_pair &pp)
