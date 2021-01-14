@@ -142,6 +142,14 @@ void registration::_body()
         _add_content("              </div>");
         _add_content("            </div>");
 
+        _add_content("            <div class=\"mb-3\">");
+        _add_content("              <label for=\"input_password\">Password <span class=\"text-muted\"></span></label>");
+        _add_content("              <input type=\"password\" name=\"input_password\" class=\"form-control\" id=\"input_password\" placeholder=\"Your password here\" required>");
+        _add_content("              <div class=\"invalid-feedback\">");
+        _add_content("                Please enter a valid password.");
+        _add_content("              </div>");
+        _add_content("            </div>");
+
         _add_content("            <hr class=\"mb-4\">");
 
         _add_content("            <div class=\"mb-3\">");
@@ -172,7 +180,7 @@ void registration::_body()
         _add_content("                </div>");
         _add_content("              </div>");
         _add_content("              <div class=\"col-md-4 mb-3\">");
-        _add_content("                <label for=\"state\">The Department</label>");
+        _add_content("                <label for=\"state\">The Department <span class=\"text-muted\">(Optional)</span></label>");
         _add_content("                <select class=\"custom-select d-block w-100\" id=\"input_department\">");
         _add_content("                  <option value=\"\">Not set</option>");
         _add_content("                  <option value=\"\">Delivery</option>");
@@ -185,6 +193,7 @@ void registration::_body()
         _add_content("                </div>");
         _add_content("              </div>");
         _add_content("            </div>");
+
         _add_content("            <hr class=\"mb-4\">");
         _add_content("            <div class=\"custom-control custom-checkbox\">");
         _add_content("              <input type=\"checkbox\" name=\"input_terms_of_use\" class=\"custom-control-input\" id=\"input_terms_of_use\" required>");
