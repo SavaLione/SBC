@@ -208,7 +208,7 @@ void request_handler::_processing_post_request()
                     soci::indicator ind;
                     table_users _users;
 
-                    soci::session sql(db_p->get_pool());
+                    soci::session sql(*db_p->get_pool());
 
                     // soci::rowset<table_users> rs = (sql.prepare << "SELECT * FROM users WHERE username='" << _post.get_username().value << "' and password='" << _post.get_password << "'");
 
