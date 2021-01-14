@@ -201,8 +201,51 @@ void request_handler::_processing_post_request()
             spdlog::debug(_post.get_username().value);
             spdlog::debug(_post.get_password().value);
 
+            /* registration post запрос */
+            if (_post.get_input_username().set && _post.get_input_password().set && _post.get_input_terms_of_use())
+            {
+                spdlog::debug("Регистрация пользователя в системе");
+                spdlog::debug(_post.get_input_username().value);
+                spdlog::debug(_post.get_input_password().value);
+                try
+                {
+                    db_pool *db_p = &_db_instance.get();
+                    table_users _users;
+
+                    soci::session sql(*db_p->get_pool());
+
+                    current_time ct;
+
+                    _users.username = _post.get_input_username().value;
+                    _users.password = _post.get_input_password().value;
+                    _users.name = _post.get_input_first_name().value;
+                    _users.name += " ";
+                    _users.name += _post.get_input_last_name().value;
+                    _users.email = _post.get_input_email().value;
+                    _users.phone = _post.get_input_phone().value;
+                    _users.role = "DEFAULT";
+                    _users.registration_date = ct.s_date();
+                    _users.last_time_online = ct.s_date();
+                    _users.description = "";
+                    _users.department = _post.get_input_department().value;
+                    _users.branch = _post.get_input_branch().value;
+                    _users.is_user_active = "true";
+                    _users.registration_confirmation_code = "true";
+                    _users.city = "";
+
+                    sql << "insert into users(username, password, name, email, phone, role, registration_date, last_time_online, description, department, branch, is_user_active, registration_confirmation_code, city) "
+                        << "values(:username, :password, :name, :email, :phone, :role, :registration_date, :last_time_online, :description, :department, :branch, :is_user_active, :registration_confirmation_code, :city)",
+                        soci::use(_users);
+                }
+                catch (const std::exception &e)
+                {
+                    spdlog::error(e.what());
+                }
+                return;
+            }
+
             /* login post запрос */
-            if (_post.get_username().set && _post.get_password().set)
+            if (_post.get_input_username().set && _post.get_input_password().set)
             {
                 try
                 {
@@ -214,17 +257,17 @@ void request_handler::_processing_post_request()
 
                     // soci::rowset<table_users> rs = (sql.prepare << "SELECT * FROM users WHERE username='" << _post.get_username().value << "' and password='" << _post.get_password << "'");
 
-                    sql << "SELECT * FROM users WHERE username='" << _post.get_username().value << "' and password='" << _post.get_password().value << "' LIMIT 1", soci::into(_users, ind);
+                    sql << "SELECT * FROM users WHERE username='" << _post.get_input_username().value << "' and password='" << _post.get_input_password().value << "' LIMIT 1", soci::into(_users, ind);
 
                     if (ind == soci::i_null)
                     {
-                        spdlog::warn("could not find user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
+                        spdlog::warn("could not find user: [{}] by password: [{}]", _post.get_input_username().value, _post.get_input_password().value);
                     }
                     else
                     {
                         if ((_users.username.size() > 0) && (_users.password.size() > 0))
                         {
-                            spdlog::info("found user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
+                            spdlog::info("found user: [{}] by password: [{}]", _post.get_input_username().value, _post.get_input_password().value);
                             spdlog::info("found user: [{}] by password: [{}]", _users.username, _users.password);
 
                             /* Нужно установить cookie */
@@ -260,48 +303,10 @@ void request_handler::_processing_post_request()
                         }
                         else
                         {
-                            spdlog::warn("not found user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
+                            spdlog::warn("not found user: [{}] by password: [{}]", _post.get_input_username().value, _post.get_input_password().value);
                             spdlog::warn("_users.username, _users.password - empty");
                         }
                     }
-                }
-                catch (const std::exception &e)
-                {
-                    spdlog::error(e.what());
-                }
-            }
-
-            /* registration post запрос */
-            if (_post.get_input_username().set && _post.get_input_password().set)
-            {
-                try
-                {
-                    db_pool *db_p = &_db_instance.get();
-                    table_users _users;
-
-                    soci::session sql(*db_p->get_pool());
-
-                    current_time ct;
-
-                    _users.username = _post.get_input_username().value;
-                    _users.password = _post.get_input_password().value;
-                    _users.name = _post.get_input_first_name().value;
-                    _users.name += " ";
-                    _users.name += _post.get_input_last_name().value;
-                    _users.email = _post.get_input_email().value;
-                    _users.phone = _post.get_input_phone().value;
-                    _users.role = "DEFAULT";
-                    _users.registration_date = ct.s_date();
-                    _users.last_time_online = ct.s_date();
-                    _users.description = "";
-                    _users.department = _post.get_input_department().value;
-                    _users.branch = _post.get_input_branch().value;
-                    _users.is_user_active = "true";
-                    _users.registration_confirmation_code = "true";
-                    _users.city = "";
-
-                    sql << "insert into users(username, password, name, email, phone, role, registration_date, last_time_online, description, department, branch, is_user_active, registration_confirmation_code, city) "
-                        << "values(:username, :password, :name, :email, :phone, :role, :registration_date, :last_time_online, :description, :department, :branch, :is_user_active, :registration_confirmation_code, :city)", soci::use(_users);
                 }
                 catch (const std::exception &e)
                 {
