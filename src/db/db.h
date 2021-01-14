@@ -61,7 +61,7 @@ public:
     void _test_table_test_print();
 
     /* Получаем пул */
-    const db_pool &get();
+    db_pool &get();
 
 private:
     db();
