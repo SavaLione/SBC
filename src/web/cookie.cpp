@@ -119,6 +119,7 @@ std::string cookie::get()
     if (_uuid.set)
     {
         std::string res = "";
+        res += "Set-Cookie: ";
         res += _uuid.key;
         res += "=";
         res += _uuid.value;
