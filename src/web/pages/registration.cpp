@@ -41,7 +41,7 @@ registration::~registration()
 {
 }
 
-void login::_head()
+void registration::_head()
 {
     _add_content("  <head>");
 
@@ -63,7 +63,7 @@ void login::_head()
     _add_content("  </head>");
 }
 
-void login::_body()
+void registration::_body()
 {
     if (_user._user_status == USER_STATUS_SET)
     {
