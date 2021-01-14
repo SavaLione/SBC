@@ -55,19 +55,17 @@ void post::_init()
 {
     _decoded_uncompressed_post = url_decode(_unprocessed_post);
 
-    _get(_username);
-    _get(_email);
-    _get(_password);
-
-    _get(_input_last_name);
-    _get(_input_first_name);
-    _get(_input_middle_name);
     _get(_input_username);
     _get(_input_password);
     _get(_input_email);
+    _get(_input_last_name);
+    _get(_input_first_name);
+    _get(_input_middle_name);
     _get(_input_address);
     _get(_input_phone);
     _get(_input_terms_of_use);
+    _get(_input_branch);
+    _get(_input_department);
 }
 
 void post::_get(post_pair &pp)
@@ -93,3 +91,15 @@ void post::_get(post_pair &pp)
         pp.set = false;
     }
 }
+
+const post_pair post::get_input_username() { return _input_username; }
+const post_pair post::get_input_password() { return _input_password; }
+const post_pair post::get_input_email() { return _input_email; }
+const post_pair post::get_input_last_name() { return _input_last_name; }
+const post_pair post::get_input_first_name() { return _input_first_name; }
+const post_pair post::get_input_middle_name() { return _input_middle_name; }
+const post_pair post::get_input_address() { return _input_address; }
+const post_pair post::get_input_phone() { return _input_phone; }
+const post_pair post::get_input_terms_of_use() { return _input_terms_of_use; }
+const post_pair post::get_input_branch() { return _input_branch; }
+const post_pair post::get_input_department() { return _input_department; }
