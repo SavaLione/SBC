@@ -279,6 +279,8 @@ void request_handler::_processing_post_request()
                     db_pool *db_p = &_db_instance.get();
                     table_users _users;
 
+                    soci::session sql(*db_p->get_pool());
+
                     current_time ct;
 
                     _users.username = _post.get_input_username().value;
