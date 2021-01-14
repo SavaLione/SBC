@@ -85,3 +85,32 @@ void cookie::_get(cookie_pair &c)
         c.set = false;
     }
 }
+
+cookie::operator std::string()
+{
+    std::string result = "Set-Cookie: ";
+
+    if (_author.set)
+    {
+        result += _author.key;
+        result += "=";
+        result += _author.value;
+        result += "; ";
+    }
+
+    if (_uuid.set)
+    {
+        result += _uuid.key;
+        result += "=";
+        result += _uuid.value;
+        result += "; ";
+    }
+
+    return result;
+}
+
+void cookie::set_uuid(cookie_pair const &uuid)
+{
+    _uuid.value = uuid.value;
+    _uuid.set = true;
+}

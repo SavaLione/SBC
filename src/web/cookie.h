@@ -62,14 +62,14 @@ public:
     /* Получаем пару cookie uuid */
     cookie_pair get_uuid();
 
+    /* Устанавливаем uuid */
+    void set_uuid(cookie_pair const &uuid);
+
     /*
         Возвращаем строку вида:
         Set-Cookie: uuid=aa-bb-cc-dd; 
     */
-    operator std::string() const
-    {
-        return "Set-Cookie: " + _uuid.key + "=" + _uuid.value + ";" + " ";
-    }
+    operator std::string();
 
 private:
     /* 
@@ -87,6 +87,8 @@ private:
 
     /* Уникальный идентификатор пользователя */
     cookie_pair _uuid = {"uuid", ""};
+
+    cookie_pair _author = {"author", "SBC team", true};
 
     /* 
         Получение значения по ключу
