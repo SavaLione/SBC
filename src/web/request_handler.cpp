@@ -205,55 +205,63 @@ void request_handler::_processing_post_request()
             /* login post запрос */
             if (_post.get_username().set && _post.get_password().set)
             {
-                /* Создание подключения к базе данных */
-                db &db_instance = db::instance();
-                db_pool _db = db_instance.get();
-                soci::indicator ind;
-                table_users _users;
-
-                soci::session sql(*_db.get_pool());
-
-                // soci::rowset<table_users> rs = (sql.prepare << "SELECT * FROM users WHERE username='" << _post.get_username().value << "' and password='" << _post.get_password << "'");
-
-                sql << "SELECT * FROM users WHERE username='" << _post.get_username().value << "' and password='" << _post.get_password().value << "' LIMIT 1", soci::into(_users, ind);
-
-                if (ind == soci::i_null)
+                try
                 {
-                    spdlog::warn("could not find user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
-                }
-                else
-                {
-                    spdlog::info("found user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
+                    /* Создание подключения к базе данных */
+                    db &db_instance = db::instance();
+                    db_pool _db = db_instance.get();
+                    soci::indicator ind;
+                    table_users _users;
 
-                    /* Нужно установить cookie */
+                    soci::session sql(*_db.get_pool());
+
+                    // soci::rowset<table_users> rs = (sql.prepare << "SELECT * FROM users WHERE username='" << _post.get_username().value << "' and password='" << _post.get_password << "'");
+
+                    sql << "SELECT * FROM users WHERE username='" << _post.get_username().value << "' and password='" << _post.get_password().value << "' LIMIT 1", soci::into(_users, ind);
+
+                    if (ind == soci::i_null)
                     {
-                        std::string __uuid = _uuid_instance.get();
-
-                        cookie_pair uuid = {"uuid", __uuid, true};
-                        _cookie.set_uuid(uuid);
-
-                        user __u;
-                        __u._id = _users.id;
-                        __u._username = _users.username;
-                        __u._password = _users.password;
-                        __u._name = _users.name;
-                        __u._email = _users.email;
-                        __u._phone = _users.phone;
-                        __u._user_role = USER_ROLE_DEFAULT;
-                        __u._registration_date = _users.registration_date;
-                        __u._last_time_online = _users.last_time_online;
-                        __u._description = _users.description;
-                        __u._department = _users.department;
-                        __u._branch = _users.branch;
-                        __u._is_user_active = true;
-                        __u._registration_confirmation_code = _users.registration_confirmation_code;
-                        __u._city = _users.city;
-                        __u._uuid = __uuid;
-                        __u._user_status = USER_STATUS_SET;
-
-                        _cookie_instance.add(__u);
+                        spdlog::warn("could not find user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
                     }
-                    return;
+                    else
+                    {
+                        spdlog::info("found user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
+                        spdlog::info("found user: [{}] by password: [{}]", _users.username, _users.password);
+
+                        /* Нужно установить cookie */
+                        {
+                            std::string __uuid = _uuid_instance.get();
+
+                            cookie_pair uuid = {"uuid", __uuid, true};
+                            _cookie.set_uuid(uuid);
+
+                            user __u;
+                            __u._id = _users.id;
+                            __u._username = _users.username;
+                            __u._password = _users.password;
+                            __u._name = _users.name;
+                            __u._email = _users.email;
+                            __u._phone = _users.phone;
+                            __u._user_role = USER_ROLE_DEFAULT;
+                            __u._registration_date = _users.registration_date;
+                            __u._last_time_online = _users.last_time_online;
+                            __u._description = _users.description;
+                            __u._department = _users.department;
+                            __u._branch = _users.branch;
+                            __u._is_user_active = true;
+                            __u._registration_confirmation_code = _users.registration_confirmation_code;
+                            __u._city = _users.city;
+                            __u._uuid = __uuid;
+                            __u._user_status = USER_STATUS_SET;
+
+                            _cookie_instance.add(__u);
+                        }
+                        return;
+                    }
+                }
+                catch (const std::exception &e)
+                {
+                    spdlog::error(e.what());
                 }
             }
         }
