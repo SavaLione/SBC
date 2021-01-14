@@ -100,21 +100,21 @@ void registration::_body()
         _add_content("            <div class=\"row\">");
         _add_content("              <div class=\"col-md-4 mb-3\">");
         _add_content("                <label for=\"lastName\">Last name</label>");
-        _add_content("                <input type=\"text\" class=\"form-control\" id=\"input_last_name\" placeholder=\"\" value=\"\" required>");
+        _add_content("                <input type=\"text\" name=\"input_last_name\" class=\"form-control\" id=\"input_last_name\" placeholder=\"\" value=\"\" required>");
         _add_content("                <div class=\"invalid-feedback\">");
         _add_content("                  Valid last name is required.");
         _add_content("                </div>");
         _add_content("              </div>");
         _add_content("              <div class=\"col-md-4 mb-3\">");
         _add_content("                <label for=\"firstName\">First name</label>");
-        _add_content("                <input type=\"text\" class=\"form-control\" id=\"input_first_name\" placeholder=\"\" value=\"\" required>");
+        _add_content("                <input type=\"text\" name=\"input_first_name\" class=\"form-control\" id=\"input_first_name\" placeholder=\"\" value=\"\" required>");
         _add_content("                <div class=\"invalid-feedback\">");
         _add_content("                  Valid first name is required.");
         _add_content("                </div>");
         _add_content("              </div>");
         _add_content("              <div class=\"col-md-4 mb-3\">");
         _add_content("                <label for=\"middleName\">Middle name</label>");
-        _add_content("                <input type=\"text\" class=\"form-control\" id=\"input_middle_name\" placeholder=\"\" value=\"\" required>");
+        _add_content("                <input type=\"text\" name=\"input_middle_name\" class=\"form-control\" id=\"input_middle_name\" placeholder=\"\" value=\"\" required>");
         _add_content("                <div class=\"invalid-feedback\">");
         _add_content("                  Valid middle name is required.");
         _add_content("                </div>");
@@ -127,7 +127,7 @@ void registration::_body()
         _add_content("                <div class=\"input-group-prepend\">");
         _add_content("                  <span class=\"input-group-text\">@</span>");
         _add_content("                </div>");
-        _add_content("                <input type=\"text\" class=\"form-control\" id=\"input_username\" placeholder=\"Username\" required>");
+        _add_content("                <input type=\"text\" name=\"input_username\" class=\"form-control\" id=\"input_username\" placeholder=\"Username\" required>");
         _add_content("                <div class=\"invalid-feedback\" style=\"width: 100%;\">");
         _add_content("                  Your username is required.");
         _add_content("                </div>");
@@ -136,7 +136,7 @@ void registration::_body()
 
         _add_content("            <div class=\"mb-3\">");
         _add_content("              <label for=\"email\">Email <span class=\"text-muted\"></span></label>");
-        _add_content("              <input type=\"email\" class=\"form-control\" id=\"input_email\" placeholder=\"you@example.com\" required>");
+        _add_content("              <input type=\"email\" name=\"input_email\" class=\"form-control\" id=\"input_email\" placeholder=\"you@example.com\" required>");
         _add_content("              <div class=\"invalid-feedback\">");
         _add_content("                Please enter a valid email address for shipping updates.");
         _add_content("              </div>");
@@ -146,7 +146,7 @@ void registration::_body()
 
         _add_content("            <div class=\"mb-3\">");
         _add_content("              <label for=\"address\">Address <span class=\"text-muted\">(Optional)</span></label>");
-        _add_content("              <input type=\"text\" class=\"form-control\" id=\"input_address\" placeholder=\"1234 Main St\">");
+        _add_content("              <input type=\"text\" name=\"input_address\" class=\"form-control\" id=\"input_address\" placeholder=\"1234 Main St\">");
         _add_content("              <div class=\"invalid-feedback\">");
         _add_content("                Your address.");
         _add_content("              </div>");
@@ -154,7 +154,7 @@ void registration::_body()
 
         _add_content("            <div class=\"mb-3\">");
         _add_content("              <label for=\"address2\">phone <span class=\"text-muted\">(Optional)</span></label>");
-        _add_content("              <input type=\"text\" class=\"form-control\" id=\"input_phone\" placeholder=\"Phone number\">");
+        _add_content("              <input type=\"text\" name=\"input_phone\" class=\"form-control\" id=\"input_phone\" placeholder=\"Phone number\">");
         _add_content("            </div>");
 
         _add_content("            <div class=\"row\">");
@@ -187,7 +187,7 @@ void registration::_body()
         _add_content("            </div>");
         _add_content("            <hr class=\"mb-4\">");
         _add_content("            <div class=\"custom-control custom-checkbox\">");
-        _add_content("              <input type=\"checkbox\" class=\"custom-control-input\" id=\"input_terms_of_use\" required>");
+        _add_content("              <input type=\"checkbox\" name=\"input_terms_of_use\" class=\"custom-control-input\" id=\"input_terms_of_use\" required>");
         _add_content("              <label class=\"custom-control-label\" for=\"input_terms_of_use\">I agree to the terms of use</label>");
         _add_content("            </div>");
         _add_content("            <hr class=\"mb-4\">");
