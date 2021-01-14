@@ -188,7 +188,7 @@ void registration::_body()
         _add_content("            <hr class=\"mb-4\">");
         _add_content("            <div class=\"custom-control custom-checkbox\">");
         _add_content("              <input type=\"checkbox\" class=\"custom-control-input\" id=\"input_terms_of_use\" required>");
-        _add_content("              <label class=\"custom-control-label\" for=\"terms-of-use\">I agree to the terms of use</label>");
+        _add_content("              <label class=\"custom-control-label\" for=\"input_terms_of_use\">I agree to the terms of use</label>");
         _add_content("            </div>");
         _add_content("            <hr class=\"mb-4\">");
 
