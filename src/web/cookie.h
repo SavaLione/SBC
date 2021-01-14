@@ -56,6 +56,7 @@ struct cookie_pair
 class cookie
 {
 public:
+    cookie() {};
     cookie(std::string const &unprocessed_cookies) : _unprocessed_cookies(unprocessed_cookies) { _init(); };
     ~cookie();
 
@@ -86,7 +87,7 @@ private:
     void _init();
 
     /* Уникальный идентификатор пользователя */
-    cookie_pair _uuid = {"uuid", ""};
+    cookie_pair _uuid = {"uuid", "", false};
 
     cookie_pair _author = {"author", "SBC team", true};
 
