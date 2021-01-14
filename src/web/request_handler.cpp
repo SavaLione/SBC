@@ -218,7 +218,7 @@ void request_handler::_processing_post_request()
 
                     /* Нужно установить cookie */
                     {
-                        std::string __uuid = _uuid_instance.get()
+                        std::string __uuid = _uuid_instance.get();
 
                         cookie_pair uuid = {"uuid", __uuid, true};
                         _cookie.set_uuid(uuid);
@@ -239,9 +239,9 @@ void request_handler::_processing_post_request()
                         __u._is_user_active = true;
                         __u._registration_confirmation_code = _users.registration_confirmation_code;
                         __u._city = _users.city;
-                        __u._uuid = uuid;
+                        __u._uuid = __uuid;
                         __u._user_status = USER_STATUS_SET;
-                        
+
                         _cookie_instance.add(__u);
                     }
                     return;
