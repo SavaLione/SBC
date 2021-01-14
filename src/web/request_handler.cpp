@@ -117,11 +117,11 @@ void request_handler::_show_page_about()
 void request_handler::_show_page_login()
 {
     spdlog::debug("----------------------------");
-    spdlog::debug("{}", _cookie.get_uuid());
+    spdlog::debug("{} {} {}", _cookie.get_uuid().key, _cookie.get_uuid().value, _cookie.get_uuid().set);
     login l(_user, _cookie);
-    spdlog::debug("{}", _cookie.get_uuid());
+    spdlog::debug("{} {} {}", _cookie.get_uuid().key, _cookie.get_uuid().value, _cookie.get_uuid().set);
     _show_page(l);
-    spdlog::debug("{}", _cookie.get_uuid());
+    spdlog::debug("{} {} {}", _cookie.get_uuid().key, _cookie.get_uuid().value, _cookie.get_uuid().set);
     spdlog::debug("----------------------------");
 }
 
