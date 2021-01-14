@@ -62,6 +62,9 @@ void request_handler::_init()
     case page_test_page:
         _show_page_test_page();
         break;
+    case page_registration:
+        _show_page_registration();
+        break;
     default:
         _show_page_not_found();
         break;
