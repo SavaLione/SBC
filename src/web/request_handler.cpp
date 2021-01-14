@@ -41,9 +41,6 @@
 
 #include "io/logger.h"
 
-#include "db/db.h"
-#include "db/table_users.h"
-
 request_handler::~request_handler()
 {
 }
@@ -207,13 +204,11 @@ void request_handler::_processing_post_request()
             {
                 try
                 {
-                    /* Создание подключения к базе данных */
-                    db &db_instance = db::instance();
-                    db_pool _db = db_instance.get();
+                    db_pool *db_p = &_db_instance.get();
                     soci::indicator ind;
                     table_users _users;
 
-                    soci::session sql(*_db.get_pool());
+                    soci::session sql(db_p.get_pool());
 
                     // soci::rowset<table_users> rs = (sql.prepare << "SELECT * FROM users WHERE username='" << _post.get_username().value << "' and password='" << _post.get_password << "'");
 
@@ -225,38 +220,47 @@ void request_handler::_processing_post_request()
                     }
                     else
                     {
-                        spdlog::info("found user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
-                        spdlog::info("found user: [{}] by password: [{}]", _users.username, _users.password);
-
-                        /* Нужно установить cookie */
+                        if ((_users.username.size() > 0) && (_users.password.size() > 0))
                         {
-                            std::string __uuid = _uuid_instance.get();
+                            spdlog::info("found user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
+                            spdlog::info("found user: [{}] by password: [{}]", _users.username, _users.password);
 
-                            cookie_pair uuid = {"uuid", __uuid, true};
-                            _cookie.set_uuid(uuid);
+                            /* Нужно установить cookie */
+                            {
+                                std::string __uuid = _uuid_instance.get();
 
-                            user __u;
-                            __u._id = _users.id;
-                            __u._username = _users.username;
-                            __u._password = _users.password;
-                            __u._name = _users.name;
-                            __u._email = _users.email;
-                            __u._phone = _users.phone;
-                            __u._user_role = USER_ROLE_DEFAULT;
-                            __u._registration_date = _users.registration_date;
-                            __u._last_time_online = _users.last_time_online;
-                            __u._description = _users.description;
-                            __u._department = _users.department;
-                            __u._branch = _users.branch;
-                            __u._is_user_active = true;
-                            __u._registration_confirmation_code = _users.registration_confirmation_code;
-                            __u._city = _users.city;
-                            __u._uuid = __uuid;
-                            __u._user_status = USER_STATUS_SET;
+                                cookie_pair uuid = {"uuid", __uuid, true};
+                                _cookie.set_uuid(uuid);
 
-                            _cookie_instance.add(__u);
+                                user __u;
+                                __u._id = _users.id;
+                                __u._username = _users.username;
+                                __u._password = _users.password;
+                                __u._name = _users.name;
+                                __u._email = _users.email;
+                                __u._phone = _users.phone;
+                                __u._user_role = USER_ROLE_DEFAULT;
+                                __u._registration_date = _users.registration_date;
+                                __u._last_time_online = _users.last_time_online;
+                                __u._description = _users.description;
+                                __u._department = _users.department;
+                                __u._branch = _users.branch;
+                                __u._is_user_active = true;
+                                __u._registration_confirmation_code = _users.registration_confirmation_code;
+                                __u._city = _users.city;
+                                __u._uuid = __uuid;
+                                __u._user_status = USER_STATUS_SET;
+
+                                _cookie_instance.add(__u);
+                            }
+                            return;
                         }
-                        return;
+                        else
+                        {
+                            spdlog::warn("not found user: [{}] by password: [{}]", _post.get_username().value, _post.get_password().value);
+                            spdlog::warn("_users.username, _users.password - empty");
+                        }
+                        
                     }
                 }
                 catch (const std::exception &e)

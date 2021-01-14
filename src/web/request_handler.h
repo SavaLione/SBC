@@ -52,6 +52,10 @@
 #include "core/user_handler.h"
 #include "core/uuid.h"
 
+#include "db/db.h"
+#include "db/db_pool.h"
+#include "db/table_users.h"
+
 /*
     Обработка запроса FastCGI
 */
@@ -73,6 +77,9 @@ private:
 
     /* uuid */
     uuid &_uuid_instance = uuid::Instance();
+
+    /* Подключение к базе данных */
+    db &_db_instance = db::instance();
 
     /* Запрос от FastCGI */
     FCGX_Request &_request;
