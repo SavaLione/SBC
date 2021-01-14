@@ -120,3 +120,26 @@ void cookie::set(std::string const &unprocessed_cookies)
     _unprocessed_cookies = unprocessed_cookies;
     _init();
 }
+
+std::string cookie::get()
+{
+    std::string result = "Set-Cookie: ";
+
+    if (_author.set)
+    {
+        result += _author.key;
+        result += "=";
+        result += _author.value;
+        result += "; ";
+    }
+
+    if (_uuid.set)
+    {
+        result += _uuid.key;
+        result += "=";
+        result += _uuid.value;
+        result += "; ";
+    }
+
+    return result;
+}

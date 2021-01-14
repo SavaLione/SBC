@@ -79,6 +79,12 @@ public:
     */
     operator std::string();
 
+    /*
+        Возвращаем строку вида:
+        Set-Cookie: uuid=aa-bb-cc-dd; 
+    */
+    std::string get();
+
 private:
     /* 
         Необработанные cookie
