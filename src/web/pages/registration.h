@@ -43,10 +43,12 @@
 class registration : public page_template
 {
 public:
-    registration(user const& u) : page_template("registration", text_html, false, u){};
+    registration(user const &u) : page_template("registration", text_html, false, u){};
     ~registration();
-private:
 
+private:
+    virtual void _head();
+    virtual void _body();
 };
 
 #endif // WEB_PAGE_REGISTRATION_H
