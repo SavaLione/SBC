@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
 
             {
                 char reply[max_length];
-                size_t reply_length = boost::asio::read(s, boost::asio::buffer(reply, request_length));
+                size_t reply_length = boost::asio::read(s, boost::asio::buffer(reply, max_length));
                 std::cout << "Reply is: " << std::endl;
                 std::cout.write(reply, reply_length);
                 std::cout << std::endl;
