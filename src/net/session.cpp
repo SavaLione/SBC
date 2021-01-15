@@ -193,8 +193,8 @@ void session::do_read()
                                         spdlog::warn("Data not serialized successfully.");
                                     }
 
-                                    // do_write(length);
-                                    do_write(s_result_return.size());
+                                    do_write(length);
+                                    // do_write(s_result_return.size());
                                 }
                             });
 }
