@@ -44,6 +44,7 @@
 #include <data.pb.h>
 
 #include <string>
+#include <vector>
 
 using boost::asio::ip::tcp;
 
@@ -132,10 +133,19 @@ int main(int argc, char *argv[])
             }
 
             {
-                char reply[max_length];
-                size_t reply_length = boost::asio::read(s, boost::asio::buffer(reply, max_length));
+                std::vector<char> vec_data(s.available());
+                boost::asio::read(s, boost::asio::buffer(vec_data));
 
-                std::string _reply = reply;
+                // char reply[max_length];
+                // size_t reply_length = boost::asio::read(s, boost::asio::buffer(reply, max_length));
+
+                // std::string _reply = reply;
+                std::string _reply;
+                for (int i = 0; i < vec_data.size(); i++)
+                {
+                    _reply += vec_data[i];
+                }
+                
                 if (result.ParseFromString(_reply))
                 {
                     std::cout << "Data serialized successfully (get)" << std::endl;
