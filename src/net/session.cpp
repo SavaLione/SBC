@@ -152,7 +152,10 @@ void session::do_read()
                                                         break;
                                                     }
 
-                                                    sql << "insert into codes(code, time, user, status) values('" << sr.barcode() << "', '" << ct.s_date() << "', '" << sr.login() << "', '" << s_status << "')";
+                                                    if (sr.barcode() != "")
+                                                    {
+                                                        sql << "insert into codes(code, time, user, status) values('" << sr.barcode() << "', '" << ct.s_date() << "', '" << sr.login() << "', '" << s_status << "')";
+                                                    }
                                                 }
                                             }
                                             else
