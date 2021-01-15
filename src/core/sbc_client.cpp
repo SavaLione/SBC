@@ -110,26 +110,24 @@ int main(int argc, char *argv[])
             sr.set_barcode(std::to_string(12345678));
             sr.set_description(str_request);
 
+            std::string s_to_server = "";
+            if (sr.SerializeToString(&s_to_server))
             {
-                std::string s_to_server = "";
-                if (sr.SerializeToString(&s_to_server))
-                {
-                    std::cout << "sr.SerializeToString(&s_to_server) OK" << std::endl;
-                }
-                else
-                {
-                    std::cout << "sr.SerializeToString(&s_to_server) BAD" << std::endl;
-                }
-
-                char request[max_length];
-                for (int i = 0; i < s_to_server.size() && i < max_length; i++)
-                {
-                    request[i] = s_to_server[i];
-                }
-
-                size_t request_length = std::strlen(request);
-                boost::asio::write(s, boost::asio::buffer(request, request_length));
+                std::cout << "sr.SerializeToString(&s_to_server) OK" << std::endl;
             }
+            else
+            {
+                std::cout << "sr.SerializeToString(&s_to_server) BAD" << std::endl;
+            }
+
+            char request[max_length];
+            for (int i = 0; i < s_to_server.size() && i < max_length; i++)
+            {
+                request[i] = s_to_server[i];
+            }
+
+            size_t request_length = std::strlen(request);
+            boost::asio::write(s, boost::asio::buffer(request, request_length));
 
             {
                 char reply[max_length];
