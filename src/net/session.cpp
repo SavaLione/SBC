@@ -64,10 +64,10 @@ void session::do_read()
                                         {
                                             /* Успешно спарсили */
                                             spdlog::info("Data received and processed successfully");
-                                            spdlog::info("Login: [{}]", sr.login);
-                                            spdlog::info("Password: [{}]", sr.password);
-                                            spdlog::info("Barcode: [{}]", sr.barcode);
-                                            spdlog::info("Description: [{}]", sr.description);
+                                            spdlog::info("Login: [{}]", sr.login());
+                                            spdlog::info("Password: [{}]", sr.password());
+                                            spdlog::info("Barcode: [{}]", sr.barcode());
+                                            spdlog::info("Description: [{}]", sr.description());
                                         }
                                         else
                                         {
