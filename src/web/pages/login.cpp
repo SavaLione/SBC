@@ -79,13 +79,14 @@ void login::_body()
     else
     {
         /* Пользователя нет в системе */
+        _add_content("  <body class=\"text-center\">");
         _add_content("    <form method=\"post\" class=\"form-signin\">");
         _add_content("      <img class=\"mb-4\" src=\"/assets/console.svg\" alt=\"\" width=\"72\" height=\"72\">");
         _add_content("      <h1 class=\"h3 mb-3 font-weight-normal\">Please sign in</h1>");
-        _add_content("      <label for=\"username\" class=\"sr-only\">Username</label>");
-        _add_content("      <input type=\"text\" name=\"username\" id=\"username\" class=\"form-control\" placeholder=\"Username\" required autofocus>");
-        _add_content("      <label for=\"password\" class=\"sr-only\">Password</label>");
-        _add_content("      <input type=\"password\" name=\"password\" id=\"password\" class=\"form-control\" placeholder=\"Password\" required>");
+        _add_content("      <label for=\"input_username\" class=\"sr-only\">Username</label>");
+        _add_content("      <input type=\"text\" name=\"input_username\" id=\"input_username\" class=\"form-control\" placeholder=\"Username\" required autofocus>");
+        _add_content("      <label for=\"input_password\" class=\"sr-only\">Password</label>");
+        _add_content("      <input type=\"password\" name=\"input_password\" id=\"input_password\" class=\"form-control\" placeholder=\"Password\" required>");
         _add_content("      <div class=\"checkbox mb-3\">");
         _add_content("        <label>");
         _add_content("          <input type=\"checkbox\" name=\"checkbox\" id=\"checkbox_remember_me\" value=\"remember-me\"> Remember me");
