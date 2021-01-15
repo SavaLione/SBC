@@ -68,7 +68,7 @@ void session::do_read()
                                             spdlog::info("Password: [{}]", sr.password());
                                             spdlog::info("Barcode: [{}]", sr.barcode());
                                             spdlog::info("Description: [{}]", sr.description());
-                                            switch (sr.status())
+                                            switch (sr.newstatus())
                                             {
                                             case sbc::data::Status::PROCESSING:
                                                 spdlog::info("status: [PROCESSING]");
