@@ -38,8 +38,11 @@
 #include "db/db.h"
 
 #include "core/settings.h"
+#include "core/sha.h"
 
 #include "io/logger.h"
+
+#include "time/current_time.h"
 
 db::db()
 {
@@ -89,9 +92,11 @@ void db::_create()
         {
             int table_users_found = 0;
             int table_test_found = 0;
+            int table_codes_found = 0;
 
             sql << "select count(*) from sqlite_master where type='table' and name='users'", soci::into(table_users_found);
             sql << "select count(*) from sqlite_master where type='table' and name='test'", soci::into(table_test_found);
+            sql << "select count(*) from sqlite_master where type='table' and name='codes'", soci::into(table_codes_found);
 
             if (!table_users_found)
             {
@@ -122,19 +127,20 @@ void db::_create()
 
                 if (_settings_instance.app_level() == application_level::APP_DEBUG)
                 {
-                    for (int i = 1; i < 129; i++)
+                    for (int i = 1; i < 3; i++)
                     {
-                        sql << "insert into users(id, username, password, name, email, phone, role, registration_date, last_time_online, description, department, branch, is_user_active, registration_confirmation_code, city) values("
-                            << i << ", "
+                        current_time ct;
+
+                        sql << "insert into users(username, password, name, email, phone, role, registration_date, last_time_online, description, department, branch, is_user_active, registration_confirmation_code, city) values("
                             << "'testuser_" << i << "', "
                             << "'testuser_" << i << "', "
                             << "'testuser_" << i << "', "
                             << "'testuser_" << i << "', "
                             << "'testuser_" << i << "', "
                             << "'testuser_" << i << "', "
-                            << "'testuser_" << i << "', "
-                            << "'testuser_" << i << "', "
-                            << "'testuser_" << i << "', "
+                            << "'" << ct.s_date() << "', "
+                            << "'" << ct.s_date() << "', "
+                            << "'" << sha_256(std::to_string(i + 1024)) << "', "
                             << "'testuser_" << i << "', "
                             << "'testuser_" << i << "', "
                             << "'testuser_" << i << "', "
@@ -158,9 +164,33 @@ void db::_create()
                     ddl.primary_key("test", "id");
                 }
 
-                for (int i = 0; i < 128; i++)
+                for (int i = 0; i < 16; i++)
                 {
                     sql << "insert into test(id) values(" << i << ")";
+                }
+            }
+
+            if (!table_codes_found)
+            {
+                spdlog::info("sqlite table codes not exists. creating sqlite table codes");
+
+                {
+                    soci::ddl_type ddl = sql.create_table("codes");
+
+                    ddl.column("id", soci::dt_integer)("not null");
+
+                    ddl.column("code", soci::dt_string)("not null unique");
+                    ddl.column("time", soci::dt_string);
+                    ddl.column("user", soci::dt_string);
+
+                    ddl.unique("test", "id");
+                    ddl.primary_key("test", "id");
+                }
+
+                for (int i = 0; i < 4; i++)
+                {
+                    current_time ct;
+                    sql << "insert into codes(code, time, user) values('" << sha_256(std::to_string(i)) << "', '" << ct.s_date() << "', 'test')";
                 }
             }
         }
