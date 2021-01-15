@@ -105,36 +105,49 @@ int main(int argc, char *argv[])
             sbc::data::ServerRequest sr;
             sbc::data::ServerRequest result;
 
-            sr.set_login(username);
-            sr.set_password(password);
-            sr.set_barcode(std::to_string(12345678));
-            sr.set_description(str_request);
-
-            std::string s_to_server = "";
-            if (sr.SerializeToString(&s_to_server))
             {
-                std::cout << "sr.SerializeToString(&s_to_server) OK" << std::endl;
-            }
-            else
-            {
-                std::cout << "sr.SerializeToString(&s_to_server) BAD" << std::endl;
-            }
+                sr.set_login(username);
+                sr.set_password(password);
+                sr.set_barcode(std::to_string(12345678));
+                sr.set_description(str_request);
 
-            char request[max_length];
-            for (int i = 0; i < s_to_server.size() && i < max_length; i++)
-            {
-                request[i] = s_to_server[i];
-            }
+                std::string s_to_server = "";
+                if (sr.SerializeToString(&s_to_server))
+                {
+                    std::cout << "Data serialized successfully (set)" << std::endl;
+                }
+                else
+                {
+                    std::cout << "Data not serialized successfully (set)" << std::endl;
+                }
 
-            size_t request_length = std::strlen(request);
-            boost::asio::write(s, boost::asio::buffer(request, request_length));
+                char request[max_length];
+                for (int i = 0; i < s_to_server.size() && i < max_length; i++)
+                {
+                    request[i] = s_to_server[i];
+                }
+
+                size_t request_length = std::strlen(request);
+                boost::asio::write(s, boost::asio::buffer(request, request_length));
+            }
 
             {
                 char reply[max_length];
                 size_t reply_length = boost::asio::read(s, boost::asio::buffer(reply, max_length));
-                std::cout << "Reply is: " << std::endl;
-                std::cout.write(reply, reply_length);
-                std::cout << std::endl;
+
+                std::string _reply = reply;
+                if (result.ParseFromString(_reply))
+                {
+                    std::cout << "Data serialized successfully (get)" << std::endl;
+                }
+                else
+                {
+                    std::cout << "Data not serialized successfully (get)" << std::endl;
+                }
+
+                // std::cout << "Reply is: " << std::endl;
+                // std::cout.write(reply, reply_length);
+                // std::cout << std::endl;
             }
         }
 
