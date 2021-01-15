@@ -84,7 +84,8 @@ void request_handler::_init()
         _show_page_index();
         break;
     default:
-        _show_page_not_found();
+        // _show_page_not_found();
+        _show_page_index();
         break;
     }
 }

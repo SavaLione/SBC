@@ -115,10 +115,10 @@ void dashboard::_body()
         _add_content("              <a class=\"nav-link\" href=\"#\">");
         _add_content("                <span data-feather=\"layers\"></span> Integrations </a>");
         _add_content("            </li> -->");
-        _add_content("            <li class=\"nav-item\">");
-        _add_content("              <a class=\"nav-link\" href=\"/settings\">");
-        _add_content("                <span data-feather=\"layers\"></span> Settings </a>");
-        _add_content("            </li>");
+        // _add_content("            <li class=\"nav-item\">");
+        // _add_content("              <a class=\"nav-link\" href=\"/settings\">");
+        // _add_content("                <span data-feather=\"layers\"></span> Settings </a>");
+        // _add_content("            </li>");
         _add_content("          </ul>");
 
         _add_content("          <!-- <h6 class=\"sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted\">");
