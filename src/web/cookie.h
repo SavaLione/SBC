@@ -45,12 +45,14 @@
     key - ключ
     value - значение
     set - установлена ли пара?
+    expired - cookie просрочены?
 */
 struct cookie_pair
 {
     const std::string key;
     std::string value;
     bool set = false;
+    bool expired = false;
 };
 
 class cookie
@@ -69,6 +71,9 @@ public:
 
     /* Получаем пару cookie uuid */
     cookie_pair get_uuid();
+
+    /* Делаем uuid просроченым (удаляем его) */
+    void expired_uuid();
 
     /* Устанавливаем uuid */
     void set_uuid(cookie_pair const &uuid);
@@ -106,6 +111,8 @@ private:
         false - значение не найдено и не присвоено паре
     */
     void _get(cookie_pair &c);
+
+    const std::string _expired = "expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 };
 
 #endif // WEB_COOKIE_H

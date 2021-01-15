@@ -100,6 +100,11 @@ void cookie::set(std::string const &unprocessed_cookies)
     _init();
 }
 
+void cookie::expired_uuid()
+{
+    _uuid.expired = true;
+}
+
 std::string cookie::get()
 {
     std::vector<std::string> params;
@@ -113,6 +118,11 @@ std::string cookie::get()
         res += "=";
         res += _author.value;
         res += "; ";
+        if (_author.expired)
+        {
+            res += _expired;
+        }
+        
         params.push_back(res);
     }
 
@@ -124,6 +134,11 @@ std::string cookie::get()
         res += "=";
         res += _uuid.value;
         res += "; ";
+        if (_uuid.expired)
+        {
+            res += _expired;
+        }
+        
         params.push_back(res);
     }
 
