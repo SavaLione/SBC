@@ -30,7 +30,7 @@
 cmake_minimum_required (VERSION 3.13.1)
 
 set(SBC_PROJECT "sbc")
-set(SBC_PROJECT_VERSION "0.7.3")
+set(SBC_PROJECT_VERSION "1.0.55")
 
 set(SBC_CLIENT_PROJECT "sbc-client")
 set(SBC_CLIENT_PROJECT_VERSION "0.0.1")

@@ -112,17 +112,17 @@ void request_handler::_recognize_post()
         while (FCGX_GetStr(_string_post, sizeof(_string_post), _request.in) > 0)
         {
         }
-        spdlog::debug("Pre _post.set()");
-        spdlog::debug(_string_post);
+        // spdlog::debug("Pre _post.set()");
+        // spdlog::debug(_string_post);
         _post.set(_string_post);
-        spdlog::debug(_string_post);
-        spdlog::debug("Post _post.set()");
+        // spdlog::debug(_string_post);
+        // spdlog::debug("Post _post.set()");
     }
 }
 
 void request_handler::_show_page(std::string const &p)
 {
-    _debug();
+    // _debug();
     FCGX_PutS(p.c_str(), _request.out);
 }
 
@@ -244,16 +244,16 @@ void request_handler::_processing_post_request()
         /* Пользователя нет в системе */
         if (_user._user_status != USER_STATUS_SET)
         {
-            spdlog::debug("Пользователя нет в системе");
-            spdlog::debug(_post.get_input_username().value);
-            spdlog::debug(_post.get_input_password().value);
+            // spdlog::debug("Пользователя нет в системе");
+            // spdlog::debug(_post.get_input_username().value);
+            // spdlog::debug(_post.get_input_password().value);
 
             /* registration post запрос */
             if (_post.get_input_username().set && _post.get_input_password().set && _post.get_input_terms_of_use().set)
             {
-                spdlog::debug("Регистрация пользователя в системе");
-                spdlog::debug(_post.get_input_username().value);
-                spdlog::debug(_post.get_input_password().value);
+                // spdlog::debug("Регистрация пользователя в системе");
+                // spdlog::debug(_post.get_input_username().value);
+                // spdlog::debug(_post.get_input_password().value);
                 try
                 {
                     db_pool *db_p = &_db_instance.get();

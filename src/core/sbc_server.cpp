@@ -88,50 +88,50 @@ void connect_db()
     db &db_instance = db::instance();
 }
 
-void sbc_test()
-{
-    spdlog::info("Start SBC test.");
+// void sbc_test()
+// {
+//     spdlog::info("Start SBC test.");
 
-    /* cookie */
-    cookie_repository &cookie_instance = cookie_repository::Instance();
+//     /* cookie */
+//     cookie_repository &cookie_instance = cookie_repository::Instance();
 
-    // cookie_instance.debug();
+//     // cookie_instance.debug();
 
-    {
-        user savalione;
-        savalione._username = "SavaLione";
-        savalione._name = "Sava Lione";
-        savalione._uuid = "aa-bb-cc-dd";
+//     {
+//         user savalione;
+//         savalione._username = "SavaLione";
+//         savalione._name = "Sava Lione";
+//         savalione._uuid = "aa-bb-cc-dd";
 
-        cookie_instance.add(savalione);
-    }
+//         cookie_instance.add(savalione);
+//     }
 
-    /* testuser */
-    user testuser;
-    testuser._username = "testname";
-    testuser._name = "Test User";
-    testuser._uuid = "cc-cc-cc-cc";
+//     /* testuser */
+//     user testuser;
+//     testuser._username = "testname";
+//     testuser._name = "Test User";
+//     testuser._uuid = "cc-cc-cc-cc";
 
-    cookie_instance.add(testuser);
-    /* testuser */
+//     cookie_instance.add(testuser);
+//     /* testuser */
 
-    // cookie_instance.debug();
+//     // cookie_instance.debug();
 
-    {
-        user some;
-        some._username = "some";
-        some._name = "Some User Name";
-        some._uuid = "dd-dd-dd-dd";
+//     {
+//         user some;
+//         some._username = "some";
+//         some._name = "Some User Name";
+//         some._uuid = "dd-dd-dd-dd";
 
-        cookie_instance.add(some);
-    }
+//         cookie_instance.add(some);
+//     }
 
-    // cookie_instance.debug();
+//     // cookie_instance.debug();
 
-    //cookie_instance.remove(testuser);
+//     //cookie_instance.remove(testuser);
 
-    // cookie_instance.debug();
-}
+//     // cookie_instance.debug();
+// }
 
 int main(int argc, char *argv[])
 {
@@ -156,8 +156,8 @@ int main(int argc, char *argv[])
     /* Запуск sbc сервера */
     std::thread thread_sbc_server(sbc_server);
 
-    /* Тестирование некоторых функций */
-    std::thread thread_sbc_test(sbc_test);
+    // /* Тестирование некоторых функций */
+    // std::thread thread_sbc_test(sbc_test);
 
     if (thread_web_server.joinable())
     {
@@ -171,11 +171,11 @@ int main(int argc, char *argv[])
         spdlog::info("Stop SBC server.");
     }
 
-    if (thread_sbc_test.joinable())
-    {
-        thread_sbc_test.join();
-        spdlog::info("Stop SBC test.");
-    }
+    // if (thread_sbc_test.joinable())
+    // {
+    //     thread_sbc_test.join();
+    //     spdlog::info("Stop SBC test.");
+    // }
 
     return 0;
 }

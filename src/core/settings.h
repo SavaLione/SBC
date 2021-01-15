@@ -137,7 +137,8 @@ private:
     /* Уровень логирования */
     // log_level _L_level = INFO;
     /* На время разработки SBC */
-    log_level _l_level = log_level::DEBUG;
+    // log_level _l_level = log_level::DEBUG;
+    log_level _l_level = log_level::INFO;
 
     /* ip sbc сервера */
     std::string _ip = "0.0.0.0";
