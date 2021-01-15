@@ -39,6 +39,10 @@
 
 #include "io/logger.h"
 
+#include "db/db.h"
+
+#include "time/current_time.h"
+
 #include <data.pb.h>
 
 #include <iostream>
@@ -57,52 +61,137 @@ void session::do_read()
                                 {
                                     //spdlog::debug("TCP: {}", data_);
                                     spdlog::info("New connection");
+
+                                    sbc::data::ServerRequest sr;
+                                    sbc::data::ServerRequest result;
+                                    std::string _str = data_;
+                                    if (sr.ParseFromString(_str.c_str()))
                                     {
-                                        sbc::data::ServerRequest sr;
-                                        std::string _str = data_;
-                                        if (sr.ParseFromString(_str.c_str()))
+                                        /* Успешно спарсили */
+                                        spdlog::info("Data received and processed successfully");
+                                        spdlog::info("Login: [{}]", sr.login());
+                                        spdlog::info("Password: [{}]", sr.password());
+                                        spdlog::info("Barcode: [{}]", sr.barcode());
+                                        spdlog::info("Description: [{}]", sr.description());
+                                        switch (sr.newstatus())
                                         {
-                                            /* Успешно спарсили */
-                                            spdlog::info("Data received and processed successfully");
-                                            spdlog::info("Login: [{}]", sr.login());
-                                            spdlog::info("Password: [{}]", sr.password());
-                                            spdlog::info("Barcode: [{}]", sr.barcode());
-                                            spdlog::info("Description: [{}]", sr.description());
-                                            switch (sr.newstatus())
+                                        case sbc::data::Status::PROCESSING:
+                                            spdlog::info("status: [PROCESSING]");
+                                            break;
+                                        case sbc::data::Status::SEND:
+                                            spdlog::info("status: [SEND]");
+                                            break;
+                                        case sbc::data::Status::TRAVEL:
+                                            spdlog::info("status: [TRAVEL]");
+                                            break;
+                                        case sbc::data::Status::RECEIVE:
+                                            spdlog::info("status: [RECEIVE]");
+                                            break;
+                                        case sbc::data::Status::LOST:
+                                            spdlog::info("status: [LOST]");
+                                            break;
+                                        case sbc::data::Status::OTHER:
+                                            spdlog::info("status: [OTHER]");
+                                            break;
+                                        case sbc::data::Status::UNKNOWN:
+                                            spdlog::info("status: [UNKNOWN]");
+                                            break;
+                                        default:
+                                            spdlog::info("status: [UNKNOWN]");
+                                            break;
+                                        }
+
+                                        /* Подключаемся к бд, вносим данные */
+                                        try
+                                        {
+                                            db &_db_instance = db::instance();
+                                            db_pool *db_p = &_db_instance.get();
+
+                                            soci::session sql(*db_p->get_pool());
+
+                                            int username_password_correct = 0;
+
+                                            sql << "select count(*) from users where username='" << sr.login() << "' and password='" << sr.password() << "'", soci::into(username_password_correct);
+
+                                            if (username_password_correct)
                                             {
-                                            case sbc::data::Status::PROCESSING:
-                                                spdlog::info("status: [PROCESSING]");
-                                                break;
-                                            case sbc::data::Status::SEND:
-                                                spdlog::info("status: [SEND]");
-                                                break;
-                                            case sbc::data::Status::TRAVEL:
-                                                spdlog::info("status: [TRAVEL]");
-                                                break;
-                                            case sbc::data::Status::RECEIVE:
-                                                spdlog::info("status: [RECEIVE]");
-                                                break;
-                                            case sbc::data::Status::LOST:
-                                                spdlog::info("status: [LOST]");
-                                                break;
-                                            case sbc::data::Status::OTHER:
-                                                spdlog::info("status: [OTHER]");
-                                                break;
-                                            case sbc::data::Status::UNKNOWN:
-                                                spdlog::info("status: [UNKNOWN]");
-                                                break;
-                                            default:
-                                                spdlog::info("status: [UNKNOWN]");
-                                                break;
+                                                /* Данные корректны */
+                                                result.set_returncode(sbc::data::RetCode::SUCCESS);
+
+                                                /* Вносим данные в базу данных */
+                                                {
+                                                    current_time ct;
+                                                    std::string s_status = "";
+
+                                                    switch (sr.newstatus())
+                                                    {
+                                                    case sbc::data::Status::PROCESSING:
+                                                        s_status = "PROCESSING";
+                                                        break;
+                                                    case sbc::data::Status::SEND:
+                                                        s_status = "SEND";
+                                                        break;
+                                                    case sbc::data::Status::TRAVEL:
+                                                        s_status = "TRAVEL";
+                                                        break;
+                                                    case sbc::data::Status::RECEIVE:
+                                                        s_status = "RECEIVE";
+                                                        break;
+                                                    case sbc::data::Status::LOST:
+                                                        s_status = "LOST";
+                                                        break;
+                                                    case sbc::data::Status::OTHER:
+                                                        s_status = "OTHER";
+                                                        break;
+                                                    case sbc::data::Status::UNKNOWN:
+                                                        s_status = "UNKNOWN";
+                                                        break;
+                                                    default:
+                                                        s_status = "UNKNOWN";
+                                                        break;
+                                                    }
+
+                                                    sql << "insert into codes(code, time, user, status) values('" << sr.barcode() << "', '" << ct.s_date() << "', '" << sr.login() << "', '" << s_status << "')";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                result.set_returncode(sbc::data::RetCode::SIGN_IN_ERROR);
+                                                result.set_callbackmessage("Login or password is incorrect.");
                                             }
                                         }
-                                        else
+                                        catch (const std::exception &e)
                                         {
-                                            /* Не успешно спарсили */
-                                            spdlog::warn("Data was not successfully received and processed");
+                                            spdlog::error(e.what());
+                                            result.set_returncode(sbc::data::RetCode::ERROR);
+                                            result.set_callbackmessage("Error in the sent data.");
                                         }
                                     }
-                                    do_write(length);
+                                    else
+                                    {
+                                        /* Не успешно спарсили */
+                                        spdlog::warn("Data was not successfully received and processed");
+                                        result.set_returncode(sbc::data::RetCode::ERROR);
+                                        result.set_callbackmessage("Data was not successfully received and processed.");
+                                    }
+
+                                    std::string s_result_return = "";
+                                    if (result.SerializeToString(s_result_return))
+                                    {
+                                        /* Данные успешно сериализованы */
+                                        for (int i = 0; i < s_result_return.size() && i < max_length; i++)
+                                        {
+                                            data_[i] = s_result_return[i];
+                                        }
+                                    }
+                                    else
+                                    {
+                                        /* Данные не успешно сериализованы */
+                                        spdlog::warn("Data not serialized successfully.");
+                                    }
+
+                                    // do_write(length);
+                                    do_write(s_result_return.size());
                                 }
                             });
 }
