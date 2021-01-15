@@ -51,6 +51,7 @@ void table_codes::clear()
     code = "";
     time = "";
     user = "";
+    status = "";
 }
 
 void table_codes::print()
@@ -59,6 +60,7 @@ void table_codes::print()
     spdlog::debug("code: {}", code);
     spdlog::debug("time: {}", time);
     spdlog::debug("user: {}", user);
+    spdlog::debug("status: {}", status);
 }
 
 table_codes &table_codes::operator=(table_codes const &rhs)
@@ -69,6 +71,7 @@ table_codes &table_codes::operator=(table_codes const &rhs)
         code = rhs.code;
         time = rhs.time;
         user = rhs.user;
+        status = rhs.status;
     }
     return *this;
 }

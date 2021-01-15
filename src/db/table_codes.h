@@ -46,6 +46,7 @@ public:
     std::string code = "";
     std::string time = "";
     std::string user = "";
+    std::string status = "";
 
     table_codes();
     ~table_codes();
@@ -79,6 +80,7 @@ namespace soci
                 p.code = v.get<std::string>("code", {});
                 p.time = v.get<std::string>("time", {});
                 p.user = v.get<std::string>("user", {});
+                p.status = v.get<std::string>("status", {});
             }
             catch (std::exception const &e)
             {
@@ -94,6 +96,7 @@ namespace soci
                 v.set("code", p.code);
                 v.set("time", p.time);
                 v.set("user", p.user);
+                v.set("status", p.status);
 
                 ind = i_ok;
                 return;
