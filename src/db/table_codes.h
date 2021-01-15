@@ -86,7 +86,7 @@ namespace soci
             }
         }
 
-        static void to_base(table_users const &p, values &v, indicator &ind)
+        static void to_base(table_codes const &p, values &v, indicator &ind)
         {
             try
             {
