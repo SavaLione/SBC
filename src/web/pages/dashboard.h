@@ -44,7 +44,7 @@ class dashboard : public page_template
 {
 public:
     dashboard(user const &u) : page_template("dashboard", text_html, false, u){};
-    ~index();
+    ~dashboard();
 private:
     virtual void _head();
     virtual void _body();
