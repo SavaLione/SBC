@@ -161,6 +161,8 @@ set(SBC_DB_SRC
     src/db/table_template.cpp
     src/db/table_users.h
     src/db/table_users.cpp
+    src/db/table_codes.h
+    src/db/table_codes.cpp
     ${SBC_DB_SQLITE_SRC}
 )
 
@@ -194,6 +196,10 @@ set(SBC_WEB_PAGES_SRC
     src/web/pages/terms.cpp
     src/web/pages/install.h
     src/web/pages/install.cpp
+    src/web/pages/logout.h
+    src/web/pages/logout.cpp
+    src/web/pages/dashboard.h
+    src/web/pages/dashboard.cpp
 )
 
 set(SBC_WEB_SRC
