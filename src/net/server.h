@@ -48,16 +48,16 @@
 class server
 {
 public:
-  server(boost::asio::io_context &io_context, short port)
-      : acceptor_(io_context, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port))
-  {
-    do_accept();
-  }
+    server(boost::asio::io_context &io_context, short port)
+        : acceptor_(io_context, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port))
+    {
+        do_accept();
+    }
 
 private:
-  void do_accept();
+    void do_accept();
 
-  boost::asio::ip::tcp::acceptor acceptor_;
+    boost::asio::ip::tcp::acceptor acceptor_;
 };
 
 #endif // NET_SERVER_H

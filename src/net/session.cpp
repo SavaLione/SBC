@@ -66,8 +66,6 @@ void session::do_read()
                                     sbc::data::ServerRequest result;
                                     std::string _str = data_;
 
-                                    spdlog::info("\n\n{}\n\n", _str);
-                                    
                                     if (sr.ParseFromString(_str.c_str()))
                                     {
                                         /* Успешно спарсили */
@@ -193,8 +191,8 @@ void session::do_read()
                                         spdlog::warn("Data not serialized successfully.");
                                     }
 
-                                    do_write(length);
-                                    // do_write(s_result_return.size());
+                                    // do_write(length);
+                                    do_write(s_result_return.size());
                                 }
                             });
 }

@@ -40,23 +40,25 @@
 
 #include <boost/asio.hpp>
 
-class session
-  : public std::enable_shared_from_this<session>
+class session : public std::enable_shared_from_this<session>
 {
 public:
-  session(boost::asio::ip::tcp::socket socket)
-    : socket_(std::move(socket))
-  {
-  }
+    session(boost::asio::ip::tcp::socket socket)
+        : socket_(std::move(socket))
+    {
+    }
 
-  void start();
+    void start();
 
 private:
-  void do_read();
-  void do_write(std::size_t length);
-  boost::asio::ip::tcp::socket socket_;
-  enum { max_length = 16 * 1024 };
-  char data_[max_length];
+    void do_read();
+    void do_write(std::size_t length);
+    boost::asio::ip::tcp::socket socket_;
+    enum
+    {
+        max_length = 16 * 1024
+    };
+    char data_[max_length];
 };
 
 #endif // NET_SESSION_H
