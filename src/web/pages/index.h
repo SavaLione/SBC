@@ -45,6 +45,7 @@ class index : public page_template
 public:
     index(user const &u) : page_template("index", text_html, false, u){};
     ~index();
+
 private:
     virtual void _head();
     virtual void _body();

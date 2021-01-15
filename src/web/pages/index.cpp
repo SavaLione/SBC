@@ -72,7 +72,7 @@ void index::_body()
     _add_content("          <a class=\"nav-link\" href=\"/about\">About</a>");
     _add_content("          <a class=\"nav-link\" href=\"/install\">Install</a>");
     _add_content("          <a class=\"nav-link\" href=\"/terms\">Terms</a>");
-    
+
     if (_user._user_status == USER_STATUS_SET)
     {
         _add_content("          <!-- if authorized -->");
