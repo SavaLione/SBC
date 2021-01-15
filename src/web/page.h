@@ -39,7 +39,6 @@
 #define WEB_PAGE_H
 
 #include "web/pages/about.h"
-#include "web/pages/index.h"
 #include "web/pages/login.h"
 #include "web/pages/nologin.h"
 #include "web/pages/registration.h"
@@ -49,6 +48,7 @@
 #include "web/pages/install.h"
 #include "web/pages/logout.h"
 #include "web/pages/dashboard.h"
+#include "web/pages/index.h"
 
 enum page
 {
