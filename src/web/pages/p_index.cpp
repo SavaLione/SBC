@@ -78,8 +78,14 @@ void p_index::_body()
         _add_content("          <!-- if authorized -->");
         _add_content("          <a class=\"nav-link\" href=\"/dashboard\">Dashboard</a>");
         _add_content("          <a class=\"nav-link\" href=\"/exit\">Exit</a>");
-        _add_content("          <!-- /if authorized -->");
     }
+    else
+    {
+        _add_content("          <!-- if not authorized -->");
+        _add_content("          <a class=\"nav-link\" href=\"/login\">Login</a>");
+        _add_content("          <a class=\"nav-link\" href=\"/registration\">Registration</a>");
+    }
+    _add_content("          <!-- endif -->");
 
     _add_content("        </nav>");
     _add_content("      </div>");
