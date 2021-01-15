@@ -45,6 +45,8 @@
 #include "web/pages/registration.h"
 #include "web/pages/not_found.h"
 #include "web/pages/test_page.h"
+#include "web/pages/terms.h"
+#include "web/pages/install.h"
 
 enum page
 {
@@ -54,7 +56,9 @@ enum page
     page_nologin,
     page_registration,
     page_test_page,
-    page_not_found
+    page_not_found,
+    page_terms,
+    page_install
 };
 
 page recognize_page(std::string const &unprocessed_page);

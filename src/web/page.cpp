@@ -59,6 +59,12 @@ std::string get_page_name(page p)
     case page_test_page:
         return "/test";
         break;
+    case page_terms:
+        return "/terms";
+        break;
+    case page_install:
+        return "/install";
+        break;
     default:
         return "/not_found";
         break;
@@ -96,6 +102,16 @@ page recognize_page(std::string const &unprocessed_page)
     if (unprocessed_page.find(get_page_name(page_test_page)) != std::string::npos)
     {
         return page_test_page;
+    }
+
+    if (unprocessed_page.find(get_page_name(page_terms)) != std::string::npos)
+    {
+        return page_terms;
+    }
+
+    if (unprocessed_page.find(get_page_name(page_install)) != std::string::npos)
+    {
+        return page_install;
     }
 
     return page_not_found;
