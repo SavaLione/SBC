@@ -212,7 +212,7 @@ void dashboard::_body()
                     {
                         std::string s = "";
                         s += "<td>";
-                        s += t_u.id;
+                        s += std::to_string(t_u.id);
                         s += "</td>";
                         _add_content(s);
                     }
@@ -357,7 +357,7 @@ void dashboard::_body()
                     {
                         std::string s = "";
                         s += "<td>";
-                        s += t_c.id;
+                        s += std::to_string(t_c.id);
                         s += "</td>";
                         _add_content(s);
                     }
