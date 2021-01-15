@@ -176,7 +176,7 @@ void session::do_read()
                                     }
 
                                     std::string s_result_return = "";
-                                    if (result.SerializeToString(s_result_return))
+                                    if (result.SerializeToString(*s_result_return))
                                     {
                                         /* Данные успешно сериализованы */
                                         for (int i = 0; i < s_result_return.size() && i < max_length; i++)
