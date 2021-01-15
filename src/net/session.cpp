@@ -68,6 +68,33 @@ void session::do_read()
                                             spdlog::info("Password: [{}]", sr.password());
                                             spdlog::info("Barcode: [{}]", sr.barcode());
                                             spdlog::info("Description: [{}]", sr.description());
+                                            switch (sr.status())
+                                            {
+                                            case sbc::data::Status::PROCESSING:
+                                                spdlog::info("status: [PROCESSING]");
+                                                break;
+                                            case sbc::data::Status::SEND:
+                                                spdlog::info("status: [SEND]");
+                                                break;
+                                            case sbc::data::Status::TRAVEL:
+                                                spdlog::info("status: [TRAVEL]");
+                                                break;
+                                            case sbc::data::Status::RECEIVE:
+                                                spdlog::info("status: [RECEIVE]");
+                                                break;
+                                            case sbc::data::Status::LOST:
+                                                spdlog::info("status: [LOST]");
+                                                break;
+                                            case sbc::data::Status::OTHER:
+                                                spdlog::info("status: [OTHER]");
+                                                break;
+                                            case sbc::data::Status::UNKNOWN:
+                                                spdlog::info("status: [UNKNOWN]");
+                                                break;
+                                            default:
+                                                spdlog::info("status: [UNKNOWN]");
+                                                break;
+                                            }
                                         }
                                         else
                                         {
