@@ -176,23 +176,23 @@ void session::do_read()
                                         result.set_callbackmessage("Data was not successfully received and processed.");
                                     }
 
-                                    std::string s_result_return = "";
-                                    if (result.SerializeToString(&s_result_return))
-                                    {
-                                        /* Данные успешно сериализованы */
-                                        for (int i = 0; i < s_result_return.size() && i < max_length; i++)
-                                        {
-                                            data_[i] = s_result_return[i];
-                                        }
-                                    }
-                                    else
-                                    {
-                                        /* Данные не успешно сериализованы */
-                                        spdlog::warn("Data not serialized successfully.");
-                                    }
+                                    // std::string s_result_return = "";
+                                    // if (result.SerializeToString(&s_result_return))
+                                    // {
+                                    //     /* Данные успешно сериализованы */
+                                    //     for (int i = 0; i < s_result_return.size() && i < max_length; i++)
+                                    //     {
+                                    //         data_[i] = s_result_return[i];
+                                    //     }
+                                    // }
+                                    // else
+                                    // {
+                                    //     /* Данные не успешно сериализованы */
+                                    //     spdlog::warn("Data not serialized successfully.");
+                                    // }
 
-                                    // do_write(length);
-                                    do_write(s_result_return.size());
+                                    do_write(length);
+                                    // do_write(s_result_return.size());
                                 }
                             });
 }
