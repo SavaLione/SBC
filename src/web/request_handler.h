@@ -180,6 +180,15 @@ private:
     /* Показать страницу Install */
     void _show_page_install();
 
+    /* Показать страницу Logout */
+    void _show_page_logout();
+
+    /* Показать страницу Dashboard */
+    void _show_page_dashboard();
+
+    /* Показать страницу Index */
+    void _show_page_index();
+
     /* Вывести отладочную информацию в консоль */
     void _debug();
 };

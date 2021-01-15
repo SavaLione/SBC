@@ -74,6 +74,14 @@ void request_handler::_init()
     case page_install:
         _show_page_install();
         break;
+    case page_logout:
+        _show_page_logout();
+        break;
+    case page_dashboard:
+        _show_page_dashboard();
+    case page_index:
+        _show_page_index();
+        break;
     default:
         _show_page_not_found();
         break;
@@ -153,6 +161,25 @@ void request_handler::_show_page_terms()
 void request_handler::_show_page_install()
 {
     install i(_user);
+    _show_page(i);
+}
+
+void request_handler::_show_page_logout()
+{
+    _cookie.expired_uuid();
+    logout l(_user, _cookie);
+    _show_page(l);
+}
+
+void request_handler::_show_page_dashboard()
+{
+    dashboard d(_user);
+    _show_page(d);
+}
+
+void request_handler::_show_page_index()
+{
+    index i(_user);
     _show_page(i);
 }
 
