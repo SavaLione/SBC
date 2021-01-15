@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
         // boost::asio::write(s, boost::asio::buffer(request, request_length));
 
         char request[max_length];
-        for (int i = 0; i < str_request.size && i < max_length; i++)
+        for (int i = 0; i < str_request.size() && i < max_length; i++)
         {
             request[i] = str_request[i];
         }
