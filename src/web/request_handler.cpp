@@ -79,6 +79,7 @@ void request_handler::_init()
         break;
     case page_dashboard:
         _show_page_dashboard();
+        break;
     case page_index:
         _show_page_index();
         break;
