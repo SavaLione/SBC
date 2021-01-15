@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
             {
                 sr.set_login(username);
                 sr.set_password(password);
-                sr.set_barcode(std::to_string(12345678));
+                sr.set_barcode(str_request);
                 sr.set_description(str_request);
 
                 std::string s_to_server = "";
@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
                 {
                     _reply += vec_data[i];
                 }
-                
+
                 if (result.ParseFromString(_reply))
                 {
                     std::cout << "Data serialized successfully (get)" << std::endl;

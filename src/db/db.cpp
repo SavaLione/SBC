@@ -179,7 +179,7 @@ void db::_create()
 
                     ddl.column("id", soci::dt_integer)("not null");
 
-                    ddl.column("code", soci::dt_string)("not null unique");
+                    ddl.column("code", soci::dt_string);
                     ddl.column("time", soci::dt_string);
                     ddl.column("user", soci::dt_string);
                     ddl.column("status", soci::dt_string);
