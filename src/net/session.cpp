@@ -65,6 +65,9 @@ void session::do_read()
                                     sbc::data::ServerRequest sr;
                                     sbc::data::ServerRequest result;
                                     std::string _str = data_;
+
+                                    spdlog::info("\n\n{}\n\n", _str);
+                                    
                                     if (sr.ParseFromString(_str.c_str()))
                                     {
                                         /* Успешно спарсили */
