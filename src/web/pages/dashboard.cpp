@@ -330,8 +330,9 @@ void dashboard::_body()
         _add_content("              <tr>");
         _add_content("                <th>id</th>");
         _add_content("                <th>code</th>");
-        _add_content("                <th>time</th>");
+        _add_content("                <th>status</th>");
         _add_content("                <th>user</th>");
+        _add_content("                <th>time</th>");
         _add_content("              </tr>");
         _add_content("            </thead>");
         _add_content("            <tbody>");
@@ -371,11 +372,11 @@ void dashboard::_body()
                         _add_content(s);
                     }
 
-                    /* time */
+                    /* status */
                     {
                         std::string s = "";
                         s += "<td>";
-                        s += t_c.time;
+                        s += t_c.status;
                         s += "</td>";
                         _add_content(s);
                     }
@@ -385,6 +386,15 @@ void dashboard::_body()
                         std::string s = "";
                         s += "<td>";
                         s += t_c.user;
+                        s += "</td>";
+                        _add_content(s);
+                    }
+
+                    /* time */
+                    {
+                        std::string s = "";
+                        s += "<td>";
+                        s += t_c.time;
                         s += "</td>";
                         _add_content(s);
                     }
