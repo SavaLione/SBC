@@ -174,6 +174,12 @@ private:
     /* Показать страницу Registration */
     void _show_page_registration();
 
+    /* Показать страницу Terms */
+    void _show_page_terms();
+
+    /* Показать страницу Install */
+    void _show_page_install();
+
     /* Вывести отладочную информацию в консоль */
     void _debug();
 };

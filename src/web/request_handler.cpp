@@ -68,6 +68,12 @@ void request_handler::_init()
     case page_registration:
         _show_page_registration();
         break;
+    case page_terms:
+        _show_page_terms();
+        break;
+    case page_install:
+        _show_page_install();
+        break;
     default:
         _show_page_not_found();
         break;
@@ -136,6 +142,18 @@ void request_handler::_show_page_registration()
 {
     registration r(_user);
     _show_page(r);
+}
+
+void request_handler::_show_page_terms()
+{
+    terms t(_user);
+    _show_page(t);
+}
+
+void request_handler::_show_page_install()
+{
+    install i(_user);
+    _show_page(i);
 }
 
 void request_handler::_recognize_user()
