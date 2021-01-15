@@ -173,7 +173,7 @@ void session::do_read()
                                     else
                                     {
                                         /* Не успешно спарсили */
-                                        spdlog::warn("Data was not successfully received and processed");
+                                        spdlog::warn("Data was not successfully received and processed.");
                                         result.set_returncode(sbc::data::RetCode::ERROR);
                                         result.set_callbackmessage("Data was not successfully received and processed.");
                                     }

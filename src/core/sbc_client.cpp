@@ -41,6 +41,8 @@
 #include <iostream>
 #include <boost/asio.hpp>
 
+#include <data.pb.h>
+
 #include <string>
 
 using boost::asio::ip::tcp;
@@ -72,11 +74,9 @@ int main(int argc, char *argv[])
         get_line("username: ", username);
         get_line("password: ", password);
 
-        std::cout << std::endl << "username: [" << username << "] password: [" << hide_password(password) << "]" << std::endl << std::endl;
-
-        get_line("request: ", str_request);
-
-        std::cout << std::endl << "request: [" << str_request << "]" << std::endl << std::endl;
+        std::cout << std::endl
+                  << "username: [" << username << "] password: [" << hide_password(password) << "]" << std::endl
+                  << std::endl;
 
         boost::asio::io_service io_service;
 
@@ -93,19 +93,66 @@ int main(int argc, char *argv[])
         // size_t request_length = std::strlen(request);
         // boost::asio::write(s, boost::asio::buffer(request, request_length));
 
-        char request[max_length];
-        for (int i = 0; i < str_request.size() && i < max_length; i++)
+        while (true)
         {
-            request[i] = str_request[i];
-        }
-        size_t request_length = std::strlen(request);
-        boost::asio::write(s, boost::asio::buffer(request, request_length));
+            str_request = "";
+            get_line("request: ", str_request);
 
-        char reply[max_length];
-        size_t reply_length = boost::asio::read(s, boost::asio::buffer(reply, request_length));
-        std::cout << "Reply is: ";
-        std::cout.write(reply, reply_length);
-        std::cout << "\n";
+            std::cout << std::endl
+                      << "request: [" << str_request << "]" << std::endl
+                      << std::endl;
+
+            sbc::data::ServerRequest sr;
+            sbc::data::ServerRequest result;
+
+            sr.set_login(username);
+            sr.set_password(password);
+            sr.set_barcode(std::to_string(12345678));
+            sr.set_description(str_request);
+
+            {
+                std::string s_to_server = "";
+                if (sr.SerializeToString(&s_to_server))
+                {
+                    std::cout << "sr.SerializeToString(&s_to_server) OK" << std::endl;
+                }
+                else
+                {
+                    std::cout << "sr.SerializeToString(&s_to_server) BAD" << std::endl;
+                }
+
+                char request[max_length];
+                for (int i = 0; i < s_to_server.size() && i < max_length; i++)
+                {
+                    request[i] = s_to_server[i];
+                }
+
+                size_t request_length = std::strlen(request);
+                boost::asio::write(s, boost::asio::buffer(request, request_length));
+            }
+
+            {
+                char reply[max_length];
+                size_t reply_length = boost::asio::read(s, boost::asio::buffer(reply, request_length));
+                std::cout << "Reply is: " << std::endl;
+                std::cout.write(reply, reply_length);
+                std::cout << std::endl;
+            }
+        }
+
+        // char request[max_length];
+        // for (int i = 0; i < str_request.size() && i < max_length; i++)
+        // {
+        //     request[i] = str_request[i];
+        // }
+        // size_t request_length = std::strlen(request);
+        // boost::asio::write(s, boost::asio::buffer(request, request_length));
+
+        // char reply[max_length];
+        // size_t reply_length = boost::asio::read(s, boost::asio::buffer(reply, request_length));
+        // std::cout << "Reply is: ";
+        // std::cout.write(reply, reply_length);
+        // std::cout << "\n";
     }
     catch (std::exception &e)
     {
