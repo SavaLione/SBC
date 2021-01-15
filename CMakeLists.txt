@@ -178,8 +178,6 @@ set(SBC_TIME_SRC
 set(SBC_WEB_PAGES_SRC
 	src/web/pages/about.cpp
 	src/web/pages/about.h
-	src/web/pages/index.cpp
-	src/web/pages/index.h
 	src/web/pages/login.cpp
 	src/web/pages/login.h
 	src/web/pages/nologin.cpp
@@ -200,6 +198,8 @@ set(SBC_WEB_PAGES_SRC
     src/web/pages/logout.cpp
     src/web/pages/dashboard.h
     src/web/pages/dashboard.cpp
+	src/web/pages/index.cpp
+	src/web/pages/index.h
 )
 
 set(SBC_WEB_SRC
