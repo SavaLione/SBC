@@ -37,8 +37,6 @@
  */
 #include "web/pages/page_template.h"
 
-#include "io/logger.h"
-
 page_template::~page_template()
 {
 }
@@ -50,9 +48,6 @@ std::string page_template::_get_name()
 
 void page_template::_add_content(std::string content)
 {
-    // std::string s = content;
-    // s += "\r\n";
-    // FCGX_PutS(s.c_str(), _request.out);
     _content += content;
     _content += "\r\n";
 }
@@ -66,11 +61,7 @@ void page_template::_html_header()
 
 void page_template::_html_header_cookie()
 {
-    // _add_content("Set-Cookie: author=SBC team;");
     _add_content(_cookie.get());
-    spdlog::debug("--------------------------------------------");
-    spdlog::debug(_cookie.get());
-    spdlog::debug("--------------------------------------------");
 }
 
 void page_template::_html()
