@@ -180,8 +180,8 @@ void request_handler::_show_page_dashboard()
 
 void request_handler::_show_page_index()
 {
-    index i(_user);
-    _show_page(i);
+    index _index(_user);
+    _show_page(_index);
 }
 
 void request_handler::_recognize_user()
