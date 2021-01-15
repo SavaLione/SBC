@@ -35,13 +35,13 @@
  * @author SavaLione
  * @date 15 Dec 2021
  */
-#include "web/pages/index.h"
+#include "web/pages/p_index.h"
 
-index::~index()
+p_index::~p_index()
 {
 }
 
-void index::_head()
+void p_index::_head()
 {
     _add_content("<head>");
     _add_content("  <meta charset=\"utf-8\">");
@@ -60,7 +60,7 @@ void index::_head()
     _add_content("</head>");
 }
 
-void index::_body()
+void p_index::_body()
 {
     _add_content("<body class=\"text-center\">");
     _add_content("  <div class=\"cover-container d-flex h-100 p-3 mx-auto flex-column\">");

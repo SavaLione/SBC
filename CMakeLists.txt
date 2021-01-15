@@ -198,8 +198,8 @@ set(SBC_WEB_PAGES_SRC
     src/web/pages/logout.cpp
     src/web/pages/dashboard.h
     src/web/pages/dashboard.cpp
-	src/web/pages/index.cpp
-	src/web/pages/index.h
+	src/web/pages/p_index.cpp
+	src/web/pages/p_index.h
 )
 
 set(SBC_WEB_SRC

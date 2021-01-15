@@ -35,20 +35,20 @@
  * @author SavaLione
  * @date 15 Dec 2021
  */
-#ifndef WEB_PAGES_INDEX_H
-#define WEB_PAGES_INDEX_H
+#ifndef WEB_PAGES_P_INDEX_H
+#define WEB_PAGES_P_INDEX_H
 
 #include "web/pages/page_template.h"
 
-class index : public page_template
+class p_index : public page_template
 {
 public:
-    index(user const &u) : page_template("index", text_html, false, u){};
-    ~index();
+    p_index(user const &u) : page_template("index", text_html, false, u){};
+    ~p_index();
 
 private:
     virtual void _head();
     virtual void _body();
 };
 
-#endif // WEB_PAGES_INDEX_H
+#endif // WEB_PAGES_P_INDEX_H

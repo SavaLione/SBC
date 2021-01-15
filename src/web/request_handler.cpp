@@ -180,10 +180,8 @@ void request_handler::_show_page_dashboard()
 
 void request_handler::_show_page_index()
 {
-    // index i = index(_user);
-    // _show_page(i);
-    dashboard d(_user);
-    _show_page(d);
+    p_index pi(_user);
+    _show_page(pi);
 }
 
 void request_handler::_recognize_user()

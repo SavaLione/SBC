@@ -48,7 +48,7 @@
 #include "web/pages/install.h"
 #include "web/pages/logout.h"
 #include "web/pages/dashboard.h"
-#include "web/pages/index.h"
+#include "web/pages/p_index.h"
 
 enum page
 {
