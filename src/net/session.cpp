@@ -39,6 +39,8 @@
 
 #include "io/logger.h"
 
+#include <data.pb.h>
+
 #include <iostream>
 
 void session::start()
@@ -55,6 +57,11 @@ void session::do_read()
                                 if (!ec)
                                 {
                                     spdlog::debug("TCP: {}", data_);
+                                    spdlog::info("New connection");
+                                    {
+                                        sbc::data::ServerRequest sr;
+                                        
+                                    }
                                     do_write(length);
                                 }
                             });

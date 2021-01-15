@@ -58,3 +58,23 @@ message Data
     string data = 4;
     string label = 5;
 }
+
+enum Status
+{
+    PROCESSING = 0;
+    SEND = 1;
+    TRAVEL = 2;
+    RECEIVE = 3;
+    LOST = 4;
+    OTHER = 5;
+    UNKNOWN = 6;
+}
+
+message ServerRequest
+{
+    string Login = 1;
+    string Password = 2;
+    string Barcode = 3;
+    Status NewStatus = 4;
+    string Description = 5;
+}
