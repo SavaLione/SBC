@@ -182,6 +182,7 @@ void db::_create()
                     ddl.column("code", soci::dt_string)("not null unique");
                     ddl.column("time", soci::dt_string);
                     ddl.column("user", soci::dt_string);
+                    ddl.column("status", soci::dt_string);
 
                     ddl.unique("test", "id");
                     ddl.primary_key("test", "id");
@@ -190,7 +191,7 @@ void db::_create()
                 for (int i = 0; i < 4; i++)
                 {
                     current_time ct;
-                    sql << "insert into codes(code, time, user) values('" << sha_256(std::to_string(i)) << "', '" << ct.s_date() << "', 'test')";
+                    sql << "insert into codes(code, time, user, status) values('" << sha_256(std::to_string(i)) << "', '" << ct.s_date() << "', 'test', 'OTHER')";
                 }
             }
         }
