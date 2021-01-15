@@ -2,63 +2,6 @@ syntax = "proto3";
 
 package sbc.data;
 
-enum Return_code
-{
-    SUCCESS = 0;
-    USER_NOT_FOUND = 1;
-    PASSWORD_INCORRECT = 2;
-    USER_ALREADY_EXISTS = 3;
-}
-
-enum Terminal_type
-{
-    ANDROID_PHONE = 0;
-    IOS_PHONE = 1;
-    STATIONARY_COMPUTER = 2;
-    MICROCONTROLLER = 3;
-    TEST_TYPE = 4;
-}
-
-enum Barcode_type
-{
-    EAN_8 = 0;
-    EAN_13 = 1;
-    UPC_A = 2;
-    UPC_E = 3;
-    CODE_56 = 4;
-    CODE_128 = 5;
-    CODABAR = 6;
-    INTERLEAVED_2_OF_5 = 7;
-    AZTEC_CODE = 8;
-    DATA_MATRIX = 9;
-    MAXICODE = 10;
-    PDF417 = 11;
-    QR_CODE = 12;
-    MICROSOFT_TAG = 13;
-}
-
-message Terminal
-{
-    int32 number = 1;
-    string name = 2;
-    Terminal_type terminal_type = 3;
-}
-
-message Barcode
-{
-    string code = 1;
-    Barcode_type barcode_type = 2;
-}
-
-message Data
-{
-    Return_code ret_code = 1;
-    Terminal term = 2;
-    Barcode bar_code = 3;
-    string data = 4;
-    string label = 5;
-}
-
 enum Status
 {
     PROCESSING = 0;
