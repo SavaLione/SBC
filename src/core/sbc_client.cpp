@@ -139,6 +139,7 @@ int main(int argc, char *argv[])
                 if (result.ParseFromString(_reply))
                 {
                     std::cout << "Data serialized successfully (get)" << std::endl;
+                    std::cout << "Response: " << result.callbackmessage() << std::endl;
                 }
                 else
                 {
