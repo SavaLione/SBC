@@ -182,6 +182,8 @@ void request_handler::_show_page_index()
 {
     // index i = index(_user);
     // _show_page(i);
+    dashboard d(_user);
+    _show_page(d);
 }
 
 void request_handler::_recognize_user()
