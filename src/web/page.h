@@ -47,6 +47,8 @@
 #include "web/pages/test_page.h"
 #include "web/pages/terms.h"
 #include "web/pages/install.h"
+#include "web/pages/logout.h"
+#include "web/pages/dashboard.h"
 
 enum page
 {
@@ -58,7 +60,9 @@ enum page
     page_test_page,
     page_not_found,
     page_terms,
-    page_install
+    page_install,
+    page_logout,
+    page_dashboard
 };
 
 page recognize_page(std::string const &unprocessed_page);

@@ -65,6 +65,12 @@ std::string get_page_name(page p)
     case page_install:
         return "/install";
         break;
+    case page_logout:
+        return "/logout";
+        break;
+    case page_dashboard:
+        return "/dashboard";
+        break;
     default:
         return "/not_found";
         break;
@@ -112,6 +118,16 @@ page recognize_page(std::string const &unprocessed_page)
     if (unprocessed_page.find(get_page_name(page_install)) != std::string::npos)
     {
         return page_install;
+    }
+
+    if (unprocessed_page.find(get_page_name(page_logout)) != std::string::npos)
+    {
+        return page_logout;
+    }
+
+    if (unprocessed_page.find(get_page_name(page_dashboard)) != std::string::npos)
+    {
+        return page_dashboard;
     }
 
     return page_not_found;
