@@ -196,6 +196,7 @@ void dashboard::_body()
             try
             {
                 db &_db_instance = db::instance();
+                db_pool *db_p = &_db_instance.get();
 
                 soci::session sql(*db_p->get_pool());
 
@@ -340,6 +341,7 @@ void dashboard::_body()
             try
             {
                 db &_db_instance = db::instance();
+                db_pool *db_p = &_db_instance.get();
 
                 soci::session sql(*db_p->get_pool());
 
