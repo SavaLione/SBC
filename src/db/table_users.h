@@ -86,7 +86,7 @@ namespace soci
 
             try
             {
-                // p.id = v.get<int>("id", 0);
+                p.id = v.get<int>("id", 0);
                 p.username = v.get<std::string>("username", {});
                 p.password = v.get<std::string>("password", {});
                 p.name = v.get<std::string>("name", {});
@@ -112,7 +112,7 @@ namespace soci
         {
             try
             {
-                v.set("id", p.id);
+                // v.set("id", p.id);
                 v.set("username", p.username);
                 v.set("password", p.password);
                 v.set("name", p.name);
