@@ -53,7 +53,6 @@
 #include "core/uuid.h"
 
 #include "db/db.h"
-#include "db/db_pool.h"
 #include "db/table_users.h"
 
 /*
